@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<USRegions>
+	<Region>
+		<Name>West</Name>
+	</Region>
+	<Region>
+		<Name>MidWest</Name>
+	</Region>
+	<Region>
+		<Name>Northeast</Name>
+	</Region>
+	<Region>
+		<Name>South</Name>
+	</Region>
+</USRegions>

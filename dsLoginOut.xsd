@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsLoginOut" targetNamespace="http://tempuri.org/dsLoginOut.xsd" xmlns:mstns="http://tempuri.org/dsLoginOut.xsd" xmlns="http://tempuri.org/dsLoginOut.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwEmpLoginOutTableAdapter" GeneratorDataComponentClassName="vwEmpLoginOutTableAdapter" Name="vwEmpLoginOut" UserDataComponentName="vwEmpLoginOutTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwEmpLoginOut" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT linoutid, empin, empbreak, empbreakin, empout, fkwtid, stats, trandate, bempin, bempbreak, bempbreakin, bbreakout, waiter FROM dbo.vwEmpLoginOut</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="linoutid" DataSetColumn="linoutid" />
+              <Mapping SourceColumn="empin" DataSetColumn="empin" />
+              <Mapping SourceColumn="empbreak" DataSetColumn="empbreak" />
+              <Mapping SourceColumn="empbreakin" DataSetColumn="empbreakin" />
+              <Mapping SourceColumn="empout" DataSetColumn="empout" />
+              <Mapping SourceColumn="fkwtid" DataSetColumn="fkwtid" />
+              <Mapping SourceColumn="stats" DataSetColumn="stats" />
+              <Mapping SourceColumn="trandate" DataSetColumn="trandate" />
+              <Mapping SourceColumn="bempin" DataSetColumn="bempin" />
+              <Mapping SourceColumn="bempbreak" DataSetColumn="bempbreak" />
+              <Mapping SourceColumn="bempbreakin" DataSetColumn="bempbreakin" />
+              <Mapping SourceColumn="bbreakout" DataSetColumn="bbreakout" />
+              <Mapping SourceColumn="waiter" DataSetColumn="waiter" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsLoginOut" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsLoginOut" msprop:Generator_UserDSName="dsLoginOut">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwEmpLoginOut" msprop:Generator_TableClassName="vwEmpLoginOutDataTable" msprop:Generator_TableVarName="tablevwEmpLoginOut" msprop:Generator_TablePropName="vwEmpLoginOut" msprop:Generator_RowDeletingName="vwEmpLoginOutRowDeleting" msprop:Generator_RowChangingName="vwEmpLoginOutRowChanging" msprop:Generator_RowEvHandlerName="vwEmpLoginOutRowChangeEventHandler" msprop:Generator_RowDeletedName="vwEmpLoginOutRowDeleted" msprop:Generator_UserTableName="vwEmpLoginOut" msprop:Generator_RowChangedName="vwEmpLoginOutRowChanged" msprop:Generator_RowEvArgName="vwEmpLoginOutRowChangeEvent" msprop:Generator_RowClassName="vwEmpLoginOutRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="linoutid" msprop:Generator_ColumnVarNameInTable="columnlinoutid" msprop:Generator_ColumnPropNameInRow="linoutid" msprop:Generator_ColumnPropNameInTable="linoutidColumn" msprop:Generator_UserColumnName="linoutid" type="xs:int" />
+              <xs:element name="empin" msprop:Generator_ColumnVarNameInTable="columnempin" msprop:Generator_ColumnPropNameInRow="empin" msprop:Generator_ColumnPropNameInTable="empinColumn" msprop:Generator_UserColumnName="empin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="empbreak" msprop:Generator_ColumnVarNameInTable="columnempbreak" msprop:Generator_ColumnPropNameInRow="empbreak" msprop:Generator_ColumnPropNameInTable="empbreakColumn" msprop:Generator_UserColumnName="empbreak" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="empbreakin" msprop:Generator_ColumnVarNameInTable="columnempbreakin" msprop:Generator_ColumnPropNameInRow="empbreakin" msprop:Generator_ColumnPropNameInTable="empbreakinColumn" msprop:Generator_UserColumnName="empbreakin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="empout" msprop:Generator_ColumnVarNameInTable="columnempout" msprop:Generator_ColumnPropNameInRow="empout" msprop:Generator_ColumnPropNameInTable="empoutColumn" msprop:Generator_UserColumnName="empout" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fkwtid" msprop:Generator_ColumnVarNameInTable="columnfkwtid" msprop:Generator_ColumnPropNameInRow="fkwtid" msprop:Generator_ColumnPropNameInTable="fkwtidColumn" msprop:Generator_UserColumnName="fkwtid" type="xs:int" />
+              <xs:element name="stats" msprop:Generator_ColumnVarNameInTable="columnstats" msprop:Generator_ColumnPropNameInRow="stats" msprop:Generator_ColumnPropNameInTable="statsColumn" msprop:Generator_UserColumnName="stats" type="xs:boolean" minOccurs="0" />
+              <xs:element name="trandate" msprop:Generator_ColumnVarNameInTable="columntrandate" msprop:Generator_ColumnPropNameInRow="trandate" msprop:Generator_ColumnPropNameInTable="trandateColumn" msprop:Generator_UserColumnName="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="bempin" msprop:Generator_ColumnVarNameInTable="columnbempin" msprop:Generator_ColumnPropNameInRow="bempin" msprop:Generator_ColumnPropNameInTable="bempinColumn" msprop:Generator_UserColumnName="bempin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bempbreak" msprop:Generator_ColumnVarNameInTable="columnbempbreak" msprop:Generator_ColumnPropNameInRow="bempbreak" msprop:Generator_ColumnPropNameInTable="bempbreakColumn" msprop:Generator_UserColumnName="bempbreak" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bempbreakin" msprop:Generator_ColumnVarNameInTable="columnbempbreakin" msprop:Generator_ColumnPropNameInRow="bempbreakin" msprop:Generator_ColumnPropNameInTable="bempbreakinColumn" msprop:Generator_UserColumnName="bempbreakin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bbreakout" msprop:Generator_ColumnVarNameInTable="columnbbreakout" msprop:Generator_ColumnPropNameInRow="bbreakout" msprop:Generator_ColumnPropNameInTable="bbreakoutColumn" msprop:Generator_UserColumnName="bbreakout" type="xs:boolean" minOccurs="0" />
+              <xs:element name="waiter" msprop:Generator_ColumnVarNameInTable="columnwaiter" msprop:Generator_ColumnPropNameInRow="waiter" msprop:Generator_ColumnPropNameInTable="waiterColumn" msprop:Generator_UserColumnName="waiter">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vwEmpLoginOut" />
+      <xs:field xpath="mstns:linoutid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

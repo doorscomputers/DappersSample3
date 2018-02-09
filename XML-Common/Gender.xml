@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes"?>
+<Gender>
+  <Table>
+    <Gender>Male</Gender>
+  </Table>
+  <Table>
+    <Gender>Female</Gender>
+  </Table>
+  <Table>
+    <Gender>Unknown</Gender>
+  </Table>
+</Gender>

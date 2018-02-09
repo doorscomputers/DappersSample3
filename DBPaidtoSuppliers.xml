@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="DataSource1" Name="dsPdtosupp">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true">
+        <Selection>
+          <Table Name="vwPdToSupplier">
+            <Columns>
+              <Column Name="paydate" />
+              <Column Name="supplier" />
+              <Column Name="drinv" />
+              <Column Name="drid" />
+              <Column Name="amnt" />
+              <Column Name="payid" />
+              <Column Name="amntpaid" />
+              <Column Name="chqno" />
+              <Column Name="bank" />
+              <Column Name="chqdate" />
+              <Column Name="remarks" />
+              <Column Name="sInsert_id" />
+            </Columns>
+          </Table>
+          <Filters>
+            <Filter TableName="" FilterString="[vwPdToSupplier.paydate] Between(?DateFrom, ?DateTo)" />
+            <Filter TableName="vwPdToSupplier" FilterString="[vwPdToSupplier.paydate] Between(?DateFrom, ?DateTo)" />
+          </Filters>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="ChartDashboardItem1" Name="Monthly Payments" DataSource="DataSource1">
+      <DataItems>
+        <Dimension DataMember="paydate" DateTimeGroupInterval="MonthYear" Name="DataItem0" />
+        <Measure DataMember="amntpaid" Name="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="supplier" SortByMeasure="DataItem1" Name="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem0" />
+        <SeriesDimension Name="DataItem2" />
+      </SeriesDimensions>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="amntpaid (Sum)">
+              <Value Name="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pivot ComponentName="PivotDashboardItem1" Name="Summary of Payments" DataSource="DataSource1">
+      <DataItems>
+        <Dimension DataMember="paydate" DateTimeGroupInterval="MonthYear" Name="DataItem0" />
+        <Measure DataMember="amntpaid" Name="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Rows>
+        <Row Name="DataItem0" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem1" />
+      </Values>
+      <Names>
+        <Name Value="DataItem1" Name="Amount Paid" />
+      </Names>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="100">
+        <LayoutItem Weight="100" DashboardItem="ChartDashboardItem1" />
+        <LayoutItem Weight="100" DashboardItem="PivotDashboardItem1" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

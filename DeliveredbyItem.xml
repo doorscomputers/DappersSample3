@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="dsDlvrybyItem">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true">
+        <Selection>
+          <Table Name="vwDlvryDetails">
+            <Columns>
+              <Column Name="stckid" />
+              <Column Name="cost" />
+              <Column Name="qty" />
+              <Column Name="drdetamnt" />
+              <Column Name="freee" />
+              <Column Name="sInsert_id" />
+              <Column Name="dtInsert_dt" />
+              <Column Name="drid" />
+              <Column Name="item_desc" />
+              <Column Name="supplier" />
+              <Column Name="categoryid" />
+              <Column Name="catgory" />
+            </Columns>
+          </Table>
+          <Filters>
+            <Filter TableName="vwDlvryDetails" FilterString="[vwDlvryDetails.dtInsert_dt] Between(?Parameter1, ?Parameter2)" />
+          </Filters>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="Parameter1" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="2013-12-01T00:00:00" />
+    <Parameter Name="Parameter2" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="2014-02-04T00:00:00" />
+  </Parameters>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Bar Chart (Item Category per Month)" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="qty" Name="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="catgory" Name="DataItem1" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="MonthYear" Name="DataItem2" />
+        <Dimension DataMember="dtInsert_dt" Name="DataItem3" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem3" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem2" />
+        <Argument Name="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <AxisY Title="Amount" />
+          <Series>
+            <Simple>
+              <Value Name="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies Chart (Item Category per Quarter)" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="qty" Name="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="dtInsert_dt" SortOrder="Descending" DateTimeGroupInterval="QuarterYear" Name="DataItem1" />
+        <Dimension DataMember="catgory" Name="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem1" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem2" />
+      </Arguments>
+      <Values>
+        <Value Name="DataItem0" />
+      </Values>
+      <Names>
+        <Name Value="DataItem0" Name="Amount" />
+      </Names>
+    </Pie>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid View Deliveries Per Day" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="qty" Name="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Dimension>
+        <Dimension DataMember="drdetamnt" Name="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Dimension>
+        <Dimension DataMember="item_desc" Name="DataItem2" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="DayMonthYear" Name="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Date">
+          <Dimension Name="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Items Received">
+          <Dimension Name="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Qty">
+          <Dimension Name="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Amount">
+          <Dimension Name="DataItem1" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Grid View (Delivery per Item Total)" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="qty" Name="DataItem0" />
+        <Measure DataMember="drdetamnt" Name="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="item_desc" Name="DataItem2" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="MonthYear" Name="DataItem3" />
+      </DataItems>
+      <Columns>
+        <Column Name="DataItem3" />
+      </Columns>
+      <Rows>
+        <Row Name="DataItem2" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem0" />
+        <Value Name="DataItem1" />
+      </Values>
+      <Names>
+        <Name Value="DataItem0" Name="Qty" />
+        <Name Value="DataItem1" Name="Amount" />
+      </Names>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="50">
+        <LayoutItem Weight="49.839572192513366" DashboardItem="chartDashboardItem1" />
+        <LayoutItem Weight="50.160427807486634" DashboardItem="pieDashboardItem1" />
+      </LayoutGroup>
+      <LayoutGroup Weight="50">
+        <LayoutItem Weight="38.074866310160431" DashboardItem="gridDashboardItem1" />
+        <LayoutItem Weight="61.925133689839569" DashboardItem="pivotDashboardItem1" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

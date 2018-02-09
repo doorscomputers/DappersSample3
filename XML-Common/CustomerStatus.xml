@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<CustomerStatus>
+	<Status>
+		<Name>Active</Name>
+	</Status>
+	<Status>
+		<Name>Inactive</Name>
+	</Status>
+</CustomerStatus>

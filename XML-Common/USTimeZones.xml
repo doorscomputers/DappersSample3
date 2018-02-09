@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<USTimeZones>
+	<TimeZones>
+		<Name>Hawaii</Name>
+	</TimeZones>
+	<TimeZones>
+		<Name>Alaska</Name>
+	</TimeZones>
+	<TimeZones>
+		<Name>Pacific</Name>
+	</TimeZones>
+	<TimeZones>
+		<Name>Arizona</Name>
+	</TimeZones>
+	<TimeZones>
+		<Name>Mountain</Name>
+	</TimeZones>
+	<TimeZones>
+		<Name>Central</Name>
+	</TimeZones>
+	<TimeZones>
+		<Name>Eastern</Name>
+	</TimeZones>
+</USTimeZones>

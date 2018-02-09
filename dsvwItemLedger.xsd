@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsvwItemLedger" targetNamespace="http://tempuri.org/dsvwItemLedger.xsd" xmlns:mstns="http://tempuri.org/dsvwItemLedger.xsd" xmlns="http://tempuri.org/dsvwItemLedger.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwItemLedgerTableAdapter" GeneratorDataComponentClassName="vwItemLedgerTableAdapter" Name="vwItemLedger" UserDataComponentName="vwItemLedgerTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwItemLedger" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     ilid, stckid, item_desc, postmp_hdrid, Previous_Stock_Balance, qty_sold, qty_purchased, qtyreturned, backorder, Running_Stock_Balance, trans_Date, transdates, 
+                      free, manualinv, qtytransfrd, qtyreceived, qtyconvertd
+FROM         vwItemLedger
+ORDER BY trans_Date</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ilid" DataSetColumn="ilid" />
+              <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+              <Mapping SourceColumn="postmp_hdrid" DataSetColumn="postmp_hdrid" />
+              <Mapping SourceColumn="Previous_Stock_Balance" DataSetColumn="Previous_Stock_Balance" />
+              <Mapping SourceColumn="qty_sold" DataSetColumn="qty_sold" />
+              <Mapping SourceColumn="qty_purchased" DataSetColumn="qty_purchased" />
+              <Mapping SourceColumn="qtyreturned" DataSetColumn="qtyreturned" />
+              <Mapping SourceColumn="backorder" DataSetColumn="backorder" />
+              <Mapping SourceColumn="Running_Stock_Balance" DataSetColumn="Running_Stock_Balance" />
+              <Mapping SourceColumn="trans_Date" DataSetColumn="trans_Date" />
+              <Mapping SourceColumn="transdates" DataSetColumn="transdates" />
+              <Mapping SourceColumn="free" DataSetColumn="free" />
+              <Mapping SourceColumn="manualinv" DataSetColumn="manualinv" />
+              <Mapping SourceColumn="qtytransfrd" DataSetColumn="qtytransfrd" />
+              <Mapping SourceColumn="qtyreceived" DataSetColumn="qtyreceived" />
+              <Mapping SourceColumn="qtyconvertd" DataSetColumn="qtyconvertd" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsvwItemLedger" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsvwItemLedger" msprop:Generator_UserDSName="dsvwItemLedger">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwItemLedger" msprop:Generator_TableClassName="vwItemLedgerDataTable" msprop:Generator_TableVarName="tablevwItemLedger" msprop:Generator_TablePropName="vwItemLedger" msprop:Generator_RowDeletingName="vwItemLedgerRowDeleting" msprop:Generator_RowChangingName="vwItemLedgerRowChanging" msprop:Generator_RowEvHandlerName="vwItemLedgerRowChangeEventHandler" msprop:Generator_RowDeletedName="vwItemLedgerRowDeleted" msprop:Generator_UserTableName="vwItemLedger" msprop:Generator_RowChangedName="vwItemLedgerRowChanged" msprop:Generator_RowEvArgName="vwItemLedgerRowChangeEvent" msprop:Generator_RowClassName="vwItemLedgerRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ilid" msprop:Generator_ColumnVarNameInTable="columnilid" msprop:Generator_ColumnPropNameInRow="ilid" msprop:Generator_ColumnPropNameInTable="ilidColumn" msprop:Generator_UserColumnName="ilid" type="xs:int" />
+              <xs:element name="stckid" msprop:Generator_ColumnVarNameInTable="columnstckid" msprop:Generator_ColumnPropNameInRow="stckid" msprop:Generator_ColumnPropNameInTable="stckidColumn" msprop:Generator_UserColumnName="stckid" type="xs:int" />
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="postmp_hdrid" msprop:Generator_ColumnVarNameInTable="columnpostmp_hdrid" msprop:Generator_ColumnPropNameInRow="postmp_hdrid" msprop:Generator_ColumnPropNameInTable="postmp_hdridColumn" msprop:Generator_UserColumnName="postmp_hdrid" type="xs:int" />
+              <xs:element name="Previous_Stock_Balance" msprop:Generator_ColumnVarNameInTable="columnPrevious_Stock_Balance" msprop:Generator_ColumnPropNameInRow="Previous_Stock_Balance" msprop:Generator_ColumnPropNameInTable="Previous_Stock_BalanceColumn" msprop:Generator_UserColumnName="Previous_Stock_Balance" type="xs:int" minOccurs="0" />
+              <xs:element name="qty_sold" msprop:Generator_ColumnVarNameInTable="columnqty_sold" msprop:Generator_ColumnPropNameInRow="qty_sold" msprop:Generator_ColumnPropNameInTable="qty_soldColumn" msprop:Generator_UserColumnName="qty_sold" type="xs:int" />
+              <xs:element name="qty_purchased" msprop:Generator_ColumnVarNameInTable="columnqty_purchased" msprop:Generator_ColumnPropNameInRow="qty_purchased" msprop:Generator_ColumnPropNameInTable="qty_purchasedColumn" msprop:Generator_UserColumnName="qty_purchased" type="xs:int" minOccurs="0" />
+              <xs:element name="qtyreturned" msprop:Generator_ColumnVarNameInTable="columnqtyreturned" msprop:Generator_ColumnPropNameInRow="qtyreturned" msprop:Generator_ColumnPropNameInTable="qtyreturnedColumn" msprop:Generator_UserColumnName="qtyreturned" type="xs:int" minOccurs="0" />
+              <xs:element name="backorder" msprop:Generator_ColumnVarNameInTable="columnbackorder" msprop:Generator_ColumnPropNameInRow="backorder" msprop:Generator_ColumnPropNameInTable="backorderColumn" msprop:Generator_UserColumnName="backorder" type="xs:int" minOccurs="0" />
+              <xs:element name="Running_Stock_Balance" msprop:Generator_ColumnVarNameInTable="columnRunning_Stock_Balance" msprop:Generator_ColumnPropNameInRow="Running_Stock_Balance" msprop:Generator_ColumnPropNameInTable="Running_Stock_BalanceColumn" msprop:Generator_UserColumnName="Running_Stock_Balance" type="xs:int" minOccurs="0" />
+              <xs:element name="trans_Date" msprop:Generator_ColumnVarNameInTable="columntrans_Date" msprop:Generator_ColumnPropNameInRow="trans_Date" msprop:Generator_ColumnPropNameInTable="trans_DateColumn" msprop:Generator_UserColumnName="trans_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="transdates" msprop:Generator_ColumnVarNameInTable="columntransdates" msprop:Generator_ColumnPropNameInRow="transdates" msprop:Generator_ColumnPropNameInTable="transdatesColumn" msprop:Generator_UserColumnName="transdates" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="free" msprop:Generator_ColumnVarNameInTable="columnfree" msprop:Generator_ColumnPropNameInRow="free" msprop:Generator_ColumnPropNameInTable="freeColumn" msprop:Generator_UserColumnName="free" type="xs:int" minOccurs="0" />
+              <xs:element name="manualinv" msprop:Generator_ColumnVarNameInTable="columnmanualinv" msprop:Generator_ColumnPropNameInRow="manualinv" msprop:Generator_ColumnPropNameInTable="manualinvColumn" msprop:Generator_UserColumnName="manualinv" type="xs:int" minOccurs="0" />
+              <xs:element name="qtytransfrd" msprop:Generator_ColumnVarNameInTable="columnqtytransfrd" msprop:Generator_ColumnPropNameInRow="qtytransfrd" msprop:Generator_ColumnPropNameInTable="qtytransfrdColumn" msprop:Generator_UserColumnName="qtytransfrd" type="xs:int" minOccurs="0" />
+              <xs:element name="qtyreceived" msprop:Generator_ColumnVarNameInTable="columnqtyreceived" msprop:Generator_ColumnPropNameInRow="qtyreceived" msprop:Generator_ColumnPropNameInTable="qtyreceivedColumn" msprop:Generator_UserColumnName="qtyreceived" type="xs:int" minOccurs="0" />
+              <xs:element name="qtyconvertd" msprop:Generator_ColumnVarNameInTable="columnqtyconvertd" msprop:Generator_ColumnPropNameInRow="qtyconvertd" msprop:Generator_ColumnPropNameInTable="qtyconvertdColumn" msprop:Generator_UserColumnName="qtyconvertd" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vwItemLedger" />
+      <xs:field xpath="mstns:ilid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

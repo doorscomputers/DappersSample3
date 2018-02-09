@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="Data Source 7">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true">
+        <Selection>
+          <Table Name="vwCredit">
+            <Columns>
+              <Column Name="stckid" />
+              <Column Name="item_desc" />
+              <Column Name="price" />
+              <Column Name="qty" />
+              <Column Name="det_amnt" />
+              <Column Name="categoryid" />
+              <Column Name="postmp_hdrid" />
+              <Column Name="pos_date" />
+              <Column Name="mowd" />
+              <Column Name="custid" />
+              <Column Name="lastname" />
+              <Column Name="firstname" />
+              <Column Name="middlename" />
+              <Column Name="Balance" />
+            </Columns>
+          </Table>
+        </Selection>
+      </DataProvider>
+      <CalculatedFields>
+        <CalculatedField Name="Calculated Field 1" Expression="[lastname] + ',' + [firstname] +  ' ' +[middlename]" />
+      </CalculatedFields>
+    </DataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Credit Bar Chart" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument Name="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="Credit">
+              <Value Name="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pie ComponentName="pieDashboardItem1" Name="Credit Pie Chart" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="QuarterYear" Name="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument Name="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value Name="DataItem0" />
+      </Values>
+      <Names>
+        <Name Value="DataItem0" Name="Credit" />
+      </Names>
+    </Pie>
+    <Grid ComponentName="gridDashboardItem1" Name="Credit Grouped per Day" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="Calculated Field 1" Name="DataItem0" />
+        <Dimension DataMember="pos_date" SortOrder="Descending" DateTimeGroupInterval="DayMonthYear" Name="DataItem1" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="DayMonthYear" Name="DataItem2" />
+        <Measure DataMember="det_amnt" Name="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Date">
+          <Dimension Name="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Customer">
+          <Dimension Name="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Amount">
+          <Measure Name="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <SparklineArgument UniqueName="DataItem1" />
+      <GridOptions />
+    </Grid>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Credit Grouped by Month" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem0" />
+        <Measure DataMember="det_amnt" Name="DataItem1" />
+      </DataItems>
+      <Columns>
+        <Column Name="DataItem0" />
+      </Columns>
+      <Values>
+        <Value Name="DataItem1" />
+      </Values>
+      <Names>
+        <Name Value="DataItem1" Name="Credit" />
+      </Names>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup>
+        <LayoutGroup Orientation="Vertical">
+          <LayoutItem DashboardItem="chartDashboardItem1" />
+          <LayoutItem DashboardItem="gridDashboardItem1" />
+        </LayoutGroup>
+        <LayoutGroup Orientation="Vertical">
+          <LayoutItem DashboardItem="pieDashboardItem1" />
+          <LayoutItem DashboardItem="pivotDashboardItem1" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

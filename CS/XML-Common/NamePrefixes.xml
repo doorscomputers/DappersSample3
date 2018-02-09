@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<NamePrefixes>
+	<Prefixes>
+		<Name>Mr.</Name>
+	</Prefixes>
+	<Prefixes>
+		<Name>Mrs.</Name>
+	</Prefixes>
+	<Prefixes>
+		<Name>Miss</Name>
+	</Prefixes>
+	<Prefixes>
+		<Name>Ms.</Name>
+	</Prefixes>
+	<Prefixes>
+		<Name>Dr.</Name>
+	</Prefixes>
+	<Prefixes>
+		<Name>Prof.</Name>
+	</Prefixes>
+</NamePrefixes>

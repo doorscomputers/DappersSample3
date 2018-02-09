@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<CreditCardTypes>
+	<CardTypes>
+		<Name>Visa</Name>
+	</CardTypes>
+	<CardTypes>
+		<Name>MasterCard</Name>
+	</CardTypes>
+	<CardTypes>
+		<Name>American Express</Name>
+	</CardTypes>
+	<CardTypes>
+		<Name>Discover</Name>
+	</CardTypes>
+</CreditCardTypes>

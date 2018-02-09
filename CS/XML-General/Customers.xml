@@ -1,0 +1,372 @@
+<?xml version="1.0" standalone="yes"?>
+<Customers>
+  <Customer>
+    <CompanyName>PDSA, Inc.</CompanyName>
+    <StreetAddress>17852 E. 17th Street</StreetAddress>
+    <CityName>Tustin</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>92780</ZipCode>
+    <PhoneNumber>(714) 734-9792</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Moss Micro</CompanyName>
+    <StreetAddress>1 Swallows Lane</StreetAddress>
+    <CityName>San Juan Capistrano</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>92222</ZipCode>
+    <PhoneNumber>(714) 111-1111</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Joe's Computers Shop</CompanyName>
+    <StreetAddress>1 Computer Way</StreetAddress>
+    <CityName>Santa Ana</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>92705</ZipCode>
+    <PhoneNumber>(403) 392-1892</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Sue's Bike Shop</CompanyName>
+    <StreetAddress>4 Bike Lane</StreetAddress>
+    <CityName>Anaheim</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>92555</ZipCode>
+    <PhoneNumber>(535) 330-0322</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Dr. Jekyll</CompanyName>
+    <StreetAddress>123 Weird Ave.</StreetAddress>
+    <CityName>Huntington Beach</CityName>
+    <StateCode>DE</StateCode>
+    <PhoneNumber>(533) 340-3901</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>The Speech Company</CompanyName>
+    <StreetAddress>1 Talking Lane</StreetAddress>
+    <CityName>Des Moines</CityName>
+    <StateCode>IA</StateCode>
+    <ZipCode>50315</ZipCode>
+    <PhoneNumber>(515) 123-1234</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Madison's Garden</CompanyName>
+    <StreetAddress>4 Garden Street</StreetAddress>
+    <CityName>Carlisle</CityName>
+    <StateCode>IA</StateCode>
+    <ZipCode>50315</ZipCode>
+    <PhoneNumber>(540) 122-3332</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Lane Consulting Group</CompanyName>
+    <StreetAddress>123 Lane Ave.</StreetAddress>
+    <CityName>City</CityName>
+    <StateCode>WA</StateCode>
+    <ZipCode>91919</ZipCode>
+    <PhoneNumber>(209) 123-3345</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Ruhl's Bakery</CompanyName>
+    <StreetAddress>555 Baker Lane</StreetAddress>
+    <CityName>Bake</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>91999</ZipCode>
+    <PhoneNumber>(857) 938-1823</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Hundley's Hat Shop</CompanyName>
+    <StreetAddress>334 Brim Street</StreetAddress>
+    <CityName>Bowler</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>99229</ZipCode>
+    <PhoneNumber>(123) 123-4567</PhoneNumber>
+  </Customer>
+  <Customer>
+    <CompanyName>Johnson Joke Shop</CompanyName>
+    <StreetAddress>123 Funny Way</StreetAddress>
+    <CityName>Funsville</CityName>
+    <StateCode>IA</StateCode>
+    <ZipCode>55555</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>The Bird Shop</CompanyName>
+    <StreetAddress>1234 Parakeet way</StreetAddress>
+    <CityName>San Diego</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>91911</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>The Coffey Shop</CompanyName>
+    <StreetAddress>555 Folgers Blvd.</StreetAddress>
+    <CityName>Columbia</CityName>
+    <StateCode>OH</StateCode>
+    <ZipCode>12333</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Fish Hatchery</CompanyName>
+    <StreetAddress>789 Smelly Lane</StreetAddress>
+    <CityName>Seaside</CityName>
+    <StateCode>OR</StateCode>
+    <ZipCode>92292</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Bed &amp; Breakfast</CompanyName>
+    <StreetAddress>111 Sleepy Hollow</StreetAddress>
+    <CityName>Bedpost</CityName>
+    <StateCode>ID</StateCode>
+    <ZipCode>91911</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Murphy's Law Practice</CompanyName>
+    <StreetAddress>000 Oops Street</StreetAddress>
+    <CityName>Murphysville</CityName>
+    <StateCode>AK</StateCode>
+    <ZipCode>55444</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Disneyland</CompanyName>
+    <StreetAddress>1992 Harbor Blvd.</StreetAddress>
+    <CityName>Anaheim</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>99999</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Knott's Berry Farm</CompanyName>
+    <StreetAddress>Jelly Lane</StreetAddress>
+    <CityName>Buena Park</CityName>
+    <StateCode>CA</StateCode>
+    <ZipCode>11199</ZipCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Always Open Quick Mart</CompanyName>
+    <StreetAddress>77 Overpass Ave.</StreetAddress>
+    <CityName>Provo</CityName>
+    <StateCode>UT</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Anthony's Beer and Ale</CompanyName>
+    <StreetAddress>33 Neptune Circle</StreetAddress>
+    <CityName>Clifton Forge</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Blue Lake Deli &amp; Grocery</CompanyName>
+    <StreetAddress>210 Main St.</StreetAddress>
+    <CityName>Port Townsend</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Fitzgerald's Deli and Video</CompanyName>
+    <StreetAddress>14 E. Eastway Dr.</StreetAddress>
+    <CityName>Bellevue</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Foodmongers, Inc.</CompanyName>
+    <StreetAddress>418 - 6th Ave.</StreetAddress>
+    <CityName>Walla Walla</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Frugal Purse Strings</CompanyName>
+    <StreetAddress>418 Datablitz Ave.</StreetAddress>
+    <CityName>Pocatello</CityName>
+    <StateCode>ID</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Fujiwara Asian Specialties</CompanyName>
+    <StreetAddress>72 Dowlin Pkwy.</StreetAddress>
+    <CityName>Phoenix</CityName>
+    <StateCode>AZ</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Garcia's All-Day Food Mart</CompanyName>
+    <StreetAddress>401 Rodeo Dr.</StreetAddress>
+    <CityName>Auburn</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Great Lakes Food Market</CompanyName>
+    <StreetAddress>2732 Baker Blvd.</StreetAddress>
+    <CityName>Eugene</CityName>
+    <StateCode>OR</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Highbridge Gourmet Shoppe</CompanyName>
+    <StreetAddress>361 Pitt St.</StreetAddress>
+    <CityName>Jamaica</CityName>
+    <StateCode>NY</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>La Playa Mini Mart</CompanyName>
+    <StreetAddress>2044 Seahorse Bay Rd.</StreetAddress>
+    <CityName>Port Townsend</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Lazy K Kountry Store</CompanyName>
+    <StreetAddress>12 Orchestra Terrace</StreetAddress>
+    <CityName>Walla Walla</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Lee's Oriental Food Mart</CompanyName>
+    <StreetAddress>44 McKnight Rd.</StreetAddress>
+    <CityName>Portland</CityName>
+    <StateCode>OR</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Let's Stop N Shop</CompanyName>
+    <StreetAddress>87 Polk St.</StreetAddress>
+    <CityName>San Francisco</CityName>
+    <StateCode>CA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Lillegard's Old Country Deli</CompanyName>
+    <StreetAddress>89 Rain Way</StreetAddress>
+    <CityName>Portland</CityName>
+    <StateCode>OR</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Live Oak Hotel Gift Shop</CompanyName>
+    <StreetAddress>7384 Washington Ave.</StreetAddress>
+    <CityName>Portland</CityName>
+    <StateCode>OR</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Margot's Fromagerie</CompanyName>
+    <StreetAddress>340 Mile High Blvd.</StreetAddress>
+    <CityName>Denver</CityName>
+    <StateCode>CO</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Morning Star Health Foods</CompanyName>
+    <StreetAddress>45 N. Terminal Way</StreetAddress>
+    <CityName>Helena</CityName>
+    <StateCode>MT</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Oceanview Quickshop</CompanyName>
+    <StreetAddress>231 N. Ukiah Rd.</StreetAddress>
+    <CityName>Aloha</CityName>
+    <StateCode>OR</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>O'Connor's Town Store</CompanyName>
+    <StreetAddress>45 E. 23rd St.</StreetAddress>
+    <CityName>Drain</CityName>
+    <StateCode>OR</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Old World Delicatessen</CompanyName>
+    <StreetAddress>2743 Bering St.</StreetAddress>
+    <CityName>Anchorage</CityName>
+    <StateCode>AK</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Pedro's Bodega</CompanyName>
+    <StreetAddress>7 Nachoes Way</StreetAddress>
+    <CityName>Phoenix</CityName>
+    <StateCode>AZ</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Prince and Pauper Markets</CompanyName>
+    <StreetAddress>425 - 3rd Ave.</StreetAddress>
+    <CityName>Seattle</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Quality Plus Foods</CompanyName>
+    <StreetAddress>180 Park Avenue</StreetAddress>
+    <CityName>New York</CityName>
+    <StateCode>NY</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Rattlesnake Canyon Grocery</CompanyName>
+    <StreetAddress>2817 Milton Dr.</StreetAddress>
+    <CityName>Albuquerque</CityName>
+    <StateCode>NM</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Reggie's Wine and Cheese</CompanyName>
+    <StreetAddress>612 E. 2nd St.</StreetAddress>
+    <CityName>Pocatello</CityName>
+    <StateCode>ID</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Rite-Buy Supermarket</CompanyName>
+    <StreetAddress>P.O. Box 4421</StreetAddress>
+    <CityName>Berkeley</CityName>
+    <StateCode>CA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Save-a-lot Markets</CompanyName>
+    <StreetAddress>187 Suffolk Ln.</StreetAddress>
+    <CityName>Boise</CityName>
+    <StateCode>ID</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Sawyer Hill General Store</CompanyName>
+    <StreetAddress>234 Samuel Pl.</StreetAddress>
+    <CityName>Ithaca</CityName>
+    <StateCode>NY</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Silver Screen Food Gems</CompanyName>
+    <StreetAddress>12 Meikeljohn Ln.</StreetAddress>
+    <CityName>Helena</CityName>
+    <StateCode>MT</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Tommy's Imported Specialties</CompanyName>
+    <StreetAddress>348 - 33rd St.</StreetAddress>
+    <CityName>Denver</CityName>
+    <StateCode>CO</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Top of the Food Chain</CompanyName>
+    <StreetAddress>488 Sacajawea Ct.</StreetAddress>
+    <CityName>Santa Fe</CityName>
+    <StateCode>NM</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>ValuMax Food Stores</CompanyName>
+    <StreetAddress>P.O. Box 10029</StreetAddress>
+    <CityName>Austin</CityName>
+    <StateCode>TX</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Village Food Boutique</CompanyName>
+    <StreetAddress>2782 - 92nd Ave.</StreetAddress>
+    <CityName>Los Angeles</CityName>
+    <StateCode>CA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Vine and Barrel, Inc.</CompanyName>
+    <StreetAddress>12405 Aurora Ave. N.</StreetAddress>
+    <CityName>Seattle</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Walnut Grove Grocery</CompanyName>
+    <StreetAddress>33 Upper Arctic Dr.</StreetAddress>
+    <CityName>Buffalo</CityName>
+    <StateCode>NY</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Wanda's Wine and Cheese Shop</CompanyName>
+    <StreetAddress>998 Kirk Rd.</StreetAddress>
+    <CityName>Bellingham</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>White Clover Markets</CompanyName>
+    <StreetAddress>1029 - 12th Ave. S.</StreetAddress>
+    <CityName>Seattle</CityName>
+    <StateCode>WA</StateCode>
+  </Customer>
+  <Customer>
+    <CompanyName>Witanowski's East-West Market</CompanyName>
+    <StreetAddress>7775 S.W. Clinton Ave.</StreetAddress>
+    <CityName>Lewiston</CityName>
+    <StateCode>ID</StateCode>
+  </Customer>
+</Customers>

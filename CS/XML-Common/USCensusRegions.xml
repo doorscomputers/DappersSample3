@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<USCensusRegions>
+	<CensusRegion>
+		<Name>Pacific</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>Mountain</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>West North Central</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>East North Central</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>West South Central</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>East South Central</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>Middle Atlantic</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>New England</Name>
+	</CensusRegion>
+	<CensusRegion>
+		<Name>South Atlantic</Name>
+	</CensusRegion>
+</USCensusRegions>

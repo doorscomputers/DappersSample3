@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsvwReading" targetNamespace="http://tempuri.org/dsvwReading.xsd" xmlns:mstns="http://tempuri.org/dsvwReading.xsd" xmlns="http://tempuri.org/dsvwReading.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwReadingTableAdapter" GeneratorDataComponentClassName="vwReadingTableAdapter" Name="vwReading" UserDataComponentName="vwReadingTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwReading" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT cashreadid, cashier, datereading, totalsales, totalcredit, totaldiscount, begincash, totalcheque, changeprice, transfer, onek, fh, th, oh, ffty, twnty, tp, fve, peso, binting, overshort, payments, pickup, addcash, readtime, status FROM dbo.vwReading</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="cashreadid" DataSetColumn="cashreadid" />
+              <Mapping SourceColumn="cashier" DataSetColumn="cashier" />
+              <Mapping SourceColumn="datereading" DataSetColumn="datereading" />
+              <Mapping SourceColumn="totalsales" DataSetColumn="totalsales" />
+              <Mapping SourceColumn="totalcredit" DataSetColumn="totalcredit" />
+              <Mapping SourceColumn="totaldiscount" DataSetColumn="totaldiscount" />
+              <Mapping SourceColumn="begincash" DataSetColumn="begincash" />
+              <Mapping SourceColumn="totalcheque" DataSetColumn="totalcheque" />
+              <Mapping SourceColumn="changeprice" DataSetColumn="changeprice" />
+              <Mapping SourceColumn="transfer" DataSetColumn="transfer" />
+              <Mapping SourceColumn="onek" DataSetColumn="onek" />
+              <Mapping SourceColumn="fh" DataSetColumn="fh" />
+              <Mapping SourceColumn="th" DataSetColumn="th" />
+              <Mapping SourceColumn="oh" DataSetColumn="oh" />
+              <Mapping SourceColumn="ffty" DataSetColumn="ffty" />
+              <Mapping SourceColumn="twnty" DataSetColumn="twnty" />
+              <Mapping SourceColumn="tp" DataSetColumn="tp" />
+              <Mapping SourceColumn="fve" DataSetColumn="fve" />
+              <Mapping SourceColumn="peso" DataSetColumn="peso" />
+              <Mapping SourceColumn="binting" DataSetColumn="binting" />
+              <Mapping SourceColumn="overshort" DataSetColumn="overshort" />
+              <Mapping SourceColumn="payments" DataSetColumn="payments" />
+              <Mapping SourceColumn="pickup" DataSetColumn="pickup" />
+              <Mapping SourceColumn="addcash" DataSetColumn="addcash" />
+              <Mapping SourceColumn="readtime" DataSetColumn="readtime" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsvwReading" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsvwReading" msprop:Generator_UserDSName="dsvwReading">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwReading" msprop:Generator_TableClassName="vwReadingDataTable" msprop:Generator_TableVarName="tablevwReading" msprop:Generator_TablePropName="vwReading" msprop:Generator_RowDeletingName="vwReadingRowDeleting" msprop:Generator_RowChangingName="vwReadingRowChanging" msprop:Generator_RowEvHandlerName="vwReadingRowChangeEventHandler" msprop:Generator_RowDeletedName="vwReadingRowDeleted" msprop:Generator_UserTableName="vwReading" msprop:Generator_RowChangedName="vwReadingRowChanged" msprop:Generator_RowEvArgName="vwReadingRowChangeEvent" msprop:Generator_RowClassName="vwReadingRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cashreadid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncashreadid" msprop:Generator_ColumnPropNameInRow="cashreadid" msprop:Generator_ColumnPropNameInTable="cashreadidColumn" msprop:Generator_UserColumnName="cashreadid" type="xs:int" />
+              <xs:element name="cashier" msprop:Generator_ColumnVarNameInTable="columncashier" msprop:Generator_ColumnPropNameInRow="cashier" msprop:Generator_ColumnPropNameInTable="cashierColumn" msprop:Generator_UserColumnName="cashier">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="datereading" msprop:Generator_ColumnVarNameInTable="columndatereading" msprop:Generator_ColumnPropNameInRow="datereading" msprop:Generator_ColumnPropNameInTable="datereadingColumn" msprop:Generator_UserColumnName="datereading" type="xs:dateTime" />
+              <xs:element name="totalsales" msprop:Generator_ColumnVarNameInTable="columntotalsales" msprop:Generator_ColumnPropNameInRow="totalsales" msprop:Generator_ColumnPropNameInTable="totalsalesColumn" msprop:Generator_UserColumnName="totalsales" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalcredit" msprop:Generator_ColumnVarNameInTable="columntotalcredit" msprop:Generator_ColumnPropNameInRow="totalcredit" msprop:Generator_ColumnPropNameInTable="totalcreditColumn" msprop:Generator_UserColumnName="totalcredit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totaldiscount" msprop:Generator_ColumnVarNameInTable="columntotaldiscount" msprop:Generator_ColumnPropNameInRow="totaldiscount" msprop:Generator_ColumnPropNameInTable="totaldiscountColumn" msprop:Generator_UserColumnName="totaldiscount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="begincash" msprop:Generator_ColumnVarNameInTable="columnbegincash" msprop:Generator_ColumnPropNameInRow="begincash" msprop:Generator_ColumnPropNameInTable="begincashColumn" msprop:Generator_UserColumnName="begincash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalcheque" msprop:Generator_ColumnVarNameInTable="columntotalcheque" msprop:Generator_ColumnPropNameInRow="totalcheque" msprop:Generator_ColumnPropNameInTable="totalchequeColumn" msprop:Generator_UserColumnName="totalcheque" type="xs:decimal" minOccurs="0" />
+              <xs:element name="changeprice" msprop:Generator_ColumnVarNameInTable="columnchangeprice" msprop:Generator_ColumnPropNameInRow="changeprice" msprop:Generator_ColumnPropNameInTable="changepriceColumn" msprop:Generator_UserColumnName="changeprice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transfer" msprop:Generator_ColumnVarNameInTable="columntransfer" msprop:Generator_ColumnPropNameInRow="transfer" msprop:Generator_ColumnPropNameInTable="transferColumn" msprop:Generator_UserColumnName="transfer" type="xs:decimal" minOccurs="0" />
+              <xs:element name="onek" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnonek" msprop:Generator_ColumnPropNameInRow="onek" msprop:Generator_ColumnPropNameInTable="onekColumn" msprop:Generator_UserColumnName="onek" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fh" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnfh" msprop:Generator_ColumnPropNameInRow="fh" msprop:Generator_ColumnPropNameInTable="fhColumn" msprop:Generator_UserColumnName="fh" type="xs:decimal" minOccurs="0" />
+              <xs:element name="th" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnth" msprop:Generator_ColumnPropNameInRow="th" msprop:Generator_ColumnPropNameInTable="thColumn" msprop:Generator_UserColumnName="th" type="xs:decimal" minOccurs="0" />
+              <xs:element name="oh" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnoh" msprop:Generator_ColumnPropNameInRow="oh" msprop:Generator_ColumnPropNameInTable="ohColumn" msprop:Generator_UserColumnName="oh" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ffty" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnffty" msprop:Generator_ColumnPropNameInRow="ffty" msprop:Generator_ColumnPropNameInTable="fftyColumn" msprop:Generator_UserColumnName="ffty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twnty" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntwnty" msprop:Generator_ColumnPropNameInRow="twnty" msprop:Generator_ColumnPropNameInTable="twntyColumn" msprop:Generator_UserColumnName="twnty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tp" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntp" msprop:Generator_ColumnPropNameInRow="tp" msprop:Generator_ColumnPropNameInTable="tpColumn" msprop:Generator_UserColumnName="tp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fve" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnfve" msprop:Generator_ColumnPropNameInRow="fve" msprop:Generator_ColumnPropNameInTable="fveColumn" msprop:Generator_UserColumnName="fve" type="xs:decimal" minOccurs="0" />
+              <xs:element name="peso" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpeso" msprop:Generator_ColumnPropNameInRow="peso" msprop:Generator_ColumnPropNameInTable="pesoColumn" msprop:Generator_UserColumnName="peso" type="xs:decimal" minOccurs="0" />
+              <xs:element name="binting" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnbinting" msprop:Generator_ColumnPropNameInRow="binting" msprop:Generator_ColumnPropNameInTable="bintingColumn" msprop:Generator_UserColumnName="binting" type="xs:decimal" minOccurs="0" />
+              <xs:element name="overshort" msprop:Generator_ColumnVarNameInTable="columnovershort" msprop:Generator_ColumnPropNameInRow="overshort" msprop:Generator_ColumnPropNameInTable="overshortColumn" msprop:Generator_UserColumnName="overshort" type="xs:decimal" minOccurs="0" />
+              <xs:element name="payments" msprop:Generator_ColumnVarNameInTable="columnpayments" msprop:Generator_ColumnPropNameInRow="payments" msprop:Generator_ColumnPropNameInTable="paymentsColumn" msprop:Generator_UserColumnName="payments" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pickup" msprop:Generator_ColumnVarNameInTable="columnpickup" msprop:Generator_ColumnPropNameInRow="pickup" msprop:Generator_ColumnPropNameInTable="pickupColumn" msprop:Generator_UserColumnName="pickup" type="xs:decimal" minOccurs="0" />
+              <xs:element name="addcash" msprop:Generator_ColumnVarNameInTable="columnaddcash" msprop:Generator_ColumnPropNameInRow="addcash" msprop:Generator_ColumnPropNameInTable="addcashColumn" msprop:Generator_UserColumnName="addcash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="readtime" msprop:Generator_ColumnVarNameInTable="columnreadtime" msprop:Generator_ColumnPropNameInRow="readtime" msprop:Generator_ColumnPropNameInTable="readtimeColumn" msprop:Generator_UserColumnName="readtime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vwReading" />
+      <xs:field xpath="mstns:cashreadid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

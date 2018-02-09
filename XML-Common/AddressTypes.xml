@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<PhoneTypes>
+	<Types>
+		<Name>Home</Name>
+	</Types>
+	<Types>
+		<Name>Business</Name>
+	</Types>
+	<Types>
+		<Name>Fax</Name>
+	</Types>
+	<Types>
+		<Name>Cell</Name>
+	</Types>
+	<Types>
+		<Name>Pager</Name>
+	</Types>
+</PhoneTypes>

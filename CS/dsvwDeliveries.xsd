@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsvwDeliveries" targetNamespace="http://tempuri.org/dsvwDeliveries.xsd" xmlns:mstns="http://tempuri.org/dsvwDeliveries.xsd" xmlns="http://tempuri.org/dsvwDeliveries.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwDlvryDetailsTableAdapter" GeneratorDataComponentClassName="vwDlvryDetailsTableAdapter" Name="vwDlvryDetails" UserDataComponentName="vwDlvryDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwDlvryDetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     stckid, cost, qty, drdetamnt, freee, sInsert_id, dtInsert_dt, drid, item_desc, supplier, categoryid, catgory, drdscamnt, drbal
+FROM         vwDlvryDetails</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
+              <Mapping SourceColumn="cost" DataSetColumn="cost" />
+              <Mapping SourceColumn="qty" DataSetColumn="qty" />
+              <Mapping SourceColumn="drdetamnt" DataSetColumn="drdetamnt" />
+              <Mapping SourceColumn="freee" DataSetColumn="freee" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="dtInsert_dt" DataSetColumn="dtInsert_dt" />
+              <Mapping SourceColumn="drid" DataSetColumn="drid" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+              <Mapping SourceColumn="supplier" DataSetColumn="supplier" />
+              <Mapping SourceColumn="categoryid" DataSetColumn="categoryid" />
+              <Mapping SourceColumn="catgory" DataSetColumn="catgory" />
+              <Mapping SourceColumn="drdscamnt" DataSetColumn="drdscamnt" />
+              <Mapping SourceColumn="drbal" DataSetColumn="drbal" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsvwDeliveries" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsvwDeliveries" msprop:Generator_UserDSName="dsvwDeliveries">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwDlvryDetails" msprop:Generator_TableClassName="vwDlvryDetailsDataTable" msprop:Generator_TableVarName="tablevwDlvryDetails" msprop:Generator_RowChangedName="vwDlvryDetailsRowChanged" msprop:Generator_TablePropName="vwDlvryDetails" msprop:Generator_RowDeletingName="vwDlvryDetailsRowDeleting" msprop:Generator_RowChangingName="vwDlvryDetailsRowChanging" msprop:Generator_RowEvHandlerName="vwDlvryDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="vwDlvryDetailsRowDeleted" msprop:Generator_RowClassName="vwDlvryDetailsRow" msprop:Generator_UserTableName="vwDlvryDetails" msprop:Generator_RowEvArgName="vwDlvryDetailsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="stckid" msprop:Generator_ColumnVarNameInTable="columnstckid" msprop:Generator_ColumnPropNameInRow="stckid" msprop:Generator_ColumnPropNameInTable="stckidColumn" msprop:Generator_UserColumnName="stckid" type="xs:int" minOccurs="0" />
+              <xs:element name="cost" msprop:Generator_ColumnVarNameInTable="columncost" msprop:Generator_ColumnPropNameInRow="cost" msprop:Generator_ColumnPropNameInTable="costColumn" msprop:Generator_UserColumnName="cost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:int" minOccurs="0" />
+              <xs:element name="drdetamnt" msprop:Generator_ColumnVarNameInTable="columndrdetamnt" msprop:Generator_ColumnPropNameInRow="drdetamnt" msprop:Generator_ColumnPropNameInTable="drdetamntColumn" msprop:Generator_UserColumnName="drdetamnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="freee" msprop:Generator_ColumnVarNameInTable="columnfreee" msprop:Generator_ColumnPropNameInRow="freee" msprop:Generator_ColumnPropNameInTable="freeeColumn" msprop:Generator_UserColumnName="freee" type="xs:int" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtInsert_dt" msprop:Generator_ColumnVarNameInTable="columndtInsert_dt" msprop:Generator_ColumnPropNameInRow="dtInsert_dt" msprop:Generator_ColumnPropNameInTable="dtInsert_dtColumn" msprop:Generator_UserColumnName="dtInsert_dt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="drid" msprop:Generator_ColumnVarNameInTable="columndrid" msprop:Generator_ColumnPropNameInRow="drid" msprop:Generator_ColumnPropNameInTable="dridColumn" msprop:Generator_UserColumnName="drid" type="xs:int" />
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="supplier" msprop:Generator_ColumnVarNameInTable="columnsupplier" msprop:Generator_ColumnPropNameInRow="supplier" msprop:Generator_ColumnPropNameInTable="supplierColumn" msprop:Generator_UserColumnName="supplier">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="categoryid" msprop:Generator_ColumnVarNameInTable="columncategoryid" msprop:Generator_ColumnPropNameInRow="categoryid" msprop:Generator_ColumnPropNameInTable="categoryidColumn" msprop:Generator_UserColumnName="categoryid" type="xs:int" />
+              <xs:element name="catgory" msprop:Generator_ColumnVarNameInTable="columncatgory" msprop:Generator_ColumnPropNameInRow="catgory" msprop:Generator_ColumnPropNameInTable="catgoryColumn" msprop:Generator_UserColumnName="catgory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="drdscamnt" msprop:Generator_ColumnVarNameInTable="columndrdscamnt" msprop:Generator_ColumnPropNameInRow="drdscamnt" msprop:Generator_ColumnPropNameInTable="drdscamntColumn" msprop:Generator_UserColumnName="drdscamnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="drbal" msprop:Generator_ColumnVarNameInTable="columndrbal" msprop:Generator_ColumnPropNameInRow="drbal" msprop:Generator_ColumnPropNameInTable="drbalColumn" msprop:Generator_UserColumnName="drbal" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

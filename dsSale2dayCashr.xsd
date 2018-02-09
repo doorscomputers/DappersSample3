@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSale2dayCashr" targetNamespace="http://tempuri.org/dsSale2dayCashr.xsd" xmlns:mstns="http://tempuri.org/dsSale2dayCashr.xsd" xmlns="http://tempuri.org/dsSale2dayCashr.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwSalesTodayCshrTableAdapter" GeneratorDataComponentClassName="vwSalesTodayCshrTableAdapter" Name="vwSalesTodayCshr" UserDataComponentName="vwSalesTodayCshrTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwSalesTodayCshr" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT pos_date, sInsert_id, totsales FROM dbo.vwSalesTodayCshr</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pos_date" DataSetColumn="pos_date" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="totsales" DataSetColumn="totsales" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSale2dayCashr" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsSale2dayCashr" msprop:Generator_UserDSName="dsSale2dayCashr">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwSalesTodayCshr" msprop:Generator_TableClassName="vwSalesTodayCshrDataTable" msprop:Generator_TableVarName="tablevwSalesTodayCshr" msprop:Generator_TablePropName="vwSalesTodayCshr" msprop:Generator_RowDeletingName="vwSalesTodayCshrRowDeleting" msprop:Generator_RowChangingName="vwSalesTodayCshrRowChanging" msprop:Generator_RowEvHandlerName="vwSalesTodayCshrRowChangeEventHandler" msprop:Generator_RowDeletedName="vwSalesTodayCshrRowDeleted" msprop:Generator_UserTableName="vwSalesTodayCshr" msprop:Generator_RowChangedName="vwSalesTodayCshrRowChanged" msprop:Generator_RowEvArgName="vwSalesTodayCshrRowChangeEvent" msprop:Generator_RowClassName="vwSalesTodayCshrRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="totsales" msprop:Generator_ColumnVarNameInTable="columntotsales" msprop:Generator_ColumnPropNameInRow="totsales" msprop:Generator_ColumnPropNameInTable="totsalesColumn" msprop:Generator_UserColumnName="totsales" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

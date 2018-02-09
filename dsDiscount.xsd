@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsDiscount" targetNamespace="http://tempuri.org/dsDiscount.xsd" xmlns:mstns="http://tempuri.org/dsDiscount.xsd" xmlns="http://tempuri.org/dsDiscount.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="pos_hdrTableAdapter" GeneratorDataComponentClassName="pos_hdrTableAdapter" Name="pos_hdr" UserDataComponentName="pos_hdrTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.pos_hdr" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     pos_date, disc_amnt, sInsert_id, dtInsert_dt, postmp_hdrid
+FROM         pos_hdr
+WHERE     (disc_amnt &gt; 0)
+ORDER BY pos_date DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pos_date" DataSetColumn="pos_date" />
+              <Mapping SourceColumn="disc_amnt" DataSetColumn="disc_amnt" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="dtInsert_dt" DataSetColumn="dtInsert_dt" />
+              <Mapping SourceColumn="postmp_hdrid" DataSetColumn="postmp_hdrid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsDiscount" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsDiscount" msprop:Generator_UserDSName="dsDiscount">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="pos_hdr" msprop:Generator_TableClassName="pos_hdrDataTable" msprop:Generator_TableVarName="tablepos_hdr" msprop:Generator_RowChangedName="pos_hdrRowChanged" msprop:Generator_TablePropName="pos_hdr" msprop:Generator_RowDeletingName="pos_hdrRowDeleting" msprop:Generator_RowChangingName="pos_hdrRowChanging" msprop:Generator_RowEvHandlerName="pos_hdrRowChangeEventHandler" msprop:Generator_RowDeletedName="pos_hdrRowDeleted" msprop:Generator_RowClassName="pos_hdrRow" msprop:Generator_UserTableName="pos_hdr" msprop:Generator_RowEvArgName="pos_hdrRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" />
+              <xs:element name="disc_amnt" msprop:Generator_ColumnVarNameInTable="columndisc_amnt" msprop:Generator_ColumnPropNameInRow="disc_amnt" msprop:Generator_ColumnPropNameInTable="disc_amntColumn" msprop:Generator_UserColumnName="disc_amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtInsert_dt" msprop:Generator_ColumnVarNameInTable="columndtInsert_dt" msprop:Generator_ColumnPropNameInRow="dtInsert_dt" msprop:Generator_ColumnPropNameInTable="dtInsert_dtColumn" msprop:Generator_UserColumnName="dtInsert_dt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="postmp_hdrid" msprop:Generator_ColumnVarNameInTable="columnpostmp_hdrid" msprop:Generator_ColumnPropNameInRow="postmp_hdrid" msprop:Generator_ColumnPropNameInTable="postmp_hdridColumn" msprop:Generator_UserColumnName="postmp_hdrid" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:pos_hdr" />
+      <xs:field xpath="mstns:postmp_hdrid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

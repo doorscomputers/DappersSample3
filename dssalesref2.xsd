@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dssalesref2" targetNamespace="http://tempuri.org/dssalesref2.xsd" xmlns:mstns="http://tempuri.org/dssalesref2.xsd" xmlns="http://tempuri.org/dssalesref2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwSalesRefMainTableAdapter" GeneratorDataComponentClassName="vwSalesRefMainTableAdapter" Name="vwSalesRefMain" UserDataComponentName="vwSalesRefMainTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwSalesRefMain" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        pos_date, postmp_hdrid, item_desc, cost, price, det_amnt, sInsert_id
+FROM            vwSalesRefMain</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pos_date" DataSetColumn="pos_date" />
+              <Mapping SourceColumn="postmp_hdrid" DataSetColumn="postmp_hdrid" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+              <Mapping SourceColumn="cost" DataSetColumn="cost" />
+              <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="det_amnt" DataSetColumn="det_amnt" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dssalesref2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dssalesref2" msprop:Generator_UserDSName="dssalesref2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwSalesRefMain" msprop:Generator_TableClassName="vwSalesRefMainDataTable" msprop:Generator_TableVarName="tablevwSalesRefMain" msprop:Generator_RowChangedName="vwSalesRefMainRowChanged" msprop:Generator_TablePropName="vwSalesRefMain" msprop:Generator_RowDeletingName="vwSalesRefMainRowDeleting" msprop:Generator_RowChangingName="vwSalesRefMainRowChanging" msprop:Generator_RowEvHandlerName="vwSalesRefMainRowChangeEventHandler" msprop:Generator_RowDeletedName="vwSalesRefMainRowDeleted" msprop:Generator_RowClassName="vwSalesRefMainRow" msprop:Generator_UserTableName="vwSalesRefMain" msprop:Generator_RowEvArgName="vwSalesRefMainRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" />
+              <xs:element name="postmp_hdrid" msprop:Generator_ColumnVarNameInTable="columnpostmp_hdrid" msprop:Generator_ColumnPropNameInRow="postmp_hdrid" msprop:Generator_ColumnPropNameInTable="postmp_hdridColumn" msprop:Generator_UserColumnName="postmp_hdrid" type="xs:int" minOccurs="0" />
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cost" msprop:Generator_ColumnVarNameInTable="columncost" msprop:Generator_ColumnPropNameInRow="cost" msprop:Generator_ColumnPropNameInTable="costColumn" msprop:Generator_UserColumnName="cost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="det_amnt" msprop:Generator_ColumnVarNameInTable="columndet_amnt" msprop:Generator_ColumnPropNameInRow="det_amnt" msprop:Generator_ColumnPropNameInTable="det_amntColumn" msprop:Generator_UserColumnName="det_amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

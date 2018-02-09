@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<EmployeeTypes>
+	<Types>
+		<Name>CEO</Name>
+	</Types>
+	<Types>
+		<Name>CFO</Name>
+	</Types>
+	<Types>
+		<Name>COO</Name>
+	</Types>
+	<Types>
+		<Name>CIO</Name>
+	</Types>
+	<Types>
+		<Name>CTO</Name>
+	</Types>
+	<Types>
+		<Name>President</Name>
+	</Types>
+	<Types>
+		<Name>Vice President</Name>
+	</Types>
+	<Types>
+		<Name>Executive Vice President</Name>
+	</Types>
+	<Types>
+		<Name>VP Sales</Name>
+	</Types>
+	<Types>
+		<Name>VP Marketing</Name>
+	</Types>
+	<Types>
+		<Name>IT Director</Name>
+	</Types>
+</EmployeeTypes>

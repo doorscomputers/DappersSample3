@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsChkPay" targetNamespace="http://tempuri.org/dsChkPay.xsd" xmlns:mstns="http://tempuri.org/dsChkPay.xsd" xmlns="http://tempuri.org/dsChkPay.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="chkpayTableAdapter" GeneratorDataComponentClassName="chkpayTableAdapter" Name="chkpay" UserDataComponentName="chkpayTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.chkpay" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT payee, amnt, chkno, bank, chkremark, sInsert_id, dtInsert_dt FROM dbo.chkpay</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="payee" DataSetColumn="payee" />
+              <Mapping SourceColumn="amnt" DataSetColumn="amnt" />
+              <Mapping SourceColumn="chkno" DataSetColumn="chkno" />
+              <Mapping SourceColumn="bank" DataSetColumn="bank" />
+              <Mapping SourceColumn="chkremark" DataSetColumn="chkremark" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="dtInsert_dt" DataSetColumn="dtInsert_dt" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsChkPay" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsChkPay" msprop:Generator_UserDSName="dsChkPay">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="chkpay" msprop:Generator_TableClassName="chkpayDataTable" msprop:Generator_TableVarName="tablechkpay" msprop:Generator_TablePropName="chkpay" msprop:Generator_RowDeletingName="chkpayRowDeleting" msprop:Generator_RowChangingName="chkpayRowChanging" msprop:Generator_RowEvHandlerName="chkpayRowChangeEventHandler" msprop:Generator_RowDeletedName="chkpayRowDeleted" msprop:Generator_UserTableName="chkpay" msprop:Generator_RowChangedName="chkpayRowChanged" msprop:Generator_RowEvArgName="chkpayRowChangeEvent" msprop:Generator_RowClassName="chkpayRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="payee" msprop:Generator_ColumnVarNameInTable="columnpayee" msprop:Generator_ColumnPropNameInRow="payee" msprop:Generator_ColumnPropNameInTable="payeeColumn" msprop:Generator_UserColumnName="payee" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="amnt" msprop:Generator_ColumnVarNameInTable="columnamnt" msprop:Generator_ColumnPropNameInRow="amnt" msprop:Generator_ColumnPropNameInTable="amntColumn" msprop:Generator_UserColumnName="amnt" type="xs:decimal" />
+              <xs:element name="chkno" msprop:Generator_ColumnVarNameInTable="columnchkno" msprop:Generator_ColumnPropNameInRow="chkno" msprop:Generator_ColumnPropNameInTable="chknoColumn" msprop:Generator_UserColumnName="chkno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bank" msprop:Generator_ColumnVarNameInTable="columnbank" msprop:Generator_ColumnPropNameInRow="bank" msprop:Generator_ColumnPropNameInTable="bankColumn" msprop:Generator_UserColumnName="bank" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="chkremark" msprop:Generator_ColumnVarNameInTable="columnchkremark" msprop:Generator_ColumnPropNameInRow="chkremark" msprop:Generator_ColumnPropNameInTable="chkremarkColumn" msprop:Generator_UserColumnName="chkremark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtInsert_dt" msprop:Generator_ColumnVarNameInTable="columndtInsert_dt" msprop:Generator_ColumnPropNameInRow="dtInsert_dt" msprop:Generator_ColumnPropNameInTable="dtInsert_dtColumn" msprop:Generator_UserColumnName="dtInsert_dt" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

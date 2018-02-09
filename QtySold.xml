@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="Data Source 1">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true">
+        <Selection>
+          <Table Name="vwSold">
+            <Columns>
+              <Column Name="stckid" />
+              <Column Name="item_desc" />
+              <Column Name="price" />
+              <Column Name="qty" />
+              <Column Name="det_amnt" />
+              <Column Name="categoryid" />
+              <Column Name="catgory" />
+              <Column Name="postmp_hdrid" />
+              <Column Name="pos_date" />
+              <Column Name="mowd" />
+              <Column Name="dtInsert_dt" />
+            </Columns>
+          </Table>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem2" Name="Grid 2" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="item_desc" SortOrder="Descending" SortByMeasure="DataItem1" Name="DataItem0" />
+        <Measure DataMember="qty" Name="DataItem1" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem2" />
+        <Measure DataMember="qty" Name="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension Name="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn>
+          <Measure Name="DataItem1" />
+        </GridMeasureColumn>
+        <GridDimensionColumn>
+          <Dimension Name="DataItem2" />
+        </GridDimensionColumn>
+        <GridMeasureColumn DisplayMode="Bar">
+          <Measure Name="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="qty" Name="DataItem0" />
+        <Dimension DataMember="item_desc" Name="DataItem1" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem2" />
+      </DataItems>
+      <Columns>
+        <Column Name="DataItem2" />
+      </Columns>
+      <Rows>
+        <Row Name="DataItem1" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem0" />
+      </Values>
+    </Pivot>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="qty" Name="DataItem0" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem2" />
+        <Dimension DataMember="catgory" Name="DataItem3" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem3" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value Name="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Pivot 2" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem0" />
+        <Measure DataMember="qty" Name="DataItem1" />
+        <Dimension DataMember="item_desc" SortOrder="Descending" SortByMeasure="DataItem1" Name="DataItem2" />
+        <Measure DataMember="det_amnt" Name="DataItem3" />
+      </DataItems>
+      <Rows>
+        <Row Name="DataItem0" />
+        <Row Name="DataItem2" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem1" />
+        <Value Name="DataItem3" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="49.896907216494846">
+        <LayoutItem Weight="56.820622986036518" DashboardItem="gridDashboardItem2" />
+        <LayoutItem Weight="43.179377013963482" DashboardItem="pivotDashboardItem1" />
+      </LayoutGroup>
+      <LayoutGroup Weight="50.103092783505154">
+        <LayoutItem Weight="56.4983888292159" DashboardItem="chartDashboardItem1" />
+        <LayoutItem Weight="43.5016111707841" DashboardItem="pivotDashboardItem2" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

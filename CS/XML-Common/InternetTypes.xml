@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<InternetTypes>
+	<Type>
+		<Name>.com</Name>
+	</Type>
+	<Type>
+		<Name>.net</Name>
+	</Type>
+	<Type>
+		<Name>.org</Name>
+	</Type>
+	<Type>
+		<Name>.gov</Name>
+	</Type>
+</InternetTypes>

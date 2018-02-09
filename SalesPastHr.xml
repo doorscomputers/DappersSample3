@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="Data Source 5">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true">
+        <Selection>
+          <Table Name="vwSales">
+            <Columns>
+              <Column Name="stckid" />
+              <Column Name="item_desc" />
+              <Column Name="price" />
+              <Column Name="qty" />
+              <Column Name="det_amnt" />
+              <Column Name="categoryid" />
+              <Column Name="catgory" />
+              <Column Name="postmp_hdrid" />
+              <Column Name="pos_date" />
+              <Column Name="mowd" />
+              <Column Name="dtInsert_dt" />
+            </Columns>
+          </Table>
+          <Filters>
+            <Filter TableName="vwSales" FilterString="[vwSales.pos_date] Between(?paramDate, ?paramDate2)" />
+          </Filters>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="paramDate" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="2014-01-01T00:00:00" Description="From" />
+    <Parameter Name="paramDate2" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="2014-02-01T13:18:31" Description="To" />
+  </Parameters>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Sales Chart per Hour" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="Hour" Name="DataItem1" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="Day" Name="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value Name="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Grid View" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="pos_date" SortOrder="Descending" DateTimeGroupInterval="DayMonthYear" Name="DataItem1" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="Hour" Name="DataItem2" />
+      </DataItems>
+      <Columns>
+        <Column Name="DataItem1" />
+      </Columns>
+      <Rows>
+        <Row Name="DataItem2" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem0" />
+      </Values>
+      <Names>
+        <Name Value="DataItem0" Name="Amount" />
+      </Names>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem Weight="54.866310160427808" DashboardItem="chartDashboardItem1" />
+      <LayoutItem Weight="45.133689839572192" DashboardItem="pivotDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

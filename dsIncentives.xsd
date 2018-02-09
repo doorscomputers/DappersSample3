@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsIncentives" targetNamespace="http://tempuri.org/dsIncentives.xsd" xmlns:mstns="http://tempuri.org/dsIncentives.xsd" xmlns="http://tempuri.org/dsIncentives.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwIncentivesTableAdapter" GeneratorDataComponentClassName="vwIncentivesTableAdapter" Name="vwIncentives" UserDataComponentName="vwIncentivesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwIncentives" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        pos_date, incentive, waiter, wtid, stckid, item_desc
+FROM            vwIncentives</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pos_date" DataSetColumn="pos_date" />
+              <Mapping SourceColumn="incentive" DataSetColumn="incentive" />
+              <Mapping SourceColumn="waiter" DataSetColumn="waiter" />
+              <Mapping SourceColumn="wtid" DataSetColumn="wtid" />
+              <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsIncentives" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsIncentives" msprop:Generator_UserDSName="dsIncentives">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwIncentives" msprop:Generator_TableClassName="vwIncentivesDataTable" msprop:Generator_TableVarName="tablevwIncentives" msprop:Generator_TablePropName="vwIncentives" msprop:Generator_RowDeletingName="vwIncentivesRowDeleting" msprop:Generator_RowChangingName="vwIncentivesRowChanging" msprop:Generator_RowEvHandlerName="vwIncentivesRowChangeEventHandler" msprop:Generator_RowDeletedName="vwIncentivesRowDeleted" msprop:Generator_UserTableName="vwIncentives" msprop:Generator_RowChangedName="vwIncentivesRowChanged" msprop:Generator_RowEvArgName="vwIncentivesRowChangeEvent" msprop:Generator_RowClassName="vwIncentivesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" />
+              <xs:element name="incentive" msprop:Generator_ColumnVarNameInTable="columnincentive" msprop:Generator_ColumnPropNameInRow="incentive" msprop:Generator_ColumnPropNameInTable="incentiveColumn" msprop:Generator_UserColumnName="incentive" type="xs:decimal" minOccurs="0" />
+              <xs:element name="waiter" msprop:Generator_ColumnVarNameInTable="columnwaiter" msprop:Generator_ColumnPropNameInRow="waiter" msprop:Generator_ColumnPropNameInTable="waiterColumn" msprop:Generator_UserColumnName="waiter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="wtid" msprop:Generator_ColumnVarNameInTable="columnwtid" msprop:Generator_ColumnPropNameInRow="wtid" msprop:Generator_ColumnPropNameInTable="wtidColumn" msprop:Generator_UserColumnName="wtid" type="xs:int" minOccurs="0" />
+              <xs:element name="stckid" msprop:Generator_ColumnVarNameInTable="columnstckid" msprop:Generator_ColumnPropNameInRow="stckid" msprop:Generator_ColumnPropNameInTable="stckidColumn" msprop:Generator_UserColumnName="stckid" type="xs:int" minOccurs="0" />
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

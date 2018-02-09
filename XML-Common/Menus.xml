@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Menus>
+	<Menu>
+		<item>Home</item>
+		<Action>../Main/HomePage.aspx</Action>
+	</Menu>
+	<Menu>
+		<item>Employees</item>
+		<Action>../Employee/EmpHome.aspx</Action>
+	</Menu>
+</Menus>

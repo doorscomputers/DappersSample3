@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="Data Source 4">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true" Sql="select &quot;vwSalesToday&quot;.&quot;postmp_hdrid&quot;, &quot;vwSalesToday&quot;.&quot;pos_date&quot;, &quot;vwSalesToday&quot;.&quot;stckid&quot;,&#xD;&#xA;       &quot;vwSalesToday&quot;.&quot;item_desc&quot;, &quot;vwSalesToday&quot;.&quot;cost&quot;, &quot;vwSalesToday&quot;.&quot;price&quot;, &quot;vwSalesToday&quot;.&quot;det_amnt&quot;,&#xD;&#xA;       &quot;vwSalesToday&quot;.&quot;catgory&quot;, &quot;vwSalesToday&quot;.&quot;dtInsert_dt&quot;&#xD;&#xA;&#xD;&#xA;  from &quot;dbo&quot;.&quot;vwSalesToday&quot; &quot;vwSalesToday&quot;">
+        <Selection>
+          <Table Name="vwSalesToday">
+            <Columns>
+              <Column Name="postmp_hdrid" />
+              <Column Name="pos_date" />
+              <Column Name="stckid" />
+              <Column Name="item_desc" />
+              <Column Name="cost" />
+              <Column Name="price" />
+              <Column Name="det_amnt" />
+              <Column Name="catgory" />
+            </Columns>
+          </Table>
+          <Filters>
+            <Filter TableName="" FilterString="" />
+          </Filters>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="Day" Name="DataItem1" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="Hour" Name="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value Name="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Sales Per Hour" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="DateHour" Name="DataItem0">
+          <DateTimeFormat DateHourFormat="TimeOnly" />
+        </Dimension>
+        <Measure DataMember="det_amnt" Name="DataItem1" />
+        <Dimension DataMember="dtInsert_dt" DateTimeGroupInterval="MonthYear" Name="DataItem2" />
+      </DataItems>
+      <Columns>
+        <Column Name="DataItem2" />
+      </Columns>
+      <Rows>
+        <Row Name="DataItem0" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem1" />
+      </Values>
+      <Names>
+        <Name Value="DataItem1" Name="det_amnt (Sum)" />
+      </Names>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem Weight="0.5" DashboardItem="chartDashboardItem1" />
+      <LayoutItem Weight="0.5" DashboardItem="pivotDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
