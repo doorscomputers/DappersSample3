@@ -17,6 +17,8 @@ Public Class frmTestDapper
             'MessageBox.Show("Stock not found.")
             'MessageBox.Show("Stock not found.")
             'MessageBox.Show("Stock not found.")
+            'MessageBox.Show("Stock not found.")
+            'MessageBox.Show("Stock not found.")
             MessageBox.Show("Stock not found.")
         End If
     End Sub
