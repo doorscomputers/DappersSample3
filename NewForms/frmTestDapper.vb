@@ -14,6 +14,7 @@ Public Class frmTestDapper
             TextEdit2.Text = stock.barcode
             TextEdit3.Text = stock.item_desc
         Else
+            'MessageBox.Show("Stock not found.")
             MessageBox.Show("Stock not found.")
         End If
     End Sub
@@ -33,6 +34,8 @@ Public Class frmTestDapper
 
         If stocks IsNot Nothing AndAlso stocks.Count > 0 Then
             ' Bind the result to the GridControl
+            'GridControl1.DataSource = stocks
+            'CustomizeGridColumns()
             GridControl1.DataSource = stocks
             CustomizeGridColumns()
         Else
