@@ -15,6 +15,8 @@ Public Class frmTestDapper
             TextEdit3.Text = stock.item_desc
         Else
             'MessageBox.Show("Stock not found.")
+            'MessageBox.Show("Stock not found.")
+            'MessageBox.Show("Stock not found.")
             MessageBox.Show("Stock not found.")
         End If
     End Sub

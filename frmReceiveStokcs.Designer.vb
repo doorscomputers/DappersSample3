@@ -24,23 +24,14 @@ Partial Class frmReceiveStokcs
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.dscamnt = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LotNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ExpiryDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Qty = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Item = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.stckid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.disc = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.txtbcodes = New System.Windows.Forms.TextBox()
         Me.leLocation = New DevExpress.XtraEditors.LookUpEdit()
@@ -67,6 +58,16 @@ Partial Class frmReceiveStokcs
         Me.FormAssistant1 = New DevExpress.XtraBars.FormAssistant()
         Me.DefaultLookAndFeel1 = New DevExpress.LookAndFeel.DefaultLookAndFeel(Me.components)
         Me.dgitems = New System.Windows.Forms.DataGridView()
+        Me.btnRemove = New DevExpress.XtraEditors.SimpleButton()
+        Me.stckid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Item = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Qty = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ExpiryDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LotNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.disc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dscamnt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.leLocation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,79 +79,6 @@ Partial Class frmReceiveStokcs
         CType(Me.drgrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgitems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'dscamnt
-        '
-        Me.dscamnt.HeaderText = "dscamnt"
-        Me.dscamnt.Name = "dscamnt"
-        Me.dscamnt.Visible = False
-        '
-        'LotNo
-        '
-        Me.LotNo.HeaderText = "Lot No"
-        Me.LotNo.Name = "LotNo"
-        Me.LotNo.Visible = False
-        '
-        'ExpiryDate
-        '
-        Me.ExpiryDate.HeaderText = "Expiry Date"
-        Me.ExpiryDate.Name = "ExpiryDate"
-        Me.ExpiryDate.Visible = False
-        '
-        'Amount
-        '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = "0"
-        Me.Amount.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Amount.HeaderText = "Amount"
-        Me.Amount.Name = "Amount"
-        Me.Amount.Width = 200
-        '
-        'Price
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle2.Format = "N2"
-        DataGridViewCellStyle2.NullValue = "0"
-        Me.Price.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Price.HeaderText = "Price"
-        Me.Price.Name = "Price"
-        Me.Price.Width = 200
-        '
-        'Qty
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle3.Format = "N0"
-        DataGridViewCellStyle3.NullValue = "0"
-        Me.Qty.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Qty.HeaderText = "Qty"
-        Me.Qty.Name = "Qty"
-        '
-        'Item
-        '
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Item.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Item.HeaderText = "Item Description"
-        Me.Item.Name = "Item"
-        Me.Item.Width = 400
-        '
-        'stckid
-        '
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.stckid.DefaultCellStyle = DataGridViewCellStyle5
-        Me.stckid.HeaderText = "StockID"
-        Me.stckid.Name = "stckid"
-        Me.stckid.Visible = False
-        Me.stckid.Width = 5
-        '
-        'disc
-        '
-        Me.disc.HeaderText = "disc"
-        Me.disc.Name = "disc"
-        Me.disc.Visible = False
         '
         'GroupControl1
         '
@@ -193,7 +121,7 @@ Partial Class frmReceiveStokcs
         Me.leLocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.leLocation.Properties.Appearance.Options.UseFont = True
         Me.leLocation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leLocation.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("locid", "locid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("location", "Location", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.leLocation.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("locid", "locid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("location", "Location", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.leLocation.Size = New System.Drawing.Size(354, 26)
         Me.leLocation.TabIndex = 1
         '
@@ -306,7 +234,6 @@ Partial Class frmReceiveStokcs
         '
         'ceQty
         '
-        Me.ceQty.EnterMoveNextControl = True
         Me.ceQty.Location = New System.Drawing.Point(632, 71)
         Me.ceQty.Name = "ceQty"
         Me.ceQty.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
@@ -326,6 +253,7 @@ Partial Class frmReceiveStokcs
         Me.btnAdd.TabIndex = 6
         Me.btnAdd.Text = "&Add"
         Me.btnAdd.ToolTip = "Add the item to the list"
+        Me.btnAdd.Visible = False
         '
         'ceCost
         '
@@ -417,14 +345,14 @@ Partial Class frmReceiveStokcs
         Me.drgrid.AllowUserToAddRows = False
         Me.drgrid.AllowUserToDeleteRows = False
         Me.drgrid.AllowUserToResizeRows = False
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.drgrid.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.drgrid.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.drgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.drgrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.stckid, Me.Item, Me.Qty, Me.Price, Me.Amount, Me.ExpiryDate, Me.LotNo, Me.disc, Me.dscamnt})
         Me.drgrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
@@ -468,11 +396,98 @@ Partial Class frmReceiveStokcs
         Me.dgitems.TabIndex = 93
         Me.dgitems.Visible = False
         '
+        'btnRemove
+        '
+        Me.btnRemove.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.btnRemove.Appearance.Options.UseFont = True
+        Me.btnRemove.Location = New System.Drawing.Point(985, 203)
+        Me.btnRemove.Name = "btnRemove"
+        Me.btnRemove.Size = New System.Drawing.Size(102, 32)
+        Me.btnRemove.TabIndex = 94
+        Me.btnRemove.Text = "&Remove Item"
+        Me.btnRemove.ToolTip = "Save the List for later modification"
+        '
+        'stckid
+        '
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.stckid.DefaultCellStyle = DataGridViewCellStyle2
+        Me.stckid.HeaderText = "StockID"
+        Me.stckid.Name = "stckid"
+        Me.stckid.Visible = False
+        Me.stckid.Width = 5
+        '
+        'Item
+        '
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Item.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Item.HeaderText = "Item Description"
+        Me.Item.Name = "Item"
+        Me.Item.ReadOnly = True
+        Me.Item.Width = 400
+        '
+        'Qty
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle4.Format = "N0"
+        DataGridViewCellStyle4.NullValue = "0"
+        Me.Qty.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Qty.HeaderText = "Qty"
+        Me.Qty.Name = "Qty"
+        Me.Qty.ReadOnly = True
+        '
+        'Price
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = "0"
+        Me.Price.DefaultCellStyle = DataGridViewCellStyle5
+        Me.Price.HeaderText = "Price"
+        Me.Price.Name = "Price"
+        Me.Price.Width = 200
+        '
+        'Amount
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle6.Format = "N2"
+        DataGridViewCellStyle6.NullValue = "0"
+        Me.Amount.DefaultCellStyle = DataGridViewCellStyle6
+        Me.Amount.HeaderText = "Amount"
+        Me.Amount.Name = "Amount"
+        Me.Amount.Width = 200
+        '
+        'ExpiryDate
+        '
+        Me.ExpiryDate.HeaderText = "Expiry Date"
+        Me.ExpiryDate.Name = "ExpiryDate"
+        Me.ExpiryDate.Visible = False
+        '
+        'LotNo
+        '
+        Me.LotNo.HeaderText = "Lot No"
+        Me.LotNo.Name = "LotNo"
+        Me.LotNo.Visible = False
+        '
+        'disc
+        '
+        Me.disc.HeaderText = "disc"
+        Me.disc.Name = "disc"
+        Me.disc.Visible = False
+        '
+        'dscamnt
+        '
+        Me.dscamnt.HeaderText = "dscamnt"
+        Me.dscamnt.Name = "dscamnt"
+        Me.dscamnt.Visible = False
+        '
         'frmReceiveStokcs
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(971, 575)
+        Me.ClientSize = New System.Drawing.Size(975, 575)
+        Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.dgitems)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.txtsum)
@@ -502,15 +517,6 @@ Partial Class frmReceiveStokcs
         Me.PerformLayout
 
 End Sub
-    Friend WithEvents dscamnt As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents LotNo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ExpiryDate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Amount As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Price As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Qty As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Item As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents stckid As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents disc As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents leLocation As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -537,4 +543,14 @@ End Sub
     Friend WithEvents DefaultLookAndFeel1 As DevExpress.LookAndFeel.DefaultLookAndFeel
     Friend WithEvents dgitems As System.Windows.Forms.DataGridView
     Friend WithEvents txtbcodes As System.Windows.Forms.TextBox
+    Friend WithEvents btnRemove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents stckid As DataGridViewTextBoxColumn
+    Friend WithEvents Item As DataGridViewTextBoxColumn
+    Friend WithEvents Qty As DataGridViewTextBoxColumn
+    Friend WithEvents Price As DataGridViewTextBoxColumn
+    Friend WithEvents Amount As DataGridViewTextBoxColumn
+    Friend WithEvents ExpiryDate As DataGridViewTextBoxColumn
+    Friend WithEvents LotNo As DataGridViewTextBoxColumn
+    Friend WithEvents disc As DataGridViewTextBoxColumn
+    Friend WithEvents dscamnt As DataGridViewTextBoxColumn
 End Class

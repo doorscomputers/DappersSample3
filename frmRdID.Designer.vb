@@ -27,12 +27,12 @@ Partial Class frmRdID
         Me.TblreadingBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsRdID = New DoorsPOS.WinApp.dsRdID()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.colcashreadid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcashier = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldatereading = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colbegincash = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colstatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TblreadingTableAdapter = New DoorsPOS.WinApp.dsRdIDTableAdapters.tblreadingTableAdapter()
+        Me.colreadingno = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TblreadingBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsRdID, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,20 +62,9 @@ Partial Class frmRdID
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcashreadid, Me.colcashier, Me.coldatereading, Me.colbegincash, Me.colstatus})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colreadingno, Me.colcashier, Me.coldatereading, Me.colbegincash, Me.colstatus})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
-        '
-        'colcashreadid
-        '
-        Me.colcashreadid.AppearanceCell.Options.UseTextOptions = True
-        Me.colcashreadid.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.colcashreadid.Caption = "Reading ID"
-        Me.colcashreadid.FieldName = "cashreadid"
-        Me.colcashreadid.Name = "colcashreadid"
-        Me.colcashreadid.OptionsColumn.ReadOnly = True
-        Me.colcashreadid.Visible = True
-        Me.colcashreadid.VisibleIndex = 0
         '
         'colcashier
         '
@@ -84,6 +73,7 @@ Partial Class frmRdID
         Me.colcashier.Name = "colcashier"
         Me.colcashier.Visible = True
         Me.colcashier.VisibleIndex = 1
+        Me.colcashier.Width = 291
         '
         'coldatereading
         '
@@ -92,6 +82,7 @@ Partial Class frmRdID
         Me.coldatereading.Name = "coldatereading"
         Me.coldatereading.Visible = True
         Me.coldatereading.VisibleIndex = 2
+        Me.coldatereading.Width = 291
         '
         'colbegincash
         '
@@ -104,6 +95,7 @@ Partial Class frmRdID
         Me.colbegincash.Name = "colbegincash"
         Me.colbegincash.Visible = True
         Me.colbegincash.VisibleIndex = 3
+        Me.colbegincash.Width = 291
         '
         'colstatus
         '
@@ -112,10 +104,20 @@ Partial Class frmRdID
         Me.colstatus.Name = "colstatus"
         Me.colstatus.Visible = True
         Me.colstatus.VisibleIndex = 4
+        Me.colstatus.Width = 294
         '
         'TblreadingTableAdapter
         '
         Me.TblreadingTableAdapter.ClearBeforeFill = True
+        '
+        'colreadingno
+        '
+        Me.colreadingno.Caption = "Reading No."
+        Me.colreadingno.FieldName = "readingno"
+        Me.colreadingno.Name = "colreadingno"
+        Me.colreadingno.Visible = True
+        Me.colreadingno.VisibleIndex = 0
+        Me.colreadingno.Width = 118
         '
         'frmRdID
         '
@@ -124,7 +126,7 @@ Partial Class frmRdID
         Me.ClientSize = New System.Drawing.Size(534, 511)
         Me.Controls.Add(Me.GridControl1)
         Me.Name = "frmRdID"
-        Me.Text = "Cashier Reading ID"
+        Me.Text = "Cashier Reading"
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblreadingBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsRdID, System.ComponentModel.ISupportInitialize).EndInit()
@@ -137,9 +139,9 @@ Partial Class frmRdID
     Friend WithEvents DsRdID As DoorsPOS.WinApp.dsRdID
     Friend WithEvents TblreadingBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents TblreadingTableAdapter As DoorsPOS.WinApp.dsRdIDTableAdapters.tblreadingTableAdapter
-    Friend WithEvents colcashreadid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcashier As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coldatereading As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colbegincash As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colstatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colreadingno As DevExpress.XtraGrid.Columns.GridColumn
 End Class

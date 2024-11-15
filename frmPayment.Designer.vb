@@ -44,7 +44,7 @@ Partial Class frmPayment
         'txtChange
         '
         Me.txtChange.Font = New System.Drawing.Font("Microsoft Sans Serif", 72.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtChange.ForeColor = System.Drawing.Color.Red
+        Me.txtChange.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.txtChange.Location = New System.Drawing.Point(326, 314)
         Me.txtChange.Name = "txtChange"
         Me.txtChange.ReadOnly = True
@@ -77,7 +77,7 @@ Partial Class frmPayment
         'txtTotAmnt
         '
         Me.txtTotAmnt.Font = New System.Drawing.Font("Microsoft Sans Serif", 72.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotAmnt.ForeColor = System.Drawing.Color.Green
+        Me.txtTotAmnt.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.txtTotAmnt.Location = New System.Drawing.Point(326, 25)
         Me.txtTotAmnt.Name = "txtTotAmnt"
         Me.txtTotAmnt.ReadOnly = True

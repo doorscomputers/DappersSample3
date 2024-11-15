@@ -24,7 +24,10 @@ Partial Class frmSalestoday
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.SpSalesTodayqryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsSpSalesToday = New DoorsPOS.WinApp.dsSpSalesToday()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.FullName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colReceipt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldtInsert_dt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colitem_desc = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,13 +35,14 @@ Partial Class frmSalestoday
         Me.colprice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsInsert_id = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DsSpSalesToday = New DoorsPOS.WinApp.dsSpSalesToday()
-        Me.SpSalesTodayqryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.collastname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colmiddlename = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colfirstname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SpSalesTodayqryTableAdapter = New DoorsPOS.WinApp.dsSpSalesTodayTableAdapters.spSalesTodayqryTableAdapter()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsSpSalesToday, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SpSalesTodayqryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsSpSalesToday, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridControl1
@@ -53,9 +57,19 @@ Partial Class frmSalestoday
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
+        'SpSalesTodayqryBindingSource
+        '
+        Me.SpSalesTodayqryBindingSource.DataMember = "spSalesTodayqry"
+        Me.SpSalesTodayqryBindingSource.DataSource = Me.DsSpSalesToday
+        '
+        'DsSpSalesToday
+        '
+        Me.DsSpSalesToday.DataSetName = "dsSpSalesToday"
+        Me.DsSpSalesToday.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colReceipt, Me.coldtInsert_dt, Me.colitem_desc, Me.colqty, Me.colprice, Me.GridColumn1, Me.colsInsert_id})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.FullName, Me.colReceipt, Me.coldtInsert_dt, Me.colitem_desc, Me.colqty, Me.colprice, Me.GridColumn1, Me.colsInsert_id, Me.collastname, Me.colmiddlename, Me.colfirstname})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.colqty, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GridColumn1", Me.GridColumn1, "SUM={0:0.##}")})
         Me.GridView1.Name = "GridView1"
@@ -65,14 +79,25 @@ Partial Class frmSalestoday
         Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.coldtInsert_dt, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
+        'FullName
+        '
+        Me.FullName.Caption = "Customer Name"
+        Me.FullName.FieldName = "FullName"
+        Me.FullName.Name = "FullName"
+        Me.FullName.UnboundExpression = "Trim([lastname]) + ',' + Trim([firstname]) + Trim([middlename])"
+        Me.FullName.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.FullName.Visible = True
+        Me.FullName.VisibleIndex = 0
+        Me.FullName.Width = 200
+        '
         'colReceipt
         '
         Me.colReceipt.Caption = "Reference No."
         Me.colReceipt.FieldName = "Receipt"
         Me.colReceipt.Name = "colReceipt"
         Me.colReceipt.Visible = True
-        Me.colReceipt.VisibleIndex = 0
-        Me.colReceipt.Width = 122
+        Me.colReceipt.VisibleIndex = 1
+        Me.colReceipt.Width = 101
         '
         'coldtInsert_dt
         '
@@ -83,8 +108,8 @@ Partial Class frmSalestoday
         Me.coldtInsert_dt.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.[Date]
         Me.coldtInsert_dt.Name = "coldtInsert_dt"
         Me.coldtInsert_dt.Visible = True
-        Me.coldtInsert_dt.VisibleIndex = 1
-        Me.coldtInsert_dt.Width = 157
+        Me.coldtInsert_dt.VisibleIndex = 2
+        Me.coldtInsert_dt.Width = 216
         '
         'colitem_desc
         '
@@ -92,8 +117,8 @@ Partial Class frmSalestoday
         Me.colitem_desc.FieldName = "item_desc"
         Me.colitem_desc.Name = "colitem_desc"
         Me.colitem_desc.Visible = True
-        Me.colitem_desc.VisibleIndex = 2
-        Me.colitem_desc.Width = 316
+        Me.colitem_desc.VisibleIndex = 3
+        Me.colitem_desc.Width = 436
         '
         'colqty
         '
@@ -103,8 +128,8 @@ Partial Class frmSalestoday
         Me.colqty.FieldName = "qty"
         Me.colqty.Name = "colqty"
         Me.colqty.Visible = True
-        Me.colqty.VisibleIndex = 3
-        Me.colqty.Width = 180
+        Me.colqty.VisibleIndex = 4
+        Me.colqty.Width = 249
         '
         'colprice
         '
@@ -114,8 +139,8 @@ Partial Class frmSalestoday
         Me.colprice.FieldName = "price"
         Me.colprice.Name = "colprice"
         Me.colprice.Visible = True
-        Me.colprice.VisibleIndex = 4
-        Me.colprice.Width = 89
+        Me.colprice.VisibleIndex = 5
+        Me.colprice.Width = 122
         '
         'GridColumn1
         '
@@ -130,8 +155,8 @@ Partial Class frmSalestoday
         Me.GridColumn1.UnboundExpression = "[price] * [qty]"
         Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 5
-        Me.GridColumn1.Width = 100
+        Me.GridColumn1.VisibleIndex = 6
+        Me.GridColumn1.Width = 138
         '
         'colsInsert_id
         '
@@ -139,18 +164,26 @@ Partial Class frmSalestoday
         Me.colsInsert_id.FieldName = "sInsert_id"
         Me.colsInsert_id.Name = "colsInsert_id"
         Me.colsInsert_id.Visible = True
-        Me.colsInsert_id.VisibleIndex = 6
-        Me.colsInsert_id.Width = 104
+        Me.colsInsert_id.VisibleIndex = 7
+        Me.colsInsert_id.Width = 153
         '
-        'DsSpSalesToday
+        'collastname
         '
-        Me.DsSpSalesToday.DataSetName = "dsSpSalesToday"
-        Me.DsSpSalesToday.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.collastname.Caption = "Last Name"
+        Me.collastname.FieldName = "lastname"
+        Me.collastname.Name = "collastname"
         '
-        'SpSalesTodayqryBindingSource
+        'colmiddlename
         '
-        Me.SpSalesTodayqryBindingSource.DataMember = "spSalesTodayqry"
-        Me.SpSalesTodayqryBindingSource.DataSource = Me.DsSpSalesToday
+        Me.colmiddlename.Caption = "Middle Name"
+        Me.colmiddlename.FieldName = "middlename"
+        Me.colmiddlename.Name = "colmiddlename"
+        '
+        'colfirstname
+        '
+        Me.colfirstname.Caption = "First Name"
+        Me.colfirstname.FieldName = "firstname"
+        Me.colfirstname.Name = "colfirstname"
         '
         'SpSalesTodayqryTableAdapter
         '
@@ -165,9 +198,9 @@ Partial Class frmSalestoday
         Me.Name = "frmSalestoday"
         Me.Text = "Cash Sales Today"
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsSpSalesToday, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SpSalesTodayqryBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsSpSalesToday, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -183,4 +216,8 @@ Partial Class frmSalestoday
     Friend WithEvents DsSpSalesToday As dsSpSalesToday
     Friend WithEvents SpSalesTodayqryBindingSource As BindingSource
     Friend WithEvents SpSalesTodayqryTableAdapter As dsSpSalesTodayTableAdapters.spSalesTodayqryTableAdapter
+    Friend WithEvents FullName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents collastname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colmiddlename As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colfirstname As DevExpress.XtraGrid.Columns.GridColumn
 End Class

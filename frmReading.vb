@@ -437,8 +437,10 @@ Public Class frmReading
                 'End of Comment Oct 2017
 
                 'New Code Oct 2017
-                computerresults = (CDec(ceGT.Value) + mgr.DataObject.Entity.pickup + CDec(mgr.DataObject.Entity.totalrefs * -1) + mgr.DataObject.Entity.totaldiscount + mgr.DataObject.Entity.totalcredit + mgr.DataObject.Entity.totalcheque + Convert.ToDecimal(ceETotal.Value))
-                totalcashbd = CDec(mgr.DataObject.Entity.totalsales + mgr.DataObject.Entity.begincash + mgr.DataObject.Entity.addcash + mgr.DataObject.Entity.totalcredit)
+                'Commented March 2019 and excluded the dioscount because there is an over on the tblreading table
+                'computerresults = (CDec(ceGT.Value) + mgr.DataObject.Entity.pickup + CDec(mgr.DataObject.Entity.totalrefs * -1) + mgr.DataObject.Entity.totaldiscount + mgr.DataObject.Entity.totalcredit + mgr.DataObject.Entity.totalcheque + Convert.ToDecimal(ceETotal.Value))
+                computerresults = (CDec(ceGT.Value) + mgr.DataObject.Entity.pickup + CDec(mgr.DataObject.Entity.totalrefs * -1) + mgr.DataObject.Entity.totalcredit + mgr.DataObject.Entity.totalcheque + Convert.ToDecimal(ceETotal.Value))
+                totalcashbd = CDec(mgr.DataObject.Entity.totalsales + mgr.DataObject.Entity.begincash + mgr.DataObject.Entity.addcash + mgr.DataObject.Entity.totalcredit + mgr.DataObject.Entity.payments)
                 vovershort = computerresults - totalcashbd
                 'End of NEw Code Oct 2017
                 mgr.DataObject.Entity.overshort = vovershort
@@ -478,7 +480,7 @@ Public Class frmReading
                 rep2.Print()
 
 
-                'rep.ShowPreview()
+                ''rep.ShowPreview()
 
                 ''+New Code
                 'Dim repCashtaken As New xrPettyCash()
@@ -566,7 +568,8 @@ Public Class frmReading
         cefiveamnt.Value = 0
         ceonepesoamnt.Value = 0
         cecentsamnt.Value = 0
-        cekAmnt.Focus()
+        'cekAmnt.Focus()
+        ceThousand.Focus()
 
     End Sub
 

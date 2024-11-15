@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwIncentives" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        pos_date, incentive, waiter, wtid, stckid, item_desc
+                    <CommandText>SELECT        pos_date, incentive, waiter, wtid, stckid, item_desc, qty
 FROM            vwIncentives</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -26,6 +26,7 @@ FROM            vwIncentives</CommandText>
               <Mapping SourceColumn="wtid" DataSetColumn="wtid" />
               <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
               <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+              <Mapping SourceColumn="qty" DataSetColumn="qty" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -37,7 +38,7 @@ FROM            vwIncentives</CommandText>
   <xs:element name="dsIncentives" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsIncentives" msprop:Generator_UserDSName="dsIncentives">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="vwIncentives" msprop:Generator_TableClassName="vwIncentivesDataTable" msprop:Generator_TableVarName="tablevwIncentives" msprop:Generator_TablePropName="vwIncentives" msprop:Generator_RowDeletingName="vwIncentivesRowDeleting" msprop:Generator_RowChangingName="vwIncentivesRowChanging" msprop:Generator_RowEvHandlerName="vwIncentivesRowChangeEventHandler" msprop:Generator_RowDeletedName="vwIncentivesRowDeleted" msprop:Generator_UserTableName="vwIncentives" msprop:Generator_RowChangedName="vwIncentivesRowChanged" msprop:Generator_RowEvArgName="vwIncentivesRowChangeEvent" msprop:Generator_RowClassName="vwIncentivesRow">
+        <xs:element name="vwIncentives" msprop:Generator_TableClassName="vwIncentivesDataTable" msprop:Generator_TableVarName="tablevwIncentives" msprop:Generator_RowChangedName="vwIncentivesRowChanged" msprop:Generator_TablePropName="vwIncentives" msprop:Generator_RowDeletingName="vwIncentivesRowDeleting" msprop:Generator_RowChangingName="vwIncentivesRowChanging" msprop:Generator_RowEvHandlerName="vwIncentivesRowChangeEventHandler" msprop:Generator_RowDeletedName="vwIncentivesRowDeleted" msprop:Generator_RowClassName="vwIncentivesRow" msprop:Generator_UserTableName="vwIncentives" msprop:Generator_RowEvArgName="vwIncentivesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" />
@@ -58,6 +59,7 @@ FROM            vwIncentives</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -12,9 +12,9 @@
               <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.pos_hdr" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT     pos_date, disc_amnt, sInsert_id, dtInsert_dt, postmp_hdrid
-FROM         pos_hdr
-WHERE     (disc_amnt &gt; 0)
+                    <CommandText>SELECT        pos_date, disc_amnt, sInsert_id, dtInsert_dt, postmp_hdrid, Receipt
+FROM            pos_hdr
+WHERE        (disc_amnt &gt; 0)
 ORDER BY pos_date DESC</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -27,6 +27,7 @@ ORDER BY pos_date DESC</CommandText>
               <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
               <Mapping SourceColumn="dtInsert_dt" DataSetColumn="dtInsert_dt" />
               <Mapping SourceColumn="postmp_hdrid" DataSetColumn="postmp_hdrid" />
+              <Mapping SourceColumn="Receipt" DataSetColumn="Receipt" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -38,7 +39,7 @@ ORDER BY pos_date DESC</CommandText>
   <xs:element name="dsDiscount" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsDiscount" msprop:Generator_UserDSName="dsDiscount">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="pos_hdr" msprop:Generator_TableClassName="pos_hdrDataTable" msprop:Generator_TableVarName="tablepos_hdr" msprop:Generator_RowChangedName="pos_hdrRowChanged" msprop:Generator_TablePropName="pos_hdr" msprop:Generator_RowDeletingName="pos_hdrRowDeleting" msprop:Generator_RowChangingName="pos_hdrRowChanging" msprop:Generator_RowEvHandlerName="pos_hdrRowChangeEventHandler" msprop:Generator_RowDeletedName="pos_hdrRowDeleted" msprop:Generator_RowClassName="pos_hdrRow" msprop:Generator_UserTableName="pos_hdr" msprop:Generator_RowEvArgName="pos_hdrRowChangeEvent">
+        <xs:element name="pos_hdr" msprop:Generator_TableClassName="pos_hdrDataTable" msprop:Generator_TableVarName="tablepos_hdr" msprop:Generator_TablePropName="pos_hdr" msprop:Generator_RowDeletingName="pos_hdrRowDeleting" msprop:Generator_RowChangingName="pos_hdrRowChanging" msprop:Generator_RowEvHandlerName="pos_hdrRowChangeEventHandler" msprop:Generator_RowDeletedName="pos_hdrRowDeleted" msprop:Generator_UserTableName="pos_hdr" msprop:Generator_RowChangedName="pos_hdrRowChanged" msprop:Generator_RowEvArgName="pos_hdrRowChangeEvent" msprop:Generator_RowClassName="pos_hdrRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" />
@@ -52,6 +53,7 @@ ORDER BY pos_date DESC</CommandText>
               </xs:element>
               <xs:element name="dtInsert_dt" msprop:Generator_ColumnVarNameInTable="columndtInsert_dt" msprop:Generator_ColumnPropNameInRow="dtInsert_dt" msprop:Generator_ColumnPropNameInTable="dtInsert_dtColumn" msprop:Generator_UserColumnName="dtInsert_dt" type="xs:dateTime" minOccurs="0" />
               <xs:element name="postmp_hdrid" msprop:Generator_ColumnVarNameInTable="columnpostmp_hdrid" msprop:Generator_ColumnPropNameInRow="postmp_hdrid" msprop:Generator_ColumnPropNameInTable="postmp_hdridColumn" msprop:Generator_UserColumnName="postmp_hdrid" type="xs:int" />
+              <xs:element name="Receipt" msprop:Generator_ColumnVarNameInTable="columnReceipt" msprop:Generator_ColumnPropNameInRow="Receipt" msprop:Generator_ColumnPropNameInTable="ReceiptColumn" msprop:Generator_UserColumnName="Receipt" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

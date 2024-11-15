@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -17,7 +17,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -43,6 +43,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>DoorsPOS.WinApp.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,6 +53,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>DoorsPOS.WinApp.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="C1.C1DataExtender.2, Version=2.0.20113.81, Culture=neutral, PublicKeyToken=7c4b5683f80b910e, processorArchitecture=MSIL" />
@@ -77,49 +79,47 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.TreeMap.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeMap.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v17.1.Win, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v17.1.UI, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Map.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v17.1.UI, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v17.1.UI, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v17.1.Wizard, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v17.1.Win, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraMap.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPivotGrid.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v17.1.Extensions, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraRichEdit.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraRichEdit.v17.1.Extensions, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.BonusSkins.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.TreeMap.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeMap.v22.2.UI, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeMap.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v22.2.Win, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v22.2.UI, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Map.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v22.2.UI, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v22.2.UI, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v22.2.Wizard, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v22.2.Win, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraMap.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v22.2.Export, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v22.2.Extensions, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="Infragistics4.Shared.v16.1, Version=16.1.20161.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\Program Files (x86)\Infragistics\2016.1\Windows Forms\CLR4.0\Bin\Infragistics4.Shared.v16.1.dll</HintPath>
@@ -427,6 +427,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsAddtnlCash.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsadmin.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsadmin.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsAvlblItems.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -542,6 +547,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsIncentives.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsIncentivesNew.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsIncentivesNew.xsd</DependentUpon>
     </Compile>
     <Compile Include="dsInitInv.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -703,6 +713,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsSpIncentive.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsSpSalesToday.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSpSalesToday.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsStacks.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -781,6 +796,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsvwReceipt.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Encryption.vb" />
     <Compile Include="frmAboveMax.Designer.vb">
       <DependentUpon>frmAboveMax.vb</DependentUpon>
     </Compile>
@@ -1021,6 +1037,12 @@
     <Compile Include="frmExpired.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmHelp.designer.vb">
+      <DependentUpon>frmHelp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHelp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmHiLoDlvryItems.Designer.vb">
       <DependentUpon>frmHiLoDlvryItems.vb</DependentUpon>
     </Compile>
@@ -1049,6 +1071,12 @@
       <DependentUpon>frmIncentiveGrid.vb</DependentUpon>
     </Compile>
     <Compile Include="frmIncentiveGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIncentiveTotal.Designer.vb">
+      <DependentUpon>frmIncentiveTotal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIncentiveTotal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmInvCostGrid.Designer.vb">
@@ -1106,7 +1134,9 @@
     <Compile Include="frmLocation.designer.vb">
       <DependentUpon>frmLocation.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmLocation.vb" />
+    <Compile Include="frmLocation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLoginEmp.Designer.vb">
       <DependentUpon>frmLoginEmp.vb</DependentUpon>
     </Compile>
@@ -1221,6 +1251,18 @@
     <Compile Include="frmReceiveStokcs.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmRecQty.Designer.vb">
+      <DependentUpon>frmRecQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRefund.Designer.vb">
+      <DependentUpon>frmRefund.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRefund.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmRefundsGrid.Designer.vb">
       <DependentUpon>frmRefundsGrid.vb</DependentUpon>
     </Compile>
@@ -1321,6 +1363,12 @@
     <Compile Include="frmSuppliers.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmTenderChange.Designer.vb">
+      <DependentUpon>frmTenderChange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTenderChange.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTimeInafterBrk.Designer.vb">
       <DependentUpon>frmTimeInafterBrk.vb</DependentUpon>
     </Compile>
@@ -1349,6 +1397,12 @@
       <DependentUpon>frmTransfrdGrd1.vb</DependentUpon>
     </Compile>
     <Compile Include="frmTransfrdGrd1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrQty.Designer.vb">
+      <DependentUpon>frmTrQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTrQty.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTypes.Designer.vb">
@@ -1383,10 +1437,28 @@
     </Compile>
     <Compile Include="mdlPrint.vb" />
     <Compile Include="Native.vb" />
+    <Compile Include="NewForms\frmAdmin.Designer.vb">
+      <DependentUpon>frmAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NewForms\frmAdmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NewForms\frmEditItems.Designer.vb">
       <DependentUpon>frmEditItems.vb</DependentUpon>
     </Compile>
     <Compile Include="NewForms\frmEditItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewForms\frmSetting.Designer.vb">
+      <DependentUpon>frmSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NewForms\frmSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewForms\WaitForm1.designer.vb">
+      <DependentUpon>WaitForm1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NewForms\WaitForm1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OverviewDashBoard.Designer.vb">
@@ -1407,10 +1479,46 @@
     <Compile Include="DBWeeklyProfit.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\SeniorDiscountRpt.Designer.vb">
+      <DependentUpon>SeniorDiscountRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SeniorDiscountRpt.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrAdditionalCash.Designer.vb">
+      <DependentUpon>xrAdditionalCash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrAdditionalCash.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrCreditsToday.Designer.vb">
+      <DependentUpon>xrCreditsToday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrCreditsToday.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\xrCustPurchaseLedger.Designer.vb">
       <DependentUpon>xrCustPurchaseLedger.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\xrCustPurchaseLedger.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrDailyInv.Designer.vb">
+      <DependentUpon>xrDailyInv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrDailyInv.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrElectronicSalesBook.designer.vb">
+      <DependentUpon>xrElectronicSalesBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrElectronicSalesBook.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrIncentives.Designer.vb">
+      <DependentUpon>xrIncentives.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrIncentives.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\xrPettyCash.Designer.vb">
@@ -1419,10 +1527,40 @@
     <Compile Include="Reports\xrPettyCash.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\xrSalesByItemSummary.Designer.vb">
+      <DependentUpon>xrSalesByItemSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrSalesByItemSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrSalesEndDay.Designer.vb">
+      <DependentUpon>xrSalesEndDay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrSalesEndDay.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrSalesHistory.Designer.vb">
+      <DependentUpon>xrSalesHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrSalesHistory.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrSalesSummary.designer.vb">
+      <DependentUpon>xrSalesSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrSalesSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\xrTransfer.designer.vb">
       <DependentUpon>xrTransfer.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\xrTransfer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\xrZReadingReprint.Designer.vb">
+      <DependentUpon>xrZReadingReprint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\xrZReadingReprint.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="salestodaydb.Designer.vb">
@@ -1437,10 +1575,20 @@
     <Compile Include="SaleswithParam.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="setupdataset.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>setupdataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="vwCreditDS.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>vwCreditDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="waiters2Dataset.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>waiters2Dataset.xsd</DependentUpon>
     </Compile>
     <Compile Include="WeeklySold.Designer.vb">
       <DependentUpon>WeeklySold.vb</DependentUpon>
@@ -1663,7 +1811,9 @@
     <Compile Include="frmDashboard.Designer.vb">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmDashboard.vb" />
+    <Compile Include="frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDelivery.Designer.vb">
       <DependentUpon>frmDelivery.vb</DependentUpon>
     </Compile>
@@ -1730,7 +1880,9 @@
     <Compile Include="frmPO.Designer.vb">
       <DependentUpon>frmPO.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmPO.vb" />
+    <Compile Include="frmPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPOS.Designer.vb">
       <DependentUpon>frmPOS.vb</DependentUpon>
     </Compile>
@@ -1814,6 +1966,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -1888,10 +2041,10 @@
     <Compile Include="xrReadingID.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="xrReceiptTodaRaba.designer.vb">
-      <DependentUpon>xrReceiptTodaRaba.vb</DependentUpon>
+    <Compile Include="xrReceiptTodaRabaDoers.designer.vb">
+      <DependentUpon>xrReceiptTodaRabaDoers.vb</DependentUpon>
     </Compile>
-    <Compile Include="xrReceiptTodaRaba.vb">
+    <Compile Include="xrReceiptTodaRabaDoers.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="xrReceiveStocks.Designer.vb">
@@ -1904,6 +2057,12 @@
       <DependentUpon>xrReprint.vb</DependentUpon>
     </Compile>
     <Compile Include="xrReprint.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="xrSalesByCat.designer.vb">
+      <DependentUpon>xrSalesByCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="xrSalesByCat.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="xrSupplierBal.Designer.vb">
@@ -2142,6 +2301,9 @@
     <EmbeddedResource Include="frmExpired.resx">
       <DependentUpon>frmExpired.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmHelp.resx">
+      <DependentUpon>frmHelp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmHiLoDlvryItems.resx">
       <DependentUpon>frmHiLoDlvryItems.vb</DependentUpon>
     </EmbeddedResource>
@@ -2156,6 +2318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmIncentiveGrid.resx">
       <DependentUpon>frmIncentiveGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIncentiveTotal.resx">
+      <DependentUpon>frmIncentiveTotal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInvCostGrid.resx">
       <DependentUpon>frmInvCostGrid.vb</DependentUpon>
@@ -2244,6 +2409,12 @@
     <EmbeddedResource Include="frmReceiveStokcs.resx">
       <DependentUpon>frmReceiveStokcs.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRecQty.resx">
+      <DependentUpon>frmRecQty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRefund.resx">
+      <DependentUpon>frmRefund.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRefundsGrid.resx">
       <DependentUpon>frmRefundsGrid.vb</DependentUpon>
     </EmbeddedResource>
@@ -2295,6 +2466,9 @@
     <EmbeddedResource Include="frmSuppliers.resx">
       <DependentUpon>frmSuppliers.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTenderChange.resx">
+      <DependentUpon>frmTenderChange.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTimeInafterBrk.resx">
       <DependentUpon>frmTimeInafterBrk.vb</DependentUpon>
     </EmbeddedResource>
@@ -2309,6 +2483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransfrdGrd1.resx">
       <DependentUpon>frmTransfrdGrd1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrQty.resx">
+      <DependentUpon>frmTrQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTypes.resx">
       <DependentUpon>frmTypes.vb</DependentUpon>
@@ -2325,8 +2502,17 @@
     <EmbeddedResource Include="Itemssoldsummry.resx">
       <DependentUpon>Itemssoldsummry.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewForms\frmAdmin.resx">
+      <DependentUpon>frmAdmin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewForms\frmEditItems.resx">
       <DependentUpon>frmEditItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewForms\frmSetting.resx">
+      <DependentUpon>frmSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewForms\WaitForm1.resx">
+      <DependentUpon>WaitForm1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OverviewDashBoard.resx">
       <DependentUpon>OverviewDashBoard.vb</DependentUpon>
@@ -2334,14 +2520,47 @@
     <EmbeddedResource Include="ProfitDB.resx">
       <DependentUpon>ProfitDB.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SeniorDiscountRpt.resx">
+      <DependentUpon>SeniorDiscountRpt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrAdditionalCash.resx">
+      <DependentUpon>xrAdditionalCash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrCreditsToday.resx">
+      <DependentUpon>xrCreditsToday.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\xrCustPurchaseLedger.resx">
       <DependentUpon>xrCustPurchaseLedger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrDailyInv.resx">
+      <DependentUpon>xrDailyInv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrElectronicSalesBook.resx">
+      <DependentUpon>xrElectronicSalesBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrIncentives.resx">
+      <DependentUpon>xrIncentives.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\xrPettyCash.resx">
       <DependentUpon>xrPettyCash.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrSalesByItemSummary.resx">
+      <DependentUpon>xrSalesByItemSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrSalesEndDay.resx">
+      <DependentUpon>xrSalesEndDay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrSalesHistory.resx">
+      <DependentUpon>xrSalesHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrSalesSummary.resx">
+      <DependentUpon>xrSalesSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\xrTransfer.resx">
       <DependentUpon>xrTransfer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\xrZReadingReprint.resx">
+      <DependentUpon>xrZReadingReprint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="salestodaydb.resx">
       <DependentUpon>salestodaydb.vb</DependentUpon>
@@ -2544,14 +2763,17 @@
     <EmbeddedResource Include="xrReadingID.resx">
       <DependentUpon>xrReadingID.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="xrReceiptTodaRaba.resx">
-      <DependentUpon>xrReceiptTodaRaba.vb</DependentUpon>
+    <EmbeddedResource Include="xrReceiptTodaRabaDoers.resx">
+      <DependentUpon>xrReceiptTodaRabaDoers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="xrReceiveStocks.resx">
       <DependentUpon>xrReceiveStocks.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="xrReprint.resx">
       <DependentUpon>xrReprint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xrSalesByCat.resx">
+      <DependentUpon>xrSalesByCat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="xrSupplierBal.resx">
       <DependentUpon>xrSupplierBal.vb</DependentUpon>
@@ -2641,6 +2863,17 @@
     </None>
     <None Include="dsAddtnlCash.xss">
       <DependentUpon>dsAddtnlCash.xsd</DependentUpon>
+    </None>
+    <None Include="dsadmin.xsc">
+      <DependentUpon>dsadmin.xsd</DependentUpon>
+    </None>
+    <None Include="dsadmin.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsadmin.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsadmin.xss">
+      <DependentUpon>dsadmin.xsd</DependentUpon>
     </None>
     <None Include="dsAvlblItems.xsc">
       <DependentUpon>dsAvlblItems.xsd</DependentUpon>
@@ -2916,6 +3149,17 @@
     </None>
     <None Include="dsIncentives.xss">
       <DependentUpon>dsIncentives.xsd</DependentUpon>
+    </None>
+    <None Include="dsIncentivesNew.xsc">
+      <DependentUpon>dsIncentivesNew.xsd</DependentUpon>
+    </None>
+    <None Include="dsIncentivesNew.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsIncentivesNew.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsIncentivesNew.xss">
+      <DependentUpon>dsIncentivesNew.xsd</DependentUpon>
     </None>
     <None Include="dsInitInv.xsc">
       <DependentUpon>dsInitInv.xsd</DependentUpon>
@@ -3335,6 +3579,17 @@
     <None Include="dsSpIncentive.xss">
       <DependentUpon>dsSpIncentive.xsd</DependentUpon>
     </None>
+    <None Include="dsSpSalesToday.xsc">
+      <DependentUpon>dsSpSalesToday.xsd</DependentUpon>
+    </None>
+    <None Include="dsSpSalesToday.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSpSalesToday.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsSpSalesToday.xss">
+      <DependentUpon>dsSpSalesToday.xsd</DependentUpon>
+    </None>
     <None Include="dsStacks.xsc">
       <DependentUpon>dsStacks.xsd</DependentUpon>
     </None>
@@ -3531,6 +3786,17 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="setupdataset.xsc">
+      <DependentUpon>setupdataset.xsd</DependentUpon>
+    </None>
+    <None Include="setupdataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>setupdataset.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="setupdataset.xss">
+      <DependentUpon>setupdataset.xsd</DependentUpon>
+    </None>
     <None Include="SpDataSet11.xsc">
       <DependentUpon>SpDataSet11.xsd</DependentUpon>
     </None>
@@ -3553,11 +3819,31 @@
     <None Include="vwCreditDS.xss">
       <DependentUpon>vwCreditDS.xsd</DependentUpon>
     </None>
+    <None Include="waiters2Dataset.xsc">
+      <DependentUpon>waiters2Dataset.xsd</DependentUpon>
+    </None>
+    <None Include="waiters2Dataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>waiters2Dataset.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="waiters2Dataset.xss">
+      <DependentUpon>waiters2Dataset.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="PDSAKeys.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Resources\326514-P9OLHR-360.jpg" />
+    <Content Include="Resources\71.jpg" />
+    <Content Include="Resources\baner.jpg" />
+    <Content Include="Resources\cp.png" />
+    <Content Include="Resources\CV Logo.png" />
+    <Content Include="Resources\CV logo1.png" />
+    <Content Include="Resources\logo.jpg" />
+    <Content Include="Resources\paste.png" />
+    <Content Include="Resources\paste1.png" />
     <Content Include="XML-Common\AddressTypes.xml" />
     <Content Include="XML-Common\CanadianProvinces.xml" />
     <Content Include="XML-Common\Countries.xml" />
@@ -3601,6 +3887,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\NewFolder1\" />
     <Folder Include="Templates\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />

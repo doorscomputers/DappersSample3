@@ -64,7 +64,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel5
         '
         Me.XrLabel5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.item_desc")})
-        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel5.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!)
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(11.04167!, 0.0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -75,7 +75,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel3
         '
         Me.XrLabel3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.drdetamnt", "{0:n2}")})
-        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!)
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(635.4998!, 0.0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -88,7 +88,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel4
         '
         Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.cost", "{0:n2}")})
-        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!)
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(506.3332!, 0.0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -101,7 +101,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel2
         '
         Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.qty", "{0:n2}")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(420.9165!, 0.0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -121,7 +121,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel7
         '
-        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel7.Font = New DevExpress.Drawing.DXFont("Times New Roman", 14.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 0.0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -148,7 +148,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel6
         '
         Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.dtInsert_dt", "{0:MM/dd/yyyy}")})
-        Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel6.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(49.66672!, 33.08334!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -173,7 +173,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel1
         '
         Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.supplier")})
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(9.999974!, 10.08334!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -183,7 +183,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel9
         '
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel9.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(11.04167!, 65.54168!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -193,7 +193,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel10
         '
-        Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel10.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(367.7917!, 65.54168!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -205,7 +205,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel11
         '
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel11.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(544.8749!, 65.54168!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -217,7 +217,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel12
         '
-        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel12.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(674.0415!, 65.54168!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -229,7 +229,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel8.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!)
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(13.20839!, 33.08334!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -274,7 +274,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel16
         '
-        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel16.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(332.3748!, 10.00001!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -293,7 +293,7 @@ Partial Public Class xrDlvrySupplier
         '
         'XrLabel15
         '
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel15.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(332.3748!, 10.00001!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -312,7 +312,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel14
         '
         Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.drdetamnt")})
-        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel14.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(576.1248!, 8.333333!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -328,7 +328,7 @@ Partial Public Class xrDlvrySupplier
         'XrLabel13
         '
         Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwDlvryDetails.drdetamnt")})
-        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(589.6665!, 10.00001!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
@@ -347,7 +347,7 @@ Partial Public Class xrDlvrySupplier
         Me.DataMember = "vwDlvryDetails"
         Me.DataSource = Me.DsvwDeliveries1
         Me.FilterString = "[dtInsert_dt] >= ?DateFrom And [dtInsert_dt] <= ?DateTo"
-        Me.Margins = New System.Drawing.Printing.Margins(47, 53, 23, 14)
+        Me.Margins = New DevExpress.Drawing.DXMargins(47, 53, 23, 14)
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.DateFrom, Me.DateTo})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "13.2"

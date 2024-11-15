@@ -145,7 +145,7 @@ Partial Class frmReading
         Me.ceCheque.Properties.Mask.BeepOnError = True
         Me.ceCheque.Properties.Mask.EditMask = "n2"
         Me.ceCheque.Size = New System.Drawing.Size(149, 26)
-        Me.ceCheque.TabIndex = 0
+        Me.ceCheque.TabIndex = 200
         '
         'LabelControl2
         '
@@ -221,7 +221,7 @@ Partial Class frmReading
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl9.Appearance.Options.UseFont = True
-        Me.LabelControl9.Location = New System.Drawing.Point(118, 381)
+        Me.LabelControl9.Location = New System.Drawing.Point(118, 379)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(28, 19)
         Me.LabelControl9.TabIndex = 26
@@ -231,7 +231,7 @@ Partial Class frmReading
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Location = New System.Drawing.Point(117, 421)
+        Me.LabelControl10.Location = New System.Drawing.Point(117, 418)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(29, 19)
         Me.LabelControl10.TabIndex = 25
@@ -241,7 +241,7 @@ Partial Class frmReading
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl11.Appearance.Options.UseFont = True
-        Me.LabelControl11.Location = New System.Drawing.Point(17, 461)
+        Me.LabelControl11.Location = New System.Drawing.Point(17, 457)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(129, 19)
         Me.LabelControl11.TabIndex = 24
@@ -328,7 +328,7 @@ Partial Class frmReading
         'ceTen
         '
         Me.ceTen.EnterMoveNextControl = True
-        Me.ceTen.Location = New System.Drawing.Point(152, 334)
+        Me.ceTen.Location = New System.Drawing.Point(152, 333)
         Me.ceTen.Name = "ceTen"
         Me.ceTen.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceTen.Properties.Appearance.Options.UseFont = True
@@ -341,7 +341,7 @@ Partial Class frmReading
         'ceFive
         '
         Me.ceFive.EnterMoveNextControl = True
-        Me.ceFive.Location = New System.Drawing.Point(152, 374)
+        Me.ceFive.Location = New System.Drawing.Point(152, 372)
         Me.ceFive.Name = "ceFive"
         Me.ceFive.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceFive.Properties.Appearance.Options.UseFont = True
@@ -354,7 +354,7 @@ Partial Class frmReading
         'ceOne
         '
         Me.ceOne.EnterMoveNextControl = True
-        Me.ceOne.Location = New System.Drawing.Point(152, 414)
+        Me.ceOne.Location = New System.Drawing.Point(152, 411)
         Me.ceOne.Name = "ceOne"
         Me.ceOne.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceOne.Properties.Appearance.Options.UseFont = True
@@ -367,7 +367,7 @@ Partial Class frmReading
         'ceCents
         '
         Me.ceCents.EnterMoveNextControl = True
-        Me.ceCents.Location = New System.Drawing.Point(152, 454)
+        Me.ceCents.Location = New System.Drawing.Point(152, 450)
         Me.ceCents.Name = "ceCents"
         Me.ceCents.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceCents.Properties.Appearance.Options.UseFont = True
@@ -392,7 +392,7 @@ Partial Class frmReading
         Me.btnSave.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.btnSave.Appearance.Options.UseFont = True
         Me.btnSave.ImageOptions.Image = CType(resources.GetObject("btnSave.ImageOptions.Image"), System.Drawing.Image)
-        Me.btnSave.Location = New System.Drawing.Point(657, 498)
+        Me.btnSave.Location = New System.Drawing.Point(651, 422)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(93, 32)
         Me.btnSave.TabIndex = 17
@@ -403,7 +403,7 @@ Partial Class frmReading
         Me.btnClose.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.btnClose.Appearance.Options.UseFont = True
         Me.btnClose.ImageOptions.Image = CType(resources.GetObject("btnClose.ImageOptions.Image"), System.Drawing.Image)
-        Me.btnClose.Location = New System.Drawing.Point(825, 498)
+        Me.btnClose.Location = New System.Drawing.Point(819, 422)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(108, 32)
         Me.btnClose.TabIndex = 18
@@ -528,7 +528,7 @@ Partial Class frmReading
         '
         Me.cefiveamnt.Enabled = False
         Me.cefiveamnt.EnterMoveNextControl = True
-        Me.cefiveamnt.Location = New System.Drawing.Point(335, 374)
+        Me.cefiveamnt.Location = New System.Drawing.Point(335, 372)
         Me.cefiveamnt.Name = "cefiveamnt"
         Me.cefiveamnt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.cefiveamnt.Properties.Appearance.Options.UseFont = True
@@ -543,7 +543,7 @@ Partial Class frmReading
         '
         Me.ceonepesoamnt.Enabled = False
         Me.ceonepesoamnt.EnterMoveNextControl = True
-        Me.ceonepesoamnt.Location = New System.Drawing.Point(335, 414)
+        Me.ceonepesoamnt.Location = New System.Drawing.Point(335, 411)
         Me.ceonepesoamnt.Name = "ceonepesoamnt"
         Me.ceonepesoamnt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceonepesoamnt.Properties.Appearance.Options.UseFont = True
@@ -558,7 +558,7 @@ Partial Class frmReading
         '
         Me.cecentsamnt.Enabled = False
         Me.cecentsamnt.EnterMoveNextControl = True
-        Me.cecentsamnt.Location = New System.Drawing.Point(335, 454)
+        Me.cecentsamnt.Location = New System.Drawing.Point(335, 450)
         Me.cecentsamnt.Name = "cecentsamnt"
         Me.cecentsamnt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.cecentsamnt.Properties.Appearance.Options.UseFont = True
@@ -573,7 +573,7 @@ Partial Class frmReading
         '
         Me.ceGT.Enabled = False
         Me.ceGT.EnterMoveNextControl = True
-        Me.ceGT.Location = New System.Drawing.Point(335, 504)
+        Me.ceGT.Location = New System.Drawing.Point(335, 493)
         Me.ceGT.Name = "ceGT"
         Me.ceGT.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceGT.Properties.Appearance.Options.UseFont = True
@@ -588,7 +588,7 @@ Partial Class frmReading
         '
         Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl14.Appearance.Options.UseFont = True
-        Me.LabelControl14.Location = New System.Drawing.Point(293, 511)
+        Me.LabelControl14.Location = New System.Drawing.Point(293, 500)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(36, 19)
         Me.LabelControl14.TabIndex = 24
@@ -608,7 +608,7 @@ Partial Class frmReading
         '
         Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl16.Appearance.Options.UseFont = True
-        Me.LabelControl16.Location = New System.Drawing.Point(578, 137)
+        Me.LabelControl16.Location = New System.Drawing.Point(585, 97)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(113, 19)
         Me.LabelControl16.TabIndex = 35
@@ -618,7 +618,7 @@ Partial Class frmReading
         '
         Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl17.Appearance.Options.UseFont = True
-        Me.LabelControl17.Location = New System.Drawing.Point(497, 181)
+        Me.LabelControl17.Location = New System.Drawing.Point(494, 141)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(97, 19)
         Me.LabelControl17.TabIndex = 31
@@ -628,7 +628,7 @@ Partial Class frmReading
         '
         Me.LabelControl18.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl18.Appearance.Options.UseFont = True
-        Me.LabelControl18.Location = New System.Drawing.Point(499, 221)
+        Me.LabelControl18.Location = New System.Drawing.Point(496, 181)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(95, 19)
         Me.LabelControl18.TabIndex = 30
@@ -638,7 +638,7 @@ Partial Class frmReading
         '
         Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl19.Appearance.Options.UseFont = True
-        Me.LabelControl19.Location = New System.Drawing.Point(564, 261)
+        Me.LabelControl19.Location = New System.Drawing.Point(561, 221)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(30, 19)
         Me.LabelControl19.TabIndex = 29
@@ -648,7 +648,7 @@ Partial Class frmReading
         '
         Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl20.Appearance.Options.UseFont = True
-        Me.LabelControl20.Location = New System.Drawing.Point(542, 301)
+        Me.LabelControl20.Location = New System.Drawing.Point(539, 261)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(52, 19)
         Me.LabelControl20.TabIndex = 28
@@ -658,7 +658,7 @@ Partial Class frmReading
         '
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl21.Appearance.Options.UseFont = True
-        Me.LabelControl21.Location = New System.Drawing.Point(567, 341)
+        Me.LabelControl21.Location = New System.Drawing.Point(564, 301)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(27, 19)
         Me.LabelControl21.TabIndex = 27
@@ -668,7 +668,7 @@ Partial Class frmReading
         '
         Me.ceETh.Enabled = False
         Me.ceETh.EnterMoveNextControl = True
-        Me.ceETh.Location = New System.Drawing.Point(784, 174)
+        Me.ceETh.Location = New System.Drawing.Point(781, 134)
         Me.ceETh.Name = "ceETh"
         Me.ceETh.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceETh.Properties.Appearance.Options.UseFont = True
@@ -683,7 +683,7 @@ Partial Class frmReading
         '
         Me.ceEOh.Enabled = False
         Me.ceEOh.EnterMoveNextControl = True
-        Me.ceEOh.Location = New System.Drawing.Point(784, 214)
+        Me.ceEOh.Location = New System.Drawing.Point(781, 174)
         Me.ceEOh.Name = "ceEOh"
         Me.ceEOh.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceEOh.Properties.Appearance.Options.UseFont = True
@@ -698,7 +698,7 @@ Partial Class frmReading
         '
         Me.ceEF.Enabled = False
         Me.ceEF.EnterMoveNextControl = True
-        Me.ceEF.Location = New System.Drawing.Point(784, 254)
+        Me.ceEF.Location = New System.Drawing.Point(781, 214)
         Me.ceEF.Name = "ceEF"
         Me.ceEF.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceEF.Properties.Appearance.Options.UseFont = True
@@ -713,7 +713,7 @@ Partial Class frmReading
         '
         Me.ceET.Enabled = False
         Me.ceET.EnterMoveNextControl = True
-        Me.ceET.Location = New System.Drawing.Point(784, 294)
+        Me.ceET.Location = New System.Drawing.Point(781, 254)
         Me.ceET.Name = "ceET"
         Me.ceET.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceET.Properties.Appearance.Options.UseFont = True
@@ -728,7 +728,7 @@ Partial Class frmReading
         '
         Me.ceETen.Enabled = False
         Me.ceETen.EnterMoveNextControl = True
-        Me.ceETen.Location = New System.Drawing.Point(784, 334)
+        Me.ceETen.Location = New System.Drawing.Point(781, 294)
         Me.ceETen.Name = "ceETen"
         Me.ceETen.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceETen.Properties.Appearance.Options.UseFont = True
@@ -743,7 +743,7 @@ Partial Class frmReading
         '
         Me.ceEOne.Enabled = False
         Me.ceEOne.EnterMoveNextControl = True
-        Me.ceEOne.Location = New System.Drawing.Point(784, 374)
+        Me.ceEOne.Location = New System.Drawing.Point(781, 334)
         Me.ceEOne.Name = "ceEOne"
         Me.ceEOne.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceEOne.Properties.Appearance.Options.UseFont = True
@@ -757,7 +757,7 @@ Partial Class frmReading
         'CalcEdit7
         '
         Me.CalcEdit7.EnterMoveNextControl = True
-        Me.CalcEdit7.Location = New System.Drawing.Point(601, 174)
+        Me.CalcEdit7.Location = New System.Drawing.Point(598, 134)
         Me.CalcEdit7.Name = "CalcEdit7"
         Me.CalcEdit7.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.CalcEdit7.Properties.Appearance.Options.UseFont = True
@@ -770,7 +770,7 @@ Partial Class frmReading
         'CalcEdit8
         '
         Me.CalcEdit8.EnterMoveNextControl = True
-        Me.CalcEdit8.Location = New System.Drawing.Point(601, 214)
+        Me.CalcEdit8.Location = New System.Drawing.Point(598, 174)
         Me.CalcEdit8.Name = "CalcEdit8"
         Me.CalcEdit8.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.CalcEdit8.Properties.Appearance.Options.UseFont = True
@@ -783,7 +783,7 @@ Partial Class frmReading
         'CalcEdit9
         '
         Me.CalcEdit9.EnterMoveNextControl = True
-        Me.CalcEdit9.Location = New System.Drawing.Point(601, 254)
+        Me.CalcEdit9.Location = New System.Drawing.Point(598, 214)
         Me.CalcEdit9.Name = "CalcEdit9"
         Me.CalcEdit9.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.CalcEdit9.Properties.Appearance.Options.UseFont = True
@@ -796,7 +796,7 @@ Partial Class frmReading
         'CalcEdit10
         '
         Me.CalcEdit10.EnterMoveNextControl = True
-        Me.CalcEdit10.Location = New System.Drawing.Point(601, 294)
+        Me.CalcEdit10.Location = New System.Drawing.Point(598, 254)
         Me.CalcEdit10.Name = "CalcEdit10"
         Me.CalcEdit10.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.CalcEdit10.Properties.Appearance.Options.UseFont = True
@@ -809,7 +809,7 @@ Partial Class frmReading
         'CalcEdit11
         '
         Me.CalcEdit11.EnterMoveNextControl = True
-        Me.CalcEdit11.Location = New System.Drawing.Point(601, 334)
+        Me.CalcEdit11.Location = New System.Drawing.Point(598, 294)
         Me.CalcEdit11.Name = "CalcEdit11"
         Me.CalcEdit11.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.CalcEdit11.Properties.Appearance.Options.UseFont = True
@@ -822,7 +822,7 @@ Partial Class frmReading
         'CalcEdit12
         '
         Me.CalcEdit12.EnterMoveNextControl = True
-        Me.CalcEdit12.Location = New System.Drawing.Point(601, 374)
+        Me.CalcEdit12.Location = New System.Drawing.Point(598, 334)
         Me.CalcEdit12.Name = "CalcEdit12"
         Me.CalcEdit12.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.CalcEdit12.Properties.Appearance.Options.UseFont = True
@@ -836,7 +836,7 @@ Partial Class frmReading
         '
         Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl22.Appearance.Options.UseFont = True
-        Me.LabelControl22.Location = New System.Drawing.Point(707, 137)
+        Me.LabelControl22.Location = New System.Drawing.Point(704, 97)
         Me.LabelControl22.Name = "LabelControl22"
         Me.LabelControl22.Size = New System.Drawing.Size(43, 19)
         Me.LabelControl22.TabIndex = 35
@@ -846,7 +846,7 @@ Partial Class frmReading
         '
         Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl23.Appearance.Options.UseFont = True
-        Me.LabelControl23.Location = New System.Drawing.Point(873, 137)
+        Me.LabelControl23.Location = New System.Drawing.Point(870, 97)
         Me.LabelControl23.Name = "LabelControl23"
         Me.LabelControl23.Size = New System.Drawing.Size(57, 19)
         Me.LabelControl23.TabIndex = 35
@@ -856,7 +856,7 @@ Partial Class frmReading
         '
         Me.LabelControl24.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl24.Appearance.Options.UseFont = True
-        Me.LabelControl24.Location = New System.Drawing.Point(565, 381)
+        Me.LabelControl24.Location = New System.Drawing.Point(562, 341)
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(29, 19)
         Me.LabelControl24.TabIndex = 25
@@ -866,7 +866,7 @@ Partial Class frmReading
         '
         Me.ceETotal.Enabled = False
         Me.ceETotal.EnterMoveNextControl = True
-        Me.ceETotal.Location = New System.Drawing.Point(784, 418)
+        Me.ceETotal.Location = New System.Drawing.Point(781, 378)
         Me.ceETotal.Name = "ceETotal"
         Me.ceETotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceETotal.Properties.Appearance.Options.UseFont = True
@@ -881,7 +881,7 @@ Partial Class frmReading
         '
         Me.LabelControl25.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl25.Appearance.Options.UseFont = True
-        Me.LabelControl25.Location = New System.Drawing.Point(596, 425)
+        Me.LabelControl25.Location = New System.Drawing.Point(593, 385)
         Me.LabelControl25.Name = "LabelControl25"
         Me.LabelControl25.Size = New System.Drawing.Size(154, 19)
         Me.LabelControl25.TabIndex = 24
@@ -907,15 +907,15 @@ Partial Class frmReading
         Me.LabelControl27.Appearance.Options.UseForeColor = True
         Me.LabelControl27.Location = New System.Drawing.Point(414, 37)
         Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(449, 19)
+        Me.LabelControl27.Size = New System.Drawing.Size(426, 19)
         Me.LabelControl27.TabIndex = 35
-        Me.LabelControl27.Text = " OF CASH DENOMINATION AND ENDORSEMENT PIECES"
+        Me.LabelControl27.Text = " OF CASH REMITTANCE AND ENDORSEMENT PIECES"
         '
         'frmReading
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(942, 540)
+        Me.ClientSize = New System.Drawing.Size(942, 531)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.ceCents)

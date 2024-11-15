@@ -438,7 +438,7 @@ Public Class frmPO
             'mgrspDrTrans.Entity.supcode = CInt(Trim(txtSupcode.Text))
             'TranDrSp.Add(mgrspDrTrans.DataObject)
             'TranDrSp.Execute()
-            MessageBox.Show("Delivery Transaction Successfully Posted.")
+            MessageBox.Show("PO Transaction Successfully Saved.")
             'btnPost.Enabled = False
             Call Disablectrl()
 

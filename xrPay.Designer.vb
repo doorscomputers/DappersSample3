@@ -86,7 +86,7 @@ Partial Public Class xrPay
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 0.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -199,10 +199,10 @@ Partial Public Class xrPay
         Me.DataMember = "vwCustPay"
         Me.DataSource = Me.DsCustPays1
         Me.FilterString = "[sInsert_id] = ?Cashier And [PayDate] = ?PayDay"
-        Me.Margins = New System.Drawing.Printing.Margins(6, 8, 12, 15)
+        Me.Margins = New DevExpress.Drawing.DXMargins(6, 8, 12, 15)
         Me.PageHeight = 1169
         Me.PageWidth = 299
-        Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.Custom
         Me.PaperName = "Roll Paper 76 x 297 mm"
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.Cashier, Me.PayDay})
         Me.PrinterName = "EPSON TM-U220 Receipt"

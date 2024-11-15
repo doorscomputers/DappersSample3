@@ -81,7 +81,7 @@ Partial Public Class xrReceiveStocks
         'XrLabel9
         '
         Me.XrLabel9.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "receive_hdr.item_desc")})
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel9.Font = New DevExpress.Drawing.DXFont("Times New Roman", 10.0!)
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 0.0!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -92,7 +92,7 @@ Partial Public Class xrReceiveStocks
         'XrLabel11
         '
         Me.XrLabel11.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "receive_hdr.qty")})
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 10.0!)
+        Me.XrLabel11.Font = New DevExpress.Drawing.DXFont("Times New Roman", 10.0!)
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(237.5061!, 0.0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -208,7 +208,7 @@ Partial Public Class xrReceiveStocks
         'XrLabel7
         '
         Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "receive_hdr.location")})
-        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel7.Font = New DevExpress.Drawing.DXFont("Times New Roman", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 0.0!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -290,7 +290,7 @@ Partial Public Class xrReceiveStocks
         '
         'XrLabel13
         '
-        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 2.083333!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -305,7 +305,7 @@ Partial Public Class xrReceiveStocks
         Me.Title.BorderColor = System.Drawing.Color.Black
         Me.Title.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.Title.BorderWidth = 1.0!
-        Me.Title.Font = New System.Drawing.Font("Times New Roman", 24.0!)
+        Me.Title.Font = New DevExpress.Drawing.DXFont("Times New Roman", 24.0!)
         Me.Title.ForeColor = System.Drawing.Color.Black
         Me.Title.Name = "Title"
         '
@@ -315,7 +315,7 @@ Partial Public Class xrReceiveStocks
         Me.FieldCaption.BorderColor = System.Drawing.Color.Black
         Me.FieldCaption.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.FieldCaption.BorderWidth = 1.0!
-        Me.FieldCaption.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.FieldCaption.Font = New DevExpress.Drawing.DXFont("Times New Roman", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.FieldCaption.ForeColor = System.Drawing.Color.Black
         Me.FieldCaption.Name = "FieldCaption"
         '
@@ -325,7 +325,7 @@ Partial Public Class xrReceiveStocks
         Me.PageInfo.BorderColor = System.Drawing.Color.Black
         Me.PageInfo.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.PageInfo.BorderWidth = 1.0!
-        Me.PageInfo.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.PageInfo.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.PageInfo.ForeColor = System.Drawing.Color.Black
         Me.PageInfo.Name = "PageInfo"
         '
@@ -335,7 +335,7 @@ Partial Public Class xrReceiveStocks
         Me.DataField.BorderColor = System.Drawing.Color.Black
         Me.DataField.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.DataField.BorderWidth = 1.0!
-        Me.DataField.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.DataField.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.DataField.ForeColor = System.Drawing.Color.Black
         Me.DataField.Name = "DataField"
         Me.DataField.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -354,7 +354,7 @@ Partial Public Class xrReceiveStocks
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "receive_hdr"
         Me.DataSource = Me.SqlDataSource1
-        Me.Margins = New System.Drawing.Printing.Margins(0, 100, 15, 6)
+        Me.Margins = New DevExpress.Drawing.DXMargins(0, 100, 15, 6)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
         Me.Version = "15.2"

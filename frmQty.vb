@@ -18,7 +18,7 @@
                     ceQty.Value = 1
                 End If
                 Me.Close()
-                frmPOS.vpieces = CInt(ceQty.Value)
+                frmPOS.vpieces = CDec(ceQty.Value)
                 'frmPOS.txtBarcode.Focus()
                 frmPOS.GridLookUpEdit2.Focus()
                 frmPOS.Activate()

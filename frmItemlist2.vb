@@ -5,6 +5,8 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Base
 Imports PDSA.DataLayer.DataClasses
 Imports PDSA.Validation
+Imports DoorsPOS.WinApp.WaitForm_SetDescription
+Imports DevExpress.XtraSplashScreen
 
 Public Class frmItemlist2
 
@@ -12,29 +14,39 @@ Public Class frmItemlist2
         Me.Dispose()
     End Sub
     Private Sub frmItemlist2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsBrand.dept' table. You can move, or remove it, as needed.
-        Me.deptTableAdapter.Fill(Me.DsBrand.dept)
+        SplashScreenManager.ShowForm(Me, GetType(WaitForm1), True, True, False)
 
-        'DevExpress.Utils.AppearanceObject.DefaultFont = New System.Drawing.Font("Arial Unicode MS", 12.0F)
-        'SetGridFont(GridView2, New Font("Courier New", 12))
-        'TODO: This line of code loads data into the 'CategoryDS.categories' table. You can move, or remove it, as needed.
+        Try
 
-        Me.categoriesTableAdapter1.Fill(Me.CategoryDS.categories)
-        'TODO: This line of code loads data into the 'DsCategory.categories' table. You can move, or remove it, as needed.
-        Me.categoriesTableAdapter.Fill(Me.DsCategory.categories)
-        'TODO: This line of code loads data into the 'DsStakks.stocks' table. You can move, or remove it, as needed.
-        Me.StocksTableAdapter1.Fill(Me.DsStakks.stocks)
-        '+DevExpress.Utils.AppearanceObject.DefaultFont = New Font("Courier New", 12) ' <<< NEW LINE
-        GridControl1.UseEmbeddedNavigator = True
-        GridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True
 
-        RepositoryItemGridLookUpEdit1.View.PopulateColumns(RepositoryItemGridLookUpEdit1.DataSource)
-        RepositoryItemGridLookUpEdit1.View.Columns(RepositoryItemGridLookUpEdit1.ValueMember).Visible = False
-        RepositoryItemGridLookUpEdit1.View.Columns("catgory").Caption = "Category"
+            'TODO: This line of code loads data into the 'DsBrand.dept' table. You can move, or remove it, as needed.
+            Me.deptTableAdapter.Fill(Me.DsBrand.dept)
 
-        RepositoryItemGridLookUpEdit2.View.PopulateColumns(RepositoryItemGridLookUpEdit2.DataSource)
-        RepositoryItemGridLookUpEdit2.View.Columns(RepositoryItemGridLookUpEdit2.ValueMember).Visible = False
-        RepositoryItemGridLookUpEdit2.View.Columns("DEPTD").Caption = "Brand"
+            'DevExpress.Utils.AppearanceObject.DefaultFont = New System.Drawing.Font("Arial Unicode MS", 12.0F)
+            'SetGridFont(GridView2, New Font("Courier New", 12))
+            'TODO: This line of code loads data into the 'CategoryDS.categories' table. You can move, or remove it, as needed.
+
+            Me.categoriesTableAdapter1.Fill(Me.CategoryDS.categories)
+            'TODO: This line of code loads data into the 'DsCategory.categories' table. You can move, or remove it, as needed.
+            Me.categoriesTableAdapter.Fill(Me.DsCategory.categories)
+            'TODO: This line of code loads data into the 'DsStakks.stocks' table. You can move, or remove it, as needed.
+            Me.StocksTableAdapter1.Fill(Me.DsStakks.stocks)
+            '+DevExpress.Utils.AppearanceObject.DefaultFont = New Font("Courier New", 12) ' <<< NEW LINE
+            GridControl1.UseEmbeddedNavigator = True
+            GridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True
+
+            RepositoryItemGridLookUpEdit1.View.PopulateColumns(RepositoryItemGridLookUpEdit1.DataSource)
+            RepositoryItemGridLookUpEdit1.View.Columns(RepositoryItemGridLookUpEdit1.ValueMember).Visible = False
+            RepositoryItemGridLookUpEdit1.View.Columns("catgory").Caption = "Category"
+
+            RepositoryItemGridLookUpEdit2.View.PopulateColumns(RepositoryItemGridLookUpEdit2.DataSource)
+            RepositoryItemGridLookUpEdit2.View.Columns(RepositoryItemGridLookUpEdit2.ValueMember).Visible = False
+            RepositoryItemGridLookUpEdit2.View.Columns("DEPTD").Caption = "Brand"
+
+        Finally
+            '++Close Wait Form
+            SplashScreenManager.CloseForm(False)
+        End Try
 
     End Sub
     Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs)

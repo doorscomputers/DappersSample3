@@ -22,10 +22,10 @@ Partial Class frmDrPayment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgPayment = New System.Windows.Forms.DataGridView()
         Me.drid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.drinv = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -37,7 +37,6 @@ Partial Class frmDrPayment
         Me.ceAmount = New DevExpress.XtraEditors.CalcEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtTotInv = New DevExpress.XtraEditors.TextEdit()
         Me.btnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -56,12 +55,16 @@ Partial Class frmDrPayment
         Me.leBank = New DevExpress.XtraEditors.LookUpEdit()
         Me.leSupplier = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.pd = New DevExpress.XtraEditors.CalcEdit()
+        Me.cm = New DevExpress.XtraEditors.CalcEdit()
+        Me.txtTotInv = New DevExpress.XtraEditors.CalcEdit()
         CType(Me.dgPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.ledrs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ceAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtChkNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSupcode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtbankid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,34 +77,37 @@ Partial Class frmDrPayment
         CType(Me.leSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.pd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgPayment
         '
         Me.dgPayment.AllowUserToAddRows = False
         Me.dgPayment.AllowUserToDeleteRows = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgPayment.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgPayment.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPayment.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.drid, Me.drinv, Me.drbal})
         Me.dgPayment.Location = New System.Drawing.Point(1, 257)
         Me.dgPayment.MultiSelect = False
         Me.dgPayment.Name = "dgPayment"
         Me.dgPayment.ReadOnly = True
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgPayment.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgPayment.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgPayment.Size = New System.Drawing.Size(761, 204)
         Me.dgPayment.TabIndex = 5
         '
@@ -114,9 +120,9 @@ Partial Class frmDrPayment
         '
         'drinv
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.drinv.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.drinv.DefaultCellStyle = DataGridViewCellStyle2
         Me.drinv.HeaderText = "Invoice #"
         Me.drinv.Name = "drinv"
         Me.drinv.ReadOnly = True
@@ -124,11 +130,11 @@ Partial Class frmDrPayment
         '
         'drbal
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.Format = "N2"
-        DataGridViewCellStyle7.NullValue = "0"
-        Me.drbal.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = "0"
+        Me.drbal.DefaultCellStyle = DataGridViewCellStyle3
         Me.drbal.HeaderText = "Balance"
         Me.drbal.Name = "drbal"
         Me.drbal.ReadOnly = True
@@ -178,12 +184,13 @@ Partial Class frmDrPayment
         Me.btnAdd.Location = New System.Drawing.Point(676, 33)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(70, 26)
-        Me.btnAdd.TabIndex = 8
+        Me.btnAdd.TabIndex = 7
         Me.btnAdd.Text = "&Add"
         Me.btnAdd.ToolTip = "Click Add to Add the Invoice and Paid AMount on the List"
         '
         'ceAmount
         '
+        Me.ceAmount.Enabled = False
         Me.ceAmount.EnterMoveNextControl = True
         Me.ceAmount.Location = New System.Drawing.Point(536, 33)
         Me.ceAmount.Name = "ceAmount"
@@ -195,7 +202,7 @@ Partial Class frmDrPayment
         Me.ceAmount.Properties.Mask.BeepOnError = True
         Me.ceAmount.Properties.Mask.EditMask = "n2"
         Me.ceAmount.Size = New System.Drawing.Size(132, 26)
-        Me.ceAmount.TabIndex = 7
+        Me.ceAmount.TabIndex = 8
         Me.ceAmount.ToolTip = "Type Amount Paid for the Invoice at the Left"
         '
         'LabelControl9
@@ -212,24 +219,11 @@ Partial Class frmDrPayment
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl10.Appearance.Options.UseFont = True
-        Me.LabelControl10.Location = New System.Drawing.Point(478, 479)
+        Me.LabelControl10.Location = New System.Drawing.Point(484, 532)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(92, 19)
         Me.LabelControl10.TabIndex = 1
         Me.LabelControl10.Text = "Total Invoice"
-        '
-        'txtTotInv
-        '
-        Me.txtTotInv.Location = New System.Drawing.Point(586, 472)
-        Me.txtTotInv.Name = "txtTotInv"
-        Me.txtTotInv.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
-        Me.txtTotInv.Properties.Appearance.Options.UseFont = True
-        Me.txtTotInv.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 12.25!)
-        Me.txtTotInv.Properties.AppearanceDisabled.Options.UseFont = True
-        Me.txtTotInv.Properties.AppearanceDisabled.Options.UseTextOptions = True
-        Me.txtTotInv.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtTotInv.Size = New System.Drawing.Size(160, 26)
-        Me.txtTotInv.TabIndex = 8
         '
         'btnNew
         '
@@ -413,7 +407,7 @@ Partial Class frmDrPayment
         Me.leBank.Properties.AppearanceFocused.Options.UseFont = True
         Me.leBank.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit
         Me.leBank.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leBank.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bankid", "bankid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bank", "Bank"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("accountno", "Account No.")})
+        Me.leBank.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bankid", "bankid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bank", "Bank"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("accountno", "Account No.")})
         Me.leBank.Properties.DropDownRows = 8
         Me.leBank.Properties.NullText = ""
         Me.leBank.Size = New System.Drawing.Size(384, 26)
@@ -423,7 +417,6 @@ Partial Class frmDrPayment
         '
         'leSupplier
         '
-        Me.leSupplier.EnterMoveNextControl = True
         Me.leSupplier.Location = New System.Drawing.Point(98, 111)
         Me.leSupplier.Name = "leSupplier"
         Me.leSupplier.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
@@ -436,7 +429,7 @@ Partial Class frmDrPayment
         Me.leSupplier.Properties.AppearanceFocused.Options.UseFont = True
         Me.leSupplier.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit
         Me.leSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leSupplier.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supcode", "supcode", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supplier", "supplier")})
+        Me.leSupplier.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supcode", "supcode", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supplier", "supplier")})
         Me.leSupplier.Properties.DropDownRows = 15
         Me.leSupplier.Properties.NullText = ""
         Me.leSupplier.Size = New System.Drawing.Size(654, 26)
@@ -465,16 +458,88 @@ Partial Class frmDrPayment
         Me.GroupControl2.TabIndex = 10
         Me.GroupControl2.Text = "Payment Header"
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.LabelControl5.Appearance.Options.UseFont = True
+        Me.LabelControl5.Location = New System.Drawing.Point(458, 474)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(118, 19)
+        Me.LabelControl5.TabIndex = 11
+        Me.LabelControl5.Text = "Percent Discount"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.LabelControl11.Appearance.Options.UseFont = True
+        Me.LabelControl11.Location = New System.Drawing.Point(406, 503)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(170, 19)
+        Me.LabelControl11.TabIndex = 11
+        Me.LabelControl11.Text = "CM or Discount Amount"
+        '
+        'pd
+        '
+        Me.pd.EnterMoveNextControl = True
+        Me.pd.Location = New System.Drawing.Point(587, 467)
+        Me.pd.Name = "pd"
+        Me.pd.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.pd.Properties.Appearance.Options.UseFont = True
+        Me.pd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.pd.Properties.EditFormat.FormatString = "N2"
+        Me.pd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.pd.Properties.Mask.BeepOnError = True
+        Me.pd.Properties.Mask.EditMask = "n2"
+        Me.pd.Size = New System.Drawing.Size(160, 26)
+        Me.pd.TabIndex = 12
+        Me.pd.ToolTip = "Type Amount Paid for the Invoice at the Left"
+        '
+        'cm
+        '
+        Me.cm.EnterMoveNextControl = True
+        Me.cm.Location = New System.Drawing.Point(587, 496)
+        Me.cm.Name = "cm"
+        Me.cm.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.cm.Properties.Appearance.Options.UseFont = True
+        Me.cm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cm.Properties.EditFormat.FormatString = "N2"
+        Me.cm.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.cm.Properties.Mask.BeepOnError = True
+        Me.cm.Properties.Mask.EditMask = "n2"
+        Me.cm.Size = New System.Drawing.Size(160, 26)
+        Me.cm.TabIndex = 13
+        Me.cm.ToolTip = "Type Amount Paid for the Invoice at the Left"
+        '
+        'txtTotInv
+        '
+        Me.txtTotInv.EnterMoveNextControl = True
+        Me.txtTotInv.Location = New System.Drawing.Point(587, 525)
+        Me.txtTotInv.Name = "txtTotInv"
+        Me.txtTotInv.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.txtTotInv.Properties.Appearance.Options.UseFont = True
+        Me.txtTotInv.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtTotInv.Properties.EditFormat.FormatString = "N2"
+        Me.txtTotInv.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotInv.Properties.Mask.BeepOnError = True
+        Me.txtTotInv.Properties.Mask.EditMask = "n2"
+        Me.txtTotInv.Size = New System.Drawing.Size(160, 26)
+        Me.txtTotInv.TabIndex = 14
+        Me.txtTotInv.ToolTip = "Type Amount Paid for the Invoice at the Left"
+        '
         'frmDrPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(763, 507)
+        Me.ClientSize = New System.Drawing.Size(763, 563)
+        Me.Controls.Add(Me.txtTotInv)
+        Me.Controls.Add(Me.cm)
+        Me.Controls.Add(Me.pd)
+        Me.Controls.Add(Me.LabelControl11)
+        Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnNew)
-        Me.Controls.Add(Me.txtTotInv)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.dgPayment)
         Me.Controls.Add(Me.LabelControl10)
@@ -490,7 +555,6 @@ Partial Class frmDrPayment
         Me.GroupControl1.PerformLayout()
         CType(Me.ledrs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ceAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtChkNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSupcode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtbankid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -504,6 +568,9 @@ Partial Class frmDrPayment
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.pd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -515,7 +582,6 @@ Partial Class frmDrPayment
     Friend WithEvents ceAmount As DevExpress.XtraEditors.CalcEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtTotInv As DevExpress.XtraEditors.TextEdit
     Friend WithEvents btnNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnCancel As DevExpress.XtraEditors.SimpleButton
@@ -538,4 +604,9 @@ Partial Class frmDrPayment
     Friend WithEvents drid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents drinv As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents drbal As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents pd As DevExpress.XtraEditors.CalcEdit
+    Friend WithEvents cm As DevExpress.XtraEditors.CalcEdit
+    Friend WithEvents txtTotInv As DevExpress.XtraEditors.CalcEdit
 End Class

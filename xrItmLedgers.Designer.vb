@@ -204,7 +204,7 @@ Partial Public Class xrItmLedgers
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 14.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(18.25002!, 0.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -331,7 +331,7 @@ Partial Public Class xrItmLedgers
         'XrLabel2
         '
         Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwItemLedger2.item_desc")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(18.25002!, 58.95834!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -369,7 +369,7 @@ Partial Public Class xrItmLedgers
         Me.DataSource = Me.DsLedger1
         Me.FilterString = "StartsWith([item_desc], ?Item) And [trans_Date] Between(?DateFrom, ?DateTo)"
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(54, 47, 17, 34)
+        Me.Margins = New DevExpress.Drawing.DXMargins(54, 47, 17, 34)
         Me.PageHeight = 850
         Me.PageWidth = 1100
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.Item, Me.DateFrom, Me.DateTo})

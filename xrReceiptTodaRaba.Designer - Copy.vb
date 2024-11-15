@@ -96,7 +96,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLabel15
         '
         Me.XrLabel15.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.det_amnt", "{0:n2}")})
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel15.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(201.8959!, 0.0!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -108,7 +108,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLabel14
         '
         Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.price", "{0:n2}")})
-        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel14.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(156.6875!, 0.0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -120,7 +120,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLabel12
         '
         Me.XrLabel12.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.item_desc")})
-        Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel12.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 0.0!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -133,7 +133,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLabel11
         '
         Me.XrLabel11.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.qty")})
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel11.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(126.0625!, 0.0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -152,7 +152,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.75!)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrLabel1.Multiline = True
         Me.XrLabel1.Name = "XrLabel1"
@@ -227,7 +227,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLabel13
         '
         Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.taym", "{0:MMMM dd, yyyy h:mm tt}")})
-        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(92.10412!, 21.20838!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -280,7 +280,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLine5
         '
         Me.XrLine5.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
-        Me.XrLine5.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDotDot
+        Me.XrLine5.LineStyle = DevExpress.Drawing.DXDashStyle.DashDotDot
         Me.XrLine5.LocationFloat = New DevExpress.Utils.PointFloat(8.97913!, 92.04172!)
         Me.XrLine5.Name = "XrLine5"
         Me.XrLine5.SizeF = New System.Drawing.SizeF(254.3751!, 8.416687!)
@@ -288,7 +288,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel9
         '
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 9.0!)
+        Me.XrLabel9.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.0!)
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(201.8959!, 100.6666!)
         Me.XrLabel9.Multiline = True
         Me.XrLabel9.Name = "XrLabel9"
@@ -334,7 +334,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 9.0!)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.0!)
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(126.0625!, 100.4584!)
         Me.XrLabel3.Multiline = True
         Me.XrLabel3.Name = "XrLabel3"
@@ -347,7 +347,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel7
         '
-        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 9.0!)
+        Me.XrLabel7.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.0!)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 100.4584!)
         Me.XrLabel7.Multiline = True
         Me.XrLabel7.Name = "XrLabel7"
@@ -360,7 +360,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 9.0!)
+        Me.XrLabel8.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.0!)
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(156.6875!, 100.6666!)
         Me.XrLabel8.Multiline = True
         Me.XrLabel8.Name = "XrLabel8"
@@ -401,7 +401,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel42
         '
-        Me.XrLabel42.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XrLabel42.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.75!)
         Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(166.0835!, 131.6042!)
         Me.XrLabel42.Multiline = True
         Me.XrLabel42.Name = "XrLabel42"
@@ -414,7 +414,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel41
         '
-        Me.XrLabel41.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel41.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(14.81247!, 131.6042!)
         Me.XrLabel41.Multiline = True
         Me.XrLabel41.Name = "XrLabel41"
@@ -439,7 +439,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLine1
         '
         Me.XrLine1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
-        Me.XrLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDotDot
+        Me.XrLine1.LineStyle = DevExpress.Drawing.DXDashStyle.DashDotDot
         Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 0.0!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(253.3542!, 8.416672!)
@@ -512,7 +512,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLine2
         '
         Me.XrLine2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
-        Me.XrLine2.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDotDot
+        Me.XrLine2.LineStyle = DevExpress.Drawing.DXDashStyle.DashDotDot
         Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(17.72922!, 158.4793!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(245.625!, 8.416656!)
@@ -564,7 +564,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel32
         '
-        Me.XrLabel32.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel32.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(17.72922!, 254.646!)
         Me.XrLabel32.Multiline = True
         Me.XrLabel32.Name = "XrLabel32"
@@ -578,7 +578,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLine4
         '
         Me.XrLine4.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
-        Me.XrLine4.LineStyle = System.Drawing.Drawing2D.DashStyle.DashDotDot
+        Me.XrLine4.LineStyle = DevExpress.Drawing.DXDashStyle.DashDotDot
         Me.XrLine4.LocationFloat = New DevExpress.Utils.PointFloat(14.81237!, 223.2293!)
         Me.XrLine4.Name = "XrLine4"
         Me.XrLine4.SizeF = New System.Drawing.SizeF(246.0416!, 8.416672!)
@@ -586,7 +586,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel24
         '
-        Me.XrLabel24.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel24.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(14.81209!, 88.81232!)
         Me.XrLabel24.Multiline = True
         Me.XrLabel24.Name = "XrLabel24"
@@ -599,7 +599,7 @@ Partial Public Class xrReceiptTodaRaba
         '
         'XrLabel33
         '
-        Me.XrLabel33.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel33.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(14.81209!, 111.8125!)
         Me.XrLabel33.Multiline = True
         Me.XrLabel33.Name = "XrLabel33"
@@ -666,7 +666,7 @@ Partial Public Class xrReceiptTodaRaba
         'XrLabel40
         '
         Me.XrLabel40.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.det_amnt")})
-        Me.XrLabel40.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel40.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(201.8959!, 11.22917!)
         Me.XrLabel40.Name = "XrLabel40"
         Me.XrLabel40.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -697,7 +697,7 @@ Partial Public Class xrReceiptTodaRaba
         Me.DataMember = "vwReceipt"
         Me.DataSource = Me.DsvwReceipt1
         Me.FilterString = "[postmp_hdrid] = 2057"
-        Me.Margins = New System.Drawing.Printing.Margins(4, 557, 79, 9)
+        Me.Margins = New DevExpress.Drawing.DXMargins(4, 557, 79, 9)
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.Parameter1})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "14.1"

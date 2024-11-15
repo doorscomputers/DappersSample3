@@ -3,7 +3,7 @@ Imports PDSA.DataLayer.DataClasses
 Imports PDSA.Validation
 Imports DynamicComponents.Number2Text
 Public Class frmDrPayment
-    Dim oTextNum As New DynamicComponents.Number2Text()
+    'Dim oTextNum As New DynamicComponents.Number2Text()
     Dim mgrSupBal As dlvry_hdrManager = New dlvry_hdrManager()
     Dim colSupBal As dlvry_hdrCollection
     Dim Tots As Decimal = 0
@@ -26,17 +26,22 @@ Public Class frmDrPayment
         'End If
     End Sub
     Private Sub frmDrPayment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        oTextNum = New DynamicComponents.Number2Text()
+        'oTextNum = New DynamicComponents.Number2Text()
         Me.Cursor = Cursors.WaitCursor
         LoadBank()
         LoadSupplier()
         Me.Cursor = Cursors.Default
         GroupControl1.Enabled = False
         GroupControl2.Enabled = False
+        pd.Value = 0
+        cm.Value = 0
         btnNew.Focus()
+
     End Sub
     Private Sub leBank_LostFocus(sender As Object, e As EventArgs) Handles leBank.LostFocus
         'MessageBox.Show(CStr(leBank.EditValue))
+        'MessageBox.Show(CStr(leBank.EditValue))
+
     End Sub
 
     Private Sub LoadBank()
@@ -146,16 +151,29 @@ Public Class frmDrPayment
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        'ceAmntPd.Value = CDec(txtTotInv.Value)
+        Tots = 0
+        Dim ay As Integer = 0
+        If dgPayment.Rows.Count >= 1 Then
+            For ay = 0 To dgPayment.Rows.Count - 1
+                Tots += CDec(dgPayment.Rows(ay).Cells(2).Value)
+            Next
+        End If
+        If cm.Value > 0 Then
+            txtTotInv.Value = Tots - CDec(cm.Value)
+        End If
+        ceAmntPd.Value = CDec(txtTotInv.Value)
+
         Dim vAp As Decimal = 0 ' vAP is equal to Amount Paid
         Dim vTotP As Decimal = 0 ' Total Invoices
         If txtTotInv.Text = "0" Or txtTotInv.Text = String.Empty Then
             MessageBox.Show("No item in the list to process")
             Exit Sub
         End If
-        If txtChkNo.Text = String.Empty Then
-            MessageBox.Show("Please enter a cheque no. before saving.")
-            Exit Sub
-        End If
+        'If txtChkNo.Text = String.Empty Then
+        '    MessageBox.Show("Please enter a cheque no. before saving.")
+        '    Exit Sub
+        'End If
 
         If deDatePaid.Text = String.Empty Then
             MessageBox.Show("Date Paid must not be blank.")
@@ -170,7 +188,7 @@ Public Class frmDrPayment
         End If
 
         vAp = CDec(ceAmntPd.Value)
-        vTotP = CDec(txtTotInv.Text)
+        vTotP = CDec(txtTotInv.Value)
         If vAp <> vTotP Then
             MessageBox.Show("Please make sure the Total Amount Paid is equal than the Total Invoice(s) Balance to be Paid.", "Amount not Equal", MessageBoxButtons.OK)
             Exit Sub
@@ -198,15 +216,26 @@ Public Class frmDrPayment
             'Save Header Section of Invoice Payment
             mgrHP.Entity.paydate = CDate(deDatePaid.Text)
             mgrHP.Entity.amntpaid = CDec(ceAmntPd.Value)
-            mgrHP.Entity.bankid = CInt(leBank.EditValue)
+            If leBank.Text <> "" Then
+                mgrHP.Entity.bankid = CInt(leBank.EditValue)
+            Else
+                mgrHP.Entity.bankid = 1
+            End If
             mgrHP.Entity.chqdate = CDate(deChkDate.Text)
             'mgrHP.Entity.dtInsertdt = Date.Now
             'mgrHP.Entity.dtLastUpdatedt = Date.Now
-            mgrHP.Entity.chqno = Trim(txtChkNo.Text)
+            If txtChkNo.Text = "" Then
+                mgrHP.Entity.chqno = "CASH"
+            Else
+                mgrHP.Entity.chqno = Trim(txtChkNo.Text)
+            End If
+
             mgrHP.Entity.remarks = "No Rem" 'Trim(txtremarks.Text)
             mgrHP.Entity.supcode = CInt(leSupplier.EditValue)
 
             mgrHP.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
+            mgrHP.Entity.CM = CDec(cm.Value)
+            mgrHP.Entity.percentdisc = CInt(pd.Value)
             TranPayment.Add(mgrHP.DataObject)
             TranPayment.Execute()
             grdCount = dgPayment.Rows.Count
@@ -235,7 +264,7 @@ Public Class frmDrPayment
                 mgrSupplier.DataObject.SelectFilter = suppliersData.SelectFilters.All
                 mgrSupplier.DataObject.LoadByPK(CInt(leSupplier.EditValue))
                 mgrSupplier.DataObject.TransactionType = PDSATransactionType.Update
-                mgrSupplier.Entity.balance = mgrSupplier.Entity.balance - CDec(txtTotInv.Text)
+                mgrSupplier.Entity.balance = mgrSupplier.Entity.balance - (CDec(txtTotInv.Value) + CDec(cm.Value))
                 TranPayment.Add(mgrSupplier.DataObject)
                 'TranPayment.Execute()
             Next
@@ -326,7 +355,8 @@ Public Class frmDrPayment
             Me.dgPayment.Rows(Me.dgPayment.RowCount - 1).Selected = True
 
             'CalcEdit1.Value = Tots
-            txtTotInv.Text = FormatNumber(CStr(Tots))
+            txtTotInv.Value = Tots 'FormatNumber(CStr(Tots))
+            ceAmntPd.Value = Tots
 
         Catch ex As PDSAValidationException
             MessageBox.Show(ex.Message)
@@ -376,7 +406,8 @@ Public Class frmDrPayment
                     For ii = 0 To dgPayment.Rows.Count - 1
                         Totss += CDec(dgPayment.Rows(ii).Cells(2).Value)
                     Next
-                    txtTotInv.Text = FormatNumber(CStr(Totss))
+                    txtTotInv.Value = Totss ' FormatNumber(CStr(Totss))
+                    ceAmntPd.Value = Totss
                 Catch ex As PDSAValidationException
                     MessageBox.Show(ex.Message)
                 Catch ex As Exception
@@ -395,15 +426,8 @@ Public Class frmDrPayment
         ' txtremarks.Text = String.Empty
         ledrs.Text = String.Empty
         ceAmount.Value = 0
-        txtTotInv.Text = "0"
-    End Sub
-
-    Private Sub txtTotInv_GotFocus(sender As Object, e As EventArgs) Handles txtTotInv.GotFocus
-        txtTotInv.Enabled = False
-    End Sub
-
-    Private Sub txtTotInv_LostFocus(sender As Object, e As EventArgs) Handles txtTotInv.LostFocus
-        txtTotInv.Enabled = True
+        txtTotInv.Value = 0
+        ceAmntPd.Value = 0
     End Sub
 
     Private Sub txtChkNo_LostFocus(sender As Object, e As EventArgs) Handles txtChkNo.LostFocus
@@ -415,7 +439,7 @@ Public Class frmDrPayment
                 mgrchq.Entity.chqno = Trim(txtChkNo.Text)
                 mgrchq.DataObject.Load()
                 If mgrchq.DataObject.RowsAffected > 0 Then
-                    MessageBox.Show("Cheque no. is already Issued", "Cheque No. Duplicate", MessageBoxButtons.OK)
+                    MessageBox.Show("Cheque no. is already Issued", " Duplicate Cheque No.", MessageBoxButtons.OK)
                 End If
             Catch ex As PDSAValidationException
                 MessageBox.Show(ex.Message)
@@ -448,6 +472,49 @@ Public Class frmDrPayment
 
     Private Sub ceAmount_Leave(sender As Object, e As EventArgs) Handles ceAmount.Leave
         'textOfNumber()
+    End Sub
+
+    Private Sub pd_KeyDown(sender As Object, e As KeyEventArgs) Handles pd.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If pd.Value > 0 Then
+                Tots = 0
+                Dim ay As Integer = 0
+                If dgPayment.Rows.Count >= 1 Then
+                    For ay = 0 To dgPayment.Rows.Count - 1
+                        Tots += CDec(dgPayment.Rows(ay).Cells(2).Value)
+                    Next
+                End If
+
+                cm.Value = Tots * (CDec(pd.Value) / 100)
+
+                ' txtTotInv.Value = Tots - CDec(cm.Value)
+                ' ceAmntPd.Value = txtTotInv.Value
+            End If
+        End If
+    End Sub
+
+    Private Sub cm_KeyDown(sender As Object, e As KeyEventArgs) Handles cm.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If cm.Value > 0 Then
+                Tots = 0
+                Dim ay As Integer = 0
+                If dgPayment.Rows.Count >= 1 Then
+                    For ay = 0 To dgPayment.Rows.Count - 1
+                        Tots += CDec(dgPayment.Rows(ay).Cells(2).Value)
+                    Next
+                End If
+                'txtTotInv.Value = Tots - CDec(cm.Value)
+                'ceAmntPd.Value = txtTotInv.Value
+
+            End If
+        End If
+    End Sub
+
+
+    Private Sub leSupplier_KeyDown(sender As Object, e As KeyEventArgs) Handles leSupplier.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            ledrs.Focus()
+        End If
     End Sub
 
     Private Sub txtChkNo_EditValueChanged(sender As Object, e As EventArgs) Handles txtChkNo.EditValueChanged

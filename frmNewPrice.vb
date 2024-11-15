@@ -1,4 +1,6 @@
 ﻿Public Class frmNewPrice
+    Public Shared vItemCode As String = String.Empty
+    Public Shared vRetWhol As String = String.Empty
 
     Private Sub frmNewPrice_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         Me.Dispose()
@@ -24,6 +26,17 @@
                     cePrice.SelectAll()
                     Exit Sub
                 End If
+
+                'Dim strSqlChangePrice As String = String.Empty
+                'If vRetWhol = "Retail" Then
+                '    strSqlChangePrice = "Update stocks set Retail=" & CDec(cePrice.Value) & " WHERE barcode='" & vItemCode & "'"
+                '    ExecuteSQLQuery(strSqlChangePrice)
+                'Else
+                '    strSqlChangePrice = "Update stocks set wsale=" & CDec(cePrice.Value) & " WHERE barcode='" & vItemCode & "'"
+                '    ExecuteSQLQuery(strSqlChangePrice)
+                'End If
+
+
                 Me.Close()
                 frmPOS.vPriceChange = CDec(cePrice.Value)
                 'frmPOS.txtBarcode.Focus()

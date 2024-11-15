@@ -121,7 +121,7 @@ Partial Class frmEmployee
         'c1DataViewSet1
         '
         Me.c1DataViewSet1.DataSet = Me.DsEmployees1
-        Me.c1DataViewSet1.DiagramXML = ""
+        Me.c1DataViewSet1.DiagramXML = "<C1Diagram><Nodes /></C1Diagram>"
         '
         'simBtnSave
         '

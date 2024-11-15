@@ -82,6 +82,10 @@ Partial Class frmNewItems
         Me.btnNewBrand = New DevExpress.XtraEditors.SimpleButton()
         Me.btnNewCategory = New DevExpress.XtraEditors.SimpleButton()
         Me.btnNewsupplier = New DevExpress.XtraEditors.SimpleButton()
+        Me.ceIncentive = New DevExpress.XtraEditors.CalcEdit()
+        Me.chkIncentive = New DevExpress.XtraEditors.CheckEdit()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
         CType(Me.txtBarcode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.leSuppliers.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +114,8 @@ Partial Class frmNewItems
         CType(Me.ceAvlbl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtEditedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtEditedOn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ceIncentive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkIncentive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtBarcode
@@ -143,7 +149,7 @@ Partial Class frmNewItems
         Me.leSuppliers.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.leSuppliers.Properties.Appearance.Options.UseFont = True
         Me.leSuppliers.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leSuppliers.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supcode", "supcode", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supplier", "Supplier")})
+        Me.leSuppliers.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supcode", "supcode", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supplier", "Supplier")})
         Me.leSuppliers.Size = New System.Drawing.Size(352, 26)
         Me.leSuppliers.TabIndex = 2
         '
@@ -158,7 +164,7 @@ Partial Class frmNewItems
         Me.leCategories.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.leCategories.Properties.Appearance.Options.UseFont = True
         Me.leCategories.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leCategories.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("categoryid", "categoryid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("catgory", "Category")})
+        Me.leCategories.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("categoryid", "categoryid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("catgory", "Category")})
         Me.leCategories.Properties.DropDownRows = 15
         Me.leCategories.Size = New System.Drawing.Size(352, 26)
         Me.leCategories.TabIndex = 3
@@ -374,7 +380,7 @@ Partial Class frmNewItems
         Me.leType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.leType.Properties.Appearance.Options.UseFont = True
         Me.leType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sizeid", "sizeid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sayz", "Type")})
+        Me.leType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sizeid", "sizeid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sayz", "Type")})
         Me.leType.Size = New System.Drawing.Size(352, 26)
         Me.leType.TabIndex = 5
         '
@@ -521,7 +527,7 @@ Partial Class frmNewItems
         Me.leBrand.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.leBrand.Properties.Appearance.Options.UseFont = True
         Me.leBrand.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leBrand.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("deptid", "deptid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEPTD", "DEPTD")})
+        Me.leBrand.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("deptid", "deptid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DEPTD", "DEPTD")})
         Me.leBrand.Size = New System.Drawing.Size(351, 26)
         Me.leBrand.TabIndex = 4
         '
@@ -687,7 +693,7 @@ Partial Class frmNewItems
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        Me.Label18.Location = New System.Drawing.Point(720, 269)
+        Me.Label18.Location = New System.Drawing.Point(742, 269)
         Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(76, 20)
@@ -702,14 +708,14 @@ Partial Class frmNewItems
         Me.ceAvlbl.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.ceAvlbl.Properties.Appearance.Options.UseFont = True
         Me.ceAvlbl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ceAvlbl.Size = New System.Drawing.Size(100, 26)
+        Me.ceAvlbl.Size = New System.Drawing.Size(117, 26)
         Me.ceAvlbl.TabIndex = 35
         '
         'Label19
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        Me.Label19.Location = New System.Drawing.Point(720, 308)
+        Me.Label19.Location = New System.Drawing.Point(737, 308)
         Me.Label19.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(81, 20)
@@ -720,7 +726,7 @@ Partial Class frmNewItems
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        Me.Label20.Location = New System.Drawing.Point(720, 340)
+        Me.Label20.Location = New System.Drawing.Point(735, 340)
         Me.Label20.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(83, 20)
@@ -795,11 +801,63 @@ Partial Class frmNewItems
         Me.btnNewsupplier.Size = New System.Drawing.Size(53, 23)
         Me.btnNewsupplier.TabIndex = 36
         '
+        'ceIncentive
+        '
+        Me.ceIncentive.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.ceIncentive.Location = New System.Drawing.Point(672, 426)
+        Me.ceIncentive.Name = "ceIncentive"
+        Me.ceIncentive.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.ceIncentive.Properties.Appearance.Options.UseFont = True
+        Me.ceIncentive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ceIncentive.Size = New System.Drawing.Size(116, 26)
+        Me.ceIncentive.TabIndex = 108
+        Me.ceIncentive.Visible = False
+        '
+        'chkIncentive
+        '
+        Me.chkIncentive.EditValue = True
+        Me.chkIncentive.Location = New System.Drawing.Point(907, 233)
+        Me.chkIncentive.Name = "chkIncentive"
+        Me.chkIncentive.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkIncentive.Properties.Appearance.Options.UseFont = True
+        Me.chkIncentive.Properties.Caption = ""
+        Me.chkIncentive.Size = New System.Drawing.Size(42, 19)
+        Me.chkIncentive.TabIndex = 107
+        Me.chkIncentive.Visible = False
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        Me.Label22.Location = New System.Drawing.Point(617, 429)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(50, 20)
+        Me.Label22.TabIndex = 105
+        Me.Label22.Text = "VAT?"
+        Me.Label22.Visible = False
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        Me.Label21.Location = New System.Drawing.Point(445, 424)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(119, 20)
+        Me.Label21.TabIndex = 106
+        Me.Label21.Text = "Incentive Amnt"
+        Me.Label21.Visible = False
+        '
         'frmNewItems
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(993, 469)
+        Me.Controls.Add(Me.ceIncentive)
+        Me.Controls.Add(Me.chkIncentive)
+        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.btnNewType)
         Me.Controls.Add(Me.btnNewBrand)
         Me.Controls.Add(Me.btnNewCategory)
@@ -886,6 +944,8 @@ Partial Class frmNewItems
         CType(Me.ceAvlbl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtEditedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtEditedOn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ceIncentive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkIncentive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -949,4 +1009,8 @@ Partial Class frmNewItems
     Friend WithEvents btnNewBrand As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnNewCategory As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btnNewsupplier As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ceIncentive As DevExpress.XtraEditors.CalcEdit
+    Friend WithEvents chkIncentive As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label21 As Label
 End Class

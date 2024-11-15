@@ -117,12 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="DsReading1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="TblreadingTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 54</value>
-  </metadata>
+  <data name="XrLabel1.Text" xml:space="preserve">
+    <value>DRIVERS OPERATORS EMPLOYEES RESIDENTS AND OTHER SECTORS
+DOERS MPC BLDG. TILI CAPONGA POB. TUBLAY BENGUET
+NON VAT TIN # 004605794-00004
+SN:KQQY9MSLAET4T
+MIN:23062409113190911
+FP062023-009-0391033-00004</value>
+  </data>
   <data name="totalcashcnt.Expression" xml:space="preserve">
     <value>(Iif([thousndp]&gt;0 ,[thousndp] * 1000  ,0 ))+(Iif([fiehundredp]&gt;0, [fiehundredp]*500 ,0 ))+(Iif([twohundredp]&gt;0, [twohundredp]*200 ,0 ))+(Iif([onehundredp]&gt;0,[onehundredp]*100 ,0 ))+(Iif([fiftyp]&gt;0,[fiftyp]*50 ,0 ))+(Iif([onehundredp]&gt;0,[twentyp]*20 ,0 ))+([totalsales])+(Iif([tenp]&gt;0,[tenp]*10 ,0 ))+(Iif([fivep]&gt;0,[fivep]*5,0 ))+(Iif([onep]&gt;0,[onep]*1,0 ))+(Iif([twentyfive]&gt;0,[twentyfive]*.25,0 ))+(Iif([totalcheque]&gt;0,[totalcheque]*1 ,0 ))</value>
   </data>

@@ -1,249 +1,96 @@
-Imports PDSA.WinForms.Forms
-Imports System.Windows.Forms
-Imports PDSA.WinForms.Security
-Imports System.Windows.Forms.Form
-Imports Microsoft.VisualBasic
-Imports System
-Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Drawing
-Imports System.Text
 'Imports DevExpress.XtraBars.Ribbon
 'Imports DevExpress.XtraBars.Helpers
-Imports DevExpress.XtraBars
-Imports DevExpress.XtraReports
-Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraReports.Parameters
-Imports PDSA.DataLayer.DataClasses
-Imports PDSA.Validation
 'Imports KellermanSoftware.NetDataAccessLayer
+Imports System.Data.SqlClient
 Imports System.Management
+Imports DevExpress.XtraReports.UI
+Imports PDSA.Validation
+Imports Z.Dapper.Plus
 
 Public Class frmMain
     Inherits PDSAFormBase
 
 #Region " Windows Form Designer generated code "
 
-   Public Sub New()
-      MyBase.New()
+    Public Sub New()
+        MyBase.New()
 
-      ' Track User Flag must be set here or it won't be set in time
-      ' MyBase.UserTrack = False
+        ' Track User Flag must be set here or it won't be set in time
+        ' MyBase.UserTrack = False
 
-      'This call is required by the Windows Form Designer.
-      InitializeComponent()
+        'This call is required by the Windows Form Designer.
+        InitializeComponent()
 
-      ' This is done for apparent speed
-      Dim ctlSelected As Control
-      ctlSelected = PDSAForms.GetActiveMDIChildControl(Me)
+        ' This is done for apparent speed
+        Dim ctlSelected As Control
+        ctlSelected = PDSAForms.GetActiveMDIChildControl(Me)
 
-      'Add any initialization after the InitializeComponent() call
+        'Add any initialization after the InitializeComponent() call
 
-      '*** NEED TO TURN THIS OFF FOR THE MAIN FORM ***
-      '*** WE NEED TO WAIT UNTIL WE LOGIN FIRST ***
+        '*** NEED TO TURN THIS OFF FOR THE MAIN FORM ***
+        '*** WE NEED TO WAIT UNTIL WE LOGIN FIRST ***
         MyBase.CheckSecurityOnControls = False
-   End Sub
+    End Sub
 
-   'Form overrides dispose to clean up the component list.
-   Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
-      If disposing Then
-         If Not (components Is Nothing) Then
-            components.Dispose()
-         End If
-      End If
-      MyBase.Dispose(disposing)
-   End Sub
+    'Form overrides dispose to clean up the component list.
+    Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing Then
+            If Not (components Is Nothing) Then
+                components.Dispose()
+            End If
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
 
-   'Required by the Windows Form Designer
-   Private components As System.ComponentModel.IContainer
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
 
-   'NOTE: The following procedure is required by the Windows Form Designer
-   'It can be modified using the Windows Form Designer.  
-   'Do not modify it using the code editor.
-   Friend WithEvents mnuMain As System.Windows.Forms.MainMenu
-   Friend WithEvents mnuFile As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuFExit As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuWindow As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuHelp As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuHFramework As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuHAbout As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuWCloseAll As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuFSignOut As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSecurity As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSPermission As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSRoles As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSUsers As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuLookups As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuLException As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuLUserTrack As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSUsersToRoles As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSRolesToPermissions As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuEdit As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuECopy As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuECut As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuEPaste As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSSecControls As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuLUserLogin As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSPwdChange As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuSSep1 As System.Windows.Forms.MenuItem
-   Friend WithEvents MenuItem1 As System.Windows.Forms.MenuItem
-   Friend WithEvents mnuMWinFormMaint As System.Windows.Forms.MenuItem
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    Friend WithEvents mnuMain As System.Windows.Forms.MainMenu
+    Friend WithEvents mnuFile As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuFExit As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuWindow As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuHelp As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuHFramework As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuHAbout As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuWCloseAll As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuFSignOut As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSecurity As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSPermission As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSRoles As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSUsers As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuLookups As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuLException As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuLUserTrack As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSUsersToRoles As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSRolesToPermissions As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSSecControls As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuLUserLogin As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSPwdChange As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuSSep1 As System.Windows.Forms.MenuItem
+    Friend WithEvents MenuItem1 As System.Windows.Forms.MenuItem
+    Friend WithEvents mnuMWinFormMaint As System.Windows.Forms.MenuItem
     Friend WithEvents mnuSUserCategory As System.Windows.Forms.MenuItem
     Friend WithEvents mnuPOS As System.Windows.Forms.MenuItem
     Friend WithEvents mnuNewItems As System.Windows.Forms.MenuItem
     Friend WithEvents mnuItemGrid As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem10 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem14 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem16 As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuAmPm As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem18 As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuBelowMin As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuAboveMax As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem21 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem2 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem7 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem4 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem5 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem8 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem24 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem25 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem26 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem27 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem28 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem22 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem29 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem30 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem31 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem11 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem13 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem47 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem48 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem33 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem34 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem35 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem36 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem37 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem46 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem39 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem40 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem41 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem42 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem49 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem50 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem51 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem52 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem53 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem54 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem56 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem55 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem57 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem59 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem60 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem15 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem32 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem61 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem62 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem38 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem44 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem43 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem45 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem63 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem64 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem65 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem66 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem67 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem6 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem9 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem69 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem68 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem70 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem71 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem72 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem73 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem74 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem75 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem76 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem78 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem79 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem80 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem81 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem82 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem84 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem85 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem86 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem87 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem83 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem88 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem89 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem90 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem91 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem92 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem94 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem93 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem95 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem96 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem97 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem98 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem99 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem100 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem101 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem102 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem77 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem103 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem104 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem58 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem106 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem105 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem12 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem3 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem107 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem108 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem109 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem110 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem111 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem112 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem116 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem117 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem118 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem115 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem114 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem113 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem119 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem120 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem121 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem122 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem124 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem123 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem125 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem126 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem127 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem128 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem129 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem130 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem131 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem132 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem133 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem135 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem134 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem137 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem136 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem139 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem138 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem140 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem141 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem142 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem144 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem143 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem145 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem146 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem147 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem148 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem149 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem150 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem151 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem152 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem153 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem154 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem155 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem156 As System.Windows.Forms.MenuItem
@@ -253,13 +100,8 @@ Public Class frmMain
     Friend WithEvents MenuItem161 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem162 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem163 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem164 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem165 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem166 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem167 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem168 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem169 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem170 As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem171 As System.Windows.Forms.MenuItem
     Friend WithEvents mnuBank As System.Windows.Forms.MenuItem
     Friend WithEvents mnuCategory As System.Windows.Forms.MenuItem
@@ -270,21 +112,13 @@ Public Class frmMain
     Friend WithEvents MenuItem176 As System.Windows.Forms.MenuItem
     Friend WithEvents mnuItemCost As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem175 As System.Windows.Forms.MenuItem
-    Friend WithEvents MenuItem174 As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuManualInventory As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuSTCredit As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuRefundToday As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuRpPatronage As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuBankTrans As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuIssueCheck As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuChkClearing As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuCancelChk As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuDepWith As System.Windows.Forms.MenuItem
-    Friend WithEvents mnuIncentive As System.Windows.Forms.MenuItem
     Friend WithEvents mnuEditItems As System.Windows.Forms.MenuItem
     Friend WithEvents MenuItem17 As MenuItem
-    Friend WithEvents MenuItem19 As MenuItem
-    Friend WithEvents MenuItem20 As MenuItem
+    Friend WithEvents MenuItem23 As MenuItem
+    Friend WithEvents mnuReprintZReading As MenuItem
+    Friend WithEvents mnuSettings As MenuItem
+    Friend WithEvents mnuAdmin As MenuItem
+    Friend WithEvents MenuItem2 As MenuItem
     Friend WithEvents mnuSSep2 As System.Windows.Forms.MenuItem
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -299,10 +133,12 @@ Public Class frmMain
         Me.MenuItem166 = New System.Windows.Forms.MenuItem()
         Me.MenuItem167 = New System.Windows.Forms.MenuItem()
         Me.MenuItem10 = New System.Windows.Forms.MenuItem()
-        Me.mnuPOS = New System.Windows.Forms.MenuItem()
         Me.MenuItem151 = New System.Windows.Forms.MenuItem()
         Me.MenuItem152 = New System.Windows.Forms.MenuItem()
+        Me.mnuReprintZReading = New System.Windows.Forms.MenuItem()
         Me.MenuItem14 = New System.Windows.Forms.MenuItem()
+        Me.mnuAdmin = New System.Windows.Forms.MenuItem()
+        Me.MenuItem23 = New System.Windows.Forms.MenuItem()
         Me.MenuItem95 = New System.Windows.Forms.MenuItem()
         Me.MenuItem155 = New System.Windows.Forms.MenuItem()
         Me.MenuItem156 = New System.Windows.Forms.MenuItem()
@@ -319,6 +155,7 @@ Public Class frmMain
         Me.mnuCategory = New System.Windows.Forms.MenuItem()
         Me.mnuCustomers = New System.Windows.Forms.MenuItem()
         Me.MenuItem17 = New System.Windows.Forms.MenuItem()
+        Me.mnuSettings = New System.Windows.Forms.MenuItem()
         Me.MenuItem159 = New System.Windows.Forms.MenuItem()
         Me.MenuItem145 = New System.Windows.Forms.MenuItem()
         Me.MenuItem160 = New System.Windows.Forms.MenuItem()
@@ -327,161 +164,7 @@ Public Class frmMain
         Me.MenuItem163 = New System.Windows.Forms.MenuItem()
         Me.mnuFSignOut = New System.Windows.Forms.MenuItem()
         Me.mnuFExit = New System.Windows.Forms.MenuItem()
-        Me.MenuItem24 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem25 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem26 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem27 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem174 = New System.Windows.Forms.MenuItem()
-        Me.mnuManualInventory = New System.Windows.Forms.MenuItem()
-        Me.MenuItem28 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem22 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem11 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem29 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem30 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem64 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem58 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem31 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem116 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem117 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem118 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem115 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem149 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem150 = New System.Windows.Forms.MenuItem()
-        Me.mnuBankTrans = New System.Windows.Forms.MenuItem()
-        Me.mnuIssueCheck = New System.Windows.Forms.MenuItem()
-        Me.mnuChkClearing = New System.Windows.Forms.MenuItem()
-        Me.mnuCancelChk = New System.Windows.Forms.MenuItem()
-        Me.mnuDepWith = New System.Windows.Forms.MenuItem()
-        Me.MenuItem16 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem168 = New System.Windows.Forms.MenuItem()
-        Me.mnuAmPm = New System.Windows.Forms.MenuItem()
-        Me.MenuItem18 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem92 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem38 = New System.Windows.Forms.MenuItem()
-        Me.mnuBelowMin = New System.Windows.Forms.MenuItem()
-        Me.mnuAboveMax = New System.Windows.Forms.MenuItem()
-        Me.MenuItem48 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem21 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem111 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem2 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem165 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem7 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem73 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem5 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem4 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem72 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem8 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem12 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem3 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem47 = New System.Windows.Forms.MenuItem()
-        Me.mnuRpPatronage = New System.Windows.Forms.MenuItem()
-        Me.MenuItem57 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem60 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem133 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem62 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem67 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem94 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem93 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem101 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem102 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem135 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem134 = New System.Windows.Forms.MenuItem()
-        Me.mnuIncentive = New System.Windows.Forms.MenuItem()
-        Me.MenuItem33 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem169 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem144 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem170 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem132 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem51 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem34 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem9 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem53 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem69 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem143 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem112 = New System.Windows.Forms.MenuItem()
-        Me.mnuSTCredit = New System.Windows.Forms.MenuItem()
-        Me.mnuRefundToday = New System.Windows.Forms.MenuItem()
-        Me.MenuItem68 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem52 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem36 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem110 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem104 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem141 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem142 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem153 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem139 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem138 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem35 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem109 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem45 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem37 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem46 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem6 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem61 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem44 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem43 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem65 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem66 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem77 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem103 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem108 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem106 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem105 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem107 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem119 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem120 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem121 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem122 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem147 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem124 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem129 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem123 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem125 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem126 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem128 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem130 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem131 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem127 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem148 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem137 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem136 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem13 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem146 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem87 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem84 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem74 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem85 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem86 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem75 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem32 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem59 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem15 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem114 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem49 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem113 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem50 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem83 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem88 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem89 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem54 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem90 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem91 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem56 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem78 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem55 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem39 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem76 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem40 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem41 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem140 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem42 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem63 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem70 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem71 = New System.Windows.Forms.MenuItem()
-        Me.mnuEdit = New System.Windows.Forms.MenuItem()
-        Me.mnuECut = New System.Windows.Forms.MenuItem()
-        Me.mnuECopy = New System.Windows.Forms.MenuItem()
-        Me.mnuEPaste = New System.Windows.Forms.MenuItem()
+        Me.mnuPOS = New System.Windows.Forms.MenuItem()
         Me.mnuSecurity = New System.Windows.Forms.MenuItem()
         Me.mnuSPermission = New System.Windows.Forms.MenuItem()
         Me.mnuSRoles = New System.Windows.Forms.MenuItem()
@@ -510,26 +193,28 @@ Public Class frmMain
         Me.mnuHelp = New System.Windows.Forms.MenuItem()
         Me.mnuHFramework = New System.Windows.Forms.MenuItem()
         Me.mnuHAbout = New System.Windows.Forms.MenuItem()
-        Me.MenuItem164 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem19 = New System.Windows.Forms.MenuItem()
-        Me.MenuItem20 = New System.Windows.Forms.MenuItem()
+        Me.MenuItem2 = New System.Windows.Forms.MenuItem()
         Me.SuspendLayout()
         '
         'mnuMain
         '
-        Me.mnuMain.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuFile, Me.MenuItem24, Me.mnuBankTrans, Me.MenuItem16, Me.MenuItem33, Me.MenuItem13, Me.mnuEdit, Me.mnuSecurity, Me.MenuItem1, Me.mnuLookups, Me.MenuItem171, Me.mnuWindow, Me.mnuHelp})
+        Me.mnuMain.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuFile, Me.mnuPOS, Me.mnuSecurity, Me.MenuItem1, Me.mnuLookups, Me.MenuItem171, Me.mnuWindow, Me.mnuHelp, Me.MenuItem2})
         '
         'mnuFile
         '
+        Me.mnuFile.Enabled = False
         Me.mnuFile.Index = 0
-        Me.mnuFile.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuNewItems, Me.mnuEditItems, Me.MenuItem176, Me.mnuItemGrid, Me.mnuItemCost, Me.MenuItem175, Me.MenuItem166, Me.MenuItem167, Me.MenuItem10, Me.mnuPOS, Me.MenuItem151, Me.MenuItem152, Me.MenuItem14, Me.MenuItem95, Me.MenuItem100, Me.mnuBank, Me.MenuItem158, Me.mnuBrand, Me.MenuItem172, Me.MenuItem173, Me.mnuCategory, Me.mnuCustomers, Me.MenuItem17, Me.MenuItem159, Me.MenuItem145, Me.MenuItem160, Me.MenuItem161, Me.MenuItem162, Me.MenuItem163, Me.mnuFSignOut, Me.mnuFExit})
+        Me.mnuFile.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuNewItems, Me.mnuEditItems, Me.MenuItem176, Me.mnuItemGrid, Me.mnuItemCost, Me.MenuItem175, Me.MenuItem166, Me.MenuItem167, Me.MenuItem10, Me.MenuItem151, Me.MenuItem152, Me.mnuReprintZReading, Me.MenuItem14, Me.mnuAdmin, Me.MenuItem23, Me.MenuItem95, Me.MenuItem100, Me.mnuBank, Me.MenuItem158, Me.mnuBrand, Me.MenuItem172, Me.MenuItem173, Me.mnuCategory, Me.mnuCustomers, Me.MenuItem17, Me.mnuSettings, Me.MenuItem159, Me.MenuItem145, Me.MenuItem160, Me.MenuItem161, Me.MenuItem162, Me.MenuItem163, Me.mnuFSignOut, Me.mnuFExit})
         Me.mnuFile.Text = "&File"
+        Me.mnuFile.Visible = False
         '
         'mnuNewItems
         '
+        Me.mnuNewItems.Enabled = False
         Me.mnuNewItems.Index = 0
         Me.mnuNewItems.Shortcut = System.Windows.Forms.Shortcut.CtrlN
         Me.mnuNewItems.Text = "New Items Entry Form"
+        Me.mnuNewItems.Visible = False
         '
         'mnuEditItems
         '
@@ -562,43 +247,56 @@ Public Class frmMain
         '
         Me.MenuItem166.Index = 6
         Me.MenuItem166.Text = "New Item Barcode Form"
+        Me.MenuItem166.Visible = False
         '
         'MenuItem167
         '
         Me.MenuItem167.Index = 7
         Me.MenuItem167.Text = "Item Barcode Grid View"
+        Me.MenuItem167.Visible = False
         '
         'MenuItem10
         '
         Me.MenuItem10.Index = 8
         Me.MenuItem10.Text = "-"
         '
-        'mnuPOS
-        '
-        Me.mnuPOS.Index = 9
-        Me.mnuPOS.Shortcut = System.Windows.Forms.Shortcut.CtrlP
-        Me.mnuPOS.Text = "POS"
-        '
         'MenuItem151
         '
-        Me.MenuItem151.Index = 10
+        Me.MenuItem151.Index = 9
         Me.MenuItem151.Text = "Cashier Reading Ref. Nos."
         '
         'MenuItem152
         '
-        Me.MenuItem152.Index = 11
-        Me.MenuItem152.Text = "Print Cashier Reading"
+        Me.MenuItem152.Index = 10
+        Me.MenuItem152.Text = "Re-Print X Reading"
+        '
+        'mnuReprintZReading
+        '
+        Me.mnuReprintZReading.Index = 11
+        Me.mnuReprintZReading.Text = "Re-Print Z Reading"
         '
         'MenuItem14
         '
         Me.MenuItem14.Index = 12
         Me.MenuItem14.Text = "-"
         '
+        'mnuAdmin
+        '
+        Me.mnuAdmin.Index = 13
+        Me.mnuAdmin.Text = "Admin"
+        Me.mnuAdmin.Visible = False
+        '
+        'MenuItem23
+        '
+        Me.MenuItem23.Index = 14
+        Me.MenuItem23.Text = "Employees"
+        '
         'MenuItem95
         '
-        Me.MenuItem95.Index = 13
+        Me.MenuItem95.Index = 15
         Me.MenuItem95.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem155, Me.MenuItem156, Me.MenuItem96, Me.MenuItem97, Me.MenuItem98, Me.MenuItem99})
         Me.MenuItem95.Text = "Employees"
+        Me.MenuItem95.Visible = False
         '
         'MenuItem155
         '
@@ -632,901 +330,106 @@ Public Class frmMain
         '
         'MenuItem100
         '
-        Me.MenuItem100.Index = 14
+        Me.MenuItem100.Index = 16
         Me.MenuItem100.Text = "-"
         '
         'mnuBank
         '
-        Me.mnuBank.Index = 15
+        Me.mnuBank.Index = 17
         Me.mnuBank.Text = "Bank"
         '
         'MenuItem158
         '
-        Me.MenuItem158.Index = 16
+        Me.MenuItem158.Index = 18
         Me.MenuItem158.Text = "Supplier"
         '
         'mnuBrand
         '
-        Me.mnuBrand.Index = 17
+        Me.mnuBrand.Index = 19
         Me.mnuBrand.Text = "Brand"
         '
         'MenuItem172
         '
-        Me.MenuItem172.Index = 18
+        Me.MenuItem172.Index = 20
         Me.MenuItem172.Text = "Type of Expenses"
         '
         'MenuItem173
         '
-        Me.MenuItem173.Index = 19
+        Me.MenuItem173.Index = 21
         Me.MenuItem173.Text = "Item Type/Sizes"
         '
         'mnuCategory
         '
-        Me.mnuCategory.Index = 20
+        Me.mnuCategory.Index = 22
         Me.mnuCategory.Text = "Category"
         '
         'mnuCustomers
         '
-        Me.mnuCustomers.Index = 21
+        Me.mnuCustomers.Index = 23
         Me.mnuCustomers.Text = "Customers"
         '
         'MenuItem17
         '
-        Me.MenuItem17.Index = 22
+        Me.MenuItem17.Index = 24
         Me.MenuItem17.Text = "Location(Other Branch)"
+        Me.MenuItem17.Visible = False
+        '
+        'mnuSettings
+        '
+        Me.mnuSettings.Index = 25
+        Me.mnuSettings.Text = "Settings"
         '
         'MenuItem159
         '
-        Me.MenuItem159.Index = 23
+        Me.MenuItem159.Index = 26
         Me.MenuItem159.Text = "-"
         '
         'MenuItem145
         '
-        Me.MenuItem145.Index = 24
+        Me.MenuItem145.Index = 27
         Me.MenuItem145.Text = "Next &Counter"
         Me.MenuItem145.Visible = False
         '
         'MenuItem160
         '
-        Me.MenuItem160.Index = 25
+        Me.MenuItem160.Index = 28
         Me.MenuItem160.Text = "-"
         '
         'MenuItem161
         '
-        Me.MenuItem161.Index = 26
+        Me.MenuItem161.Index = 29
         Me.MenuItem161.Text = "&Backup"
         '
         'MenuItem162
         '
-        Me.MenuItem162.Index = 27
+        Me.MenuItem162.Index = 30
         Me.MenuItem162.Text = "&Restore"
+        Me.MenuItem162.Visible = False
         '
         'MenuItem163
         '
-        Me.MenuItem163.Index = 28
+        Me.MenuItem163.Index = 31
         Me.MenuItem163.Text = "-"
         '
         'mnuFSignOut
         '
-        Me.mnuFSignOut.Index = 29
+        Me.mnuFSignOut.Index = 32
         Me.mnuFSignOut.Text = "Sign &Out"
         '
         'mnuFExit
         '
-        Me.mnuFExit.Index = 30
+        Me.mnuFExit.Index = 33
         Me.mnuFExit.Text = "E&xit"
         '
-        'MenuItem24
-        '
-        Me.MenuItem24.Index = 1
-        Me.MenuItem24.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem25, Me.MenuItem26, Me.MenuItem27, Me.MenuItem174, Me.mnuManualInventory, Me.MenuItem28, Me.MenuItem22, Me.MenuItem11, Me.MenuItem29, Me.MenuItem30, Me.MenuItem64, Me.MenuItem58, Me.MenuItem31, Me.MenuItem116, Me.MenuItem117, Me.MenuItem118, Me.MenuItem115, Me.MenuItem149, Me.MenuItem150, Me.MenuItem20})
-        Me.MenuItem24.Text = "Transaction Forms"
-        '
-        'MenuItem25
-        '
-        Me.MenuItem25.Index = 0
-        Me.MenuItem25.Shortcut = System.Windows.Forms.Shortcut.CtrlD
-        Me.MenuItem25.Text = "Delivery Entry Form"
-        '
-        'MenuItem26
-        '
-        Me.MenuItem26.Index = 1
-        Me.MenuItem26.Text = "-"
-        '
-        'MenuItem27
-        '
-        Me.MenuItem27.Index = 2
-        Me.MenuItem27.Text = "Invoice Payment Form"
-        '
-        'MenuItem174
-        '
-        Me.MenuItem174.Index = 3
-        Me.MenuItem174.Text = "-"
-        '
-        'mnuManualInventory
-        '
-        Me.mnuManualInventory.Index = 4
-        Me.mnuManualInventory.Text = "Manual Inventory Entry Form"
-        '
-        'MenuItem28
-        '
-        Me.MenuItem28.Index = 5
-        Me.MenuItem28.Text = "-"
-        Me.MenuItem28.Visible = False
-        '
-        'MenuItem22
-        '
-        Me.MenuItem22.Index = 6
-        Me.MenuItem22.Text = "Purchase Order Form"
-        '
-        'MenuItem11
-        '
-        Me.MenuItem11.Index = 7
-        Me.MenuItem11.Text = "-"
-        '
-        'MenuItem29
-        '
-        Me.MenuItem29.Index = 8
-        Me.MenuItem29.Shortcut = System.Windows.Forms.Shortcut.CtrlT
-        Me.MenuItem29.Text = "Transfer Stocks Form"
-        '
-        'MenuItem30
-        '
-        Me.MenuItem30.Index = 9
-        Me.MenuItem30.Text = "-"
-        Me.MenuItem30.Visible = False
-        '
-        'MenuItem64
-        '
-        Me.MenuItem64.Index = 10
-        Me.MenuItem64.Shortcut = System.Windows.Forms.Shortcut.CtrlR
-        Me.MenuItem64.Text = "Receive Stocks Form"
-        '
-        'MenuItem58
-        '
-        Me.MenuItem58.Index = 11
-        Me.MenuItem58.Text = "-"
-        '
-        'MenuItem31
-        '
-        Me.MenuItem31.Index = 12
-        Me.MenuItem31.Text = "BO Form"
-        '
-        'MenuItem116
-        '
-        Me.MenuItem116.Index = 13
-        Me.MenuItem116.Text = "-"
-        '
-        'MenuItem117
-        '
-        Me.MenuItem117.Index = 14
-        Me.MenuItem117.Text = "Convert Items to Pcs"
-        Me.MenuItem117.Visible = False
-        '
-        'MenuItem118
-        '
-        Me.MenuItem118.Index = 15
-        Me.MenuItem118.Text = "-"
-        '
-        'MenuItem115
-        '
-        Me.MenuItem115.Index = 16
-        Me.MenuItem115.Text = "Expenses"
-        '
-        'MenuItem149
-        '
-        Me.MenuItem149.Index = 17
-        Me.MenuItem149.Text = "-"
-        '
-        'MenuItem150
-        '
-        Me.MenuItem150.Index = 18
-        Me.MenuItem150.Text = "Re-Print Cashier Reading"
-        '
-        'mnuBankTrans
-        '
-        Me.mnuBankTrans.Index = 2
-        Me.mnuBankTrans.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuIssueCheck, Me.mnuChkClearing, Me.mnuCancelChk, Me.mnuDepWith})
-        Me.mnuBankTrans.Text = "Bank Transactions"
-        '
-        'mnuIssueCheck
-        '
-        Me.mnuIssueCheck.Index = 0
-        Me.mnuIssueCheck.Text = "Issue Check"
-        '
-        'mnuChkClearing
-        '
-        Me.mnuChkClearing.Index = 1
-        Me.mnuChkClearing.Text = "Check Clearing"
-        '
-        'mnuCancelChk
-        '
-        Me.mnuCancelChk.Index = 2
-        Me.mnuCancelChk.Text = "Cancel Check"
-        '
-        'mnuDepWith
-        '
-        Me.mnuDepWith.Index = 3
-        Me.mnuDepWith.Text = "Deposits/Withdrawals"
-        '
-        'MenuItem16
-        '
-        Me.MenuItem16.Index = 3
-        Me.MenuItem16.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem168, Me.mnuAmPm, Me.MenuItem18, Me.MenuItem92, Me.MenuItem38, Me.mnuBelowMin, Me.mnuAboveMax, Me.MenuItem48, Me.MenuItem21, Me.MenuItem111, Me.MenuItem2, Me.MenuItem165, Me.MenuItem7, Me.MenuItem73, Me.MenuItem5, Me.MenuItem4, Me.MenuItem72, Me.MenuItem8, Me.MenuItem12, Me.MenuItem3, Me.MenuItem47, Me.mnuRpPatronage, Me.MenuItem57, Me.MenuItem60, Me.MenuItem133, Me.MenuItem62, Me.MenuItem67, Me.MenuItem94, Me.MenuItem93, Me.MenuItem101, Me.MenuItem102, Me.MenuItem135, Me.MenuItem134, Me.mnuIncentive, Me.MenuItem19})
-        Me.MenuItem16.Text = "&Reports"
-        '
-        'MenuItem168
-        '
-        Me.MenuItem168.Index = 0
-        Me.MenuItem168.Text = "Summary Report"
-        '
-        'mnuAmPm
-        '
-        Me.mnuAmPm.Index = 1
-        Me.mnuAmPm.Text = "Sales Today(AM-PM)"
-        Me.mnuAmPm.Visible = False
-        '
-        'MenuItem18
-        '
-        Me.MenuItem18.Index = 2
-        Me.MenuItem18.Text = "-"
-        '
-        'MenuItem92
-        '
-        Me.MenuItem92.Index = 3
-        Me.MenuItem92.Text = "Items on Stock"
-        '
-        'MenuItem38
-        '
-        Me.MenuItem38.Index = 4
-        Me.MenuItem38.Text = "Out of Stock Items"
-        '
-        'mnuBelowMin
-        '
-        Me.mnuBelowMin.Index = 5
-        Me.mnuBelowMin.Text = "Stocks Below Minimum"
-        '
-        'mnuAboveMax
-        '
-        Me.mnuAboveMax.Index = 6
-        Me.mnuAboveMax.Text = "Stocks Above Maximum"
-        '
-        'MenuItem48
-        '
-        Me.MenuItem48.Index = 7
-        Me.MenuItem48.Text = "Item Ledger"
-        '
-        'MenuItem21
-        '
-        Me.MenuItem21.Index = 8
-        Me.MenuItem21.Text = "-"
-        '
-        'MenuItem111
-        '
-        Me.MenuItem111.Index = 9
-        Me.MenuItem111.Text = "Deliveries per Item"
-        '
-        'MenuItem2
-        '
-        Me.MenuItem2.Index = 10
-        Me.MenuItem2.Text = "Deliveries per Supplier"
-        '
-        'MenuItem165
-        '
-        Me.MenuItem165.Index = 11
-        Me.MenuItem165.Text = "Expiration Dates"
-        Me.MenuItem165.Visible = False
-        '
-        'MenuItem7
-        '
-        Me.MenuItem7.Index = 12
-        Me.MenuItem7.Text = "-"
-        '
-        'MenuItem73
-        '
-        Me.MenuItem73.Index = 13
-        Me.MenuItem73.Text = "Balance to Suppliers"
-        '
-        'MenuItem5
-        '
-        Me.MenuItem5.Index = 14
-        Me.MenuItem5.Text = "-"
-        '
-        'MenuItem4
-        '
-        Me.MenuItem4.Index = 15
-        Me.MenuItem4.Text = "Payments to Suppliers"
-        '
-        'MenuItem72
-        '
-        Me.MenuItem72.Index = 16
-        Me.MenuItem72.Text = "-"
-        '
-        'MenuItem8
-        '
-        Me.MenuItem8.Index = 17
-        Me.MenuItem8.Text = "Transferred Stocks"
-        '
-        'MenuItem12
-        '
-        Me.MenuItem12.Index = 18
-        Me.MenuItem12.Text = "-"
-        Me.MenuItem12.Visible = False
-        '
-        'MenuItem3
-        '
-        Me.MenuItem3.Index = 19
-        Me.MenuItem3.Text = "Items Returned to Suppliers"
-        '
-        'MenuItem47
-        '
-        Me.MenuItem47.Index = 20
-        Me.MenuItem47.Text = "-"
-        '
-        'mnuRpPatronage
-        '
-        Me.mnuRpPatronage.Index = 21
-        Me.mnuRpPatronage.Text = "Patronage Refund Ledger"
-        Me.mnuRpPatronage.Visible = False
-        '
-        'MenuItem57
-        '
-        Me.MenuItem57.Index = 22
-        Me.MenuItem57.Text = "Customers with Balance"
-        '
-        'MenuItem60
-        '
-        Me.MenuItem60.Index = 23
-        Me.MenuItem60.Text = "Credits Grouped by Customer(View1)"
-        '
-        'MenuItem133
-        '
-        Me.MenuItem133.Index = 24
-        Me.MenuItem133.Text = "Credits Grouped by Customer(View2)"
-        '
-        'MenuItem62
-        '
-        Me.MenuItem62.Index = 25
-        Me.MenuItem62.Text = "Customer Payments(Grid)"
-        '
-        'MenuItem67
-        '
-        Me.MenuItem67.Index = 26
-        Me.MenuItem67.Text = "Customer Payments(Print)"
-        '
-        'MenuItem94
-        '
-        Me.MenuItem94.Index = 27
-        Me.MenuItem94.Text = "-"
-        '
-        'MenuItem93
-        '
-        Me.MenuItem93.Index = 28
-        Me.MenuItem93.Text = "Manual Inventory Difference Report"
-        '
-        'MenuItem101
-        '
-        Me.MenuItem101.Index = 29
-        Me.MenuItem101.Text = "-"
-        '
-        'MenuItem102
-        '
-        Me.MenuItem102.Index = 30
-        Me.MenuItem102.Text = "Employee Time In and Time Out"
-        Me.MenuItem102.Visible = False
-        '
-        'MenuItem135
-        '
-        Me.MenuItem135.Index = 31
-        Me.MenuItem135.Text = "-"
-        '
-        'MenuItem134
-        '
-        Me.MenuItem134.Index = 32
-        Me.MenuItem134.Text = "Cashier Reading Re-Print"
-        '
-        'mnuIncentive
-        '
-        Me.mnuIncentive.Index = 33
-        Me.mnuIncentive.Text = "Incentives"
-        '
-        'MenuItem33
-        '
-        Me.MenuItem33.Index = 4
-        Me.MenuItem33.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem169, Me.MenuItem144, Me.MenuItem170, Me.MenuItem132, Me.MenuItem51, Me.MenuItem34, Me.MenuItem9, Me.MenuItem53, Me.MenuItem69, Me.MenuItem143, Me.MenuItem112, Me.mnuSTCredit, Me.mnuRefundToday, Me.MenuItem68, Me.MenuItem52, Me.MenuItem36, Me.MenuItem110, Me.MenuItem104, Me.MenuItem141, Me.MenuItem142, Me.MenuItem153, Me.MenuItem139, Me.MenuItem138, Me.MenuItem35, Me.MenuItem109, Me.MenuItem45, Me.MenuItem37, Me.MenuItem46, Me.MenuItem6, Me.MenuItem61, Me.MenuItem44, Me.MenuItem43, Me.MenuItem65, Me.MenuItem66, Me.MenuItem77, Me.MenuItem103, Me.MenuItem108, Me.MenuItem106, Me.MenuItem105, Me.MenuItem107, Me.MenuItem119, Me.MenuItem120, Me.MenuItem121, Me.MenuItem122, Me.MenuItem147, Me.MenuItem124, Me.MenuItem129, Me.MenuItem137, Me.MenuItem136})
-        Me.MenuItem33.Text = "Grid Reports"
-        '
-        'MenuItem169
-        '
-        Me.MenuItem169.Index = 0
-        Me.MenuItem169.Text = "Summary Grid View"
-        Me.MenuItem169.Visible = False
-        '
-        'MenuItem144
-        '
-        Me.MenuItem144.Index = 1
-        Me.MenuItem144.Text = "Past Sales per Reference No."
-        Me.MenuItem144.Visible = False
-        '
-        'MenuItem170
-        '
-        Me.MenuItem170.Index = 2
-        Me.MenuItem170.Text = "Sales with Date Parameters"
-        Me.MenuItem170.Visible = False
-        '
-        'MenuItem132
-        '
-        Me.MenuItem132.Index = 3
-        Me.MenuItem132.Text = "Sales History"
-        '
-        'MenuItem51
-        '
-        Me.MenuItem51.Index = 4
-        Me.MenuItem51.Text = "Items Sold Grouped by Item"
-        '
-        'MenuItem34
-        '
-        Me.MenuItem34.Index = 5
-        Me.MenuItem34.Text = "Items Sold Grouped by Date"
-        '
-        'MenuItem9
-        '
-        Me.MenuItem9.Index = 6
-        Me.MenuItem9.Text = "Sales With Profit Figure View1"
-        '
-        'MenuItem53
-        '
-        Me.MenuItem53.Index = 7
-        Me.MenuItem53.Text = "Sales With Profit Figure View2"
-        '
-        'MenuItem69
-        '
-        Me.MenuItem69.Index = 8
-        Me.MenuItem69.Text = "-"
-        '
-        'MenuItem143
-        '
-        Me.MenuItem143.Index = 9
-        Me.MenuItem143.Text = "Sales Today per Reference No."
-        '
-        'MenuItem112
-        '
-        Me.MenuItem112.Index = 10
-        Me.MenuItem112.Text = "Cash Sales Today"
-        '
-        'mnuSTCredit
-        '
-        Me.mnuSTCredit.Index = 11
-        Me.mnuSTCredit.Text = "Credits Today"
-        '
-        'mnuRefundToday
-        '
-        Me.mnuRefundToday.Index = 12
-        Me.mnuRefundToday.Text = "Refunds Today"
-        '
-        'MenuItem68
-        '
-        Me.MenuItem68.Index = 13
-        Me.MenuItem68.Text = "Sales Today by Cashier"
-        '
-        'MenuItem52
-        '
-        Me.MenuItem52.Index = 14
-        Me.MenuItem52.Text = "-"
-        '
-        'MenuItem36
-        '
-        Me.MenuItem36.Index = 15
-        Me.MenuItem36.Text = "Deliveries per Supplier"
-        '
-        'MenuItem110
-        '
-        Me.MenuItem110.Index = 16
-        Me.MenuItem110.Text = "Deliveries per Item"
-        '
-        'MenuItem104
-        '
-        Me.MenuItem104.Index = 17
-        Me.MenuItem104.Text = "Items Buying Price History"
-        '
-        'MenuItem141
-        '
-        Me.MenuItem141.Index = 18
-        Me.MenuItem141.Text = "Payments to Suppliers View1"
-        '
-        'MenuItem142
-        '
-        Me.MenuItem142.Index = 19
-        Me.MenuItem142.Text = "Payments to Suppliers View2"
-        '
-        'MenuItem153
-        '
-        Me.MenuItem153.Index = 20
-        Me.MenuItem153.Text = "Not Cleared PDC"
-        '
-        'MenuItem139
-        '
-        Me.MenuItem139.Index = 21
-        Me.MenuItem139.Text = "-"
-        '
-        'MenuItem138
-        '
-        Me.MenuItem138.Index = 22
-        Me.MenuItem138.Text = "Balance to Suppliers"
-        '
-        'MenuItem35
-        '
-        Me.MenuItem35.Index = 23
-        Me.MenuItem35.Text = "-"
-        Me.MenuItem35.Visible = False
-        '
-        'MenuItem109
-        '
-        Me.MenuItem109.Index = 24
-        Me.MenuItem109.Text = "Transferred Stocks View1"
-        '
-        'MenuItem45
-        '
-        Me.MenuItem45.Index = 25
-        Me.MenuItem45.Text = "Transferred Stocks View2"
-        '
-        'MenuItem37
-        '
-        Me.MenuItem37.Index = 26
-        Me.MenuItem37.Text = "-"
-        Me.MenuItem37.Visible = False
-        '
-        'MenuItem46
-        '
-        Me.MenuItem46.Index = 27
-        Me.MenuItem46.Text = "Items Transactions Summary View1"
-        '
-        'MenuItem6
-        '
-        Me.MenuItem6.Index = 28
-        Me.MenuItem6.Text = "Items Transactions Summary View2"
-        '
-        'MenuItem61
-        '
-        Me.MenuItem61.Index = 29
-        Me.MenuItem61.Text = "-"
-        '
-        'MenuItem44
-        '
-        Me.MenuItem44.Index = 30
-        Me.MenuItem44.Text = "Inventory w/ Cost/Retail Amount"
-        '
-        'MenuItem43
-        '
-        Me.MenuItem43.Index = 31
-        Me.MenuItem43.Text = "Inventory w/ Cost/Retail Total"
-        '
-        'MenuItem65
-        '
-        Me.MenuItem65.Index = 32
-        Me.MenuItem65.Text = "-"
-        '
-        'MenuItem66
-        '
-        Me.MenuItem66.Index = 33
-        Me.MenuItem66.Text = "Manual Inventory"
-        '
-        'MenuItem77
-        '
-        Me.MenuItem77.Index = 34
-        Me.MenuItem77.Text = "-"
-        Me.MenuItem77.Visible = False
-        '
-        'MenuItem103
-        '
-        Me.MenuItem103.Index = 35
-        Me.MenuItem103.Text = "Received Stocks View1"
-        '
-        'MenuItem108
-        '
-        Me.MenuItem108.Index = 36
-        Me.MenuItem108.Text = "Received Stocks View2"
-        '
-        'MenuItem106
-        '
-        Me.MenuItem106.Index = 37
-        Me.MenuItem106.Text = "-"
-        '
-        'MenuItem105
-        '
-        Me.MenuItem105.Index = 38
-        Me.MenuItem105.Text = "Back Orders View1"
-        '
-        'MenuItem107
-        '
-        Me.MenuItem107.Index = 39
-        Me.MenuItem107.Text = "Back Orders View2"
-        '
-        'MenuItem119
-        '
-        Me.MenuItem119.Index = 40
-        Me.MenuItem119.Text = "-"
-        '
-        'MenuItem120
-        '
-        Me.MenuItem120.Index = 41
-        Me.MenuItem120.Text = "Items Converted to Pcs"
-        Me.MenuItem120.Visible = False
-        '
-        'MenuItem121
-        '
-        Me.MenuItem121.Index = 42
-        Me.MenuItem121.Text = "-"
-        '
-        'MenuItem122
-        '
-        Me.MenuItem122.Index = 43
-        Me.MenuItem122.Text = "Expenses Grid View"
-        '
-        'MenuItem147
-        '
-        Me.MenuItem147.Index = 44
-        Me.MenuItem147.Text = "Expenses View"
-        '
-        'MenuItem124
-        '
-        Me.MenuItem124.Index = 45
-        Me.MenuItem124.Text = "-"
-        '
-        'MenuItem129
-        '
-        Me.MenuItem129.Index = 46
-        Me.MenuItem129.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem123, Me.MenuItem125, Me.MenuItem126, Me.MenuItem128, Me.MenuItem130, Me.MenuItem131, Me.MenuItem127, Me.MenuItem148})
-        Me.MenuItem129.Text = "Other Grid Views"
-        '
-        'MenuItem123
-        '
-        Me.MenuItem123.Index = 0
-        Me.MenuItem123.Text = "Paetty Cash"
-        '
-        'MenuItem125
-        '
-        Me.MenuItem125.Index = 1
-        Me.MenuItem125.Text = "Additonal Fund"
-        '
-        'MenuItem126
-        '
-        Me.MenuItem126.Index = 2
-        Me.MenuItem126.Text = "Discounts"
-        '
-        'MenuItem128
-        '
-        Me.MenuItem128.Index = 3
-        Me.MenuItem128.Text = "Void Items"
-        '
-        'MenuItem130
-        '
-        Me.MenuItem130.Index = 4
-        Me.MenuItem130.Text = "Refunds"
-        '
-        'MenuItem131
-        '
-        Me.MenuItem131.Index = 5
-        Me.MenuItem131.Text = "Changed Price"
-        '
-        'MenuItem127
-        '
-        Me.MenuItem127.Index = 6
-        Me.MenuItem127.Text = "Cheque Payments"
-        '
-        'MenuItem148
-        '
-        Me.MenuItem148.Index = 7
-        Me.MenuItem148.Text = "Cheque Payment Sales"
-        '
-        'MenuItem137
-        '
-        Me.MenuItem137.Index = 47
-        Me.MenuItem137.Text = "-"
-        '
-        'MenuItem136
-        '
-        Me.MenuItem136.Index = 48
-        Me.MenuItem136.Text = "Cashier Reading View"
-        Me.MenuItem136.Visible = False
-        '
-        'MenuItem13
-        '
-        Me.MenuItem13.Index = 5
-        Me.MenuItem13.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem146, Me.MenuItem87, Me.MenuItem84, Me.MenuItem74, Me.MenuItem85, Me.MenuItem86, Me.MenuItem75, Me.MenuItem32, Me.MenuItem59, Me.MenuItem15, Me.MenuItem114, Me.MenuItem49, Me.MenuItem113, Me.MenuItem50, Me.MenuItem83, Me.MenuItem88, Me.MenuItem89, Me.MenuItem54, Me.MenuItem90, Me.MenuItem91, Me.MenuItem56, Me.MenuItem78, Me.MenuItem55, Me.MenuItem39, Me.MenuItem76, Me.MenuItem40, Me.MenuItem41, Me.MenuItem140, Me.MenuItem42, Me.MenuItem63, Me.MenuItem70, Me.MenuItem71})
-        Me.MenuItem13.Text = "Dashboard View"
-        '
-        'MenuItem146
-        '
-        Me.MenuItem146.Index = 0
-        Me.MenuItem146.Text = "Overview of Business Activity"
-        '
-        'MenuItem87
-        '
-        Me.MenuItem87.Index = 1
-        Me.MenuItem87.Text = "Items Sold Daily (Highest to Lowest)"
-        Me.MenuItem87.Visible = False
-        '
-        'MenuItem84
-        '
-        Me.MenuItem84.Index = 2
-        Me.MenuItem84.Text = "Items Sold Weekly (Highest to Lowest)"
-        '
-        'MenuItem74
-        '
-        Me.MenuItem74.Index = 3
-        Me.MenuItem74.Text = "Items Sold Monthly (Highest to Lowest)"
-        '
-        'MenuItem85
-        '
-        Me.MenuItem85.Index = 4
-        Me.MenuItem85.Text = "Items Sold Quarterly (Highest to Lowest)"
-        '
-        'MenuItem86
-        '
-        Me.MenuItem86.Index = 5
-        Me.MenuItem86.Text = "Items Sold Yearly (Highest to Lowest)"
-        '
-        'MenuItem75
-        '
-        Me.MenuItem75.Index = 6
-        Me.MenuItem75.Text = "-"
-        '
-        'MenuItem32
-        '
-        Me.MenuItem32.Index = 7
-        Me.MenuItem32.Text = "Sales by Date (Items Sold per Category)"
-        Me.MenuItem32.Visible = False
-        '
-        'MenuItem59
-        '
-        Me.MenuItem59.Index = 8
-        Me.MenuItem59.Text = "Sales by Date (Amount Summary)"
-        '
-        'MenuItem15
-        '
-        Me.MenuItem15.Index = 9
-        Me.MenuItem15.Text = "Sales by Employee"
-        Me.MenuItem15.Visible = False
-        '
-        'MenuItem114
-        '
-        Me.MenuItem114.Index = 10
-        Me.MenuItem114.Text = "-"
-        '
-        'MenuItem49
-        '
-        Me.MenuItem49.Index = 11
-        Me.MenuItem49.Text = "Sales Today per Hour"
-        '
-        'MenuItem113
-        '
-        Me.MenuItem113.Index = 12
-        Me.MenuItem113.Text = "-"
-        '
-        'MenuItem50
-        '
-        Me.MenuItem50.Index = 13
-        Me.MenuItem50.Text = "Past Sales Per Hour"
-        '
-        'MenuItem83
-        '
-        Me.MenuItem83.Index = 14
-        Me.MenuItem83.Text = "-"
-        '
-        'MenuItem88
-        '
-        Me.MenuItem88.Index = 15
-        Me.MenuItem88.Text = "Sales Profit Daily"
-        '
-        'MenuItem89
-        '
-        Me.MenuItem89.Index = 16
-        Me.MenuItem89.Text = "Sales Profit Weekly"
-        '
-        'MenuItem54
-        '
-        Me.MenuItem54.Index = 17
-        Me.MenuItem54.Text = "Sales Profit Monthly"
-        '
-        'MenuItem90
-        '
-        Me.MenuItem90.Index = 18
-        Me.MenuItem90.Text = "Sales Profit Quarterly"
-        Me.MenuItem90.Visible = False
-        '
-        'MenuItem91
-        '
-        Me.MenuItem91.Index = 19
-        Me.MenuItem91.Text = "Sales Profit Annually"
-        Me.MenuItem91.Visible = False
-        '
-        'MenuItem56
-        '
-        Me.MenuItem56.Index = 20
-        Me.MenuItem56.Text = "-"
-        '
-        'MenuItem78
-        '
-        Me.MenuItem78.Index = 21
-        Me.MenuItem78.Text = "Payments by Customers"
-        '
-        'MenuItem55
-        '
-        Me.MenuItem55.Index = 22
-        Me.MenuItem55.Text = "Credits by Customers"
-        '
-        'MenuItem39
-        '
-        Me.MenuItem39.Index = 23
-        Me.MenuItem39.Text = "-"
-        '
-        'MenuItem76
-        '
-        Me.MenuItem76.Index = 24
-        Me.MenuItem76.Text = "Highest-Lowest and Lowest-Highest Dlvrd Items"
-        '
-        'MenuItem40
-        '
-        Me.MenuItem40.Index = 25
-        Me.MenuItem40.Text = "Delivery by Date(Amount Summary per Supplier)"
-        '
-        'MenuItem41
-        '
-        Me.MenuItem41.Index = 26
-        Me.MenuItem41.Text = "Delivery by Item(Items Delivered Summary)"
-        '
-        'MenuItem140
-        '
-        Me.MenuItem140.Index = 27
-        Me.MenuItem140.Text = "Payments to Suppliers"
-        '
-        'MenuItem42
-        '
-        Me.MenuItem42.Index = 28
-        Me.MenuItem42.Text = "-"
-        '
-        'MenuItem63
-        '
-        Me.MenuItem63.Index = 29
-        Me.MenuItem63.Text = "Transferred Items Summary"
-        '
-        'MenuItem70
-        '
-        Me.MenuItem70.Index = 30
-        Me.MenuItem70.Text = "-"
-        '
-        'MenuItem71
-        '
-        Me.MenuItem71.Index = 31
-        Me.MenuItem71.Text = "Best Customers"
-        Me.MenuItem71.Visible = False
-        '
-        'mnuEdit
-        '
-        Me.mnuEdit.Index = 6
-        Me.mnuEdit.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuECut, Me.mnuECopy, Me.mnuEPaste})
-        Me.mnuEdit.Text = "&Edit"
-        Me.mnuEdit.Visible = False
-        '
-        'mnuECut
-        '
-        Me.mnuECut.Index = 0
-        Me.mnuECut.Text = "Cu&t"
-        '
-        'mnuECopy
-        '
-        Me.mnuECopy.Index = 1
-        Me.mnuECopy.Text = "&Copy"
-        '
-        'mnuEPaste
-        '
-        Me.mnuEPaste.Index = 2
-        Me.mnuEPaste.Text = "&Paste"
+        'mnuPOS
+        '
+        Me.mnuPOS.Index = 1
+        Me.mnuPOS.Shortcut = System.Windows.Forms.Shortcut.CtrlP
+        Me.mnuPOS.Text = "POS"
         '
         'mnuSecurity
         '
-        Me.mnuSecurity.Index = 7
+        Me.mnuSecurity.Index = 2
         Me.mnuSecurity.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuSPermission, Me.mnuSRoles, Me.mnuSUserCategory, Me.mnuSUsers, Me.mnuSSep1, Me.mnuSUsersToRoles, Me.mnuSRolesToPermissions, Me.mnuSSep2, Me.mnuSSecControls, Me.mnuSPwdChange})
         Me.mnuSecurity.Text = "Security"
         '
@@ -1585,7 +488,8 @@ Public Class frmMain
         '
         'MenuItem1
         '
-        Me.MenuItem1.Index = 8
+        Me.MenuItem1.Enabled = False
+        Me.MenuItem1.Index = 3
         Me.MenuItem1.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuMWinFormMaint})
         Me.MenuItem1.Text = "Maintenance"
         Me.MenuItem1.Visible = False
@@ -1597,19 +501,23 @@ Public Class frmMain
         '
         'mnuLookups
         '
-        Me.mnuLookups.Index = 9
+        Me.mnuLookups.Enabled = False
+        Me.mnuLookups.Index = 4
         Me.mnuLookups.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuLException, Me.mnuLUserTrack, Me.mnuLUserLogin})
         Me.mnuLookups.Text = "Lookups"
+        Me.mnuLookups.Visible = False
         '
         'mnuLException
         '
         Me.mnuLException.Index = 0
         Me.mnuLException.Text = "Errors"
+        Me.mnuLException.Visible = False
         '
         'mnuLUserTrack
         '
         Me.mnuLUserTrack.Index = 1
         Me.mnuLUserTrack.Text = "User Tracking"
+        Me.mnuLUserTrack.Visible = False
         '
         'mnuLUserLogin
         '
@@ -1618,15 +526,17 @@ Public Class frmMain
         '
         'MenuItem171
         '
-        Me.MenuItem171.Index = 10
+        Me.MenuItem171.Index = 5
         Me.MenuItem171.Text = "E&xit"
         '
         'mnuWindow
         '
-        Me.mnuWindow.Index = 11
+        Me.mnuWindow.Enabled = False
+        Me.mnuWindow.Index = 6
         Me.mnuWindow.MdiList = True
         Me.mnuWindow.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.MenuItem82, Me.MenuItem81, Me.MenuItem79, Me.MenuItem80, Me.mnuWCloseAll, Me.MenuItem154})
         Me.mnuWindow.Text = "&Window"
+        Me.mnuWindow.Visible = False
         '
         'MenuItem82
         '
@@ -1661,8 +571,9 @@ Public Class frmMain
         '
         'mnuHelp
         '
-        Me.mnuHelp.Index = 12
-        Me.mnuHelp.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuHFramework, Me.mnuHAbout, Me.MenuItem164})
+        Me.mnuHelp.Enabled = False
+        Me.mnuHelp.Index = 7
+        Me.mnuHelp.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.mnuHFramework, Me.mnuHAbout})
         Me.mnuHelp.Text = "&Help"
         Me.mnuHelp.Visible = False
         '
@@ -1677,31 +588,20 @@ Public Class frmMain
         Me.mnuHAbout.Text = "&About..."
         Me.mnuHAbout.Visible = False
         '
-        'MenuItem164
+        'MenuItem2
         '
-        Me.MenuItem164.Index = 2
-        Me.MenuItem164.Text = "kellerman"
-        Me.MenuItem164.Visible = False
-        '
-        'MenuItem19
-        '
-        Me.MenuItem19.Index = 34
-        Me.MenuItem19.Text = "Reading Summary"
-        '
-        'MenuItem20
-        '
-        Me.MenuItem20.Index = 19
-        Me.MenuItem20.Text = "Reading Summary"
+        Me.MenuItem2.Index = 8
+        Me.MenuItem2.Text = "Test Dapper"
         '
         'frmMain
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(1073, 660)
+        Me.ClientSize = New System.Drawing.Size(1073, 600)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IsMdiContainer = True
         Me.Menu = Me.mnuMain
         Me.Name = "frmMain"
-        Me.Text = "Farmacia Solonio Sales and Inventory Monitoring System -Main"
+        Me.Text = "DOERS Multipurpose Cooperative TERMINAL 1 "
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
@@ -1720,20 +620,24 @@ Public Class frmMain
     Private Sub PDSAFormBase_KeyDown(ByVal sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then
             e.Handled = True
-
         End If
-
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        DapperPlusManager.AddLicense("814;701-DELTAFOX", "2C93C81-31A3A43-A5A3581-86BA5D7-BD2F")
+        'Dim strcompname As String = Environment.MachineName
+        'If strcompname <> "TERMINAL1" Then
+        '    Me.Close()
+        '    Exit Sub
+        'End If
         'Dim mgrRet As pos_hdrManager
         'Dim col33 As pos_hdrCollection
         'mgrRet = New pos_hdrManager()
 
-        'Dim vDate As Date = CDate("11/30/2079")
-        'Dim vNow As Date = Date.Today
+        'Dim vdate As Date = CDate("02/30/2028")
+        'Dim vnow As Date = Date.Today
 
-        'If vDate < vNow Then
+        'If vdate < vnow Then
         '    Me.Close()
         '    Exit Sub
         'End If
@@ -1745,73 +649,9 @@ Public Class frmMain
         '    Me.Close()
         '    Exit Sub
         'End If
-
-
-        'Dim mgrRet As pos_hdrManager
-        'Dim col33 As pos_hdrCollection
-        'mgrRet = New pos_hdrManager()
-
-        'Dim vDate As Date = CDate("11/29/2017")
-        'Dim vNow As Date = Date.Today
-
-        'If vDate < vNow Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-        ''tbSQL.Text = mgrRetrieve.DataObject.SQL
-        'col33 = mgrRet.BuildCollection
-        'If mgrRet.DataObject.RowsAffected > 1000000 Then
-        '    'Note this is only for Engineer Salming
-        '    MessageBox.Show("Evaluation Period is more than 180 days. Pls contact Mr. Satur Cadsi for proper licensing option (0917 655 3488)", "Evaluation Period Expired")
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        'MyHDDGen = New FiveSevenNine()
-        'Call GetHDDSer()
-        'If strFive <> "168" Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        'If strSeven <> "134" Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        'If strNine <> "96" Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        '' ''Below is for Bro Satur
-
-        'MyHDDGen = New FiveSevenNine()
-        'Call GetHDDSer()
-        'If strFive <> "209" Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        'If strSeven <> "112" Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        'If strNine <> "7" Then
-        '    Me.Close()
-        '    Exit Sub
-        'End If
-
-        '' ''End of Comment for Bro Satur 
-
-
         Dim boolPerform As Boolean = False
-
-
         'SkinHelper.InitSkinGallery(PopupMenu1)
         'SkinHelper.InitSkinPopupMenu(PopupMenu1)
-
         Try
             '* UnComment the following lines if you have:
             '*   - Moved all config settings to registry
@@ -1894,7 +734,7 @@ Public Class frmMain
                 SecurityInit()
 
                 If Not PDSABaseSecurity.UserIsInRole("User") Then
-                    mnuECopy.Enabled = False
+                    'mnuECopy.Enabled = False
                 End If
 
                 ' Check to see if controls need to be turned off on this form
@@ -1932,38 +772,38 @@ Public Class frmMain
         '    MessageBox.Show(ex.ToString())
         'End Try
 
-        Dim LowStock As spLowStocksManager
-        Dim transGetLowStck As PDSATransaction = New PDSATransaction()
-        LowStock = New spLowStocksManager()
-        transGetLowStck.Add(LowStock.DataObject)
-        transGetLowStck.Execute()
+        'Dim LowStock As spLowStocksManager
+        'Dim transGetLowStck As PDSATransaction = New PDSATransaction()
+        'LowStock = New spLowStocksManager()
+        'transGetLowStck.Add(LowStock.DataObject)
+        'transGetLowStck.Execute()
 
-        Dim lowcount As Integer = 0
-        Dim hicount As Integer = 0
+        'Dim lowcount As Integer = 0
+        'Dim hicount As Integer = 0
 
-        lowcount = Convert.ToInt32(LowStock.DataObject.Entity.StockCount)
-        If lowcount > 0 Then
-            MessageBox.Show("Warning! There are some stocks that are below or equal to Minimum Re-Order Level. Print the report on Stocks Below or Equal Minimum Level")
-        End If
+        'lowcount = Convert.ToInt32(LowStock.DataObject.Entity.StockCount)
+        'If lowcount > 0 Then
+        '    MessageBox.Show("Warning! There are some stocks that are below or equal to Minimum Re-Order Level. Print the report on Stocks Below or Equal Minimum Level")
+        'End If
 
 
-        Try
-            Dim HiStock As spHiStocksManager
-            Dim transpGetHiStck As PDSATransaction = New PDSATransaction()
-            HiStock = New spHiStocksManager()
-            transpGetHiStck.Add(LowStock.DataObject)
-            transpGetHiStck.Execute()
+        'Try
+        '    Dim HiStock As spHiStocksManager
+        '    Dim transpGetHiStck As PDSATransaction = New PDSATransaction()
+        '    HiStock = New spHiStocksManager()
+        '    transpGetHiStck.Add(LowStock.DataObject)
+        '    transpGetHiStck.Execute()
 
-            hicount = Convert.ToInt32(HiStock.DataObject.Entity.StockCount)
-            If hicount > 0 Then
-                MessageBox.Show("Warning! There are some stocks that are above or equal to Maximum Re-Order Level. Print the report on Stocks Above or Equal to Maximum Level")
-            End If
+        '    hicount = Convert.ToInt32(HiStock.DataObject.Entity.StockCount)
+        '    If hicount > 0 Then
+        '        MessageBox.Show("Warning! There are some stocks that are above or equal to Maximum Re-Order Level. Print the report on Stocks Above or Equal to Maximum Level")
+        '    End If
 
-        Catch ex As PDSAValidationException
-            MessageBox.Show(ex.Message)
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString())
-        End Try
+        'Catch ex As PDSAValidationException
+        '    MessageBox.Show(ex.Message)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.ToString())
+        'End Try
 
     End Sub
 
@@ -2213,58 +1053,7 @@ Public Class frmMain
     End Sub
 #End Region
 
-#Region "Cut/Copy/Paste Code"
-    Private Sub mnuECut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuECut.Click
-        Dim ctlSelected As Control
 
-        Try
-            ctlSelected = PDSAForms.GetActiveMDIChildControl(Me)
-            If Not (ctlSelected Is Nothing) Then
-                PDSAForms.CutSelection(ctlSelected)
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, Me.Text & ".mnuECut_Click")
-
-        End Try
-    End Sub
-
-    Private Sub mnuECopy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuECopy.Click
-        Dim ctlSelected As Control
-
-        ctlSelected = PDSAForms.GetActiveMDIChildControl(Me)
-        If Not (ctlSelected Is Nothing) Then
-            PDSAForms.CopySelection(ctlSelected)
-        End If
-    End Sub
-
-    Private Sub mnuEPaste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuEPaste.Click
-        Dim ctlSelected As Control
-
-        Try
-            ctlSelected = PDSAForms.GetActiveMDIChildControl(Me)
-            If Not (ctlSelected Is Nothing) Then
-                PDSAForms.PasteSelection(ctlSelected)
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, Me.Text & ".mnuEPaste_Click")
-
-        End Try
-    End Sub
-
-    Private Sub mnuEdit_Select(ByVal sender As Object, ByVal e As System.EventArgs) Handles mnuEdit.Select
-        If PDSAForms.GetActiveMDIChildControl(Me) Is Nothing Then
-            mnuECopy.Enabled = ControlSetEnabledProperty("mnuECopy", False)
-            mnuECut.Enabled = ControlSetEnabledProperty("mnuECut", False)
-            mnuEPaste.Enabled = ControlSetEnabledProperty("mnuEPaste", False)
-        Else
-            mnuECopy.Enabled = ControlSetEnabledProperty("mnuECopy", True)
-            mnuECut.Enabled = ControlSetEnabledProperty("mnuECut", True)
-            mnuEPaste.Enabled = ControlSetEnabledProperty("mnuEPaste", True)
-        End If
-    End Sub
-#End Region
 
     Private Sub mnuHFramework_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuHFramework.Click
         'Dim prc As New Process
@@ -2329,46 +1118,67 @@ Public Class frmMain
 
 
 
+        Dim currentDate As Date = Date.Now.Date
+        Dim qryLogged As String = String.Empty
+        Dim loggedread As Boolean
+
+        'qryLogged = "SELECT status FROM tblreading WHERE cashier='" & PDSAAppConfig.CurrentLoginID & "'  AND status=1 AND datereading ='" & currentDate & "'"
+        'Using reader1 As SqlDataReader = ExecuteSQLQueryReader(qryLogged)
+        '    While reader1.Read()
+        '        loggedread = reader1.GetBoolean(0)
+        '    End While
+        'End Using
+
+
+        'If loggedread = True Then
+        '    MessageBox.Show("Cashier is not allowed to login again after cash count within the same day")
+        '    Me.Close()
+        '    Exit Sub
+        'End If
+
         If PDSAAppConfig.CurrentLoginID <> "Admin" Then
             Dim mgr As tblreadingManager
             Dim col As New tblreadingCollection
-
+            Dim posform As New frmPOS
+            'posform.ShowDialog()
+            posform.Show()
+            posform = Nothing
             Try
-                mgr = New tblreadingManager()
-                mgr.DataObject.WhereFilter = tblreadingData.WhereFilters.CashierStatus
-                mgr.Entity.cashier = PDSAAppConfig.CurrentLoginID
-                col = mgr.BuildCollection
-                If mgr.DataObject.RowsAffected > 0 Then
+                'mgr = New tblreadingManager()
+                'mgr.DataObject.WhereFilter = tblreadingData.WhereFilters.CashierStatus
+                'mgr.Entity.cashier = PDSAAppConfig.CurrentLoginID
+                'col = mgr.BuildCollection
+                'If mgr.DataObject.RowsAffected > 0 Then
 
-                    Dim posform As New frmPOS
-                    'posform.ShowDialog()
-                    posform.Show()
-                    posform = Nothing
+                '    Dim posform As New frmPOS
+                '    'posform.ShowDialog()
+                '    posform.Show()
+                '    posform = Nothing
 
-                Else
-                    'Dim begcash As New frmBegCash
+                'Else
+                '    'Dim begcash As New frmBegCash
 
-                    'begcash.ShowDialog()
-                    'begcash = Nothing
-                    Dim frm As frmBegCash
-                    If mFormsTracker.IsLoaded("frmBegCash") Then
-                        mFormsTracker.Close("frmBegCash")
-                        mFormsTracker.Remove("frmBegCash")
-                        frm = New frmBegCash
-                        mFormsTracker.Add(frm, Me)
-                        frm.MdiParent = Me
-                        frm.WindowState = FormWindowState.Maximized
-                        frm.Show()
-                        frm = Nothing
-                    Else
-                        frm = New frmBegCash
-                        mFormsTracker.Add(frm, Me)
-                        frm.MdiParent = Me
-                        frm.WindowState = FormWindowState.Maximized
-                        frm.Show()
-                        frm = Nothing
-                    End If
-                End If
+                '    'begcash.ShowDialog()
+                '    'begcash = Nothing
+                '    Dim frm As frmBegCash
+                '    If mFormsTracker.IsLoaded("frmBegCash") Then
+                '        mFormsTracker.Close("frmBegCash")
+                '        mFormsTracker.Remove("frmBegCash")
+                '        frm = New frmBegCash
+                '        mFormsTracker.Add(frm, Me)
+                '        frm.MdiParent = Me
+                '        frm.WindowState = FormWindowState.Maximized
+                '        frm.Show()
+                '        frm = Nothing
+                '    Else
+                '        frm = New frmBegCash
+                '        mFormsTracker.Add(frm, Me)
+                '        frm.MdiParent = Me
+                '        frm.WindowState = FormWindowState.Maximized
+                '        frm.Show()
+                '        frm = Nothing
+                '    End If
+                'End If
             Catch ex As PDSAValidationException
                 MessageBox.Show(ex.Message)
             Catch ex As Exception
@@ -2471,7 +1281,7 @@ Public Class frmMain
     '    'End If
     'End Sub
 
-    Private Sub MenuItem22_Click(sender As Object, e As EventArgs) Handles MenuItem22.Click
+    Private Sub MenuItem22_Click(sender As Object, e As EventArgs)
         'Dim pofrm As New frmPO
         'pofrm.Show()
         Dim frm As frmPO
@@ -2523,7 +1333,7 @@ Public Class frmMain
 
     'End Sub
 
-    Private Sub MenuItem49_Click(sender As Object, e As EventArgs) Handles MenuItem49.Click
+    Private Sub MenuItem49_Click(sender As Object, e As EventArgs)
         ' Dim frmdbsaleshr As New frmSalesTodayHr
         'frmdbsaleshr.Show()
         Dim frm As frmSalesTodayHr
@@ -2547,7 +1357,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem50_Click(sender As Object, e As EventArgs) Handles MenuItem50.Click
+    Private Sub MenuItem50_Click(sender As Object, e As EventArgs)
         'Dim frmPasthr As New frmPastSalesHr
         'frmPasthr.Show()
         Dim frm As frmPastSalesHr
@@ -2571,7 +1381,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem51_Click(sender As Object, e As EventArgs) Handles MenuItem51.Click
+    Private Sub MenuItem51_Click(sender As Object, e As EventArgs)
         'Dim frmitemssold As New frmpvtSales
         'frmitemssold.Show()
         Dim frm As frmpvtSales
@@ -2600,7 +1410,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub MenuItem34_Click(sender As Object, e As EventArgs) Handles MenuItem34.Click
+    Private Sub MenuItem34_Click(sender As Object, e As EventArgs)
 
         Dim frm As frmSalesDetails
         frm = New frmSalesDetails
@@ -2627,7 +1437,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem53_Click(sender As Object, e As EventArgs) Handles MenuItem53.Click
+    Private Sub MenuItem53_Click(sender As Object, e As EventArgs)
         'Dim frmsalesprofit As New frmSalesWithNet
         'frmsalesprofit.Show()
         Dim frm As frmSalesWithNet
@@ -2656,7 +1466,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub MenuItem55_Click(sender As Object, e As EventArgs) Handles MenuItem55.Click
+    Private Sub MenuItem55_Click(sender As Object, e As EventArgs)
         'Dim frmcdb As New frmCreditDB
         'frmcdb.Show()
 
@@ -2687,14 +1497,14 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub MenuItem57_Click(sender As Object, e As EventArgs) Handles MenuItem57.Click
+    Private Sub MenuItem57_Click(sender As Object, e As EventArgs)
         Dim rep As New CustBal
         'rep.ParamCashier.Value = PDSAAppConfig.CurrentLoginID
         'rep.RequestParameters = False
         rep.PrintingSystem.ShowMarginsWarning = False
         rep.ShowPreview()
     End Sub
-    Private Sub MenuItem59_Click(sender As Object, e As EventArgs) Handles MenuItem59.Click
+    Private Sub MenuItem59_Click(sender As Object, e As EventArgs)
         'Dim frmSalesDB As New frmSalesDashboard
         'frmSalesDB.Show()
         Dim frm As frmSalesDashboard
@@ -2723,7 +1533,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub MenuItem54_Click(sender As Object, e As EventArgs) Handles MenuItem54.Click
+    Private Sub MenuItem54_Click(sender As Object, e As EventArgs)
         'Dim frmprofit As New frmProfitDB
         'frmprofit.Show()
 
@@ -2748,7 +1558,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem15_Click(sender As Object, e As EventArgs) Handles MenuItem15.Click
+    Private Sub MenuItem15_Click(sender As Object, e As EventArgs)
         'Dim frmdbsales As New frmDashboardSalesDate
         'frmdbsales.Show()
 
@@ -2777,7 +1587,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem32_Click(sender As Object, e As EventArgs) Handles MenuItem32.Click
+    Private Sub MenuItem32_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmItemsSoldSummry
         'frm.Show()
 
@@ -2802,7 +1612,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem60_Click(sender As Object, e As EventArgs) Handles MenuItem60.Click
+    Private Sub MenuItem60_Click(sender As Object, e As EventArgs)
         ' Dim frm As New frmCreditGrid
         ' frm.Show()
 
@@ -2827,7 +1637,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem62_Click(sender As Object, e As EventArgs) Handles MenuItem62.Click
+    Private Sub MenuItem62_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmCustPayGrid
         'frm.Show()
 
@@ -2852,7 +1662,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem25_Click(sender As Object, e As EventArgs) Handles MenuItem25.Click
+    Private Sub MenuItem25_Click(sender As Object, e As EventArgs)
         'Dim frmDlvry As New frmDelivery
         'frmDlvry.Show()
         Dim frm As frmDelivery
@@ -2881,7 +1691,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub MenuItem27_Click(sender As Object, e As EventArgs) Handles MenuItem27.Click
+    Private Sub MenuItem27_Click(sender As Object, e As EventArgs)
         'Dim frmpi As New frmDrPayment
         'frmpi.Show()
 
@@ -2910,7 +1720,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem31_Click(sender As Object, e As EventArgs) Handles MenuItem31.Click
+    Private Sub MenuItem31_Click(sender As Object, e As EventArgs)
         'Dim frmBo As New frmBackorder
         'frmBo.Show()
 
@@ -2938,7 +1748,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem29_Click(sender As Object, e As EventArgs) Handles MenuItem29.Click
+    Private Sub MenuItem29_Click(sender As Object, e As EventArgs)
         'Dim formTransfer As New frmTransferStock
         'formTransfer.Show()
         Dim frm As frmTransferStock
@@ -2967,7 +1777,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub MenuItem40_Click(sender As Object, e As EventArgs) Handles MenuItem40.Click
+    Private Sub MenuItem40_Click(sender As Object, e As EventArgs)
         'Dim frm As New DBDlvry
         'frm.Show()
         Dim frm As DBDlvry
@@ -2994,7 +1804,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem41_Click(sender As Object, e As EventArgs) Handles MenuItem41.Click
+    Private Sub MenuItem41_Click(sender As Object, e As EventArgs)
         'Dim frm As New DBDlvryItem
         'frm.Show()
 
@@ -3022,7 +1832,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem36_Click(sender As Object, e As EventArgs) Handles MenuItem36.Click
+    Private Sub MenuItem36_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmDeliveryGrid
         'frm.Show()
 
@@ -3053,7 +1863,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem46_Click(sender As Object, e As EventArgs) Handles MenuItem46.Click
+    Private Sub MenuItem46_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmItemLedgerGrd1
         'frm.Show()
 
@@ -3081,25 +1891,25 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub mnuBelowMin_Click(sender As Object, e As EventArgs) Handles mnuBelowMin.Click
+    Private Sub mnuBelowMin_Click(sender As Object, e As EventArgs)
         Dim belowmin As New XrItemsBelowMinim()
         belowmin.PrintingSystem.ShowMarginsWarning = False
         belowmin.ShowPreview()
     End Sub
 
-    Private Sub mnuAboveMax_Click(sender As Object, e As EventArgs) Handles mnuAboveMax.Click
+    Private Sub mnuAboveMax_Click(sender As Object, e As EventArgs)
         Dim abovemax As New XRItemsAboveMaxim()
         abovemax.PrintingSystem.ShowMarginsWarning = False
         abovemax.ShowPreview()
     End Sub
 
-    Private Sub MenuItem38_Click(sender As Object, e As EventArgs) Handles MenuItem38.Click
+    Private Sub MenuItem38_Click(sender As Object, e As EventArgs)
         Dim outofstak As New XrOutofStak()
         outofstak.PrintingSystem.ShowMarginsWarning = False
         outofstak.ShowPreview()
     End Sub
 
-    Private Sub MenuItem44_Click(sender As Object, e As EventArgs) Handles MenuItem44.Click
+    Private Sub MenuItem44_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmInvCostGrid
         'frm.Show()
 
@@ -3127,7 +1937,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem43_Click(sender As Object, e As EventArgs) Handles MenuItem43.Click
+    Private Sub MenuItem43_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmInvCostPivt
         'frm.Show()
 
@@ -3156,7 +1966,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem45_Click(sender As Object, e As EventArgs) Handles MenuItem45.Click
+    Private Sub MenuItem45_Click(sender As Object, e As EventArgs)
         ' Dim frm As New frmTransferGrd
         ' frm.Show()
 
@@ -3181,7 +1991,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem63_Click(sender As Object, e As EventArgs) Handles MenuItem63.Click
+    Private Sub MenuItem63_Click(sender As Object, e As EventArgs)
         ' Dim frm As New frmTransferedDB
         ' frm.Show()
 
@@ -3209,7 +2019,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem64_Click(sender As Object, e As EventArgs) Handles MenuItem64.Click
+    Private Sub MenuItem64_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmReceiveStokcs
         'frm.Show()
 
@@ -3237,7 +2047,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem66_Click(sender As Object, e As EventArgs) Handles MenuItem66.Click
+    Private Sub MenuItem66_Click(sender As Object, e As EventArgs)
         'Dim frm As New frmManualInvGrid
         'frm.Show()
 
@@ -3266,7 +2076,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem48_Click(sender As Object, e As EventArgs) Handles MenuItem48.Click
+    Private Sub MenuItem48_Click(sender As Object, e As EventArgs)
         Dim posrep As New xrItmLedgers()
         'posrep.Parameter1.Value = mOrderId
         'posrep.RequestParameters = False
@@ -3275,19 +2085,19 @@ Public Class frmMain
         posrep.ShowPreview()
     End Sub
 
-    Private Sub MenuItem67_Click(sender As Object, e As EventArgs) Handles MenuItem67.Click
+    Private Sub MenuItem67_Click(sender As Object, e As EventArgs)
         Dim posrep As New xrCustPay()
         posrep.PrintingSystem.ShowMarginsWarning = False
         posrep.ShowPreview()
     End Sub
 
-    Private Sub MenuItem8_Click_1(sender As Object, e As EventArgs) Handles MenuItem8.Click
+    Private Sub MenuItem8_Click_1(sender As Object, e As EventArgs)
         Dim rep As New xrTransfers()
         rep.PrintingSystem.ShowMarginsWarning = False
         rep.ShowPreview()
     End Sub
 
-    Private Sub MenuItem6_Click(sender As Object, e As EventArgs) Handles MenuItem6.Click
+    Private Sub MenuItem6_Click(sender As Object, e As EventArgs)
         ' Dim frm As New frmItemLedgerPvt
         ' frm.Show()
 
@@ -3316,7 +2126,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem9_Click_1(sender As Object, e As EventArgs) Handles MenuItem9.Click
+    Private Sub MenuItem9_Click_1(sender As Object, e As EventArgs)
         ' Dim frm As New frmSalesWithNetPvt
         ' frm.Show()
 
@@ -3345,7 +2155,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem71_Click(sender As Object, e As EventArgs) Handles MenuItem71.Click
+    Private Sub MenuItem71_Click(sender As Object, e As EventArgs)
         'Dim frmbc As New frmBestCustomer
         'frmbc.Show()
 
@@ -3370,7 +2180,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem68_Click(sender As Object, e As EventArgs) Handles MenuItem68.Click
+    Private Sub MenuItem68_Click(sender As Object, e As EventArgs)
         ' Dim stdwc As New frmSales2DayCashr
         ' stdwc.Show()
 
@@ -3399,13 +2209,13 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem73_Click(sender As Object, e As EventArgs) Handles MenuItem73.Click
+    Private Sub MenuItem73_Click(sender As Object, e As EventArgs)
         Dim repsupbal As New xrSupplierBal()
         repsupbal.PrintingSystem.ShowMarginsWarning = False
         repsupbal.ShowPreview()
     End Sub
 
-    Private Sub MenuItem74_Click(sender As Object, e As EventArgs) Handles MenuItem74.Click
+    Private Sub MenuItem74_Click(sender As Object, e As EventArgs)
         'Dim frmhilo As New frmHiLoSellingItems
         'frmhilo.Show()
 
@@ -3435,7 +2245,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem76_Click(sender As Object, e As EventArgs) Handles MenuItem76.Click
+    Private Sub MenuItem76_Click(sender As Object, e As EventArgs)
         'Dim hilodlvry As New frmHiLoDlvryItems
         'hilodlvry.Show()
 
@@ -3460,7 +2270,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem78_Click(sender As Object, e As EventArgs) Handles MenuItem78.Click
+    Private Sub MenuItem78_Click(sender As Object, e As EventArgs)
         'Dim custpay As New frmCustPayDB
         'custpay.Show()
 
@@ -3500,7 +2310,7 @@ Public Class frmMain
     Private Sub MenuItem82_Click(sender As Object, e As EventArgs) Handles MenuItem82.Click
         Me.LayoutMdi(System.Windows.Forms.MdiLayout.TileVertical)
     End Sub
-    Private Sub MenuItem84_Click(sender As Object, e As EventArgs) Handles MenuItem84.Click
+    Private Sub MenuItem84_Click(sender As Object, e As EventArgs)
         Dim frm As frmHiLoWeekly
         frm = New frmHiLoWeekly
         frm.Show()
@@ -3526,7 +2336,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem85_Click(sender As Object, e As EventArgs) Handles MenuItem85.Click
+    Private Sub MenuItem85_Click(sender As Object, e As EventArgs)
         Dim frm As frmSoldQtrly
         frm = New frmSoldQtrly
         frm.Show()
@@ -3552,7 +2362,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem86_Click(sender As Object, e As EventArgs) Handles MenuItem86.Click
+    Private Sub MenuItem86_Click(sender As Object, e As EventArgs)
         Dim frm As frmSoldYrly
         frm = New frmSoldYrly
         frm.Show()
@@ -3578,7 +2388,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem87_Click(sender As Object, e As EventArgs) Handles MenuItem87.Click
+    Private Sub MenuItem87_Click(sender As Object, e As EventArgs)
         Dim frm As frmItemSoldDaily
 
         If mFormsTracker.IsLoaded("frmItemSoldDaily") Then
@@ -3601,7 +2411,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem88_Click(sender As Object, e As EventArgs) Handles MenuItem88.Click
+    Private Sub MenuItem88_Click(sender As Object, e As EventArgs)
         Dim frm As frmDailProfitDB
 
         If mFormsTracker.IsLoaded("frmDailProfitDB") Then
@@ -3624,7 +2434,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem89_Click(sender As Object, e As EventArgs) Handles MenuItem89.Click
+    Private Sub MenuItem89_Click(sender As Object, e As EventArgs)
         Dim frm As frmWeeklyProfitDB
 
         If mFormsTracker.IsLoaded("frmWeeklyProfitDB") Then
@@ -3647,7 +2457,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem91_Click(sender As Object, e As EventArgs) Handles MenuItem91.Click
+    Private Sub MenuItem91_Click(sender As Object, e As EventArgs)
         Dim frm As frmAnnualProfitDB
 
         If mFormsTracker.IsLoaded("frmAnnualProfitDB") Then
@@ -3670,13 +2480,13 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem92_Click(sender As Object, e As EventArgs) Handles MenuItem92.Click
+    Private Sub MenuItem92_Click(sender As Object, e As EventArgs)
         Dim outofstak As New xrAvlblItems()
         outofstak.PrintingSystem.ShowMarginsWarning = False
         outofstak.ShowPreview()
     End Sub
 
-    Private Sub MenuItem93_Click(sender As Object, e As EventArgs) Handles MenuItem93.Click
+    Private Sub MenuItem93_Click(sender As Object, e As EventArgs)
         Dim invdif As New xrInvDiffRep()
         invdif.ShowPreview()
     End Sub
@@ -3781,12 +2591,12 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem102_Click(sender As Object, e As EventArgs) Handles MenuItem102.Click
+    Private Sub MenuItem102_Click(sender As Object, e As EventArgs)
         Dim xrtime As New xrEmpTime()
         xrtime.ShowPreview()
     End Sub
 
-    Private Sub MenuItem103_Click(sender As Object, e As EventArgs) Handles MenuItem103.Click
+    Private Sub MenuItem103_Click(sender As Object, e As EventArgs)
         Dim frm As frmReceivedStcksGrd
         frm = New frmReceivedStcksGrd
         frm.Show()
@@ -3812,7 +2622,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem104_Click(sender As Object, e As EventArgs) Handles MenuItem104.Click
+    Private Sub MenuItem104_Click(sender As Object, e As EventArgs)
         Dim frm As frmBuyPrcHistory
         frm = New frmBuyPrcHistory
         frm.Show()
@@ -3838,7 +2648,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem105_Click(sender As Object, e As EventArgs) Handles MenuItem105.Click
+    Private Sub MenuItem105_Click(sender As Object, e As EventArgs)
         Dim frm As frmBOGrid
         frm = New frmBOGrid
         frm.Show()
@@ -3864,12 +2674,12 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem3_Click(sender As Object, e As EventArgs) Handles MenuItem3.Click
+    Private Sub MenuItem3_Click(sender As Object, e As EventArgs)
         Dim xrborep As New xrBo()
         xrborep.ShowPreview()
     End Sub
 
-    Private Sub MenuItem107_Click(sender As Object, e As EventArgs) Handles MenuItem107.Click
+    Private Sub MenuItem107_Click(sender As Object, e As EventArgs)
         Dim frm As frmBoGrd2
         frm = New frmBoGrd2
         frm.Show()
@@ -3895,7 +2705,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem108_Click(sender As Object, e As EventArgs) Handles MenuItem108.Click
+    Private Sub MenuItem108_Click(sender As Object, e As EventArgs)
         Dim frm As frmRcivdStcksGrd2
 
         If mFormsTracker.IsLoaded("frmRcivdStcksGrd2") Then
@@ -3918,7 +2728,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem109_Click(sender As Object, e As EventArgs) Handles MenuItem109.Click
+    Private Sub MenuItem109_Click(sender As Object, e As EventArgs)
         Dim frm As frmTransfrdGrd1
         frm = New frmTransfrdGrd1
         frm.Show()
@@ -3943,7 +2753,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem110_Click(sender As Object, e As EventArgs) Handles MenuItem110.Click
+    Private Sub MenuItem110_Click(sender As Object, e As EventArgs)
         Dim frm As frmDlvryGrid2
         frm = New frmDlvryGrid2
         frm.Show()
@@ -3969,17 +2779,17 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem111_Click(sender As Object, e As EventArgs) Handles MenuItem111.Click
+    Private Sub MenuItem111_Click(sender As Object, e As EventArgs)
         Dim dritem As New xrDlvry()
         dritem.ShowPreview()
     End Sub
 
-    Private Sub MenuItem2_Click_1(sender As Object, e As EventArgs) Handles MenuItem2.Click
+    Private Sub MenuItem2_Click_1(sender As Object, e As EventArgs)
         Dim drrsupplier As New xrDlvrySupplier()
         drrsupplier.ShowPreview()
     End Sub
 
-    Private Sub MenuItem112_Click(sender As Object, e As EventArgs) Handles MenuItem112.Click
+    Private Sub MenuItem112_Click(sender As Object, e As EventArgs)
         ' Dim stdwc As New frmSales2DayCashr
         ' stdwc.Show()
 
@@ -4009,12 +2819,15 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub mnuAmPm_Click(sender As Object, e As EventArgs) Handles mnuAmPm.Click
+    Private Sub mnuAmPm_Click(sender As Object, e As EventArgs)
         'Dim AmpPM As New xrAMPM()
         'AmpPM.ShowPreview()
+        Dim ScPrint As New SeniorDiscountRpt()
+        ScPrint.PrintingSystem.ShowMarginsWarning = False
+        ScPrint.ShowPreview()
     End Sub
 
-    Private Sub MenuItem117_Click(sender As Object, e As EventArgs) Handles MenuItem117.Click
+    Private Sub MenuItem117_Click(sender As Object, e As EventArgs)
         Dim frm As frmConvertStocks
         frm = New frmConvertStocks
         frm.Show()
@@ -4039,7 +2852,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem120_Click(sender As Object, e As EventArgs) Handles MenuItem120.Click
+    Private Sub MenuItem120_Click(sender As Object, e As EventArgs)
         Dim frm As frmConvertGrid
         frm = New frmConvertGrid
         frm.Show()
@@ -4064,7 +2877,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem115_Click(sender As Object, e As EventArgs) Handles MenuItem115.Click
+    Private Sub MenuItem115_Click(sender As Object, e As EventArgs)
         Dim frm As frmExpenses
         frm = New frmExpenses
         frm.Show()
@@ -4089,7 +2902,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem122_Click(sender As Object, e As EventArgs) Handles MenuItem122.Click
+    Private Sub MenuItem122_Click(sender As Object, e As EventArgs)
         Dim frm As frmExpenseGrid
         frm = New frmExpenseGrid
         frm.Show()
@@ -4115,7 +2928,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem123_Click(sender As Object, e As EventArgs) Handles MenuItem123.Click
+    Private Sub MenuItem123_Click(sender As Object, e As EventArgs)
         Dim frm As frmPtyCashGrid
         frm = New frmPtyCashGrid
         frm.Show()
@@ -4140,7 +2953,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem125_Click(sender As Object, e As EventArgs) Handles MenuItem125.Click
+    Private Sub MenuItem125_Click(sender As Object, e As EventArgs)
         Dim frm As frmAddCashGrid
         frm = New frmAddCashGrid
         frm.Show()
@@ -4166,7 +2979,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem126_Click(sender As Object, e As EventArgs) Handles MenuItem126.Click
+    Private Sub MenuItem126_Click(sender As Object, e As EventArgs)
         Dim frm As frmDiscountGrid
         frm = New frmDiscountGrid
         frm.Show()
@@ -4192,7 +3005,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem127_Click(sender As Object, e As EventArgs) Handles MenuItem127.Click
+    Private Sub MenuItem127_Click(sender As Object, e As EventArgs)
         Dim frm As frmChkPaymntGrid
         frm = New frmChkPaymntGrid
         frm.Show()
@@ -4218,7 +3031,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem128_Click(sender As Object, e As EventArgs) Handles MenuItem128.Click
+    Private Sub MenuItem128_Click(sender As Object, e As EventArgs)
         Dim frm As frmVoidGrid
         frm = New frmVoidGrid
         frm.Show()
@@ -4244,7 +3057,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem130_Click(sender As Object, e As EventArgs) Handles MenuItem130.Click
+    Private Sub MenuItem130_Click(sender As Object, e As EventArgs)
         Dim frm As frmRefundsGrid
         frm = New frmRefundsGrid
         frm.Show()
@@ -4269,7 +3082,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem131_Click(sender As Object, e As EventArgs) Handles MenuItem131.Click
+    Private Sub MenuItem131_Click(sender As Object, e As EventArgs)
         Dim frm As frmChangePrceGrid
         frm = New frmChangePrceGrid
         frm.Show()
@@ -4294,7 +3107,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem132_Click(sender As Object, e As EventArgs) Handles MenuItem132.Click
+    Private Sub MenuItem132_Click(sender As Object, e As EventArgs)
         Dim frm As frmSalesHistory
         frm = New frmSalesHistory
         frm.Show()
@@ -4319,7 +3132,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem133_Click(sender As Object, e As EventArgs) Handles MenuItem133.Click
+    Private Sub MenuItem133_Click(sender As Object, e As EventArgs)
         ' Dim frm As New frmCreditGrid
         ' frm.Show()
 
@@ -4344,17 +3157,8 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem134_Click(sender As Object, e As EventArgs) Handles MenuItem134.Click
-        Dim posrep2 As New ZoutReprint()
-        'posrep.DataSource = sqlDT
-        'posrep2.cashier.Value = PDSAAppConfig.CurrentLoginID
-        posrep2.RequestParameters = True
-        posrep2.PrintingSystem.ShowMarginsWarning = False
-        posrep2.ShowPreview()
 
-    End Sub
-
-    Private Sub MenuItem136_Click(sender As Object, e As EventArgs) Handles MenuItem136.Click
+    Private Sub MenuItem136_Click(sender As Object, e As EventArgs)
         Dim frm As frmCashierReadng
         frm = New frmCashierReadng
         frm.Show()
@@ -4379,7 +3183,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem138_Click(sender As Object, e As EventArgs) Handles MenuItem138.Click
+    Private Sub MenuItem138_Click(sender As Object, e As EventArgs)
         Dim frm As frmBaltoSuplier
         frm = New frmBaltoSuplier
         frm.Show()
@@ -4405,7 +3209,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem140_Click(sender As Object, e As EventArgs) Handles MenuItem140.Click
+    Private Sub MenuItem140_Click(sender As Object, e As EventArgs)
         Dim frm As frmPdToSupplier
         frm = New frmPdToSupplier
         frm.Show()
@@ -4431,7 +3235,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem141_Click(sender As Object, e As EventArgs) Handles MenuItem141.Click
+    Private Sub MenuItem141_Click(sender As Object, e As EventArgs)
         Dim frm As frmPaySup
 
         If mFormsTracker.IsLoaded("frmPaySup") Then
@@ -4454,7 +3258,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem142_Click(sender As Object, e As EventArgs) Handles MenuItem142.Click
+    Private Sub MenuItem142_Click(sender As Object, e As EventArgs)
         Dim frm As frmPdtoSuppliers
 
         If mFormsTracker.IsLoaded("frmPdtoSuppliers") Then
@@ -4477,7 +3281,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem143_Click(sender As Object, e As EventArgs) Handles MenuItem143.Click
+    Private Sub MenuItem143_Click(sender As Object, e As EventArgs)
         Dim frm As frmSalesperRef
         frm = New frmSalesperRef
         frm.Show()
@@ -4503,7 +3307,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem144_Click(sender As Object, e As EventArgs) Handles MenuItem144.Click
+    Private Sub MenuItem144_Click(sender As Object, e As EventArgs)
         Dim frm As frmSalesPerRef2
 
         If mFormsTracker.IsLoaded("frmSalesPerRef2") Then
@@ -4532,7 +3336,7 @@ Public Class frmMain
         'myObj.LockSystemAndShow(Form2)
     End Sub
 
-    Private Sub MenuItem146_Click(sender As Object, e As EventArgs) Handles MenuItem146.Click
+    Private Sub MenuItem146_Click(sender As Object, e As EventArgs)
         Dim frm As frmOverview
 
         If mFormsTracker.IsLoaded("frmOverview") Then
@@ -4555,7 +3359,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem147_Click(sender As Object, e As EventArgs) Handles MenuItem147.Click
+    Private Sub MenuItem147_Click(sender As Object, e As EventArgs)
         Dim frm As frmExpensesPvt
 
         If mFormsTracker.IsLoaded("frmExpensesPvt") Then
@@ -4578,7 +3382,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub MenuItem148_Click(sender As Object, e As EventArgs) Handles MenuItem148.Click
+    Private Sub MenuItem148_Click(sender As Object, e As EventArgs)
         Dim frm As frmCheqSales
         frm = New frmCheqSales
         frm.Show()
@@ -4602,16 +3406,6 @@ Public Class frmMain
         '    frm.Show()
         '    frm = Nothing
         'End If
-    End Sub
-
-    Private Sub MenuItem150_Click(sender As Object, e As EventArgs) Handles MenuItem150.Click
-        'Dim posrep2 As New ZoutReprint()
-        ''posrep.DataSource = sqlDT
-        ''posrep2.cashier.Value = PDSAAppConfig.CurrentLoginID
-        'posrep2.RequestParameters = True
-        'posrep2.PrintingSystem.ShowMarginsWarning = False
-        'posrep2.ShowPreview()
-        Call CashRdngPrint()
     End Sub
 
     Private Sub CashRdngPrint()
@@ -4660,7 +3454,7 @@ Public Class frmMain
     End Sub
 
 
-    Private Sub MenuItem153_Click(sender As Object, e As EventArgs) Handles MenuItem153.Click
+    Private Sub MenuItem153_Click(sender As Object, e As EventArgs)
         Dim frm As frmUncleared
         frm = New frmUncleared
         frm.Show()
@@ -4817,7 +3611,7 @@ Public Class frmMain
         backUpRestoreObj.ResToreDatabases()
     End Sub
 
-    Private Sub MenuItem165_Click(sender As Object, e As EventArgs) Handles MenuItem165.Click
+    Private Sub MenuItem165_Click(sender As Object, e As EventArgs)
         Dim frm As frmExpired
         If mFormsTracker.IsLoaded("frmExpired") Then
             mFormsTracker.Close("frmExpired")
@@ -4909,9 +3703,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem168_Click(sender As Object, e As EventArgs) Handles MenuItem168.Click
-        Call BIRSalesReportPrint()
-    End Sub
+
     Private Sub BIRSalesReportPrint()
         Dim posrep2 As New xrBIRSalesReport()
         posrep2.RequestParameters = True
@@ -4919,7 +3711,7 @@ Public Class frmMain
         posrep2.ShowPreview()
     End Sub
 
-    Private Sub MenuItem169_Click(sender As Object, e As EventArgs) Handles MenuItem169.Click
+    Private Sub MenuItem169_Click(sender As Object, e As EventArgs)
         Dim frm As frmSummary
         frm = New frmSummary
         frm.Show()
@@ -4945,7 +3737,7 @@ Public Class frmMain
         'End If
     End Sub
 
-    Private Sub MenuItem170_Click(sender As Object, e As EventArgs) Handles MenuItem170.Click
+    Private Sub MenuItem170_Click(sender As Object, e As EventArgs)
         Dim frm As frmSalesParam
         frm = New frmSalesParam
         frm.Show()
@@ -5104,14 +3896,14 @@ Public Class frmMain
         strNine = MyHDDGen.Nine.ToString()
     End Sub
 
-    Private Sub mnuManualInventory_Click(sender As Object, e As EventArgs) Handles mnuManualInventory.Click
+    Private Sub mnuManualInventory_Click(sender As Object, e As EventArgs)
         Dim frm As frmManualInv
         frm = New frmManualInv
         frm.Show()
         frm = Nothing
     End Sub
 
-    Private Sub mnuSTCredit_Click(sender As Object, e As EventArgs) Handles mnuSTCredit.Click
+    Private Sub mnuSTCredit_Click(sender As Object, e As EventArgs)
         Dim frm As frmSTCredit
         frm = New frmSTCredit
         frm.Show()
@@ -5119,39 +3911,15 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub mnuRefundToday_Click(sender As Object, e As EventArgs) Handles mnuRefundToday.Click
+    Private Sub mnuRefundToday_Click(sender As Object, e As EventArgs)
         Dim frm As frmRefundsToday
         frm = New frmRefundsToday
         frm.Show()
         frm = Nothing
     End Sub
 
-    Private Sub mnuRpPatronage_Click(sender As Object, e As EventArgs) Handles mnuRpPatronage.Click
-        Dim outofstak As New xrAvlblItems()
-        outofstak.PrintingSystem.ShowMarginsWarning = False
-        outofstak.ShowPreview()
-    End Sub
 
-    Private Sub mnuIssueCheck_Click(sender As Object, e As EventArgs) Handles mnuIssueCheck.Click
-        Dim frm As frmChkIssue
-        frm = New frmChkIssue
-        frm.Show()
-        frm = Nothing
-    End Sub
 
-    Private Sub mnuCancelChk_Click(sender As Object, e As EventArgs) Handles mnuCancelChk.Click
-        Dim frm As frmCancelCheck
-        frm = New frmCancelCheck
-        frm.Show()
-        frm = Nothing
-    End Sub
-
-    Private Sub mnuIncentive_Click(sender As Object, e As EventArgs) Handles mnuIncentive.Click
-        Dim frm As frmIncentiveGrid
-        frm = New frmIncentiveGrid
-        frm.Show()
-        frm = Nothing
-    End Sub
 
     Private Sub mnuEditItems_Click(sender As Object, e As EventArgs) Handles mnuEditItems.Click
         Dim frm As frmEditItems
@@ -5169,17 +3937,88 @@ Public Class frmMain
         frm = Nothing
     End Sub
 
-    Private Sub MenuItem19_Click(sender As Object, e As EventArgs) Handles MenuItem19.Click
+    Private Sub MenuItem19_Click(sender As Object, e As EventArgs)
         Dim frm As frmReadingSumGrid
         frm = New frmReadingSumGrid
         frm.Show()
         frm = Nothing
     End Sub
 
-    Private Sub MenuItem20_Click(sender As Object, e As EventArgs) Handles MenuItem20.Click
+    Private Sub MenuItem20_Click(sender As Object, e As EventArgs)
         Dim frm As frmReadSum
         frm = New frmReadSum
         frm.Show()
         frm = Nothing
+    End Sub
+
+    Private Sub MenuItem23_Click(sender As Object, e As EventArgs) Handles MenuItem23.Click
+        Dim frm As frmEmployee
+        frm = New frmEmployee
+        frm.Show()
+        frm = Nothing
+    End Sub
+
+
+    Private Sub mnuSJ_Click(sender As Object, e As EventArgs)
+        Dim Incentive As New xrSalesHistory()
+        Incentive.PrintingSystem.ShowMarginsWarning = False
+        Incentive.ShowPreview()
+    End Sub
+
+    Private Sub MenuItem157_Click(sender As Object, e As EventArgs)
+        Dim Incentive As New xrSalesByItemSummary()
+        Incentive.PrintingSystem.ShowMarginsWarning = False
+        Incentive.ShowPreview()
+    End Sub
+
+    Private Sub MenuItem177_Click(sender As Object, e As EventArgs)
+        Dim Incentive As New xrDailyInv()
+        Incentive.PrintingSystem.ShowMarginsWarning = False
+        Incentive.ShowPreview()
+    End Sub
+
+    Private Sub mnuReprintZReading_Click(sender As Object, e As EventArgs) Handles mnuReprintZReading.Click
+        Dim posrep2 As New xrZReadingReprint()
+        posrep2.RequestParameters = True
+        posrep2.PrintingSystem.ShowMarginsWarning = False
+        posrep2.ShowPreview()
+    End Sub
+
+    Private Sub mnuSettings_Click(sender As Object, e As EventArgs) Handles mnuSettings.Click
+        Dim frm As frmSetting
+        frm = New frmSetting
+        frm.Show()
+        frm = Nothing
+    End Sub
+
+    Private Sub mnuAdmin_Click(sender As Object, e As EventArgs) Handles mnuAdmin.Click
+        Dim frm As frmAdmin
+        frm = New frmAdmin
+        frm.Show()
+        frm = Nothing
+    End Sub
+
+    Private Sub MenuItem4_Click(sender As Object, e As EventArgs)
+        Dim posrep2 As New xrSalesSummary()
+        posrep2.RequestParameters = True
+        posrep2.PrintingSystem.ShowMarginsWarning = False
+        posrep2.ShowPreview()
+    End Sub
+
+    Private Sub MenuItem72_Click(sender As Object, e As EventArgs)
+        Dim posrep12 As New xrElectronicSalesBook()
+        posrep12.RequestParameters = True
+        posrep12.PrintingSystem.ShowMarginsWarning = False
+        posrep12.ShowPreview()
+    End Sub
+
+    Private Sub frmMain_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        Me.Dispose()
+    End Sub
+
+    Private Sub MenuItem2_Click_2(sender As Object, e As EventArgs) Handles MenuItem2.Click
+        Dim posform As New frmTestDapper
+        posform.Show()
+        posform = Nothing
     End Sub
 End Class

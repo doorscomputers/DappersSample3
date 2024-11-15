@@ -50,6 +50,7 @@ Public Class frmNewItems
         compmup2.Text = "0"
         compretail.Text = "0"
         compwholesale.Value = 0
+        ceIncentive.Value = 0
     End Sub
 
     Private Sub EnableCtrols()
@@ -166,7 +167,7 @@ Public Class frmNewItems
 
         If leSuppliers.Text = String.Empty Then
             'MessageBox.Show("Supplier is Blank.")
-            leSuppliers.EditValue = 40
+            leSuppliers.EditValue = 1
         End If
 
         If leCategories.Text = String.Empty Then
@@ -177,7 +178,7 @@ Public Class frmNewItems
             leType.EditValue = 1
         End If
         If leBrand.Text = String.Empty Then
-            leBrand.EditValue = 143
+            leBrand.EditValue = 1
         End If
 
         If ceCost.Value < 0 Then
@@ -203,16 +204,16 @@ Public Class frmNewItems
         '    ceWholesale.Focus()
         '    Exit Sub
         'End If
-        If ceWholesale.Value > ceRetail.Value Then
-            MessageBox.Show("Wholesale Must be Lesser than the Retail Price.")
-            ceWholesale.Focus()
-            Exit Sub
-        End If
-        If ceWholesale.Value <= 0 Then
-            MessageBox.Show("Wholesale Must be Greater than Zero.")
-            ceWholesale.Focus()
-            Exit Sub
-        End If
+        'If ceWholesale.Value > ceRetail.Value Then
+        '    MessageBox.Show("Wholesale Must be Lesser than the Retail Price.")
+        '    ceWholesale.Focus()
+        '    Exit Sub
+        'End If
+        'If ceWholesale.Value <= 0 Then
+        '    MessageBox.Show("Wholesale Must be Greater than Zero.")
+        '    ceWholesale.Focus()
+        '    Exit Sub
+        'End If
 
         If txtItem.Text = String.Empty Then
             MessageBox.Show("Item Description Must not be Blank")
@@ -248,13 +249,15 @@ Public Class frmNewItems
                 mgrstock.Entity.minimum = CInt(ceMin.Value)
                 mgrstock.Entity.retail = CDec(ceRetail.Value)
                 mgrstock.Entity.wsale = CDec(ceWholesale.Value)
-                mgrstock.Entity.retail2 = CDec(retail2.Value)
+                mgrstock.Entity.retail2 = CDec(ceWholesale.Value)
                 mgrstock.Entity.retail3 = CDec(retail3.Value)
                 mgrstock.Entity.retail4 = CDec(retail4.Value)
                 mgrstock.Entity.sizeid = CInt(leType.EditValue)
                 mgrstock.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
-                mgrstock.Entity.active = True
+                'mgrstock.Entity.active = True
                 mgrstock.Entity.vat = 1
+                mgrstock.Entity.active = CBool(chkIncentive.EditValue)
+                mgrstock.Entity.incentive = CDec(ceIncentive.Value)
                 trans.Add(mgrstock.DataObject)
                 trans.Execute()
 
@@ -360,13 +363,13 @@ Public Class frmNewItems
         End If
     End Sub
     Private Sub CheckWholesale()
-        If ceWholesale.Value >= 0.1 And ceRetail.Value >= 0.1 Then
-            If CDec(ceWholesale.Value) <= CDec(ceCost.Value) Or CDec(ceWholesale.Value) >= CDec(ceRetail.Value) Then
-                MessageBox.Show("Wholesale Must be Higher than the Cost and Lesser than the Retail", "Wholesale Amount Error")
-                ceWholesale.Value = 0
-                Exit Sub
-            End If
-        End If
+        'If ceWholesale.Value >= 0.1 And ceRetail.Value >= 0.1 Then
+        '    If CDec(ceWholesale.Value) <= CDec(ceCost.Value) Or CDec(ceWholesale.Value) >= CDec(ceRetail.Value) Then
+        '        MessageBox.Show("Wholesale Must be Higher than the Cost and Lesser than the Retail", "Wholesale Amount Error")
+        '        ceWholesale.Value = 0
+        '        Exit Sub
+        '    End If
+        'End If
     End Sub
     Private Sub ceRetail_LostFocus(sender As Object, e As EventArgs) Handles ceRetail.LostFocus
         CheckRetail()

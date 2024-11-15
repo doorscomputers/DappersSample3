@@ -65,7 +65,7 @@ Partial Public Class xrReadingID
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.75!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 0.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
@@ -146,10 +146,10 @@ Partial Public Class xrReadingID
         Me.DataMember = "tblreading"
         Me.DataSource = Me.DsRdngRefNo1
         Me.FilterString = "[status] = False"
-        Me.Margins = New System.Drawing.Printing.Margins(12, 12, 12, 11)
+        Me.Margins = New DevExpress.Drawing.DXMargins(12, 12, 12, 11)
         Me.PageHeight = 1169
         Me.PageWidth = 299
-        Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.Custom
         Me.PaperName = "Roll Paper 76 x 297 mm"
         Me.PrinterName = "EPSON TM-U220 Receipt"
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic

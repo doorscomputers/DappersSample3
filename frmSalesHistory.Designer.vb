@@ -22,6 +22,7 @@ Partial Class frmSalesHistory
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
@@ -30,7 +31,7 @@ Partial Class frmSalesHistory
         Me.colitem_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.VwSalesArchiveBindingSource = New System.Windows.Forms.BindingSource()
+        Me.VwSalesArchiveBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsSalesArchive = New DoorsPOS.WinApp.dsSalesArchive()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,6 +48,7 @@ Partial Class frmSalesHistory
         Me.collastname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colfirstname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colmiddlename = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltrminal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.VwSalesArchiveTableAdapter = New DoorsPOS.WinApp.dsSalesArchiveTableAdapters.vwSalesArchiveTableAdapter()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSalesArchiveBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +62,7 @@ Partial Class frmSalesHistory
         Me.colqty.FieldName = "qty"
         Me.colqty.Name = "colqty"
         Me.colqty.Visible = True
-        Me.colqty.VisibleIndex = 6
+        Me.colqty.VisibleIndex = 8
         Me.colqty.Width = 62
         '
         'colitem_desc
@@ -70,15 +72,14 @@ Partial Class frmSalesHistory
         Me.colitem_desc.Name = "colitem_desc"
         Me.colitem_desc.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "item_desc", "{0}")})
         Me.colitem_desc.Visible = True
-        Me.colitem_desc.VisibleIndex = 3
+        Me.colitem_desc.VisibleIndex = 5
         Me.colitem_desc.Width = 254
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Mode of Payment"
-        Me.GridColumn2.FieldName = "GridColumn2"
+        Me.GridColumn2.FieldName = "mowd"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.UnboundExpression = "Iif([custid] > 1, 'CREDIT', 'CASH')"
         Me.GridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn2.Width = 144
         '
@@ -115,7 +116,7 @@ Partial Class frmSalesHistory
         Me.GridView1.Appearance.FooterPanel.Options.UseFont = True
         Me.GridView1.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.GridView1.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.colcontact_no, Me.colReceipt, Me.colpos_date, Me.colpos_tme, Me.colitem_desc, Me.colcost, Me.colprice, Me.colqty, Me.coldet_amnt, Me.colsInsert_id, Me.GridColumn1, Me.GridColumn2, Me.colcustid, Me.collastname, Me.colfirstname, Me.colmiddlename})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.colcontact_no, Me.colReceipt, Me.colpos_date, Me.colpos_tme, Me.colitem_desc, Me.colcost, Me.colprice, Me.colqty, Me.coldet_amnt, Me.colsInsert_id, Me.GridColumn1, Me.GridColumn2, Me.colcustid, Me.collastname, Me.colfirstname, Me.colmiddlename, Me.coltrminal})
         GridFormatRule1.Column = Me.colqty
         GridFormatRule1.ColumnApplyTo = Me.colitem_desc
         GridFormatRule1.Name = "Format0"
@@ -148,6 +149,8 @@ Partial Class frmSalesHistory
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.UnboundExpression = "[lastname] + ',' + [firstname] + ' ' + [middlename]"
         Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
         '
         'colcontact_no
         '
@@ -160,7 +163,7 @@ Partial Class frmSalesHistory
         Me.colReceipt.FieldName = "Receipt"
         Me.colReceipt.Name = "colReceipt"
         Me.colReceipt.Visible = True
-        Me.colReceipt.VisibleIndex = 0
+        Me.colReceipt.VisibleIndex = 1
         Me.colReceipt.Width = 94
         '
         'colpos_date
@@ -171,7 +174,7 @@ Partial Class frmSalesHistory
         Me.colpos_date.FieldName = "pos_date"
         Me.colpos_date.Name = "colpos_date"
         Me.colpos_date.Visible = True
-        Me.colpos_date.VisibleIndex = 1
+        Me.colpos_date.VisibleIndex = 3
         Me.colpos_date.Width = 132
         '
         'colpos_tme
@@ -182,7 +185,7 @@ Partial Class frmSalesHistory
         Me.colpos_tme.FieldName = "pos_tme"
         Me.colpos_tme.Name = "colpos_tme"
         Me.colpos_tme.Visible = True
-        Me.colpos_tme.VisibleIndex = 2
+        Me.colpos_tme.VisibleIndex = 4
         Me.colpos_tme.Width = 165
         '
         'colcost
@@ -197,7 +200,7 @@ Partial Class frmSalesHistory
         Me.colcost.FieldName = "cost"
         Me.colcost.Name = "colcost"
         Me.colcost.Visible = True
-        Me.colcost.VisibleIndex = 4
+        Me.colcost.VisibleIndex = 6
         Me.colcost.Width = 56
         '
         'colprice
@@ -212,7 +215,7 @@ Partial Class frmSalesHistory
         Me.colprice.FieldName = "price"
         Me.colprice.Name = "colprice"
         Me.colprice.Visible = True
-        Me.colprice.VisibleIndex = 5
+        Me.colprice.VisibleIndex = 7
         Me.colprice.Width = 56
         '
         'coldet_amnt
@@ -228,7 +231,7 @@ Partial Class frmSalesHistory
         Me.coldet_amnt.Name = "coldet_amnt"
         Me.coldet_amnt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "det_amnt", "SUM={0:N2}")})
         Me.coldet_amnt.Visible = True
-        Me.coldet_amnt.VisibleIndex = 7
+        Me.coldet_amnt.VisibleIndex = 9
         Me.coldet_amnt.Width = 106
         '
         'colsInsert_id
@@ -241,7 +244,7 @@ Partial Class frmSalesHistory
         Me.colsInsert_id.FieldName = "sInsert_id"
         Me.colsInsert_id.Name = "colsInsert_id"
         Me.colsInsert_id.Visible = True
-        Me.colsInsert_id.VisibleIndex = 8
+        Me.colsInsert_id.VisibleIndex = 0
         Me.colsInsert_id.Width = 99
         '
         'GridColumn1
@@ -251,8 +254,6 @@ Partial Class frmSalesHistory
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.UnboundExpression = "Iif([qty] < 1, 'Refund', 'Regular')"
         Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 9
         Me.GridColumn1.Width = 134
         '
         'colcustid
@@ -275,6 +276,12 @@ Partial Class frmSalesHistory
         Me.colmiddlename.FieldName = "middlename"
         Me.colmiddlename.Name = "colmiddlename"
         '
+        'coltrminal
+        '
+        Me.coltrminal.Caption = "Terminal #"
+        Me.coltrminal.FieldName = "trminal"
+        Me.coltrminal.Name = "coltrminal"
+        '
         'VwSalesArchiveTableAdapter
         '
         Me.VwSalesArchiveTableAdapter.ClearBeforeFill = True
@@ -288,8 +295,8 @@ Partial Class frmSalesHistory
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmSalesHistory"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales History"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSalesArchiveBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsSalesArchive, System.ComponentModel.ISupportInitialize).EndInit()
@@ -319,4 +326,5 @@ Partial Class frmSalesHistory
     Friend WithEvents colfirstname As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colmiddlename As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colReceipt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltrminal As DevExpress.XtraGrid.Columns.GridColumn
 End Class

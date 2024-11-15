@@ -30,6 +30,7 @@ Partial Class frmPasswordInput
         'labLblPassword
         '
         Me.labLblPassword.Appearance.Font = New System.Drawing.Font("Courier New", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labLblPassword.Appearance.Options.UseFont = True
         Me.labLblPassword.Location = New System.Drawing.Point(12, 62)
         Me.labLblPassword.Name = "labLblPassword"
         Me.labLblPassword.Size = New System.Drawing.Size(140, 18)

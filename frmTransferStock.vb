@@ -19,6 +19,7 @@ Public Class frmTransferStock
     Public vbocde As String = String.Empty
     Public vAvlbl As Integer = 0
     Public vInnerQty As Integer = 0
+    Public vTrpieces As Integer = 0
 
 
     Private Sub frmTransferStock_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -28,7 +29,7 @@ Public Class frmTransferStock
     Private Sub frmTransferStock_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         Dim vRows As Integer = drgrid.Rows.Count
         If vRows > 0 Then
-            MessageBox.Show("Transfer List still Exist. Please Save/Post or Click New before closing the Transfer Entry Form.")
+            MessageBox.Show("Transfer List not saved. Please Post before closing the Transfer Entry Form to avoid unfinished work.")
             e.Cancel = True
         End If
     End Sub
@@ -278,6 +279,9 @@ Public Class frmTransferStock
             Exit Sub
         End If
 
+
+
+
         Dim grdCount As Integer = 0
         Dim iii As Integer = 0
         TranDr = New PDSATransaction()
@@ -285,13 +289,25 @@ Public Class frmTransferStock
         mgrdrheader.DataObject.TransactionType = PDSATransactionType.Insert
         Try
 
+            Dim mTransferID As Integer
+            '+The code to Execute the Sequence operation
+            Dim spGetTransferNo As spGetTransferNoManager
+            Dim transpGetReceiptNo As PDSATransaction = New PDSATransaction()
+            spGetTransferNo = New spGetTransferNoManager()
+            transpGetReceiptNo.Add(spGetTransferNo.DataObject)
+            transpGetReceiptNo.Execute()
+            'MessageBox.Show(spGetReceiptNo.DataObject.Entity.ReceiptNo.ToString)
+            mTransferID = 0
+            mTransferID = Convert.ToInt32(spGetTransferNo.DataObject.Entity.TransferNo)
+
             mgrdrheader.Entity.tdate = CDate(dedlvrydate.Text)
+            mgrdrheader.Entity.TransferNo = mTransferID
             mgrdrheader.Entity.locid = CInt(leLocation.EditValue)
             mgrdrheader.Entity.dtInsertdt = Date.Now
             mgrdrheader.Entity.dtLastUpdatedt = Date.Now
             mgrdrheader.Entity.tamnt = CDec(txtsum.Text)
             mgrdrheader.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
-           
+
             TranDr.Add(mgrdrheader.DataObject)
 
             'save trasfer_det on the grid
@@ -307,7 +323,7 @@ Public Class frmTransferStock
                 Else
                     mgrdrdetail.Entity.qty = 0
                 End If
-                
+
                 mgrdrdetail.Entity.price = CDec(drgrid.Rows(iii).Cells(3).Value)
                 mgrdrdetail.Entity.tamnt = CDec(drgrid.Rows(iii).Cells(4).Value)
                 TranDr.Add(mgrdrdetail.DataObject)
@@ -324,8 +340,8 @@ Public Class frmTransferStock
             'Dim posrep As New xrTrasnferPrnt()
             Dim posrep As New xrTransfer()
             'posrep.DataSource = sqlDT
-            'posrep.Parameter1.Value = vSalesNum
-            'posrep.RequestParameters = False
+            posrep.TransferId.Value = mdrId
+            posrep.RequestParameters = False
             posrep.PrintingSystem.ShowMarginsWarning = False
             posrep.Print()
 
@@ -469,6 +485,47 @@ Public Class frmTransferStock
         End If
     End Sub
     Private Sub txtItem_KeyDown(sender As Object, e As KeyEventArgs) Handles txtItem.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim nProdID As Integer = 0
+            'nStckid = 0
+            If Not String.IsNullOrEmpty(txtItem.Text) Then
+                Try
+                    Dim mgr As stocksManager
+                    Dim col1 As stocksCollection
+                    mgr = New stocksManager()
+                    mgr.DataObject.WhereFilter = stocksData.WhereFilters.barcode
+                    mgr.Entity.barcode = txtItem.Text.Trim
+                    col1 = mgr.BuildCollection()
+                    If mgr.DataObject.RowsAffected > 0 Then
+                        nProdID = mgr.DataObject.Entity.stckid
+                        txtItem.Text = mgr.DataObject.Entity.itemdesc
+                        vbocde = mgr.DataObject.Entity.barcode
+                        ceCost.Value = mgr.DataObject.Entity.cost
+                        txtStckid.Text = CStr(mgr.DataObject.Entity.stckid)
+                        dgitems.Visible = False
+                        vItem = mgr.DataObject.Entity.itemdesc
+                        ceQty.Focus()
+
+
+                    Else
+                        If dgitems.Visible = True Then
+                            DgitemsKeydown()
+                        End If
+                    End If
+                Catch ex As PDSAValidationException
+                    MessageBox.Show(ex.Message)
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString())
+                End Try
+            End If
+        End If
+        If e.KeyCode = Keys.F1 Then
+            'vpieces = CInt(drgrid.SelectedRows(0).Cells(2).Value)
+            SetQuantity()
+            e.Handled = True
+        End If
+
+
         If e.Alt = True And e.KeyCode = Keys.Tab Then
             e.Handled = True
         End If
@@ -486,15 +543,88 @@ Public Class frmTransferStock
         End If
 
         If e.KeyCode = Keys.Escape Then
-
             dgitems.Visible = False
             txtItem.Focus()
             txtItem.SelectAll()
-
             e.SuppressKeyPress = True
         End If
     End Sub
+    Friend Sub SetQuantity()
+        Try
+            If drgrid.Rows.Count >= 1 Then
+                Dim formQty As New frmTrQty
+                formQty.ShowDialog()
 
+                drgrid.SelectedRows(0).Cells(2).Value = CInt(frmTrQty.qtyTr)
+                drgrid.SelectedRows(0).Cells(4).Value = CDec(CInt(frmTrQty.qtyTr) * CDec(drgrid.SelectedRows(0).Cells(3).Value))
+                txtItem.Text = String.Empty
+
+                Dim IAyI As Integer = 0
+                Dim TotalDelivery As Decimal
+                TotalDelivery = 0
+                For IAyI = 0 To drgrid.Rows.Count - 1
+                    TotalDelivery += CDec(drgrid.Rows(IAyI).Cells(4).Value)
+                Next
+
+                ' txtCounts.Text = CStr(PosGrid.Rows.Count)
+
+                'Scroll to the last row.
+                Me.drgrid.FirstDisplayedScrollingRowIndex = Me.drgrid.RowCount - 1
+
+                'Select the last row.
+                Me.drgrid.Rows(Me.drgrid.RowCount - 1).Selected = True
+                'txtCounts.Text = CStr(PosGrid.Rows.Count)
+                txtsum.Text = FormatNumber(TotalDelivery, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
+                'CheckSumifNegative()
+                'vpTotalSales = TotalDelivery
+                vTrpieces = 1
+
+                txtItem.Focus()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString())
+        End Try
+    End Sub
+
+    Sub DgitemsKeydown()
+        If dgitems.Rows.Count < 1 Then
+            Exit Sub
+        End If
+        Try
+            Dim vRow As Integer = 0
+            Dim vint As Integer = 0
+            Dim x1 As String = String.Empty
+            Dim x2 As String = String.Empty
+            Dim x3 As Integer = 0
+            Dim x4 As Decimal = 0
+            Dim x5 As Integer = 0
+            Dim x6 As String = String.Empty
+            vRow = dgitems.CurrentRow.Index
+            vint = CInt(dgitems(0, vRow).Value)
+            x1 = CStr(dgitems(1, vRow).Value)
+            x2 = CStr(dgitems(2, vRow).Value)
+            x3 = CInt(dgitems(3, vRow).Value)
+            x4 = CDec(dgitems(4, vRow).Value)
+
+            vStckid = vint
+            vItem = x2
+            vbocde = x1
+            vPrice = x3
+            vWPrice = x4
+
+            txtStckid.Text = String.Empty
+            txtItem.Text = vItem.ToString
+            txtStckid.Text = vStckid.ToString
+            ItemsearchExecute()
+
+            dgitems.Visible = False
+            ceQty.Focus()
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+
+    End Sub
     Private Sub txtItem_KeyUp(sender As Object, e As KeyEventArgs) Handles txtItem.KeyUp
         If e.Alt = True And e.KeyCode = Keys.Tab Then
             e.Handled = True
@@ -533,15 +663,15 @@ Public Class frmTransferStock
                     dgitems.Columns(4).Visible = False
                     dgitems.Columns(6).Visible = False
                     dgitems.Columns(7).Visible = False
-                    dgitems.Columns(2).Width = 500
+                    dgitems.Columns(2).Width = 450
                     dgitems.Columns(2).HeaderText = "Item Description"
-                    dgitems.Columns(3).HeaderText = "Available"
+                    dgitems.Columns(3).HeaderText = "Avlbl"
                     dgitems.Columns(5).HeaderText = "Retail Price"
                     dgitems.Columns(6).HeaderText = "Whole Sale"
                     dgitems.Columns(7).HeaderText = "Packaging"
                     'dgitems.Columns(7).HeaderText = "Barcode"
-                    dgitems.Columns(3).Width = 150
-                    dgitems.Columns(5).Width = 150
+                    dgitems.Columns(3).Width = 70
+                    dgitems.Columns(5).Width = 130
                     'dgitems.Columns(8).Visible = False
                     'dgitems.Columns(9).Visible = False
                     'dgitems.Columns(10).Visible = False
@@ -602,6 +732,73 @@ Public Class frmTransferStock
     Private Sub leLocation_KeyDown(sender As Object, e As KeyEventArgs) Handles leLocation.KeyDown
         If e.KeyCode = Keys.Enter Then
             txtItem.Focus()
+        End If
+    End Sub
+
+
+    Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
+        VoidItem()
+    End Sub
+
+    Private Sub VoidItem()
+        If drgrid.Rows.Count = 0 Then
+            'txtBarcode.Focus()
+            'btnSearchItems.Focus()
+            ' txtitem.Focus()
+            txtItem.Text = String.Empty
+            txtItem.Focus()
+            Exit Sub
+        End If
+
+        Dim ii As Integer
+        Dim trtotal As Decimal = 0
+
+
+        Try
+
+            If drgrid.SelectedRows.Count = 0 Then
+                Exit Sub
+            End If
+
+
+            drgrid.Rows.Remove(drgrid.SelectedRows(0))
+            For ii = 0 To drgrid.Rows.Count - 1
+                trtotal += CDec(drgrid.Rows(ii).Cells(4).Value)
+            Next
+
+
+            txtsum.Text = FormatNumber(trtotal, 2, , TriState.True, TriState.True)  'FormatNumber(CStr(Totss))
+            txtItem.Focus()
+        Catch ex As PDSAValidationException
+            MessageBox.Show(ex.Message)
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString())
+        End Try
+    End Sub
+
+    Private Sub frmTransferStock_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.F1 Then
+            'vpieces = CInt(drgrid.SelectedRows(0).Cells(2).Value)
+            SetQuantity()
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub ceQty_EditValueChanged(sender As Object, e As EventArgs) Handles ceQty.EditValueChanged
+
+    End Sub
+
+    Private Sub ceQty_KeyDown(sender As Object, e As KeyEventArgs) Handles ceQty.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If ceQty.Value <= 0 Then
+                MessageBox.Show("Qty to be transferred cannot be less than or equal to zero")
+                ceQty.Focus()
+                Exit Sub
+            Else
+                Call SendItemtoGrid()
+                'btnItemSearch.Focus()
+                txtItem.Focus()
+            End If
         End If
     End Sub
 End Class

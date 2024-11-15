@@ -57,18 +57,21 @@ Public Class frmPickup
                 tranmgr.Execute()
                 Dim intgc As Integer = 0
                 intgc = mgrpay.Entity.pcid
-
-                Dim xrgetcash As New xrGetCash()
-                'posrep.DataSource = sqlDT
-                Dim strcashier As String = String.Empty
-                strcashier = PDSAAppConfig.CurrentLoginID
-                'xrgetcash.Cashier.Value = strcashier
-                'xrgetcash.DateTme.Value = CDate(depaydate.Text)
-                xrgetcash.ptyCashID.Value = intgc
-                xrgetcash.RequestParameters = False
-                xrgetcash.PrintingSystem.ShowMarginsWarning = False
-                AddHandler xrgetcash.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
-                xrgetcash.Print()
+                Dim ansint11 As Integer = 7
+                ansint11 = MsgBox("Print Petty Cash?", MsgBoxStyle.YesNo, "Print Confirmation")
+                If ansint11 = 6 Then
+                    Dim xrgetcash As New xrGetCash()
+                    'posrep.DataSource = sqlDT
+                    Dim strcashier As String = String.Empty
+                    strcashier = PDSAAppConfig.CurrentLoginID
+                    'xrgetcash.Cashier.Value = strcashier
+                    'xrgetcash.DateTme.Value = CDate(depaydate.Text)
+                    xrgetcash.ptyCashID.Value = intgc
+                    xrgetcash.RequestParameters = False
+                    xrgetcash.PrintingSystem.ShowMarginsWarning = False
+                    AddHandler xrgetcash.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
+                    xrgetcash.Print()
+                End If
 
 
                 disable()

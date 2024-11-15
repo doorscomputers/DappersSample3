@@ -134,7 +134,7 @@ Partial Public Class XRItemsAboveMaxim
         '
         'XrTable2
         '
-        Me.XrTable2.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrTable2.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.75!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 55.20833!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
@@ -188,7 +188,7 @@ Partial Public Class XRItemsAboveMaxim
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 0.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -214,7 +214,7 @@ Partial Public Class XRItemsAboveMaxim
         Me.DataMember = "stocks"
         Me.DataSource = Me.DsItemsMinMax1
         Me.FilterString = "[available] >= [maximum]"
-        Me.Margins = New System.Drawing.Printing.Margins(67, 55, 16, 29)
+        Me.Margins = New DevExpress.Drawing.DXMargins(67, 55, 16, 29)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "13.2"
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()

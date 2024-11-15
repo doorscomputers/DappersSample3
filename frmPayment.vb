@@ -29,7 +29,7 @@
             'Me.Hide()
             frmPOS.txtTendered.Text = "0"
             frmPOS.lblChange.Text = "0"
-            frmPOS.btnNew.Focus()
+            frmPOS.txtitem.Focus()
             'frmPOS.Activate()
 
         End If

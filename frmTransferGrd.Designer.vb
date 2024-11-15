@@ -37,6 +37,7 @@ Partial Class frmTransferGrd
         Me.coltdetamnt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsInsert_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.VwTransferedTableAdapter = New DoorsPOS.WinApp.dsTransferedTableAdapters.vwTransferedTableAdapter()
+        Me.colTransferNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTransferedBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsTransfered, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +67,7 @@ Partial Class frmTransferGrd
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.coltdate, Me.colstckid, Me.coldtInsert_dt, Me.collocation, Me.colitem_desc, Me.colprice, Me.colqty, Me.coltdetamnt, Me.colsInsert_id})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.coltdate, Me.colstckid, Me.colTransferNo, Me.coldtInsert_dt, Me.collocation, Me.colitem_desc, Me.colprice, Me.colqty, Me.coltdetamnt, Me.colsInsert_id})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupCount = 1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.colqty, "")})
@@ -90,7 +91,7 @@ Partial Class frmTransferGrd
         Me.coldtInsert_dt.FieldName = "dtInsert_dt"
         Me.coldtInsert_dt.Name = "coldtInsert_dt"
         Me.coldtInsert_dt.Visible = True
-        Me.coldtInsert_dt.VisibleIndex = 0
+        Me.coldtInsert_dt.VisibleIndex = 1
         '
         'collocation
         '
@@ -98,7 +99,7 @@ Partial Class frmTransferGrd
         Me.collocation.FieldName = "location"
         Me.collocation.Name = "collocation"
         Me.collocation.Visible = True
-        Me.collocation.VisibleIndex = 2
+        Me.collocation.VisibleIndex = 3
         '
         'colitem_desc
         '
@@ -119,7 +120,7 @@ Partial Class frmTransferGrd
         Me.colqty.FieldName = "qty"
         Me.colqty.Name = "colqty"
         Me.colqty.Visible = True
-        Me.colqty.VisibleIndex = 1
+        Me.colqty.VisibleIndex = 2
         '
         'coltdetamnt
         '
@@ -132,11 +133,19 @@ Partial Class frmTransferGrd
         Me.colsInsert_id.FieldName = "sInsert_id"
         Me.colsInsert_id.Name = "colsInsert_id"
         Me.colsInsert_id.Visible = True
-        Me.colsInsert_id.VisibleIndex = 3
+        Me.colsInsert_id.VisibleIndex = 4
         '
         'VwTransferedTableAdapter
         '
         Me.VwTransferedTableAdapter.ClearBeforeFill = True
+        '
+        'colTransferNo
+        '
+        Me.colTransferNo.Caption = "Transfer #"
+        Me.colTransferNo.FieldName = "TransferNo"
+        Me.colTransferNo.Name = "colTransferNo"
+        Me.colTransferNo.Visible = True
+        Me.colTransferNo.VisibleIndex = 0
         '
         'frmTransferGrd
         '
@@ -167,4 +176,5 @@ Partial Class frmTransferGrd
     Friend WithEvents colqty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coltdetamnt As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colsInsert_id As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colTransferNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class

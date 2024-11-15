@@ -1,7 +1,11 @@
 ﻿'Imports PDSA.Data
+Imports System.ComponentModel
+Imports System.Data.SqlClient
+Imports System.Media
+Imports System.Runtime.InteropServices
+Imports DevExpress.XtraReports.UI
 Imports PDSA.DataLayer.DataClasses
 Imports PDSA.Validation
-Imports DevExpress.XtraReports.UI
 Public Class frmPOS
     Dim vincentives As Decimal = 0
     Private Const SM_CXSCREEN As Integer = 0
@@ -12,8 +16,11 @@ Public Class frmPOS
     Private Declare Function GetSystemMetrics Lib "user32.dll" Alias "GetSystemMetrics" (ByVal Which As Integer) As Integer
     Dim cItemID As String
     Dim nPrice As Decimal
+    Dim nWS As Decimal
+    Dim nRP As Decimal
     Dim nCost As Decimal
     Dim nProdID As Integer
+    Dim nQtyWholesale As Double
     Dim cItem As String
     Dim cItemName As String
 
@@ -42,8 +49,8 @@ Public Class frmPOS
     Dim cntr As Integer
     Private mOrderHeader As New pos_hdrtmp()
     Private mOrderLine1 As New pos_dettmp()
-    Public qtyy As Integer = 1 ' qtyy is the quantity pre-set by the cashier 
-    Public Shared vpieces As Integer = 1
+    Public qtyy As Decimal = 1 ' qtyy is the quantity pre-set by the cashier ModifyQty
+    Public Shared vpieces As Decimal = 1 'ModifyQty
     Public Shared vPriceChange As Decimal = 0
     Public Shared vdisc As Integer = 0
     Public Shared vdiscamnt As Decimal = 0
@@ -61,8 +68,8 @@ Public Class frmPOS
     Public vPrice As Decimal = 0
     Public vWPrice As Decimal = 0
     Public vbocde As String = String.Empty
-    Public vAvlbl As Integer = 0
-    Public vInnerQty As Integer = 0
+    Public vAvlbl As Decimal = 0 ' ModifyQty
+    Public vInnerQty As Decimal = 0 'ModifyQty
     Public vboolItemFound As Boolean = False
 
     Dim Vatable As Decimal = 0
@@ -70,7 +77,79 @@ Public Class frmPOS
     Dim vCellValIncent As Integer = 0
     Public Shared mOrderId2 As Integer = 0
     Public Shared vStrCustName As String = String.Empty
+    Dim SeniorDiscount As Decimal = 0
+    Public vPricingMode As String = "Retail"
+    Public Shared vBarcodeOrItemSearch As Boolean = True
+    Dim vTotalQtySold As Decimal = 0
+    Dim SDClicked As Integer = 0
+    Dim RDClicked As Integer = 0
+    Dim refQty As Integer = 0
+    Dim refAmount As Decimal = 0
+    Dim refDiscount As Decimal = 0
+    Dim NewPrice As Decimal = 0
+    Dim Amount As Decimal = 0
+    Private Const WH_KEYBOARD_LL As Integer = 13
+    Private Shared hookID As IntPtr = IntPtr.Zero
+    Private Shared proc As LowLevelKeyboardProc = AddressOf HookCallback
+    Public vCategoryID As Integer
+    Public vCategoryDiscount As Decimal
+    Public vCategoryDiscountAmount As Decimal
+    Public vDiscountedAmount As Decimal
 
+
+
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function SetWindowsHookEx(idHook As Integer, lpfn As LowLevelKeyboardProc, hMod As IntPtr, dwThreadId As UInteger) As IntPtr
+    End Function
+
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function UnhookWindowsHookEx(hhk As IntPtr) As Boolean
+    End Function
+
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function CallNextHookEx(hhk As IntPtr, nCode As Integer, wParam As IntPtr, lParam As IntPtr) As IntPtr
+    End Function
+
+    <DllImport("kernel32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function GetModuleHandle(lpModuleName As String) As IntPtr
+    End Function
+
+    <DllImport("user32.dll")>
+    Private Shared Function GetAsyncKeyState(ByVal vKey As System.Windows.Forms.Keys) As Short
+    End Function
+
+    Private Delegate Function LowLevelKeyboardProc(nCode As Integer, wParam As IntPtr, lParam As IntPtr) As IntPtr
+
+    Private Shared Function HookCallback(nCode As Integer, wParam As IntPtr, lParam As IntPtr) As IntPtr
+        If nCode >= 0 Then
+            Dim vkCode As Integer = Marshal.ReadInt32(lParam)
+            If (wParam = CType(&H100, IntPtr) Or wParam = CType(&H104, IntPtr)) Then
+                ' Check for key combinations to block
+                If (vkCode = Keys.F4 AndAlso My.Computer.Keyboard.AltKeyDown) OrElse
+                   (vkCode = Keys.Escape AndAlso My.Computer.Keyboard.CtrlKeyDown AndAlso My.Computer.Keyboard.AltKeyDown) OrElse
+                   (vkCode = Keys.Escape AndAlso My.Computer.Keyboard.CtrlKeyDown) OrElse
+                   (vkCode = Keys.LWin Or vkCode = Keys.RWin) OrElse
+                   (vkCode = Keys.D AndAlso (GetAsyncKeyState(Keys.LWin) < 0 Or GetAsyncKeyState(Keys.RWin) < 0)) OrElse
+                   (vkCode = Keys.Tab AndAlso My.Computer.Keyboard.AltKeyDown) Then
+                    Return CType(1, IntPtr)  ' Block the key press
+                End If
+            End If
+        End If
+        Return CallNextHookEx(hookID, nCode, wParam, lParam)
+    End Function
+
+    Public Shared Sub SetHook()
+        If hookID = IntPtr.Zero Then
+            hookID = SetWindowsHookEx(WH_KEYBOARD_LL, proc, GetModuleHandle(Nothing), 0)
+        End If
+    End Sub
+
+    Public Shared Sub Unhook()
+        If hookID <> IntPtr.Zero Then
+            UnhookWindowsHookEx(hookID)
+            hookID = IntPtr.Zero
+        End If
+    End Sub
 
     Public ReadOnly Property ScreenX() As Integer
         Get
@@ -358,7 +437,9 @@ Public Class frmPOS
         '    Call RePrint()
         'End If
 
-
+        If e.KeyCode = Keys.F9 Then
+            Unhook()
+        End If
 
         'If e.KeyCode = Keys.F9 Then
 
@@ -727,8 +808,18 @@ Public Class frmPOS
                         '++This is the original COde
                         'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail, qtyy, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.incentive)
                         '++End of Original Code
-                        PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.active, mgr6.DataObject.Entity.incentive, vCellValIncent, mgr6.DataObject.Entity.vat)
+                        If vCategoryDiscount > 0 Then
+                            vCategoryDiscountAmount = mgr6.DataObject.Entity.retail * vCategoryDiscount
+                            vDiscountedAmount = mgr6.DataObject.Entity.retail - vCategoryDiscountAmount
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, vDiscountedAmount, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.active, mgr6.DataObject.Entity.incentive, vCellValIncent, mgr6.DataObject.Entity.vat, vCategoryDiscountAmount)
 
+                        Else
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.active, mgr6.DataObject.Entity.incentive, vCellValIncent, mgr6.DataObject.Entity.vat, 0)
+                        End If
+
+
+
+                        AddTempSales()
                         'MessageBox.Show(CStr(CBool(mgr6.DataObject.Entity.active)))
                         'MessageBox.Show(CStr(vBoo))
 
@@ -741,82 +832,123 @@ Public Class frmPOS
                         '++This is the original COde
                         'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail, qtyy, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.incentive)
                         '++End of Original Code
-                        PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat)
-
-
-                        ' MessageBox.Show(CStr(mgr6.DataObject.Entity.incentive))
-                        'ElseIf cmbPriceMode.Text = "Whooesale" Then
-                        'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail2, qtyy, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.incentive)
+                        If vCategoryDiscount > 0 Then
+                            vCategoryDiscountAmount = mgr6.DataObject.Entity.retail2 * vCategoryDiscount
+                            vDiscountedAmount = mgr6.DataObject.Entity.retail2 - vCategoryDiscountAmount
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail2, vDiscountedAmount, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat, vCategoryDiscountAmount)
+                        Else
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat, 0)
+                            ' MessageBox.Show(CStr(mgr6.DataObject.Entity.incentive))
+                            'ElseIf cmbPriceMode.Text = "Whooesale" Then
+                            'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail2, qtyy, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.incentive)
+                        End If
                     End If
 
 
 
                     'New Code
                     If cmbPriceMode.Text = "Refund" Then
-                        'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail, (qtyy * -1), mgr6.DataObject.Entity.retail * (qtyy * -1), mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.incentive)
-                        PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat)
+                        If vCategoryDiscount > 0 Then
+                            vCategoryDiscountAmount = mgr6.DataObject.Entity.retail * vCategoryDiscount
+                            vDiscountedAmount = mgr6.DataObject.Entity.retail - vCategoryDiscountAmount
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, ((mgr6.DataObject.Entity.retail * qtyy) - vCategoryDiscountAmount), mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat, vCategoryDiscountAmount)
+                        Else
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat, 0)
+                        End If
+
+                        'cmbPriceMode.Text = "Retail"
                     End If
                     'end of new code
 
 
                 Else
                     If cmbPriceMode.Text = "Retail" Then
-                        'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail, qtyy, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.incentive)
-                        PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat)
-                        'Else
-                        '   'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail2, qtyy, mgr6.DataObject.Entity.retail2 * qtyy, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.incentive)
-                        '  PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2 * qtyy, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.incentive)
+                        If vCategoryDiscount > 0 Then
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat, 0)
+                        Else
+                            PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat, 0)
+                        End If
                     End If
 
                     If cmbPriceMode.Text = "Wholesale" Then
                         PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail2, mgr6.DataObject.Entity.retail2 * qtyy, mgr6.DataObject.Entity.retail2, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat)
                     End If
 
-
-
                     If cmbPriceMode.Text = "Refund" Then
-                        'PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.retail, qtyy, mgr6.DataObject.Entity.retail * (qtyy * -1), mgr6.DataObject.Entity.retail * (qtyy * -1), 0, mgr6.DataObject.Entity.incentive)
                         PosGrid.Rows.Add(mgr6.DataObject.Entity.stckid, mgr6.DataObject.Entity.barcode, qtyy, mgr6.DataObject.Entity.cost, mgr6.DataObject.Entity.itemdesc, mgr6.DataObject.Entity.retail, mgr6.DataObject.Entity.retail * qtyy, mgr6.DataObject.Entity.retail * qtyy, 0, mgr6.DataObject.Entity.active, vCellValIncent, mgr6.DataObject.Entity.vat)
-                        cmbPriceMode.Text = "Retail"
-
-                        'Else
-                        ' PosGrid.Rows.Add(mgr.DataObject.Entity.stckid, mgr.DataObject.Entity.barcode, mgr.DataObject.Entity.itemdesc, mgr.DataObject.Entity.cost, mgr.DataObject.Entity.retail2, qtyy, mgr.DataObject.Entity.retail2 * (qtyy * -1))
                     End If
-
-
-
                 End If
             Else
+                NewPrice = 0
                 If cmbPriceMode.Text = "Retail" Then
                     ' if item is already there increase its count
                     'Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(5).Value)
                     Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(2).Value)
                     ItemCount += CInt(ceQtyy.Value)
-                    Dim NewPrice As Decimal = mgr6.DataObject.Entity.retail * ItemCount
+                    'New Code May 22, 2024
+                    If vCategoryDiscount > 0 Then
+                        vCategoryDiscountAmount = (mgr6.DataObject.Entity.retail * ItemCount) * vCategoryDiscount
+                        vDiscountedAmount = (mgr6.DataObject.Entity.retail * ItemCount) - vCategoryDiscountAmount
+                        NewPrice = vDiscountedAmount
+                        PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
+                        PosGrid.Rows(ItemLoc).Cells(12).Value = vCategoryDiscountAmount
+                    Else
+                        NewPrice = mgr6.DataObject.Entity.retail * ItemCount
+                        PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
+                        PosGrid.Rows(ItemLoc).Cells(12).Value = 0
+                    End If
+                    'End of New Code
+
                     Dim NewIncentv As Decimal = mgr6.DataObject.Entity.incentive * ItemCount
+                    PosGrid.Rows(ItemLoc).Cells(5).Value = mgr6.DataObject.Entity.retail
+                    PosGrid.Rows(ItemLoc).Cells(2).Value = ItemCount
+
+
+                    'PosGrid.Rows(ItemLoc).Cells(9).Value = NewIncentv
+                    UpdateSalesTempQty()
+                ElseIf cmbPriceMode.Text = "Wholesale" Then
+                    ' if item is already there increase its count
+                    Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(2).Value)
+                    ItemCount += 1
+                    If vCategoryDiscount > 0 Then
+                        vCategoryDiscountAmount = (mgr6.DataObject.Entity.retail2 * ItemCount) * vCategoryDiscount
+                        vDiscountedAmount = (mgr6.DataObject.Entity.retail2 * ItemCount) - vCategoryDiscountAmount
+                        NewPrice = vDiscountedAmount
+                        PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
+                        PosGrid.Rows(ItemLoc).Cells(12).Value = vCategoryDiscountAmount
+                    Else
+                        'Dim NewPrice As Decimal = mgr.DataObject.Entity.retail2 * ItemCount
+                        NewPrice = mgr.DataObject.Entity.retail2 * ItemCount
+                        PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
+                        PosGrid.Rows(ItemLoc).Cells(12).Value = 0
+                    End If
+
+
+                    PosGrid.Rows(ItemLoc).Cells(2).Value = ItemCount
+                    PosGrid.Rows(ItemLoc).Cells(5).Value = mgr.DataObject.Entity.retail2
+
+                Else
+                    ' if item is already there increase its count
+                    'Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(5).Value)
+                    Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(2).Value)
+                    ItemCount += -1 'CInt(ceQtyy.Value)
+
+                    If vCategoryDiscount > 0 Then
+                        vCategoryDiscountAmount = (mgr6.DataObject.Entity.retail * ItemCount) * vCategoryDiscount
+                        vDiscountedAmount = (mgr6.DataObject.Entity.retail * ItemCount) - vCategoryDiscountAmount
+                        NewPrice = vDiscountedAmount
+                        PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
+                        PosGrid.Rows(ItemLoc).Cells(12).Value = vCategoryDiscountAmount
+                    Else
+                        Dim NewPrice As Decimal = mgr6.DataObject.Entity.retail * ItemCount
+                        PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
+                        PosGrid.Rows(ItemLoc).Cells(12).Value = 0
+                    End If
+
+                    Dim NewIncentvv As Decimal = mgr6.DataObject.Entity.incentive * ItemCount
                     'PosGrid.Rows(ItemLoc).Cells(5).Value = ItemCount
                     PosGrid.Rows(ItemLoc).Cells(2).Value = ItemCount
-                    PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
-                    'PosGrid.Rows(ItemLoc).Cells(9).Value = NewIncentv
-
-                    'ElseIf cmbPriceMode.Text = "Wholesale" Then
-                    '    ' if item is already there increase its count
-                    '    Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(5).Value)
-                    '    ItemCount += 1
-                    '    Dim NewPrice As Decimal = mgr.DataObject.Entity.retail2 * ItemCount
-                    '    PosGrid.Rows(ItemLoc).Cells(5).Value = ItemCount
-                    '    PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
-                    'Else
-                    '' if item is already there increase its count
-                    ''Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(5).Value)
-                    'Dim ItemCount As Integer = CInt(PosGrid.Rows(ItemLoc).Cells(2).Value)
-                    'ItemCount += CInt(ceQtyy.Value)
-                    'Dim NewPrice As Decimal = mgr6.DataObject.Entity.retail2 * ItemCount
-                    'Dim NewIncentvv As Decimal = mgr6.DataObject.Entity.incentive * ItemCount
-                    ''PosGrid.Rows(ItemLoc).Cells(5).Value = ItemCount
-                    'PosGrid.Rows(ItemLoc).Cells(2).Value = ItemCount
-                    'PosGrid.Rows(ItemLoc).Cells(6).Value = NewPrice
-                    'PosGrid.Rows(ItemLoc).Cells(9).Value = NewIncentvv
+                    PosGrid.Rows(ItemLoc).Cells(9).Value = NewIncentvv
                 End If
 
             End If
@@ -860,16 +992,23 @@ Public Class frmPOS
             End If
 
 
-            ''itemcnt = PosGrid.Rows.Count
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
 
             txtitem.Text = String.Empty
             txtBarcode.Text = String.Empty
             ceQtyy.Value = 1
-            'txtBarcode.Focus()
+            vDiscountedAmount = 0
+            vCategoryDiscount = 0
+            vCategoryDiscountAmount = 0
+            NewPrice = 0
+
             txtCounts.Text = CStr(PosGrid.Rows.Count)
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         Catch ex As PDSAValidationException
             MessageBox.Show(ex.Message)
         Catch ex As Exception
@@ -881,17 +1020,79 @@ Public Class frmPOS
 
         If e.KeyCode = Keys.Enter Then
 
-            SearchBarcodeOnItem()
+            'SearchBarcodeOnItem()
+            'DgitemsKeydown()
             Exit Sub
         End If
 
 
+        If e.KeyCode = Keys.Left Then
+            txtBarcode.Text = String.Empty
+            txtitem.Text = String.Empty
+            txtBarcode.Focus()
+            Exit Sub
+        End If
 
         If e.KeyCode = Keys.F10 Then
-            If btnSaves.Enabled = True And PosGrid.Rows.Count >= 1 Then
-                MessageBox.Show("Please Complete a Pending Sales Transaction First")
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
                 Exit Sub
             End If
+            Dim ansint As Integer = 7
+            ansint = MsgBox("Make Sure your printer is turned on and with enough paper loaded.", MsgBoxStyle.YesNo, "Check Printer.")
+            If ansint = 7 Then
+                Exit Sub
+            End If
+
+            Unhook()
+
+
+            'Dim posrepsales As New xrSalesEndDay()
+            'posrepsales.RequestParameters = False
+            'posrepsales.Parameter1.Value = PDSAAppConfig.CurrentLoginID
+            'posrepsales.PrintingSystem.ShowMarginsWarning = False
+            'posrepsales.Print()
+
+
+            'Dim strFindCredits As String = "SELECT mowd FROM vwSalesbyCatToday WHERE mowd='CREDIT'"
+            'ExecuteSQLQuery(strFindCredits)
+            'If sqlDT.Rows.Count > 0 Then
+            '    Dim posCredit As New xrCreditsToday()
+            '    posCredit.RequestParameters = False
+            '    posCredit.PrintingSystem.ShowMarginsWarning = False
+            '    posCredit.Print()
+            'End If
+
+            'Dim strFindGetCash As String = "SELECT posdate FROM petty_cash WHERE posdate='" & Date.Today & "'"
+            'ExecuteSQLQuery(strFindGetCash)
+            'If sqlDT.Rows.Count > 0 Then
+            '    Dim posGC As New xrPettyCash()
+            '    posGC.RequestParameters = False
+            '    posGC.PrintingSystem.ShowMarginsWarning = False
+            '    posGC.Print()
+            'End If
+
+            'Dim strFindAC As String = "SELECT posdate FROM additnlcash WHERE posdate='" & Date.Today & "'"
+            'ExecuteSQLQuery(strFindAC)
+            'If sqlDT.Rows.Count > 0 Then
+            '    Dim posAC As New xrAdditionalCash()
+            '    posAC.RequestParameters = False
+            '    posAC.PrintingSystem.ShowMarginsWarning = False
+            '    posAC.Print()
+            'End If
+
+
+            'If btnSaves.Enabled = True And PosGrid.Rows.Count >= 1 Then
+            '    MessageBox.Show("Please Complete a Pending Sales Transaction First")
+            '    Exit Sub
+            'End If
             txtBarcode.Enabled = False
             btnBcode.Enabled = False
             btnSearchItems.Enabled = False
@@ -927,6 +1128,18 @@ Public Class frmPOS
             Dim iCounter As Integer = 0
             Dim iiCounter As Integer = 0
             Dim vboolVAT As Integer
+            'Dim TripleICounter As Integer = 0
+            'Dim vvBoolean As Boolean
+            ''New Code to determine if the stocks is vatabale or non vatable
+            'For TripleICounter = 0 To PosGrid.Rows.Count - 1
+            '    Dim strFindVatable As String = String.Format("Select vat From stocks where stckid={0}", PosGrid.Rows(TripleICounter).Cells(0).Value)
+            '    ExecuteSQLQuery(strFindVatable)
+            '    If sqlDT.Rows.Count > 0 Then
+            '        vvBoolean = CBool(sqlDT.Rows(0)("vat"))
+            '        PosGrid.Rows(TripleICounter).Cells(11).Value = vvBoolean
+            '    End If
+            'Next
+
             ' compute the total for the recipt
             Tots = 0
             For I = 0 To PosGrid.Rows.Count - 1
@@ -940,20 +1153,37 @@ Public Class frmPOS
             'vpTotalSales = Tots
             '+End of Comment Above
 
+            'Vatable = 0
+            'NonVatable = 0
+            'For iCounter = 0 To PosGrid.Rows.Count - 1
+            '    ''MessageBox.Show(CStr(PosGrid.Rows.Count))
+            '    'vboolVAT = CBool(PosGrid.Rows(iCounter).Cells(9).Value)
+            '    vboolVAT = CInt(PosGrid.Rows(iCounter).Cells(11).Value)
+            '    If vboolVAT = 1 Then
+            '        Vatable += CDec(PosGrid.Rows(iCounter).Cells(6).Value)
+            '    End If
+
+            'Next
+
+            'iiCounter = 0
+            'For iiCounter = 0 To PosGrid.Rows.Count - 1
+            '    ''MessageBox.Show(CStr(PosGrid.Rows.Count))
+            '    'vboolVAT = CBool(PosGrid.Rows(iiCounter).Cells(9).Value)
+            '    vboolVAT = CInt(PosGrid.Rows(iCounter).Cells(11).Value)
+            '    If vboolVAT = 0 Then
+            '        NonVatable += CDec(PosGrid.Rows(iiCounter).Cells(6).Value)
+            '    End If
+
+            'Next
             Vatable = 0
             NonVatable = 0
             For iCounter = 0 To PosGrid.Rows.Count - 1
-                ''MessageBox.Show(CStr(PosGrid.Rows.Count))
-                'vboolVAT = CBool(PosGrid.Rows(iCounter).Cells(9).Value)
                 vboolVAT = CInt(PosGrid.Rows(iCounter).Cells(11).Value)
                 If vboolVAT = 1 Then
                     Vatable += CDec(PosGrid.Rows(iCounter).Cells(6).Value)
                 End If
-
             Next
-
             iiCounter = 0
-
             For iiCounter = 0 To PosGrid.Rows.Count - 1
                 ''MessageBox.Show(CStr(PosGrid.Rows.Count))
                 'vboolVAT = CBool(PosGrid.Rows(iiCounter).Cells(9).Value)
@@ -963,8 +1193,6 @@ Public Class frmPOS
                 End If
 
             Next
-
-
 
             grdcountt = PosGrid.Rows.Count
             Try
@@ -1055,8 +1283,7 @@ Public Class frmPOS
         End If
 
         If e.KeyCode = Keys.ShiftKey Then
-            ContextMenuStrip1.Show()
-
+            'ContextMenuStrip1.Show()
         End If
 
         If e.KeyCode = Keys.S AndAlso e.Control = True Then
@@ -1067,6 +1294,198 @@ Public Class frmPOS
             Exit Sub
         End If
 
+        If e.KeyCode = Keys.H AndAlso e.Control = True Then
+            Dim frm As frmHelp
+            frm = New frmHelp
+            frm.Show()
+            frm = Nothing
+            Exit Sub
+        End If
+
+        If e.KeyCode = Keys.P AndAlso e.Control = True Then
+            Try
+                passcorrect = False
+                If PosGrid.Rows.Count >= 1 Then
+                    vPriceChange = CDec(PosGrid.SelectedRows(0).Cells(5).Value)
+                    Dim formChangePrice As New frmNewPrice
+                    formChangePrice.ShowDialog()
+                    'If vPricingMode = "Refund" Then
+                    '    vpieces = vpieces * -1
+                    'End If
+
+                    'this is the original Code below
+                    'PosGrid.Rows(PosGrid.RowCount - 1).Cells(2).Value = vpieces
+                    'this is the original Code above
+
+                    PosGrid.SelectedRows(0).Cells(5).Value = vPriceChange
+                    'PosGrid.Rows.Remove(PosGrid.SelectedRows(0))
+
+                    ''Me.PosGrid.Rows(Me.PosGrid.RowCount - 1).Selected = True
+                    txtitem.Text = String.Empty
+                    'txtitem.Focus()
+
+
+                    'Newly added code to re compute the totals
+                    Dim IAyI As Integer = 0
+                    Tots = 0
+                    For IAyI = 0 To PosGrid.Rows.Count - 1
+                        Tots += CDec(PosGrid.Rows(IAyI).Cells(6).Value)
+                    Next
+
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+
+                    'Scroll to the last row.
+                    Me.PosGrid.FirstDisplayedScrollingRowIndex = Me.PosGrid.RowCount - 1
+
+                    'Select the last row.
+                    Me.PosGrid.Rows(Me.PosGrid.RowCount - 1).Selected = True
+
+                    'CalcEdit1.Value = Tots
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+                    txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
+                    CheckSumifNegative()
+                    vpTotalSales = Tots
+                    'TextEdit1.Text = FormatCurrency(CStr(Tots))
+                    qtyy = 1
+                    vpieces = 1
+                    'End of newly added code
+
+
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString())
+            End Try
+        End If
+
+        If e.KeyCode = Keys.D AndAlso e.Control = True Then
+            '++This is the Original Code
+            'Dim TotsBeforeDisc As Decimal = 0
+            'Tots = 0
+            'SeniorDiscount = 0
+            'vdiscamnt = 0
+            'Dim i As Integer = 0
+            'For i = 0 To PosGrid.Rows.Count - 1
+            '    Tots += CDec(PosGrid.Rows(i).Cells(6).Value)
+            'Next
+            '' txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr
+
+
+            'txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True)
+            'TotsBeforeDisc = CDec(CDec(Tots / 1.12) * 0.8)
+            'SeniorDiscount = CDec(CDec(Tots / 1.12) * 0.2)
+            'vdiscamnt = Tots - TotsBeforeDisc
+            'txtSum.Text = FormatNumber(TotsBeforeDisc, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots22))
+            'If vBarcodeOrItemSearch = True Then
+            '    txtBarcode.Text = String.Empty
+            '    txtBarcode.Focus()
+            'Else
+            '    txtitem.Text = String.Empty
+            '    txtitem.Focus()
+            'End If
+            'Exit Sub
+            '++End of Original Code Comment
+            'passcorrect = False
+            'Dim frm As frmPasswordInput
+            'frm = New frmPasswordInput
+            ''frm.MdiParent = Me
+            'frm.WindowState = FormWindowState.Normal
+            'frm.ShowDialog()
+            'frm = Nothing
+            'If passcorrect = False Then
+            '    Exit Sub
+            'End If
+
+            'ceWtid.Value = vEmpID
+            passcorrect = True
+            If passcorrect = True Then
+
+                Dim vdetdisc As Decimal = 0 ' this is the discount computed per item that was divided from the vdiscamnt variable to the total itemcount which is vItemCount
+                Dim ayayay As Integer = 0
+                For ayayay = 0 To PosGrid.Rows.Count - 1
+                    PosGrid.Rows(ayayay).Cells(8).Value = 0
+                Next
+
+                If btnSaves.Enabled = False Then
+                    MessageBox.Show("Discount is not allowed if Sales Transaction is already paid.")
+                    Exit Sub
+                End If
+                If PosGrid.Rows.Count < 1 Then
+                    MessageBox.Show("Item List is  B l a n k")
+                    Exit Sub
+                End If
+
+                'Recalculate the total on the Grid and post it on txtsum before applying any discount
+                Dim I As Integer = 0
+                Tots = 0
+                For I = 0 To PosGrid.Rows.Count - 1
+                    Tots += CDec(PosGrid.Rows(I).Cells(6).Value)
+                Next
+
+                txtCounts.Text = CStr(PosGrid.Rows.Count)
+                txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) ' FormatNumber(CStr(Tots))
+                CheckSumifNegative()
+                vpTotalSales = Tots
+
+
+
+                Try
+                    Dim percentamnt As Decimal = 0
+                    vdisc = 0
+                    vdiscamnt = 0
+                    vtotalsales = Tots 'CDec(txtSum.Text) My New Comments 12 21 13
+                    'vpTotalSales = CDec(txtSum.Text) My New Comments 12 21 13
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+                    Dim frmdisc As New frmDiscount
+                    frmdisc.ShowDialog()
+                    txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
+                    CheckSumifNegative()
+
+                    If vtotalsales = 0 Then
+                        txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
+                        CheckSumifNegative()
+                        vpTotalSales = Tots
+                    End If
+
+
+                    Dim vItemCount As Integer = 0
+                    Dim ay As Integer = 0
+                    For ay = 0 To PosGrid.Rows.Count - 1
+                        vItemCount += CInt(PosGrid.Rows(ay).Cells(5).Value)
+                    Next
+
+                    If vdiscamnt > 0 Then
+                        vdetdisc = CDec(vdiscamnt / vItemCount)
+                        Dim ayay As Integer = 0
+                        For ayay = 0 To PosGrid.Rows.Count - 1
+                            PosGrid.Rows(ayay).Cells(8).Value = CDec(vdetdisc * CInt(PosGrid.Rows(ayay).Cells(2).Value))
+                        Next
+                    End If
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+                    txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
+                    CheckSumifNegative()
+                    txtBarcode.Text = String.Empty
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString())
+                End Try
+            End If
+
+
+        End If
 
         If e.KeyCode = Keys.C AndAlso e.Control = True Then
             vStrCustName = CStr(InputBox("Enter Customer Name", "Customer Name", vStrCustName))
@@ -1089,11 +1508,15 @@ Public Class frmPOS
             e.Handled = True
             Dim frm As New frmPriceLookup2
             frm.ShowDialog()
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
-            'txtitem.focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
+
         End If
 
         If e.KeyCode = Keys.F3 Then
@@ -1107,6 +1530,20 @@ Public Class frmPOS
             ''~~~ Calling it and passing the name of the form to be displayed
             'Dim myObj As abcLockScreen = New abcLockScreen
             'myObj.LockSystemAndShow(Form2)
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+
+
+
 
             vSalesNum = CInt(InputBox("Enter the sales number to be printed", "Reprint", CStr(ceRefno.Text)))
             Dim posrep As New xrReceiptTodaRaba()
@@ -1120,42 +1557,76 @@ Public Class frmPOS
 
 
         If e.KeyCode = Keys.F5 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
             'If btnnew.Enabled = False Then
             If PosGrid.Rows.Count > 0 Then
                 SuspendTrans()
             Else
-                'btnSearchItems.Focus()
-                'txtitem.Focus()
-                txtitem.Text = String.Empty
-
-                txtitem.Focus()
-                'End If
-            End If
-        End If
-
-        If e.KeyCode = Keys.F6 Then
-            If btnnew.Enabled = False Then
-                If PosGrid.Rows.Count > 1 Then
-                    MessageBox.Show("Pls. finish the existing sales transaction before retrieving a suspended sale.")
-                    Exit Sub
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
                 Else
-                    Call RetrieveTrans()
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
                 End If
             End If
         End If
 
-        If e.KeyCode = Keys.F7 Then
+        If e.KeyCode = Keys.F6 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
             If btnnew.Enabled = False Then
-                cmbPriceMode.Text = "Refund"
-                'txtBarcode.Focus()
-                'btnSearchItems.Focus()
-                txtitem.Focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                'If PosGrid.Rows.Count > 1 Then
+                'MessageBox.Show("Pls. finish the existing sales transaction before retrieving a suspended sale.")
+                'xit Sub
+                'Else
+                Call RetrieveTrans()
+                'End If
             End If
         End If
 
+        If e.KeyCode = Keys.F7 Then
+            'If btnnew.Enabled = False Then
+            '    cmbPriceMode.Text = "Refund"
+            '    'txtBarcode.Focus()
+            '    'btnSearchItems.Focus()
+            '    txtitem.Focus()
+            '    txtitem.Text = String.Empty
+            '    txtitem.Focus()
+            'End If
+        End If
+
         If e.KeyCode = Keys.F8 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
             'If PosGrid.Rows.Count > 1 Then
             'MessageBox.Show("Pls. finish the existing sales transaction before retrieving a suspended sale.")
             'Exit Sub
@@ -1168,63 +1639,78 @@ Public Class frmPOS
 
 
         If e.KeyCode = Keys.F9 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
 
-            itemcnt = 0
-            vdisc = 0
-            vdiscamnt = 0
-            vEmpID = 1
-            txtTendered.Text = "0"
-            Try
+            If passcorrect = False Then
+                Exit Sub
+            End If
 
-                txtSum.Text = "0"
-                PosGrid.Rows.Clear()
-                txtBarcode.Text = String.Empty
-                txtitem.Text = String.Empty
-                'txtTendered.Text = "0"
-                'lblChange.Text = "0"
-                ceWtid.Value = 1
-                vtotalsales = 0
-                vpTotalSales = 0
-                txtcustid.Text = "1"
-                txtqty.Text = "0"
-                txtlastname.Text = "CASH"
-                txtfirstname.Text = String.Empty
-                btnSaves.Enabled = True
-                btnPriceMode.Enabled = True
-                btnType.Enabled = True
-                btnSuspend.Enabled = True
-                btnRetrieve.Enabled = True
-                btnRemove.Enabled = True
-                btnDiscount.Enabled = True
-                Button1.Enabled = True ' this is the Set Quantity button
-                btnCustomers.Enabled = True
-                txtBarcode.Enabled = True
-                btnSearchItems.Enabled = True
-                btnReprint.Enabled = True
-                txtbcodes.Text = String.Empty
-                txtStckid.Text = String.Empty
-                btnType.Enabled = True
-                btnPriceMode.Enabled = True
-                btnCustomers.Enabled = True
-                btnSuspend.Enabled = True
-                btnRetrieve.Enabled = True
-                btnRemove.Enabled = True
-                cmbPriceMode.Text = "Retail"
-                cmbPaymentType.Text = "CASH"
-                btnChequePayment.Enabled = True
-                'GridLookUpEdit2.Enabled = True
-                txtitem.Enabled = True
+            Unhook()
 
-                'txtBarcode.Focus()
-                'btnSearchItems.Focus()
-                txtitem.Focus()
-                txtitem.Text = String.Empty
-                btnnew.Enabled = False
-                txtitem.Focus()
+            'itemcnt = 0
+            'vdisc = 0
+            'vdiscamnt = 0
+            'vEmpID = 1
+            'txtTendered.Text = "0"
+            'Try
 
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString())
-            End Try
+            '    txtSum.Text = "0"
+            '    PosGrid.Rows.Clear()
+            '    txtBarcode.Text = String.Empty
+            '    txtitem.Text = String.Empty
+            '    'txtTendered.Text = "0"
+            '    'lblChange.Text = "0"
+            '    ceWtid.Value = 1
+            '    vtotalsales = 0
+            '    vpTotalSales = 0
+            '    txtcustid.Text = "1"
+            '    txtqty.Text = "0"
+            '    txtlastname.Text = "CASH"
+            '    txtfirstname.Text = String.Empty
+            '    btnSaves.Enabled = True
+            '    btnPriceMode.Enabled = True
+            '    btnType.Enabled = True
+            '    btnSuspend.Enabled = True
+            '    btnRetrieve.Enabled = True
+            '    btnRemove.Enabled = True
+            '    btnDiscount.Enabled = True
+            '    Button1.Enabled = True ' this is the Set Quantity button
+            '    btnCustomers.Enabled = True
+            '    txtBarcode.Enabled = True
+            '    btnSearchItems.Enabled = True
+            '    btnReprint.Enabled = True
+            '    txtbcodes.Text = String.Empty
+            '    txtStckid.Text = String.Empty
+            '    btnType.Enabled = True
+            '    btnPriceMode.Enabled = True
+            '    btnCustomers.Enabled = True
+            '    btnSuspend.Enabled = True
+            '    btnRetrieve.Enabled = True
+            '    btnRemove.Enabled = True
+            '    cmbPriceMode.Text = "Retail"
+            '    cmbPaymentType.Text = "CASH"
+            '    btnChequePayment.Enabled = True
+            '    'GridLookUpEdit2.Enabled = True
+            '    txtitem.Enabled = True
+
+            '    btnnew.Enabled = False
+            '    If vBarcodeOrItemSearch = True Then
+            '        txtBarcode.Text = String.Empty
+            '        txtBarcode.Focus()
+            '    Else
+            '        txtitem.Text = String.Empty
+            '        txtitem.Focus()
+            '    End If
+
+            'Catch ex As Exception
+            '    MessageBox.Show(ex.ToString())
+            'End Try
         End If
 
 
@@ -1259,6 +1745,17 @@ Public Class frmPOS
 
         End If
         If e.KeyCode = Keys.F1 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
             SetQuantity()
             e.Handled = True
         End If
@@ -1268,8 +1765,13 @@ Public Class frmPOS
             dgitems.Visible = False
             'txtitem.Focus()
             'txtitem.SelectAll()
-            txtitem.Focus()
-            txtBarcode.SelectAll()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
             e.SuppressKeyPress = True
         End If
 
@@ -1487,11 +1989,11 @@ Public Class frmPOS
 
                         .Columns("retail").DefaultCellStyle.Format = "c"
                         .Columns("retail2").DefaultCellStyle.Format = "c"
-                        .Columns("retail").DefaultCellStyle.Alignment = _
+                        .Columns("retail").DefaultCellStyle.Alignment =
                             DataGridViewContentAlignment.MiddleRight
-                        .Columns("retail2").DefaultCellStyle.Alignment = _
+                        .Columns("retail2").DefaultCellStyle.Alignment =
                             DataGridViewContentAlignment.MiddleRight
-                        .Columns("Available").DefaultCellStyle.Alignment = _
+                        .Columns("Available").DefaultCellStyle.Alignment =
                             DataGridViewContentAlignment.MiddleRight
                         ' ''.DefaultCellStyle.NullValue = "no entry"
                         ''.Columns("Packaging").DefaultCellStyle.Alignment = _
@@ -1593,6 +2095,11 @@ Public Class frmPOS
         'End If
     End Sub
     Public Sub PosGrid_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles PosGrid.KeyDown
+        If e.Alt = True And e.KeyCode = Keys.P Then
+            PriceOverride()
+            e.Handled = True
+            Exit Sub
+        End If
         ' Dim ItemCnt As Integer
         '' Dim ItemLocc As String
         'Dim Totsss As Decimal
@@ -1677,14 +2184,23 @@ Public Class frmPOS
 
             If e.KeyCode = Keys.F1 Then
                 If PosGrid.Rows.Count >= 1 Then
+                    passcorrect = False
+                    Dim frm As frmPasswordInput
+                    frm = New frmPasswordInput
+                    'frm.MdiParent = Me
+                    frm.WindowState = FormWindowState.Normal
+                    frm.ShowDialog()
+                    frm = Nothing
+
+                    If passcorrect = False Then
+                        Exit Sub
+                    End If
                     SetQuantity()
                 End If
 
             End If
 
-            If e.KeyCode = Keys.D Then
-                VoidItem()
-            End If
+
 
         Catch ex As PDSAValidationException
             MessageBox.Show(ex.Message)
@@ -1729,11 +2245,13 @@ Public Class frmPOS
             'leCust.EditValue = vbNullString
             ''leItems.EditValue = vbNullString
             txtBarcode.Text = ""
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
-            'txtitem.focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         Catch ex As PDSAValidationException
             MessageBox.Show(ex.Message)
         Catch ex As Exception
@@ -1779,12 +2297,26 @@ Public Class frmPOS
         '+End of Latest Comment
         '++I commented btnnewfocus to automatically call New Transaction
         'btnnew.Focus()
+        '++Determine if the searching is by Barcode or Item
+        Dim strFindAvlbl As String = "SELECT searchtype FROM setuptbl"
+        ExecuteSQLQuery(strFindAvlbl)
+
+        If sqlDT.Rows.Count > 0 Then
+            vBarcodeOrItemSearch = CBool(sqlDT.Rows(0)("searchtype"))
+        End If
+
+
         Call NewTransaction()
         '++End of Comment
 
         'FullScreen()
         'Loads_frm()
+
+        SetHook()
+
     End Sub
+
+
     Sub Loads_frm()
         ''TODO: This line of code loads data into the 'DoorsposDataSet.stocks' table. You can move, or remove it, as needed.
 
@@ -1878,11 +2410,6 @@ Public Class frmPOS
     End Sub
 
     Private Sub txtBarcode_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles txtBarcode.KeyDown
-        'If e.KeyCode = 40 And DataGridView1.RowCount > 0 Then
-        'DataGridView1.Focus()
-        'Me.DataGridView1.Rows(Me.DataGridView1.RowCount - 1).Selected = True
-
-        'End If
         If e.Alt = True And e.KeyCode = Keys.Tab Then
             e.Handled = True
         End If
@@ -1891,42 +2418,774 @@ Public Class frmPOS
             e.Handled = True
         End If
 
+        If e.KeyCode = Keys.H AndAlso e.Control = True Then
+            Dim frm As frmHelp
+            frm = New frmHelp
+            frm.Show()
+            frm = Nothing
+            Exit Sub
+        End If
+
 
         If e.KeyCode = Keys.Right Then
-            ''txtBarcode.Text = String.Empty
-            ''txtItem.Focus()
-            txtitem.Text = String.Empty
-            'txtitem.focus()
+            txtBarcode.Text = String.Empty
             txtitem.Text = String.Empty
             txtitem.Focus()
-            'leItems.Text = String.Empty
-            'leItems.Focus()
+            Exit Sub
         End If
 
         If e.KeyCode = Keys.Down Then
-            '+New Code IF statement- Previously it has no If Statement
+
             If PosGrid.Rows.Count > 0 Then
                 PosGrid.Focus()
+                Me.PosGrid.Rows(0).Selected = True
+                Exit Sub
+            Else
+                txtBarcode.Focus()
             End If
 
         End If
 
-        If e.KeyCode = Keys.F1 Then
-            'e.Handled = True
-            'Dim formQty As New frmQty
-            'formQty.ShowDialog()
-            Call OpenCustForm()
+        'If e.KeyCode = Keys.F1 Then
+        '    ''e.Handled = True
+        '    ''Dim formQty As New frmQty
+        '    ''formQty.ShowDialog()
+        '    'Call OpenCustForm()
+
+        'End If
+
+
+        If e.KeyCode = Keys.Enter Then
+
+            If txtBarcode.Text = String.Empty Then
+                txtitem.Focus()
+                Exit Sub
+            Else
+                Call BarcodePressed()
+            End If
+
         End If
 
-        If txtBarcode.Text = String.Empty Then
+        If e.KeyCode = Keys.F10 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            If btnSaves.Enabled = True And PosGrid.Rows.Count >= 1 Then
+                MessageBox.Show("Please Complete a Pending Sales Transaction First")
+                Exit Sub
+            End If
+            Dim ansint As Integer = 7
+            ansint = MsgBox("Make Sure your printer is turned on and with enough paper loaded.", MsgBoxStyle.YesNo, "Check Printer.")
+            If ansint = 7 Then
+                Exit Sub
+            End If
+            'Dim repxrsalesbycat As New xrSalesByCat()
+            ''repxrsalesbycat.Cashier.Value = PDSAAppConfig.CurrentLoginID
+            'repxrsalesbycat.CashierName.Value = CStr(PDSAAppConfig.CurrentLoginID)
+            'repxrsalesbycat.RequestParameters = False
+            'repxrsalesbycat.PrintingSystem.ShowMarginsWarning = False
+            'repxrsalesbycat.ShowPreview()
+
+            'Dim posrepsales As New xrSalesEndDay()
+            'posrepsales.RequestParameters = False
+            'posrepsales.Parameter1.Value = PDSAAppConfig.CurrentLoginID
+            'posrepsales.PrintingSystem.ShowMarginsWarning = False
+            'posrepsales.Print()
+
+
+            'Dim strFindCredits As String = "SELECT mowd FROM vwSalesbyCatToday WHERE mowd='CREDIT'"
+            'ExecuteSQLQuery(strFindCredits)
+            'If sqlDT.Rows.Count > 0 Then
+            '    Dim posCredit As New xrCreditsToday()
+            '    posCredit.RequestParameters = False
+            '    posCredit.PrintingSystem.ShowMarginsWarning = False
+            '    posCredit.Print()
+            'End If
+
+            'Dim strFindGetCash As String = "SELECT posdate FROM petty_cash WHERE posdate='" & Date.Today & "'"
+            'ExecuteSQLQuery(strFindGetCash)
+            'If sqlDT.Rows.Count > 0 Then
+            '    Dim posGC As New xrPettyCash()
+            '    posGC.RequestParameters = False
+            '    posGC.PrintingSystem.ShowMarginsWarning = False
+            '    posGC.Print()
+            'End If
+
+            'Dim strFindAC As String = "SELECT posdate FROM additnlcash WHERE posdate='" & Date.Today & "'"
+            'ExecuteSQLQuery(strFindAC)
+            'If sqlDT.Rows.Count > 0 Then
+            '    Dim posAC As New xrAdditionalCash()
+            '    posAC.RequestParameters = False
+            '    posAC.PrintingSystem.ShowMarginsWarning = False
+            '    posAC.Print()
+            'End If
+
+
+            txtBarcode.Enabled = False
+            btnBcode.Enabled = False
+            btnSearchItems.Enabled = False
+            btnPriceMode.Enabled = False
+            btnType.Enabled = False
+            btnSaves.Enabled = False
+            btnSuspend.Enabled = False
+            btnRetrieve.Enabled = False
+            btnRemove.Enabled = False
+            btnCreditPay.Enabled = False
+            btnChequePayment.Enabled = False
+            btnnew.Enabled = False
+            btnLookuprice.Enabled = False
+            btnPickup.Enabled = False
+            btnAddCash.Enabled = False
+            btnDiscount.Enabled = False
+            Button1.Enabled = False
+            btnCustomers.Enabled = False
+            PosGrid.Enabled = False
+
+            Dim frmread As New frmReading
+            frmread.ShowDialog()
+            frmread = Nothing
+            Me.Close()
             Exit Sub
         End If
 
-        If e.KeyCode = Keys.Enter Then
-            BarcodeKeyDown()
-        End If
-    End Sub
+        If e.KeyCode = Keys.F12 Then
+            Dim vYesNo As Boolean = True
+            Dim grdcountt As Integer = 0
+            Dim iiiay As Integer = 0
+            Dim I As Integer = 0
+            Dim iCounter As Integer = 0
+            Dim iiCounter As Integer = 0
+            Dim vboolVAT As Integer
+            ' compute the total for the receipt
+            Tots = 0
+            For I = 0 To PosGrid.Rows.Count - 1
+                'MessageBox.Show(CStr(PosGrid.Rows.Count))
+                Tots += CDec(PosGrid.Rows(I).Cells(6).Value)
+            Next
+            txtCounts.Text = CStr(PosGrid.Rows.Count)
+            txtCounts.Text = CStr(PosGrid.Rows.Count)
+            Vatable = 0
+            NonVatable = 0
+            For iCounter = 0 To PosGrid.Rows.Count - 1
+                vboolVAT = CInt(PosGrid.Rows(iCounter).Cells(11).Value)
+                If vboolVAT = 1 Then
+                    Vatable += CDec(PosGrid.Rows(iCounter).Cells(6).Value)
+                End If
+            Next
+            iiCounter = 0
+            For iiCounter = 0 To PosGrid.Rows.Count - 1
+                vboolVAT = CInt(PosGrid.Rows(iiCounter).Cells(11).Value)
+                If vboolVAT = 0 Then
+                    NonVatable += CDec(PosGrid.Rows(iiCounter).Cells(6).Value)
+                End If
 
+            Next
+
+            grdcountt = PosGrid.Rows.Count
+            Try
+                If cmbPaymentType.Text = "CREDIT" And txtcustid.Text = "1" Then
+                    MessageBox.Show("Change the payment type to CASH before collecting the payment or change a customer name because it is currently not charge to any customer")
+                    Exit Sub
+                End If
+
+                For iiiay = 0 To grdcountt - 1
+                    If CDec(PosGrid.Rows(iiiay).Cells(5).Value) <= 0 Then
+                        MessageBox.Show("There is an Item with a Price that is Not valid or less than 0.1")
+                        vYesNo = False
+                        Exit Sub
+                    End If
+                Next
+
+
+                If CDec(txtSum.Text) < 0 Then
+                    txtSum.Text = FormatNumber(Tots, 2, , TriState.False, TriState.False)
+                End If
+                If vYesNo = False Then
+                    Exit Sub
+                End If
+                If btnSaves.Enabled = False Then
+                    Exit Sub
+                End If
+                TakePayment()
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString())
+            End Try
+        End If
+
+        If e.KeyCode = Keys.S AndAlso e.Control = True Then
+            Dim frm As frmSalestoday
+            frm = New frmSalestoday
+            frm.Show()
+            frm = Nothing
+            Exit Sub
+        End If
+
+        If e.KeyCode = Keys.P AndAlso e.Control = True Then
+            Try
+                passcorrect = False
+
+
+                If PosGrid.Rows.Count >= 1 Then
+                    vPriceChange = CDec(PosGrid.SelectedRows(0).Cells(5).Value)
+                    Dim formChangePrice As New frmNewPrice
+                    formChangePrice.ShowDialog()
+                    'If vPricingMode = "Refund" Then
+                    '    vpieces = vpieces * -1
+                    'End If
+
+                    'this is the original Code below
+                    'PosGrid.Rows(PosGrid.RowCount - 1).Cells(2).Value = vpieces
+                    'this is the original Code above
+
+                    PosGrid.SelectedRows(0).Cells(5).Value = vPriceChange
+                    'PosGrid.Rows.Remove(PosGrid.SelectedRows(0))
+
+                    ''Me.PosGrid.Rows(Me.PosGrid.RowCount - 1).Selected = True
+                    txtitem.Text = String.Empty
+                    'txtitem.Focus()
+
+
+                    'Newly added code to re compute the totals
+                    Dim IAyI As Integer = 0
+                    Tots = 0
+                    For IAyI = 0 To PosGrid.Rows.Count - 1
+                        Tots += CDec(PosGrid.Rows(IAyI).Cells(6).Value)
+                    Next
+
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+
+                    'Scroll to the last row.
+                    Me.PosGrid.FirstDisplayedScrollingRowIndex = Me.PosGrid.RowCount - 1
+
+                    'Select the last row.
+                    Me.PosGrid.Rows(Me.PosGrid.RowCount - 1).Selected = True
+
+                    'CalcEdit1.Value = Tots
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+                    txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
+                    CheckSumifNegative()
+                    vpTotalSales = Tots
+                    'TextEdit1.Text = FormatCurrency(CStr(Tots))
+                    qtyy = 1
+                    vpieces = 1
+                    'End of newly added code
+
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString())
+            End Try
+        End If
+
+        If e.KeyCode = Keys.D AndAlso e.Control = True Then
+            'Dim TotsBeforeDisc As Decimal = 0
+            'Tots = 0
+            'SeniorDiscount = 0
+            'vdiscamnt = 0
+            'Dim i As Integer = 0
+            'For i = 0 To PosGrid.Rows.Count - 1
+            '    Tots += CDec(PosGrid.Rows(i).Cells(6).Value)
+            'Next
+            '' txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr
+
+
+            'txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True)
+            'TotsBeforeDisc = CDec(CDec(Tots / 1.12) * 0.8)
+            'SeniorDiscount = CDec(CDec(Tots / 1.12) * 0.2)
+            'vdiscamnt = Tots - TotsBeforeDisc
+            'txtSum.Text = FormatNumber(TotsBeforeDisc, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots22))
+            'If vBarcodeOrItemSearch = True Then
+            '    txtBarcode.Text = String.Empty
+            '    txtBarcode.Focus()
+            'Else
+            '    txtitem.Text = String.Empty
+            '    txtitem.Focus()
+            'End If
+            'txtBarcode.SelectAll()
+            'Exit Sub
+            SeniorDiscount = 0
+            passcorrect = True
+            If passcorrect = True Then
+
+                Dim vdetdisc As Decimal = 0 ' this is the discount computed per item that was divided from the vdiscamnt variable to the total itemcount which is vItemCount
+                Dim ayayay As Integer = 0
+                For ayayay = 0 To PosGrid.Rows.Count - 1
+                    PosGrid.Rows(ayayay).Cells(8).Value = 0
+                Next
+
+                If btnSaves.Enabled = False Then
+                    MessageBox.Show("Discount is not allowed if Sales Transaction is already paid.")
+                    Exit Sub
+                End If
+                If PosGrid.Rows.Count < 1 Then
+                    MessageBox.Show("Item List is  B l a n k")
+                    Exit Sub
+                End If
+
+                'Recalculate the total on the Grid and post it on txtsum before applying any discount
+                Dim I As Integer = 0
+                Tots = 0
+                For I = 0 To PosGrid.Rows.Count - 1
+                    Tots += CDec(PosGrid.Rows(I).Cells(6).Value)
+                Next
+
+                txtCounts.Text = CStr(PosGrid.Rows.Count)
+                txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) ' FormatNumber(CStr(Tots))
+                CheckSumifNegative()
+                vpTotalSales = Tots
+
+
+
+                Try
+                    Dim percentamnt As Decimal = 0
+                    vdisc = 0
+                    vdiscamnt = 0
+                    vtotalsales = Tots 'CDec(txtSum.Text) My New Comments 12 21 13
+                    'vpTotalSales = CDec(txtSum.Text) My New Comments 12 21 13
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+                    Dim frmdisc As New frmDiscount
+                    frmdisc.ShowDialog()
+                    txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
+                    CheckSumifNegative()
+
+                    If vtotalsales = 0 Then
+                        txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
+                        CheckSumifNegative()
+                        vpTotalSales = Tots
+                    End If
+
+
+                    Dim vItemCount As Integer = 0
+                    Dim ay As Integer = 0
+                    For ay = 0 To PosGrid.Rows.Count - 1
+                        vItemCount += CInt(PosGrid.Rows(ay).Cells(5).Value)
+                    Next
+
+                    If vdiscamnt > 0 Then
+                        vdetdisc = CDec(vdiscamnt / vItemCount)
+                        Dim ayay As Integer = 0
+                        For ayay = 0 To PosGrid.Rows.Count - 1
+                            PosGrid.Rows(ayay).Cells(8).Value = CDec(vdetdisc * CInt(PosGrid.Rows(ayay).Cells(2).Value))
+                        Next
+                    End If
+                    txtCounts.Text = CStr(PosGrid.Rows.Count)
+                    txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
+                    CheckSumifNegative()
+                    txtBarcode.Text = String.Empty
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString())
+                End Try
+            End If
+
+        End If
+
+        If e.KeyCode = Keys.C AndAlso e.Control = True Then
+            vStrCustName = CStr(InputBox("Enter Customer Name", "Customer Name", vStrCustName))
+            If vStrCustName <> "" Then
+                Dim straqlUpdateCustName As String = String.Empty
+                straqlUpdateCustName = "UPDATE members SET lastname='" & vStrCustName & "'" & " WHERE CustId=1"
+                ExecuteSQLQuery(straqlUpdateCustName)
+                straqlUpdateCustName = String.Empty
+                straqlUpdateCustName = "UPDATE members SET firstname=' ' WHERE CustId=1"
+                ExecuteSQLQuery(straqlUpdateCustName)
+            End If
+            Exit Sub
+        End If
+
+        If e.KeyCode = Keys.Alt Then
+            txtBarcode.Text = ""
+        End If
+
+        If e.KeyCode = Keys.F2 Then
+            e.Handled = True
+            Dim frm As New frmPriceLookup2
+            frm.ShowDialog()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
+
+        End If
+
+        If e.KeyCode = Keys.F3 Then
+            e.Handled = True
+            Dim frmcp As New frmCreditPayment
+            frmcp.ShowDialog()
+            btnnew.Focus()
+        End If
+
+        If e.KeyCode = Keys.F4 Then
+            ''~~~ Calling it and passing the name of the form to be displayed
+            'Dim myObj As abcLockScreen = New abcLockScreen
+            'myObj.LockSystemAndShow(Form2)
+
+            vSalesNum = CInt(InputBox("Enter the sales number to be printed", "Reprint", CStr(ceRefno.Text)))
+            Dim posrep As New xrReceiptTodaRaba()
+            'posrep.DataSource = sqlDT
+            posrep.Parameter1.Value = vSalesNum
+            posrep.RequestParameters = False
+            posrep.PrintingSystem.ShowMarginsWarning = False
+            posrep.Print()
+
+        End If
+
+
+        If e.KeyCode = Keys.F5 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            'If btnnew.Enabled = False Then
+            If PosGrid.Rows.Count > 0 Then
+                SuspendTrans()
+            Else
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
+            End If
+        End If
+
+        If e.KeyCode = Keys.F6 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            If btnnew.Enabled = False Then
+                'If PosGrid.Rows.Count > 1 Then
+                'MessageBox.Show("Pls. finish the existing sales transaction before retrieving a suspended sale.")
+                'xit Sub
+                'Else
+                Call RetrieveTrans()
+                'End If
+            End If
+        End If
+
+        If e.KeyCode = Keys.F7 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            'If btnnew.Enabled = False Then
+            '    cmbPriceMode.Text = "Refund"
+            '    'txtBarcode.Focus()
+            '    'btnSearchItems.Focus()
+            '    txtitem.Focus()
+            '    txtitem.Text = String.Empty
+            '    txtitem.Focus()
+            'End If
+        End If
+
+        If e.KeyCode = Keys.F8 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            'If PosGrid.Rows.Count > 1 Then
+            'MessageBox.Show("Pls. finish the existing sales transaction before retrieving a suspended sale.")
+            'Exit Sub
+            'Else
+            'Call RetrieveTrans()
+            'End If
+            Call RePrint()
+        End If
+
+
+
+        If e.KeyCode = Keys.F9 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+
+            Unhook()
+
+            'itemcnt = 0
+            'vdisc = 0
+            'vdiscamnt = 0
+            'vEmpID = 1
+            'txtTendered.Text = "0"
+            'Try
+
+            '    txtSum.Text = "0"
+            '    PosGrid.Rows.Clear()
+            '    txtBarcode.Text = String.Empty
+            '    txtitem.Text = String.Empty
+            '    'txtTendered.Text = "0"
+            '    'lblChange.Text = "0"
+            '    ceWtid.Value = 1
+            '    vtotalsales = 0
+            '    vpTotalSales = 0
+            '    txtcustid.Text = "1"
+            '    txtqty.Text = "0"
+            '    txtlastname.Text = "CASH"
+            '    txtfirstname.Text = String.Empty
+            '    btnSaves.Enabled = True
+            '    btnPriceMode.Enabled = True
+            '    btnType.Enabled = True
+            '    btnSuspend.Enabled = True
+            '    btnRetrieve.Enabled = True
+            '    btnRemove.Enabled = True
+            '    btnDiscount.Enabled = True
+            '    Button1.Enabled = True ' this is the Set Quantity button
+            '    btnCustomers.Enabled = True
+            '    txtBarcode.Enabled = True
+            '    btnSearchItems.Enabled = True
+            '    btnReprint.Enabled = True
+            '    txtbcodes.Text = String.Empty
+            '    txtStckid.Text = String.Empty
+            '    btnType.Enabled = True
+            '    btnPriceMode.Enabled = True
+            '    btnCustomers.Enabled = True
+            '    btnSuspend.Enabled = True
+            '    btnRetrieve.Enabled = True
+            '    btnRemove.Enabled = True
+            '    cmbPriceMode.Text = "Retail"
+            '    cmbPaymentType.Text = "CASH"
+            '    btnChequePayment.Enabled = True
+            '    'GridLookUpEdit2.Enabled = True
+            '    txtitem.Enabled = True
+
+
+            '    btnnew.Enabled = False
+            '    If vBarcodeOrItemSearch = True Then
+            '        txtBarcode.Text = String.Empty
+            '        txtBarcode.Focus()
+            '    Else
+            '        txtitem.Text = String.Empty
+            '        txtitem.Focus()
+            '    End If
+
+            'Catch ex As Exception
+            '    MessageBox.Show(ex.ToString())
+            'End Try
+        End If
+
+
+
+
+        If e.Alt = True And e.KeyCode = Keys.Tab Then
+            e.Handled = True
+        End If
+
+        If e.Alt = True And e.KeyCode = Keys.P Then
+            PriceOverride()
+            e.Handled = True
+        End If
+
+
+        If e.Alt = True And e.KeyCode = Keys.F4 Then
+            e.Handled = True
+        End If
+        'If e.KeyCode = Keys.Left Then
+        'txtitem.Focus
+        '    txtitem.Text = ""
+        'End If
+
+        If e.KeyCode = Keys.Down Then
+            If dgitems.Visible = True Then
+                dgitems.Focus()
+            Else
+                If PosGrid.Rows.Count > 1 Then
+                    PosGrid.Focus()
+                End If
+            End If
+
+        End If
+        If e.KeyCode = Keys.F1 Then
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            SetQuantity()
+            e.Handled = True
+        End If
+
+        If e.KeyCode = Keys.Escape Then
+
+            dgitems.Visible = False
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
+            e.SuppressKeyPress = True
+        End If
+
+
+
+
+
+    End Sub
+    Sub BarcodePressed()
+        If Not String.IsNullOrEmpty(txtBarcode.Text) Then
+
+            Try
+                mgr = New stocksManager()
+                mgr.DataObject.WhereFilter = stocksData.WhereFilters.barcode
+                mgr.Entity.barcode = txtBarcode.Text.Trim
+                'MessageBox.Show("Total Record Count is " & _
+                'mgr.DataObject.RowCount().ToString())
+                'tbSQL.Text = mgr.DataObject.SQL
+
+                col1 = mgr.BuildCollection()
+
+
+                If mgr.DataObject.RowsAffected > 0 Then
+
+                    'DataGridView1.DataSource = col1 'mgr.BuildCollection()
+                    nProdID = mgr.DataObject.Entity.stckid
+                    nQtyWholesale = mgr.DataObject.Entity.markup3
+                    nWS = mgr.DataObject.Entity.retail2
+                    nRP = mgr.DataObject.Entity.retail
+                    'txtitem.Text = mgr.DataObject.Entity.itemdesc
+                    txtbcodes.Text = mgr.DataObject.Entity.barcode
+                    txtStckid.Text = CStr(mgr.DataObject.Entity.stckid)
+                    txtqty.Text = CStr(ceQtyy.Value) 'this is the original code January 2016 CStr(qtyy)
+                    frmNewPrice.vItemCode = Trim(txtbcodes.Text)
+                    frmNewPrice.vRetWhol = Trim(vPricingMode)
+                    ceQtyy.Focus()
+                    'SendItemtoGrid3()
+                    Call LookupEditKeypress()
+                Else
+                    Try
+                        ' Create a new SoundPlayer instance pointing to the sound file
+                        Dim player As New SoundPlayer("C:\barcodenotfoundwav.wav")
+
+                        ' Load the sound file into the SoundPlayer
+                        player.Load()
+
+                        ' Play the sound asynchronously
+                        player.Play()
+
+                    Catch ex As Exception
+                        MessageBox.Show("An error occurred while trying to play sound: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+
+
+
+
+                    'MessageBox.Show("B A R C O D E  N O T  F O U N D")
+                    Dim frmnotfawn As New frmNotFound
+                    frmnotfawn.ShowDialog()
+                    txtTendered.Text = "0"
+                    lblChange.Text = "0"
+                    txtBarcode.Text = String.Empty
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
+
+                End If
+
+            Catch ex As PDSAValidationException
+                MessageBox.Show(ex.Message)
+
+                ' Catch ex As Exception
+                'MsgBox(ex.Message.ToString())
+                ' MessageBox.Show(ex.ToString())
+            End Try
+            'Else
+            '    Try
+            '        mgr2 = New stocksManager()
+
+            '        mgr2.DataObject.WhereFilter = stocksData.WhereFilters.Likeitem
+            '        mgr2.Entity.item = txtItem.Text.Trim()
+            '        col1 = mgr2.BuildCollection()
+
+            '        If mgr2.DataObject.RowsAffected > 0 Then
+
+            '            'DataGridView1.DataSource = col1 'mgr.BuildCollection()
+            '            cItem = mgr2.DataObject.Entity.item
+            '            SendItemtoGrid()
+
+            '        End If
+
+            '    Catch ex As Exception
+            '        'ex.Message.ToString()
+            '    End Try
+
+        End If
+        txtBarcode.SelectAll()
+
+        'Call GoToQty()
+
+    End Sub
     Sub BarcodeKeyDown()
         If Not String.IsNullOrEmpty(txtBarcode.Text) Then
 
@@ -1945,6 +3204,9 @@ Public Class frmPOS
 
                     'DataGridView1.DataSource = col1 'mgr.BuildCollection()
                     nProdID = mgr.DataObject.Entity.stckid
+                    nQtyWholesale = mgr.DataObject.Entity.markup3
+                    nWS = mgr.DataObject.Entity.retail2
+                    nRP = mgr.DataObject.Entity.retail
                     txtitem.Text = mgr.DataObject.Entity.itemdesc
                     txtbcodes.Text = mgr.DataObject.Entity.barcode
                     txtStckid.Text = CStr(mgr.DataObject.Entity.stckid)
@@ -1957,8 +3219,14 @@ Public Class frmPOS
                     frmnotfawn.ShowDialog()
                     txtTendered.Text = "0"
                     lblChange.Text = "0"
-                    txtitem.Focus()
-                    txtBarcode.SelectAll()
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                        txtBarcode.SelectAll()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
                     Exit Sub
                 End If
 
@@ -2004,6 +3272,8 @@ Public Class frmPOS
     End Sub
 
     Sub SearchBarcodeOnItem()
+        nProdID = 0
+        'nStckid = 0
         If Not String.IsNullOrEmpty(txtitem.Text) Then
 
             Try
@@ -2025,6 +3295,8 @@ Public Class frmPOS
                     txtbcodes.Text = mgr.DataObject.Entity.barcode
                     txtStckid.Text = CStr(mgr.DataObject.Entity.stckid)
                     txtqty.Text = CStr(ceQtyy.Value) 'this is the original code January 2016 CStr(qtyy)
+                    frmNewPrice.vItemCode = Trim(txtbcodes.Text)
+                    frmNewPrice.vRetWhol = Trim(vPricingMode)
                     'ceQtyy.Focus()
                     '+I uncommented the code below, Originally it is commented
                     'SendItemtoGrid3()
@@ -2054,33 +3326,6 @@ Public Class frmPOS
                             Dim vBoo00 As Boolean
                             vBoo00 = CBool(mgr6.DataObject.Entity.active)
                             vBoo = CBool(mgr6.DataObject.Entity.vat)
-                            '+Comment if ....
-                            If mgr6.DataObject.Entity.incentive > 0 Then 'And ceWtid.Value = 1 Then
-                                username = String.Empty
-                                Try
-                                    Dim mgremp As New waitersManager()
-                                    Dim cols As New waitersCollection
-                                    mgremp.DataObject.WhereFilter = waitersData.WhereFilters.pword
-                                    Dim strIncentive As String = String.Empty
-                                    strIncentive = InputBox("Please Enter your Password.")
-
-                                    mgremp.Entity.pword = Trim(strIncentive)
-                                    cols = mgremp.BuildCollection()
-                                    If mgremp.DataObject.RowsAffected > 0 Then
-                                        ceWtid.Value = mgremp.DataObject.Entity.wtid
-                                        vCellValIncent = mgremp.DataObject.Entity.wtid
-                                        MessageBox.Show(CStr(mgremp.DataObject.Entity.waiter))
-                                    Else
-                                        MessageBox.Show("Not a valid password, try again.")
-                                        Exit Sub
-                                    End If
-                                Catch ex As PDSAValidationException
-                                    MessageBox.Show(ex.Message)
-                                Catch ex As Exception
-                                    MessageBox.Show(ex.ToString())
-                                End Try
-                            End If
-                            '+End of Uncomment
                             vboolItemFound = False
                             SendItemtoGrid3()
 
@@ -2096,6 +3341,10 @@ Public Class frmPOS
 
 
                 Else
+                    'If dgitems.Visible = True Then
+                    'DgitemsKeydown()
+
+                    'Else
                     'Comment on Oct 17, 2017 so that it will add on the Sales list the first item on the Grid
                     'MessageBox.Show("B A R C O D E  N O T  F O U N D")
                     Dim frmnotfawn As New frmNotFound
@@ -2104,8 +3353,15 @@ Public Class frmPOS
                     lblChange.Text = "0"
                     dgitems.Visible = False
                     txtitem.Text = ""
-                    txtitem.Focus()
-                    txtBarcode.SelectAll()
+                    If vBarcodeOrItemSearch = True Then
+                        txtBarcode.Text = String.Empty
+                        txtBarcode.Focus()
+                        txtBarcode.SelectAll()
+                    Else
+                        txtitem.Text = String.Empty
+                        txtitem.Focus()
+                    End If
+
 
                     Exit Sub
                     'End of COmment Oct 2017
@@ -2116,6 +3372,7 @@ Public Class frmPOS
                     'DgitemsKeydown()
                     'txtitem.Focus()
                     'end of comment
+                    'End If
                 End If
             Catch ex As PDSAValidationException
                 MessageBox.Show(ex.Message)
@@ -2222,7 +3479,7 @@ Public Class frmPOS
             ' leCust.EditValue = vbNullString
             ''leItems.EditValue = vbNullString
             txtBarcode.Text = ""
-            txtitem.Focus()
+            txtBarcode.Focus()
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
         End Try
@@ -2235,6 +3492,27 @@ Public Class frmPOS
         '        MessageBox.Show("B a r c o d e   n o t   f o u n d   o r   e m p t y !")
         '    End If
         'End If
+
+
+        If e.KeyChar = Chr(42) Then
+            e.Handled = True
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
+
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            SetQuantity()
+
+            txtBarcode.Text = ""
+            txtBarcode.Text = String.Empty
+            'txtBarcode.Focus()
+        End If
     End Sub
 
 
@@ -2245,108 +3523,110 @@ Public Class frmPOS
         End If
         Dim myAL As New ArrayList
         oht = New pos_hdrtmpManager()
-        If MsgBox("Are you sure you want to suspend this transaction?", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle)) = MsgBoxResult.Yes Then
-            If PosGrid.Rows.Count < 1 Then
-                MessageBox.Show("Item List is  B l a n k")
-                'btnSearchItems.Focus()
-                'txtBarcode.Focus()
-                'txtitem.focus()
+        ' If MsgBox("Are you sure you want to suspend this transaction?", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle)) = MsgBoxResult.Yes Then
+        If PosGrid.Rows.Count < 1 Then
+            MessageBox.Show("Item List is  B l a n k")
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
                 txtitem.Text = String.Empty
                 txtitem.Focus()
-                Exit Sub
             End If
-
-            Try
-
-                Tran = New PDSATransaction()
-                Tran2 = New PDSATransaction()
-                oht.DataObject.TransactionType = PDSATransactionType.Insert
-
-
-                'oht.Entity.custid = 205
-                'oht.Entity.posdate = DateTime.Today()
-                '    oht.Entity.status = False
-
-                '    oht.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
-                '    Tran.Add(oht.DataObject)
-                '    Tran.Execute()
-                '    grdCount = PosGrid.Rows.Count
-                '    For ii = 0 To grdCount - 1
-                '        odt1.Entity.postmphdrid = mOrderId
-                '        odt1.Entity.stckid = Convert.ToInt32(PosGrid.Rows(ii).Cells(0).Value)
-                '        odt1.Entity.barcode = CStr(PosGrid.Rows(ii).Cells(1).Value)
-                '        odt1.Entity.itemdesc = CStr(PosGrid.Rows(ii).Cells(2).Value)
-                '        odt1.Entity.cost = Convert.ToDecimal(PosGrid.Rows(ii).Cells(3).Value)
-                '        odt1.Entity.price = Convert.ToDecimal(PosGrid.Rows(ii).Cells(4).Value)
-                '        odt1.Entity.qty = Convert.ToInt32(PosGrid.Rows(ii).Cells(5).Value)
-                '        odt1.Entity.detamnt = Convert.ToDecimal(PosGrid.Rows(ii).Cells(4).Value) * Convert.ToInt32(PosGrid.Rows(ii).Cells(5).Value)
-
-                '        myAL.Add(odt1.DataObject.Entity)
-
-                '        Tran2.Add(odt1.DataObject)
-                '        Tran2.Execute()
-                '        Tran2.RemoveAt(0)
-                '    Next
-
-                'Catch ex As PDSAValidationException
-                '    MessageBox.Show(ex.Message)
-                'Catch ex As Exception
-                '    MessageBox.Show(ex.ToString())
-                'End Try
-                If txtcustid.Text = "0" Then
-                    txtcustid.Text = "1"
-                End If
-                oht.Entity.custid = Convert.ToInt32(txtcustid.Text)
-                oht.Entity.posdate = Date.Now
-                oht.Entity.status = False
-                'gOT pUZZLED WHY I have 2 status so I commented it below , comment up if it is the right one
-                'oht.Entity.status = False
-                '*************
-                oht.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
-                Tran.Add(oht.DataObject)
-                'commented on june 12 2014 and brought it down
-                'Catch ex As PDSAValidationException
-                '    MessageBox.Show(ex.Message)
-                '    Exit Sub
-                'Catch ex As Exception
-                '    MessageBox.Show(ex.ToString())
-                '    Exit Sub
-                'End Try
-                'end of comment on june 12 2014 and brought it down
-
-                grdCount = PosGrid.Rows.Count
-                For ii = 0 To grdCount - 1
-                    odt1 = New pos_dettmpManager()
-                    odt1.DataObject.TransactionType = PDSATransactionType.Insert
-                    odt1.Entity.postmphdrid = mOrderId
-                    odt1.Entity.stckid = Convert.ToInt32(PosGrid.Rows(ii).Cells(0).Value)
-                    odt1.Entity.barcode = CStr(PosGrid.Rows(ii).Cells(1).Value)
-                    odt1.Entity.itemdesc = CStr(PosGrid.Rows(ii).Cells(4).Value)
-                    odt1.Entity.cost = Convert.ToDecimal(PosGrid.Rows(ii).Cells(3).Value)
-                    odt1.Entity.price = Convert.ToDecimal(PosGrid.Rows(ii).Cells(5).Value)
-                    odt1.Entity.ws = Convert.ToDecimal(PosGrid.Rows(ii).Cells(7).Value)
-                    odt1.Entity.qty = Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value)
-                    odt1.Entity.detamnt = Convert.ToDecimal(PosGrid.Rows(ii).Cells(5).Value) * Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value)
-                    odt1.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
-                    odt1.Entity.detdisc = CShort(Convert.ToDecimal(PosGrid.Rows(ii).Cells(8).Value))
-                    odt1.Entity.incentiv = 0 'CDec(Convert.ToBoolean(PosGrid.Rows(ii).Cells(9).Value)))
-                    Tran.Add(odt1.DataObject)
-                Next
-                Tran.Execute()
-                PosGrid.Rows.Clear()
-                txtSum.Text = "0"
-                txtcustid.Text = "1"
-                txtlastname.Text = "CASH"
-                txtfirstname.Text = ""
-                cmbPaymentType.Text = "CASH"
-            Catch ex As PDSAValidationException
-                MessageBox.Show(ex.Message)
-                Exit Sub
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString())
-                Exit Sub
-            End Try
+            Exit Sub
         End If
+
+        Try
+
+            Tran = New PDSATransaction()
+            Tran2 = New PDSATransaction()
+            oht.DataObject.TransactionType = PDSATransactionType.Insert
+
+
+            'oht.Entity.custid = 205
+            'oht.Entity.posdate = DateTime.Today()
+            '    oht.Entity.status = False
+
+            '    oht.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
+            '    Tran.Add(oht.DataObject)
+            '    Tran.Execute()
+            '    grdCount = PosGrid.Rows.Count
+            '    For ii = 0 To grdCount - 1
+            '        odt1.Entity.postmphdrid = mOrderId
+            '        odt1.Entity.stckid = Convert.ToInt32(PosGrid.Rows(ii).Cells(0).Value)
+            '        odt1.Entity.barcode = CStr(PosGrid.Rows(ii).Cells(1).Value)
+            '        odt1.Entity.itemdesc = CStr(PosGrid.Rows(ii).Cells(2).Value)
+            '        odt1.Entity.cost = Convert.ToDecimal(PosGrid.Rows(ii).Cells(3).Value)
+            '        odt1.Entity.price = Convert.ToDecimal(PosGrid.Rows(ii).Cells(4).Value)
+            '        odt1.Entity.qty = Convert.ToInt32(PosGrid.Rows(ii).Cells(5).Value)
+            '        odt1.Entity.detamnt = Convert.ToDecimal(PosGrid.Rows(ii).Cells(4).Value) * Convert.ToInt32(PosGrid.Rows(ii).Cells(5).Value)
+
+            '        myAL.Add(odt1.DataObject.Entity)
+
+            '        Tran2.Add(odt1.DataObject)
+            '        Tran2.Execute()
+            '        Tran2.RemoveAt(0)
+            '    Next
+
+            'Catch ex As PDSAValidationException
+            '    MessageBox.Show(ex.Message)
+            'Catch ex As Exception
+            '    MessageBox.Show(ex.ToString())
+            'End Try
+            If txtcustid.Text = "0" Then
+                txtcustid.Text = "1"
+            End If
+            oht.Entity.custid = Convert.ToInt32(txtcustid.Text)
+            oht.Entity.posdate = Date.Now
+            oht.Entity.status = False
+            'gOT pUZZLED WHY I have 2 status so I commented it below , comment up if it is the right one
+            'oht.Entity.status = False
+            '*************
+            oht.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
+            Tran.Add(oht.DataObject)
+            'commented on june 12 2014 and brought it down
+            'Catch ex As PDSAValidationException
+            '    MessageBox.Show(ex.Message)
+            '    Exit Sub
+            'Catch ex As Exception
+            '    MessageBox.Show(ex.ToString())
+            '    Exit Sub
+            'End Try
+            'end of comment on june 12 2014 and brought it down
+
+            grdCount = PosGrid.Rows.Count
+            For ii = 0 To grdCount - 1
+                odt1 = New pos_dettmpManager()
+                odt1.DataObject.TransactionType = PDSATransactionType.Insert
+                odt1.Entity.postmphdrid = mOrderId
+                odt1.Entity.stckid = Convert.ToInt32(PosGrid.Rows(ii).Cells(0).Value)
+                odt1.Entity.barcode = CStr(PosGrid.Rows(ii).Cells(1).Value)
+                odt1.Entity.itemdesc = CStr(PosGrid.Rows(ii).Cells(4).Value)
+                odt1.Entity.cost = Convert.ToDecimal(PosGrid.Rows(ii).Cells(3).Value)
+                odt1.Entity.price = Convert.ToDecimal(PosGrid.Rows(ii).Cells(5).Value)
+                odt1.Entity.ws = Convert.ToDecimal(PosGrid.Rows(ii).Cells(7).Value)
+                odt1.Entity.qty = Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value)
+                odt1.Entity.detamnt = Convert.ToDecimal(PosGrid.Rows(ii).Cells(5).Value) * Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value)
+                odt1.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
+                odt1.Entity.detdisc = CShort(Convert.ToDecimal(PosGrid.Rows(ii).Cells(8).Value))
+                odt1.Entity.incentiv = 0 'CDec(Convert.ToBoolean(PosGrid.Rows(ii).Cells(9).Value)))
+                Tran.Add(odt1.DataObject)
+            Next
+            Tran.Execute()
+            PosGrid.Rows.Clear()
+            txtSum.Text = "0"
+            txtcustid.Text = "1"
+            txtlastname.Text = "CASH"
+            txtfirstname.Text = ""
+            cmbPaymentType.Text = "CASH"
+        Catch ex As PDSAValidationException
+            MessageBox.Show(ex.Message)
+            Exit Sub
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString())
+            Exit Sub
+        End Try
+        'End If
     End Sub
 
     Private Sub Tran_AfterSubmit(ByVal sender As Object, ByVal e As PDSA.DataLayer.DataClasses.PDSATransactionEventArgs) Handles Tran.AfterSubmit
@@ -2462,12 +3742,13 @@ Public Class frmPOS
         Dim mgrRetrieve As vwSuspendedSaleManager
         Dim col3 As vwSuspendedSaleCollection
 
-        Me.DGRetrieve.DefaultCellStyle.Font = New Font("Tahoma", 12)
-
+        Me.DGRetrieve.DefaultCellStyle.Font = New Font("Tahoma", 20)
+        ' Me.DGRetrieve.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight
         Try
             mgrRetrieve = New vwSuspendedSaleManager()
             mgrRetrieve.DataObject.SelectFilter = vwSuspendedSaleData.SelectFilters.SuspendedItems
             mgrRetrieve.DataObject.WhereFilter = vwSuspendedSaleData.WhereFilters.cashstatus
+            mgrRetrieve.DataObject.OrderByFilter = vwSuspendedSaleData.OrderByFilters.suspendid
             mgrRetrieve.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
             mgrRetrieve.Entity.status = False
 
@@ -2478,19 +3759,28 @@ Public Class frmPOS
                 DGRetrieve.Focus()
                 DGRetrieve.DataSource = mgrRetrieve.DataObject.GetDataTable() 'col3
                 Me.DGRetrieve.AutoResizeColumns()
-                Me.DGRetrieve.Columns(3).Visible = False
-                Me.DGRetrieve.Columns(2).Visible = False
+                Me.DGRetrieve.AutoResizeRows()
+                Me.DGRetrieve.Columns(4).Visible = False
+                Me.DGRetrieve.Columns(5).Visible = False
+                Me.DGRetrieve.Columns(6).Visible = False
+                Me.DGRetrieve.Columns(7).Visible = False
+                Me.DGRetrieve.Columns(8).Visible = False
+                Me.DGRetrieve.Columns(9).Visible = False
+                Me.DGRetrieve.Columns(10).Visible = False
+                Me.DGRetrieve.Columns(11).Visible = False
                 Me.DGRetrieve.Columns("det_amnt").DefaultCellStyle.Format = "c"
-                Me.DGRetrieve.Columns("det_amnt").DefaultCellStyle.Alignment = _
+                Me.DGRetrieve.Columns("det_amnt").DefaultCellStyle.Alignment =
                     DataGridViewContentAlignment.MiddleRight
             Else
                 MessageBox.Show("N o   S u s p e n d e d   S a l e   t o   D i s p l a y")
                 DGRetrieve.Visible = False
-                'btnSearchItems.Focus()
-                'txtBarcode.Focus()
-                'txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             End If
             'PosGrid.Rows.Add(mgr.DataObject.Entity.s, mgr.DataObject.Entity.barcode, mgr.DataObject.Entity.item, mgr.DataObject.Entity.cost, mgr.DataObject.Entity.retail,                 qtyy, mgr.DataObject.Entity.retail)
 
@@ -2532,6 +3822,75 @@ Public Class frmPOS
         '    txtitem.Focus()
         '    Exit Sub
         'End If
+        If e.KeyCode = Keys.R AndAlso e.Control = True Then
+
+
+            Dim vCellVal11 As Integer = 0
+            Dim row11 As Integer = DGRetrieve.CurrentCellAddress.Y
+            Dim column11 As Integer = DGRetrieve.CurrentCellAddress.X
+            Dim col411 As vwSuspendedCollection
+
+            If column11 > 1 Then
+                MessageBox.Show("Please select the suspended sale on the first column or select the second column to Cancel Retrieval of Suspended Sale")
+                Exit Sub
+            End If
+
+            If column11 = 0 Then ' this is the main code to be executed
+                'MessageBox.Show(row.ToString + " " + column.ToString)
+                vCellVal11 = CInt(DGRetrieve.CurrentCell.Value)
+                Dim mgrRetriv As vwSuspendedManager
+                Dim mgrHdrTmp As pos_hdrtmpManager
+
+                Try
+                    mgrRetriv = New vwSuspendedManager()
+                    'mgrRetriv.DataObject.WhereFilter = vwSuspendedData.WhereFilters.SuspendId
+                    'mgrRetriv.Entity.postmphdrid = vCellVal
+                    'tbSQL.Text = mgrRetriv.DataObject.SQL
+                    col411 = mgrRetriv.BuildCollection()
+                    If mgrRetriv.DataObject.RowsAffected > 0 Then
+                        'send the suspended value to POSGrid
+                        'Dim mgrsend As vwSuspendedManager
+                        'mgrsend = New vwSuspendedManager()
+                        'mgrsend.DataObject.WhereFilter = vwSuspendedData.WhereFilters.SuspendId
+                        'mgrsend.Entity.postmphdrid = vCellVal
+                        'Dim col5 As vwSuspendedCollection
+                        'col5 = mgrsend.BuildCollection()
+                        'If mgrsend.DataObject.RowsAffected > 0 Then
+                        For ii = 0 To mgrRetriv.DataObject.GetDataTable.Rows.Count - 1
+                            PosGrid.Rows.Add(mgrRetriv.DataObject.GetDataTable.Rows(ii)("stckid"), CStr(mgrRetriv.DataObject.GetDataTable.Rows(ii)("barcode")), mgrRetriv.DataObject.GetDataTable.Rows(ii)("qty"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("cost"), CStr(mgrRetriv.DataObject.GetDataTable.Rows(ii)("item_desc")), mgrRetriv.DataObject.GetDataTable.Rows(ii)("price"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("det_amnt"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("cost"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("det_disc"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("incentiv"), 1, 1)
+                        Next
+                        Dim Tots22 As Decimal = 0
+                        Dim iii As Integer
+                        For iii = 0 To PosGrid.Rows.Count - 1
+                            Tots22 += CDec(PosGrid.Rows(iii).Cells(6).Value)
+                        Next
+                        txtCounts.Text = CStr(PosGrid.Rows.Count)
+                        txtSum.Text = FormatNumber(Tots22, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots22))
+                        CheckSumifNegative()
+                        'This is a new code 02/21/2014
+                        vpTotalSales = Tots22
+                        Tots = Tots22
+                        'End of New Code 02/21/2014
+                        'End If
+                        DGRetrieve.Visible = False
+                    End If
+                    'delete the records for the hdrtmp it will cascade delete the data on hdr_detiltmp
+                    Dim delSusp As String = String.Empty
+                    delSusp = "DELETE FROM pos_hdrtmp " 'WHERE postmp_hdrid=" & vCellVal
+                    ExecuteSQLQuery(delSusp)
+                    'mgrHdrTmp = New pos_hdrtmpManager()
+                    'mgrHdrTmp.DataObject.DeleteByPK(vCellVal)
+
+                Catch ex As PDSA.Validation.PDSAValidationException
+                    MessageBox.Show(ex.Message)
+
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString())
+                End Try
+
+            End If
+        End If
+
 
         If e.KeyCode = Keys.Enter Then
             Dim vCellVal As Integer = 0
@@ -2566,7 +3925,7 @@ Public Class frmPOS
                         'col5 = mgrsend.BuildCollection()
                         'If mgrsend.DataObject.RowsAffected > 0 Then
                         For ii = 0 To mgrRetriv.DataObject.GetDataTable.Rows.Count - 1
-                            PosGrid.Rows.Add(mgrRetriv.DataObject.GetDataTable.Rows(ii)("stckid"), CStr(mgrRetriv.DataObject.GetDataTable.Rows(ii)("barcode")), mgrRetriv.DataObject.GetDataTable.Rows(ii)("qty"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("cost"), CStr(mgrRetriv.DataObject.GetDataTable.Rows(ii)("item_desc")), mgrRetriv.DataObject.GetDataTable.Rows(ii)("price"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("det_amnt"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("cost"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("det_disc"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("incentiv"))
+                            PosGrid.Rows.Add(mgrRetriv.DataObject.GetDataTable.Rows(ii)("stckid"), CStr(mgrRetriv.DataObject.GetDataTable.Rows(ii)("barcode")), mgrRetriv.DataObject.GetDataTable.Rows(ii)("qty"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("cost"), CStr(mgrRetriv.DataObject.GetDataTable.Rows(ii)("item_desc")), mgrRetriv.DataObject.GetDataTable.Rows(ii)("price"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("det_amnt"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("cost"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("det_disc"), mgrRetriv.DataObject.GetDataTable.Rows(ii)("incentiv"), 1, 1)
                         Next
                         Dim Tots22 As Decimal = 0
                         Dim iii As Integer
@@ -2598,12 +3957,22 @@ Public Class frmPOS
                 End Try
 
             End If
+
+
+
+
+
             btnBcode.PerformClick()
 
             If column = 1 Then
                 DGRetrieve.Visible = False
-                'txtitem.Focus()
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             End If
 
             'Dim ays As Integer = 0
@@ -2618,8 +3987,13 @@ Public Class frmPOS
             'qtyy = 1
             'vpieces = 1
 
-            'txtitem.Focus()
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         End If
     End Sub
     Sub Employees()
@@ -2642,9 +4016,13 @@ Public Class frmPOS
                 MessageBox.Show("No Current Cashier Names to Display")
                 dgEmps.Visible = False
                 'btnSearchItems.Focus()
-                'txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
 
             End If
 
@@ -2660,8 +4038,13 @@ Public Class frmPOS
         'txtBarcode.Focus()
         'btnSearchItems.Focus()
         ' txtitem.focus()
-        txtitem.Text = String.Empty
-        txtitem.Focus()
+        If vBarcodeOrItemSearch = True Then
+            txtBarcode.Text = String.Empty
+            txtBarcode.Focus()
+        Else
+            txtitem.Text = String.Empty
+            txtitem.Focus()
+        End If
     End Sub
     Private Sub txtBarcode_KeyUp(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles txtBarcode.KeyUp
         If e.Alt = True And e.KeyCode = Keys.Tab Then
@@ -2825,6 +4208,13 @@ Public Class frmPOS
     End Sub
     Private Sub LookupEditKeypress()
 
+        txtqty.Text = ceQtyy.Text
+        qtyy = 1 '  CInt(ceQtyy.Value)
+        If vPricingMode = "Refund" Then
+            qtyy = qtyy * -1
+        Else
+            qtyy = Math.Abs(qtyy * 1)
+        End If
 
         'Call BarcodeSearch()
 
@@ -2833,10 +4223,10 @@ Public Class frmPOS
         '    Exit Sub
         'End If
         Try
-            If txtitem.Text = String.Empty Then
-                MessageBox.Show("Please select an Item before pressing the enter key!")
-                Exit Sub
-            End If
+            'If txtitem.Text = String.Empty Then
+            '    MessageBox.Show("Please select an Item before pressing the enter key!")
+            '    Exit Sub
+            'End If
 
 
 
@@ -2844,7 +4234,7 @@ Public Class frmPOS
             mgr6.DataObject.SelectFilter = stocksData.SelectFilters.positems
             mgr6.DataObject.WhereFilter = stocksData.WhereFilters.PrimaryKey
             ' 'MessageBox.Show(CType(leItems.EditValue, stocks))
-            mgr6.DataObject.Entity.stckid = vStckid 'CInt(GridLookUpEdit2.EditValue)
+            mgr6.DataObject.Entity.stckid = nProdID ' vStckid 'CInt(GridLookUpEdit2.EditValue)
 
             col1 = mgr6.BuildCollection()
 
@@ -2856,31 +4246,36 @@ Public Class frmPOS
                 Dim vBoo As Boolean
                 vBoo = CBool(mgr6.DataObject.Entity.active)
                 vBoo = CBool(mgr6.DataObject.Entity.vat)
-                If mgr6.DataObject.Entity.incentive > 0 Then 'And ceWtid.Value = 1 Then
-                    username = String.Empty
-                    Try
-                        Dim mgremp As New waitersManager()
-                        Dim cols As New waitersCollection
-                        mgremp.DataObject.WhereFilter = waitersData.WhereFilters.pword
-                        Dim strIncentive As String = String.Empty
-                        strIncentive = InputBox("Please Enter your Password.")
 
-                        mgremp.Entity.pword = Trim(strIncentive)
-                        cols = mgremp.BuildCollection()
-                        If mgremp.DataObject.RowsAffected > 0 Then
-                            ceWtid.Value = mgremp.DataObject.Entity.wtid
-                            vCellValIncent = mgremp.DataObject.Entity.wtid
-                            MessageBox.Show(CStr(mgremp.DataObject.Entity.waiter))
-                        Else
-                            MessageBox.Show("Not a valid password, try again.")
-                            Exit Sub
-                        End If
-                    Catch ex As PDSAValidationException
-                        MessageBox.Show(ex.Message)
-                    Catch ex As Exception
-                        MessageBox.Show(ex.ToString())
-                    End Try
-                End If
+                'This is the code to send the discount to the Grid
+                GetCategoryDiscount(nProdID)
+                ' Now vCategoryID and vCategoryDiscount are populated
+                MessageBox.Show("Category ID: " & vCategoryID & ", Category Discount: " & vCategoryDiscount.ToString("P"))
+
+                'If mgr6.DataObject.Entity.incentive > 0 And ceWtid.Value = 1 Then
+                '    'username = String.Empty
+                '    'Try
+                '    '    'Dim mgremp As New waitersManager()
+                '    '    'Dim cols As New waitersCollection
+                '    '    'mgremp.DataObject.WhereFilter = waitersData.WhereFilters.pword
+                '    '    'Dim strIncentive As String = String.Empty
+                '    '    'strIncentive = InputBox("Please Enter your Password.")
+
+                '    '    'mgremp.Entity.pword = Trim(strIncentive)
+                '    '    'cols = mgremp.BuildCollection()
+                '    '    'If mgremp.DataObject.RowsAffected > 0 Then
+                '    '    'ceWtid.Value = mgremp.DataObject.Entity.wtid
+                '    '    'MessageBox.Show(CStr(mgremp.DataObject.Entity.waiter))
+                '    '    'Else
+                '    '    'MessageBox.Show("Not a valid password, try again.")
+                '    '    'Exit Sub
+                '    '    'End If
+                '    'Catch ex As PDSAValidationException
+                '    '    MessageBox.Show(ex.Message)
+                '    'Catch ex As Exception
+                '    '    MessageBox.Show(ex.ToString())
+                '    'End Try
+                'End If
                 vboolItemFound = False
                 SendItemtoGrid3()
 
@@ -3019,7 +4414,7 @@ Public Class frmPOS
         btnnew.Focus()
     End Sub
     Public Sub Save_Trans()
-
+        Dim vDiscountDivideByCount As Decimal = 0
         'Dim spBalUpdate As spBalanceupdateManager
         'Dim spAuditInv As spProductBalanceupdateandItemLedgerEntryManager
 
@@ -3036,9 +4431,13 @@ Public Class frmPOS
             MessageBox.Show("I t e m  L i s t  is  B l a n k")
             'btnSearchItems.Focus()
 
-            txtitem.focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
             Exit Sub
         End If
         If cmbPaymentType.Text = "" Then
@@ -3098,8 +4497,15 @@ Public Class frmPOS
             oht.Entity.tid = "t1"
             oht.Entity.wtid = CInt(ceWtid.Value)
             oht.Entity.trminal = 1
-            oht.Entity.vatable = Vatable
+            oht.Entity.vatable = Vatable - vdiscamnt ' I added less vdiscamnt because vatable means less dicounts
             oht.Entity.nov = NonVatable
+            oht.Entity.exempt = NonVatable
+            oht.Entity.lesssc = SeniorDiscount
+
+            Dim vlessvat As Decimal = 0
+            vlessvat = CDec(Vatable / 1.12 * 0.12)
+            oht.Entity.lessvat = vlessvat
+
             'gOT pUZZLED WHY I have 2 status so I commented it below , comment up if it is the right one
             'oht.Entity.status = False
             '*************
@@ -3121,6 +4527,15 @@ Public Class frmPOS
             'End Try
 
 
+            Dim vGridCounter As Integer = 0
+            vTotalQtySold = 0
+            For vGridCounter = 0 To PosGrid.Rows.Count - 1
+                vTotalQtySold += CDec(PosGrid.Rows(vGridCounter).Cells(2).Value)
+            Next
+
+
+            vDiscountDivideByCount = vdiscamnt / vTotalQtySold
+
             grdCount = PosGrid.Rows.Count
             For ii = 0 To grdCount - 1
                 odt1 = New pos_dettmpManager()
@@ -3134,12 +4549,16 @@ Public Class frmPOS
                 ' this is the orig code below, then next line is change to cells(7)
                 'odt1.Entity.ws = Convert.ToDecimal(PosGrid.Rows(ii).Cells(6).Value)
                 odt1.Entity.ws = Convert.ToDecimal(PosGrid.Rows(ii).Cells(7).Value)
-                odt1.Entity.qty = Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value)
+                odt1.Entity.qty = Convert.ToDecimal(PosGrid.Rows(ii).Cells(2).Value) ' ModifyQty
                 odt1.Entity.detamnt = Convert.ToDecimal(PosGrid.Rows(ii).Cells(6).Value) 'Convert.ToDecimal(PosGrid.Rows(ii).Cells(4).Value) * Convert.ToInt32(PosGrid.Rows(ii).Cells(5).Value)
                 odt1.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
-                If Convert.ToDecimal(PosGrid.Rows(ii).Cells(8).Value) > 0 Then
-                    odt1.Entity.detdisc = 0 ' Comment Oct 12 2017 Dont Knopw why I got a code for disc here CShort(Convert.ToDecimal(PosGrid.Rows(ii).Cells(8).Value))
-                End If
+                'Comment May 22, 2024 .This is the code to get the discount for each item if there is an overall discount
+                'If vdiscamnt > 0 Then
+                '    odt1.Entity.detdisc = vDiscountDivideByCount * Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value)
+                '    ' This is the percent discount (vdiscamnt / (vDiscountDivideByCount * Convert.ToInt32(PosGrid.Rows(ii).Cells(2).Value))) * 100 ' Comment Oct 12 2017 Dont Knopw why I got a code for disc here CShort(Convert.ToDecimal(PosGrid.Rows(ii).Cells(8).Value))
+                'End If
+                odt1.Entity.detdisc = Convert.ToDecimal(PosGrid.Rows(ii).Cells(12).Value)
+
                 odt1.Entity.incentiv = Convert.ToDecimal(PosGrid.Rows(ii).Cells(9).Value)
                 odt1.Entity.wtid = Convert.ToInt32(PosGrid.Rows(ii).Cells(10).Value)
 
@@ -3152,6 +4571,30 @@ Public Class frmPOS
 
             Tran.Execute()
             ceRefno.Value = mOrderId2
+
+            'New Code Oct 24, 2023 to update first the point of the member
+            'Comment or delete if anything goes wrong
+            Dim PrevPointsEarned As Decimal = 0
+            Dim qryPoints As String = String.Empty
+            qryPoints = "SELECT pa FROM members where CustId=" & Convert.ToInt32(txtcustid.Text)
+            Using reader1 As SqlDataReader = ExecuteSQLQueryReader(qryPoints)
+                While reader1.Read()
+                    PrevPointsEarned = reader1.GetDecimal(0)
+                End While
+            End Using
+
+            Dim TotalPoints As Decimal = 0
+            TotalPoints = Convert.ToDecimal(txtSum.Text) + PrevPointsEarned
+
+            Dim strUpdateCustPoints As String = String.Empty
+            strUpdateCustPoints = "UPDATE members SET pa=" & TotalPoints & " WHERE CustId=" & Convert.ToInt32(txtcustid.Text)
+            ExecuteSQLQuery(strUpdateCustPoints)
+
+            'Comment or delete if anything goes wrong above
+            'End Of New code
+
+
+
 
             'Commented for TodaRaba Pharmacy (without Printer)
             'New Comment for Igorot Buying Station
@@ -3307,12 +4750,44 @@ Public Class frmPOS
             straqlUpdateCustName = "UPDATE members SET firstname='Cash' WHERE CustId=1"
             ExecuteSQLQuery(straqlUpdateCustName)
 
+
+            'This is the Original Code I commented on Oct 24, 2023 and copied it before printing the Receipt
+            'to have an updated Points Earned Computation
+
+            'Dim PrevPointsEarned As Decimal = 0
+            'Dim qryPoints As String = String.Empty
+            'qryPoints = "SELECT pa FROM members where CustId=" & Convert.ToInt32(txtcustid.Text)
+            'Using reader1 As SqlDataReader = ExecuteSQLQueryReader(qryPoints)
+            '    While reader1.Read()
+            '        PrevPointsEarned = reader1.GetDecimal(0)
+            '    End While
+            'End Using
+
+            'Dim TotalPoints As Decimal = 0
+            'TotalPoints = Convert.ToDecimal(txtSum.Text) + PrevPointsEarned
+
+            'Dim strUpdateCustPoints As String = String.Empty
+            'strUpdateCustPoints = "UPDATE members SET pa=" & TotalPoints & " WHERE CustId=" & Convert.ToInt32(txtcustid.Text)
+            'ExecuteSQLQuery(strUpdateCustPoints)
+            'End of Comment Code Oct 24, 2023
+
+
+            Dim frmpay As New frmTenderChange
+            frmpay.ceTotal.Value = CDec(txtSum.Text) 'FormatNumber(CStr(vpTotalSales)) ' FormatNumber(txtSum.Text)
+            frmpay.ceTendered.Value = CDec(txtTendered.Text) 'vpTotalSales 'Tots 'CDec(txtSum.Text)
+
+            frmpay.ceChange.Value = CDec(lblChange.Text)
+            frmpay.ShowDialog()
+
+
             'btnSaves.Enabled = True
             Call SaveTransButtons()
             'btnnew.Focus()
             'Automatically Call new transaction
             Call NewTransaction()
 
+
+            DeleteSalesTemp2()
 
         Catch ex As PDSAValidationException
             MessageBox.Show(ex.Message)
@@ -3397,12 +4872,18 @@ Public Class frmPOS
                 'GridLookUpEdit2.Enabled = True
                 txtitem.Enabled = True
 
-                txtitem.Focus()
+
                 'btnSearchItems.Focus()
                 'txtitem.focus()
                 txtitem.Text = String.Empty
                 btnnew.Enabled = False
-
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             Else
                 ceWtid.Value = 1
                 vtotalsales = 0
@@ -3420,10 +4901,13 @@ Public Class frmPOS
                 btnRemove.Enabled = True
                 'GridLookUpEdit2.Enabled = True
                 txtitem.Enabled = True
-
-                'txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             End If
             txtCounts.Text = "0"
         Catch ex As Exception
@@ -3463,8 +4947,13 @@ Public Class frmPOS
         'txtBarcode.Focus()
         'btnSearchItems.Focus()
         'txtitem.Focus()
-        txtitem.Focus()
-        txtitem.Text = String.Empty
+        If vBarcodeOrItemSearch = True Then
+            txtBarcode.Text = String.Empty
+            txtBarcode.Focus()
+        Else
+            txtitem.Text = String.Empty
+            txtitem.Focus()
+        End If
     End Sub
 
     Private Sub PosGrid_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles PosGrid.EditingControlShowing
@@ -3507,7 +4996,21 @@ Public Class frmPOS
 
                 If result And result2 Then
                     'Console.WriteLine("Converted '{0}' to {1}.", CStr(PosGrid.SelectedRows.Item(0).Cells(5).Value), number)
-                    PosGrid.SelectedRows.Item(0).Cells(6).Value = CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(2).Value)) * CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(5).Value))
+                    If vCategoryDiscount > 0 Then
+                        Dim sNewPrice As Decimal = 0
+                        Dim sDiscount As Decimal = 0
+                        Dim sSubTotal As Decimal = 0
+                        Dim sQty As Decimal = 0
+                        sQty = CDec(PosGrid.SelectedRows.Item(0).Cells(2).Value)
+                        sDiscount = (CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(5).Value)) * sQty) * vCategoryDiscount
+                        sSubTotal = CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(5).Value)) * sQty
+                        sNewPrice = sSubTotal - sDiscount
+                        PosGrid.SelectedRows.Item(0).Cells(6).Value = sNewPrice
+                        PosGrid.SelectedRows.Item(0).Cells(12).Value = sDiscount
+                    Else
+                        PosGrid.SelectedRows.Item(0).Cells(6).Value = CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(2).Value)) * CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(5).Value))
+                    End If
+
                     'If (dgvr.Cells(7).Value < dgvr.Cells(10).Value) Then
                     'dgvr.DefaultCellStyle.ForeColor = Color.Red
                     'End If
@@ -3601,8 +5104,13 @@ Public Class frmPOS
         Else
             ItemsearchExecute()
         End If
-        'txtitem.focus()
-        txtitem.Focus()
+        If vBarcodeOrItemSearch = True Then
+            txtBarcode.Text = String.Empty
+            txtBarcode.Focus()
+        Else
+            txtitem.Text = String.Empty
+            txtitem.Focus()
+        End If
 
     End Sub
 
@@ -3611,44 +5119,78 @@ Public Class frmPOS
     End Sub
 
     Private Sub btnPriceMode_Click(sender As Object, e As EventArgs) Handles btnPriceMode.Click
-        If btnnew.Enabled = True Then
-            MessageBox.Show("Click New Transaction First before selecting Wholesale or Retail.")
-            btnnew.Focus()
+        'If btnnew.Enabled = True Then
+        '    MessageBox.Show("Click New Transaction First before selecting Wholesale or Retail.")
+        '    btnnew.Focus()
+        '    Exit Sub
+        'End If
+        ''Uncomment if the Client wants a password
+        ''passcorrect = False
+        ''Dim frm As frmPasswordInput
+        ''frm = New frmPasswordInput
+        '''frm.MdiParent = Me
+        ''frm.WindowState = FormWindowState.Normal
+        ''frm.ShowDialog()
+        ''frm = Nothing
+
+        ''If passcorrect = False Then
+        ''    Exit Sub
+        ''End If
+        ''End Of Comment
+
+        'If cmbPriceMode.Text = "Retail" Then
+        '    cmbPriceMode.Text = "Wholesale"
+        '    If vBarcodeOrItemSearch = True Then
+        '        txtBarcode.Text = String.Empty
+        '        txtBarcode.Focus()
+        '    Else
+        '        txtitem.Text = String.Empty
+        '        txtitem.Focus()
+        '    End If
+        '    Exit Sub
+        'End If
+
+
+        'If cmbPriceMode.Text = "Wholesale" Then
+        '    cmbPriceMode.Text = "Refund"
+
+        '    'btnSearchItems.Focus()
+
+        '    If vBarcodeOrItemSearch = True Then
+        '        txtBarcode.Text = String.Empty
+        '        txtBarcode.Focus()
+        '    Else
+        '        txtitem.Text = String.Empty
+        '        txtitem.Focus()
+        '    End If
+        '    Exit Sub
+        'End If
+
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
             Exit Sub
-        End If
-
-        If cmbPriceMode.Text = "Retail" Then
-            cmbPriceMode.Text = "Wholesale"
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
-            'txtitem.Focus()
-            txtitem.Focus()
-            txtitem.Text = String.Empty
-        End If
-
-
-        If cmbPriceMode.Text = "Wholesale" Then
-            cmbPriceMode.Text = "Refund"
-
-            'btnSearchItems.Focus()
-            'txtitem.Focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
         End If
 
         If cmbPriceMode.Text = "Refund" Then
             cmbPriceMode.Text = "Retail"
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
-            ' txtitem.Focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
+            Exit Sub
         End If
 
-
     End Sub
-
-
     Private Sub btnCreditPay_Click(sender As Object, e As EventArgs) Handles btnCreditPay.Click
         Dim frmcp As New frmCreditPayment
         frmcp.ShowDialog()
@@ -3656,72 +5198,137 @@ Public Class frmPOS
     End Sub
 
     Private Sub btnSaves_Click(sender As Object, e As EventArgs) Handles btnSaves.Click
-        'Not yet tested to open the cash drawer
-        'OpenCashdrawer()
-
-        'Try to check if there is a price that is not valid(less than or equal to zero and letters maybe)
         Dim vYesNo As Boolean = True
+        Dim grdcountt As Integer = 0
+        Dim iiiay As Integer = 0
+        Dim I As Integer = 0
+        Dim iCounter As Integer = 0
+        Dim iiCounter As Integer = 0
+        Dim vboolVAT As Integer
+        ' compute the total for the recipt
+        Tots = 0
+        For I = 0 To PosGrid.Rows.Count - 1
+            'MessageBox.Show(CStr(PosGrid.Rows.Count))
+            Tots += CDec(PosGrid.Rows(I).Cells(6).Value)
+        Next
+        txtCounts.Text = CStr(PosGrid.Rows.Count)
+        txtCounts.Text = CStr(PosGrid.Rows.Count)
+        Vatable = 0
+        NonVatable = 0
+        For iCounter = 0 To PosGrid.Rows.Count - 1
+            vboolVAT = CInt(PosGrid.Rows(iCounter).Cells(11).Value)
+            If vboolVAT = 1 Then
+                Vatable += CDec(PosGrid.Rows(iCounter).Cells(6).Value)
+            End If
+        Next
+        iiCounter = 0
+        For iiCounter = 0 To PosGrid.Rows.Count - 1
+            ''MessageBox.Show(CStr(PosGrid.Rows.Count))
+            'vboolVAT = CBool(PosGrid.Rows(iiCounter).Cells(9).Value)
+            vboolVAT = CInt(PosGrid.Rows(iiCounter).Cells(11).Value)
+            If vboolVAT = 0 Then
+                NonVatable += CDec(PosGrid.Rows(iiCounter).Cells(6).Value)
+            End If
+
+        Next
+
+        grdcountt = PosGrid.Rows.Count
         Try
-            'Try to check if there is a price that is not valid(less than or equal to zero and letters maybe)
-            Dim I As Integer = 0
-            For I = 0 To PosGrid.Rows.Count - 1
-                If CDec(CStr(PosGrid.SelectedRows.Item(0).Cells(5).Value)) <= 0 Then
+            If cmbPaymentType.Text = "CREDIT" And txtcustid.Text = "1" Then
+                MessageBox.Show("Change the payment type to CASH before collecting the payment or change a customer name because it is currently not charge to any customer")
+                Exit Sub
+            End If
+
+            For iiiay = 0 To grdcountt - 1
+                If CDec(PosGrid.Rows(iiiay).Cells(5).Value) <= 0 Then
 
                     ' Zero Price found
                     MessageBox.Show("There is an Item with a Price that is Not valid or less than 0.1")
                     vYesNo = False
-                    Exit For
+                    'Exit For
                     Exit Sub
                 End If
             Next
 
-            I = 0
-            For I = 0 To PosGrid.Rows.Count - 1
-                If CInt(CStr(PosGrid.SelectedRows.Item(0).Cells(2).Value)) <= 0 Then
-
-                    ' Zero Qty found
-                    MessageBox.Show("There is an Item with a Qty that is Not valid or equal t 0")
-                    vYesNo = False
-                    Exit For
-                    Exit Sub
-                End If
-            Next
-
+            If CDec(txtSum.Text) < 0 Then
+                txtSum.Text = FormatNumber(Tots, 2, , TriState.False, TriState.False)
+            End If
 
             If vYesNo = False Then
                 Exit Sub
             End If
-
-
-            'IF no problem them take payment
+            If btnSaves.Enabled = False Then
+                Exit Sub
+            End If
             TakePayment()
+
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
         End Try
     End Sub
 
     Private Sub btnSuspend_Click(sender As Object, e As EventArgs) Handles btnSuspend.Click
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
+
+
         If PosGrid.Rows.Count > 0 Then
             Call SuspendTrans()
         Else
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
+
             MessageBox.Show("No items to Suspend")
-            'txtitem.focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         End If
     End Sub
 
     Private Sub btnRetrieve_Click(sender As Object, e As EventArgs) Handles btnRetrieve.Click
-        If PosGrid.Rows.Count > 1 Then
-            MessageBox.Show("Pls. Finish or Cancel the existing sales transaction first before retrieving a suspended sales transaction")
+        'If PosGrid.Rows.Count > 1 Then
+        '    MessageBox.Show("Pls. Finish or Cancel the existing sales transaction first before retrieving a suspended sales transaction")
+        '    Exit Sub
+        'End If
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
             Exit Sub
         End If
+
         Call RetrieveTrans()
     End Sub
 
     Private Sub btnType_Click(sender As Object, e As EventArgs) Handles btnType.Click
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
         Try
             If btnnew.Enabled = True Then
                 MessageBox.Show("Click New Transaction First before selecting a payment type.")
@@ -3730,43 +5337,46 @@ Public Class frmPOS
             End If
 
             If cmbPaymentType.Text = "CASH" Then
-                cmbPaymentType.Text = "CHEQUE"
-                btnCustomers.Enabled = False
-                btnChequePayment.Enabled = True
-                ''btnCustomers.Focus()
-                ''Call OpenCustForm()
-                ''btnnew.Focus()
-                'txtBarcode.Focus()
-                'btnSearchItems.Focus()
-                'txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
-                Exit Sub
-                'btnSave.Focus()
-            End If
-            If cmbPaymentType.Text = "CHEQUE" Then
                 cmbPaymentType.Text = "CREDIT"
                 btnChequePayment.Enabled = True
                 'btnSave.Focus()
                 Call OpenCustForm()
                 btnCustomers.Enabled = True
-                'txtBarcode.Focus()
-                'btnSearchItems.Focus()
-                ' txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
                 Exit Sub
             End If
-            If cmbPaymentType.Text = "CREDIT" Then
+            If cmbPaymentType.Text = "CHEQUE" Then
                 cmbPaymentType.Text = "CASH"
                 'btnSave.Focus()
                 btnChequePayment.Enabled = False
                 btnCustomers.Enabled = True
-                'txtBarcode.Focus()
-                'btnSearchItems.Focus()
-                ' txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
+                Exit Sub
+            End If
+            If cmbPaymentType.Text = "CREDIT" Then
+                cmbPaymentType.Text = "CHEQUE"
+                'btnSave.Focus()
+                btnChequePayment.Enabled = False
+                btnCustomers.Enabled = True
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
                 Exit Sub
             End If
         Catch ex As Exception
@@ -3814,6 +5424,10 @@ Public Class frmPOS
         frm = Nothing
     End Sub
 
+    Private Sub PosGrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles PosGrid.CellContentClick
+
+    End Sub
+
     Private Sub DeliveryReceivingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeliveryReceivingToolStripMenuItem.Click
         'frmDlvry.Show()
         Dim frm As frmDelivery
@@ -3823,16 +5437,66 @@ Public Class frmPOS
     End Sub
 
     Private Sub btnChequePayment_Click(sender As Object, e As EventArgs) Handles btnChequePayment.Click
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
         Try
-            cmbPaymentType.Text = "CHEQUE"
-            If btnSaves.Enabled = True Then
-                MessageBox.Show("Press F12 to Take Cheque Payment before entering the Cheque Details")
+            'cmbPaymentType.Text = "CHEQUE"
+            ''If btnSaves.Enabled = True Then
+            ''MessageBox.Show("Press F12 to Take Cheque Payment before entering the Cheque Details")
+            ''    Exit Sub
+            ''Else
+            'MessageBox.Show("Press F12 after entering the Cheque Payment Details")
+            'Dim frm As New frmCheque
+            'frm.ShowDialog()
+            'btnnew.Focus()
+            ''End If
+
+
+            If PosGrid.Rows.Count > 0 Then
+                MessageBox.Show("Cannot retrieve saved sales if there is an existing items on the Item List.")
                 Exit Sub
-            Else
-                Dim frm As New frmCheque
-                frm.ShowDialog()
-                btnnew.Focus()
             End If
+
+            ' Retrieve records from the SalesTemp table with the Cashier filter
+            Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+            Dim query As String = "SELECT [ProdId], [Barcode], [Quantity], [Cost], [Item], [Price], [Vatabol], [Incentv] FROM [dbo].[SalesTemp] WHERE [Cashier] = @currentLoginID"
+
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+
+                Using command As New SqlCommand(query, connection)
+                    ' Set the parameter value
+                    command.Parameters.AddWithValue("@currentLoginID", PDSAAppConfig.CurrentLoginID)
+
+                    Using reader As SqlDataReader = command.ExecuteReader()
+                        While reader.Read()
+                            ' Retrieve the column values from the SqlDataReader
+                            Dim ProdId As Integer = reader.GetInt32(0)
+                            Dim Barcode As String = reader.GetString(1)
+                            Dim Quantity As Double = reader.GetDouble(2)
+                            Dim Cost As Decimal = reader.GetDecimal(3)
+                            Dim Item As String = reader.GetString(4)
+                            Dim Price As Decimal = reader.GetDecimal(5)
+                            Dim Vatabol As Integer = reader.GetInt32(6)
+                            Dim Incentv As Double = reader.GetDouble(7)
+
+                            ' Add a new row to the PosGrid with the retrieved values
+                            PosGrid.Rows.Add(ProdId, Barcode, Quantity, Cost, Item, Price, Price, Price, Vatabol, Incentv, Incentv, Vatabol)
+                        End While
+                    End Using
+                End Using
+            End Using
+            txtBarcode.Focus()
+
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
         End Try
@@ -3842,14 +5506,32 @@ Public Class frmPOS
         VoidItem()
     End Sub
     Private Sub VoidItem()
-        If PosGrid.Rows.Count = 0 Then
-            'txtBarcode.Focus()
-            'btnSearchItems.Focus()
-            ' txtitem.Focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+        'Uncomment if the Client wants a password
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
             Exit Sub
         End If
+        'End of Comment
+        If PosGrid.Rows.Count = 0 Then
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
+            Exit Sub
+        End If
+
+
+        DeleteSalesTemp()
 
         Dim Totss As Decimal = 0
         Dim ii As Integer
@@ -3895,9 +5577,13 @@ Public Class frmPOS
             vpTotalSales = Totss
             'TextEdit1.Text = FormatCurrency(CStr(Totss))
             btnBcode.PerformClick()
-            'txtBarcode.Focus()
-            'txtitem.Focus()
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         Catch ex As PDSAValidationException
             MessageBox.Show(ex.Message)
         Catch ex As Exception
@@ -3911,6 +5597,19 @@ Public Class frmPOS
         ''txtitem.focus()
         'txtitem.Text = String.Empty
         'txtBarcode.Focus()
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
+
+        vSalesNum = 0
         vSalesNum = CInt(InputBox("Enter the sales number to be printed", "Reprint", CStr(ceRefno.Text)))
         Dim posrep As New xrReceiptTodaRaba()
         'posrep.DataSource = sqlDT
@@ -3946,22 +5645,44 @@ Public Class frmPOS
     Private Sub btnLookuprice_Click(sender As Object, e As EventArgs) Handles btnLookuprice.Click
         Dim frm As New frmPriceLookup2
         frm.Show()
-        'txtitem.Focus()
-        txtitem.Focus()
+        If vBarcodeOrItemSearch = True Then
+            txtBarcode.Text = String.Empty
+            txtBarcode.Focus()
+        Else
+            txtitem.Text = String.Empty
+            txtitem.Focus()
+        End If
     End Sub
 
     Private Sub btnPickup_Click(sender As Object, e As EventArgs) Handles btnPickup.Click
+        'Uncomment If the Client wants a password
+        passcorrect = False
+        Dim frm3 As frmPasswordInput
+        frm3 = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm3.WindowState = FormWindowState.Normal
+        frm3.ShowDialog()
+        frm3 = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
+        'End Of Comment
+
+
         Try
             Dim frm As New frmPickup
             frm.ShowDialog()
             If btnnew.Enabled = True Then
                 btnnew.Focus()
             Else
-                'txtBarcode.Focus()
-                'btnSearchItems.Focus()
-                'txtitem.focus()
-                txtitem.Text = String.Empty
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             End If
 
         Catch ex As Exception
@@ -3980,6 +5701,18 @@ Public Class frmPOS
         'Catch ex As Exception
         '    MessageBox.Show(ex.ToString())
         'End Try
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
+
 
         SetQuantity()
 
@@ -3998,8 +5731,58 @@ Public Class frmPOS
                 'this is the original Code below
                 'PosGrid.Rows(PosGrid.RowCount - 1).Cells(2).Value = vpieces
                 'this is the original Code above
+                Dim vvvStockID As Integer = 0
+                Dim connectionString As String = "Server=DOORSCOMPUTERS\SQLEXPRESS;Database=doorspos;Trusted_Connection=True;"
+                Dim sql As String = "SELECT retail, retail2 FROM stocks WHERE stckid=" & CInt(PosGrid.SelectedRows(0).Cells(0).Value) & ""
+                Dim CurrentLoginID As String = PDSAAppConfig.CurrentLoginID
+                Dim vNewPrice As Decimal = 0
+                Dim ProdId As Integer = CInt(PosGrid.SelectedRows(0).Cells(0).Value)
 
-                PosGrid.SelectedRows(0).Cells(2).Value = vpieces
+                vCategoryDiscount = 0
+                vCategoryDiscountAmount = 0
+                vCategoryID = 0
+                vDiscountedAmount = 0
+                GetCategoryDiscount(ProdId)
+                If vCategoryDiscount > 0 Then
+                    vCategoryDiscountAmount = (CDec(PosGrid.SelectedRows(0).Cells(5).Value) * vpieces) * vCategoryDiscount
+                    vDiscountedAmount = (CDec(PosGrid.SelectedRows(0).Cells(5).Value) * vpieces) - vCategoryDiscountAmount
+                    vNewPrice = vDiscountedAmount
+                Else
+                    vNewPrice = CDec(PosGrid.SelectedRows(0).Cells(5).Value) * vpieces
+                End If
+
+
+
+
+                Dim connection As New SqlConnection(connectionString)
+                Dim command As New SqlCommand(sql, connection)
+
+                connection.Open()
+
+                Dim reader As SqlDataReader = command.ExecuteReader()
+                Dim retail As Double = 0
+                Dim retail2 As Double = 0
+                If reader.HasRows Then
+                    reader.Read()
+                    retail = CDbl(reader("retail"))
+                    retail2 = CDbl(reader("retail2"))
+                Else
+                    retail = 0
+                    retail2 = 0
+                    MessageBox.Show("No records found. Retail: " & retail & ", Retail2: " & retail2)
+                End If
+
+                connection.Close()
+
+
+                If vpieces >= nQtyWholesale Then
+                    PosGrid.SelectedRows(0).Cells(2).Value = vpieces
+                    PosGrid.SelectedRows(0).Cells(5).Value = retail2
+                Else
+                    PosGrid.SelectedRows(0).Cells(2).Value = vpieces
+                    PosGrid.SelectedRows(0).Cells(5).Value = retail
+                End If
+
                 'PosGrid.Rows.Remove(PosGrid.SelectedRows(0))
 
                 ''Me.PosGrid.Rows(Me.PosGrid.RowCount - 1).Selected = True
@@ -4027,11 +5810,41 @@ Public Class frmPOS
                 txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
                 CheckSumifNegative()
                 vpTotalSales = Tots
-                'TextEdit1.Text = FormatCurrency(CStr(Tots))
+                'End of newly added code
+
+                'Update SalesTemp
+
+
+
+                ' Create a SQL connection
+                Dim connectionString2 As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+                Using connection2 As New SqlConnection(connectionString)
+                    connection2.Open()
+
+                    ' Create a SQL command to update the Quantity field
+                    Dim query2 As String = "UPDATE [dbo].[SalesTemp] SET Quantity = @vpieces, Amount=@Amount WHERE ProdId = @ProdId AND Cashier = @CurrentLoginID"
+                    Using command2 As New SqlCommand(query2, connection2)
+                        ' Set the parameter values
+                        command2.Parameters.AddWithValue("@vpieces", vpieces)
+                        command2.Parameters.AddWithValue("@Amount", vNewPrice)
+                        command2.Parameters.AddWithValue("@ProdId", ProdId)
+                        command2.Parameters.AddWithValue("@CurrentLoginID", CurrentLoginID)
+
+                        ' Execute the SQL command to update the Quantity field
+                        command2.ExecuteNonQuery()
+                    End Using
+                End Using
+                'End of Update Sales Temp
                 qtyy = 1
                 vpieces = 1
-                'End of newly added code
-                txtitem.Focus()
+
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             End If
 
         Catch ex As Exception
@@ -4084,7 +5897,13 @@ Public Class frmPOS
                 qtyy = 1
                 vpieces = 1
                 'End of newly added code
-                txtitem.Focus()
+                If vBarcodeOrItemSearch = True Then
+                    txtBarcode.Text = String.Empty
+                    txtBarcode.Focus()
+                Else
+                    txtitem.Text = String.Empty
+                    txtitem.Focus()
+                End If
             End If
 
         Catch ex As Exception
@@ -4093,106 +5912,61 @@ Public Class frmPOS
     End Sub
 
     Private Sub btnAddCash_Click(sender As Object, e As EventArgs) Handles btnAddCash.Click
+        'Uncomment If the Client wants a password
+        passcorrect = False
+        Dim frm2 As frmPasswordInput
+        frm2 = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm2.WindowState = FormWindowState.Normal
+        frm2.ShowDialog()
+        frm2 = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
+        'End Of Comment
+
         Try
             Dim frm As New frmAddtnlCash
             frm.ShowDialog()
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
         End Try
     End Sub
 
     Private Sub btnDiscount_Click(sender As Object, e As EventArgs) Handles btnDiscount.Click
-        'If PosGrid.Rows.Count = 0 Or btnnew.Enabled = True Then
-        '    MessageBox.Show("Item List is Blank!")
-        '    Exit Sub
-        'End If
-
-        'passcorrect = True
-        ''passcorrect = False
-        ''Dim frm As frmPasswordInput
-        ''frm = New frmPasswordInput
-        '''frm.MdiParent = Me
-        ''frm.WindowState = FormWindowState.Normal
-        ''frm.ShowDialog()
-        ''frm = Nothing
+        If PosGrid.Rows.Count = 0 Or btnnew.Enabled = True Then
+            MessageBox.Show("Item List is Blank!")
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
+            Exit Sub
+        End If
 
 
-        'If passcorrect = True Then
 
-        '    Dim vdetdisc As Decimal = 0 ' this is the discount computed per item that was divided from the vdiscamnt variable to the total itemcount which is vItemCount
-        '    Dim ayayay As Integer = 0
-        '    For ayayay = 0 To PosGrid.Rows.Count - 1
-        '        PosGrid.Rows(ayayay).Cells(8).Value = 0
-        '    Next
+        'Recalculate the total on the Grid and post it on txtsum before applying any discount
+        Dim I As Integer = 0
+        Tots = 0
+        For I = 0 To PosGrid.Rows.Count - 1
+            Tots += CDec(PosGrid.Rows(I).Cells(6).Value)
+        Next
 
-        '    If btnSaves.Enabled = False Then
-        '        MessageBox.Show("Discount is not allowed if Sales Transaction is already paid.")
-        '        Exit Sub
-        '    End If
-        '    If PosGrid.Rows.Count < 1 Then
-        '        MessageBox.Show("Item List is  B l a n k")
-        '        Exit Sub
-        '    End If
-
-        '    'Recalculate the total on the Grid and post it on txtsum before applying any discount
-        '    Dim I As Integer = 0
-        '    Tots = 0
-        '    For I = 0 To PosGrid.Rows.Count - 1
-        '        Tots += CDec(PosGrid.Rows(I).Cells(6).Value)
-        '    Next
-
-        '    txtCounts.Text = CStr(PosGrid.Rows.Count)
-        '    txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) ' FormatNumber(CStr(Tots))
-        '    CheckSumifNegative()
-        '    vpTotalSales = Tots
-
-
-        '    Try
-
-        '        vdisc = 0
-        '        vdiscamnt = 0
-        '        vtotalsales = Tots 'CDec(txtSum.Text) My New Comments 12 21 13
-        '        'vpTotalSales = CDec(txtSum.Text) My New Comments 12 21 13
-        '        txtCounts.Text = CStr(PosGrid.Rows.Count)
-        '        Dim frmdisc As New frmDiscount
-        '        frmdisc.ShowDialog()
-        '        txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
-        '        CheckSumifNegative()
-
-        '        If vtotalsales = 0 Then
-        '            txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
-        '            CheckSumifNegative()
-        '            vpTotalSales = Tots
-        '        End If
-
-
-        '        Dim vItemCount As Integer = 0
-        '        Dim ay As Integer = 0
-        '        For ay = 0 To PosGrid.Rows.Count - 1
-        '            vItemCount += CInt(PosGrid.Rows(ay).Cells(5).Value)
-        '        Next
-
-        '        If vdiscamnt > 0 Then
-        '            vdetdisc = CDec(vdiscamnt / vItemCount)
-        '            Dim ayay As Integer = 0
-        '            For ayay = 0 To PosGrid.Rows.Count - 1
-        '                PosGrid.Rows(ayay).Cells(8).Value = CDec(vdetdisc * CInt(PosGrid.Rows(ayay).Cells(2).Value))
-        '            Next
-        '        End If
-        '        txtCounts.Text = CStr(PosGrid.Rows.Count)
-        '        txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
-        '        CheckSumifNegative()
-        '        'txtBarcode.Focus()
-        '        'btnSearchItems.Focus()
-        '        'txtitem.focus()
-        '        txtitem.Text = String.Empty
-        '        txtitem.Focus()
-        '        'txtBarcode.SelectAll()
-        '    Catch ex As Exception
-        '        MessageBox.Show(ex.ToString())
-        '    End Try
-        'End If
+        txtCounts.Text = CStr(PosGrid.Rows.Count)
+        txtSum.Text = FormatNumber(Tots, 2, , TriState.False, TriState.True) ' FormatNumber(CStr(Tots))
+        CheckSumifNegative()
+        vpTotalSales = Tots
 
 
 
@@ -4203,6 +5977,7 @@ Public Class frmPOS
         End If
 
 
+        'Comment if the Client does not want a password
         passcorrect = False
         Dim frm As frmPasswordInput
         frm = New frmPasswordInput
@@ -4213,20 +5988,62 @@ Public Class frmPOS
         If passcorrect = False Then
             Exit Sub
         End If
+        'End of Comment
 
 
+
+        'Dim ansint As Integer = 7
+        'ansint = MsgBox("Click Yes for Regular Discount or No for Gov't Discount", MsgBoxStyle.YesNo, "Discount Confirmation")
+        'If ansint = 6 Then
+        Call RegularDiscount()
+        'End If
+
+
+
+
+        'Dim TotsBeforeDisc As Decimal = 0
+        'Tots = 0
+        'SeniorDiscount = 0
+        'vdiscamnt = 0
+        'Dim i As Integer = 0
+        'For i = 0 To PosGrid.Rows.Count - 1
+        '    Tots += CDec(PosGrid.Rows(i).Cells(6).Value)
+        'Next
+        '' txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr
+
+
+        'txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True)
+        'TotsBeforeDisc = CDec(CDec(Tots / 1.12) * 0.8)
+        'SeniorDiscount = CDec(CDec(Tots / 1.12) * 0.2)
+        'vdiscamnt = Tots - TotsBeforeDisc
+        'txtSum.Text = FormatNumber(TotsBeforeDisc, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots22))
+        'If vBarcodeOrItemSearch = True Then
+        '    txtBarcode.Text = String.Empty
+        '    txtBarcode.Focus()
+        'Else
+        '    txtitem.Text = String.Empty
+        '    txtitem.Focus()
+        'End If
+        'txtBarcode.SelectAll()
+        'Exit Sub
+
+
+    End Sub
+    Sub RegularDiscount()
+        'passcorrect = True
         If passcorrect = True Then
-
+            vdiscamnt = 0
+            SeniorDiscount = 0
             Dim vdetdisc As Decimal = 0 ' this is the discount computed per item that was divided from the vdiscamnt variable to the total itemcount which is vItemCount
             Dim ayayay As Integer = 0
             For ayayay = 0 To PosGrid.Rows.Count - 1
                 PosGrid.Rows(ayayay).Cells(8).Value = 0
             Next
 
-            If btnSaves.Enabled = False Then
-                MessageBox.Show("Discount is not allowed if Sales Transaction is already paid.")
-                Exit Sub
-            End If
+            'If btnSaves.Enabled = False Then
+            '    MessageBox.Show("Discount is not allowed if Sales Transaction is already paid.")
+            '    Exit Sub
+            'End If
             If PosGrid.Rows.Count < 1 Then
                 MessageBox.Show("Item List is  B l a n k")
                 Exit Sub
@@ -4240,7 +6057,7 @@ Public Class frmPOS
             Next
 
             txtCounts.Text = CStr(PosGrid.Rows.Count)
-            txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) ' FormatNumber(CStr(Tots))
+            txtSum.Text = FormatNumber(Tots, 2, , TriState.False, TriState.True) ' FormatNumber(CStr(Tots))
             CheckSumifNegative()
             vpTotalSales = Tots
 
@@ -4255,11 +6072,11 @@ Public Class frmPOS
                 txtCounts.Text = CStr(PosGrid.Rows.Count)
                 Dim frmdisc As New frmDiscount
                 frmdisc.ShowDialog()
-                txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
+                txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.False, TriState.True) 'FormatNumber(CStr(vtotalsales))
                 CheckSumifNegative()
 
                 If vtotalsales = 0 Then
-                    txtSum.Text = FormatNumber(Tots, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(Tots))
+                    txtSum.Text = FormatNumber(Tots, 2, , TriState.False, TriState.True) 'FormatNumber(CStr(Tots))
                     CheckSumifNegative()
                     vpTotalSales = Tots
                 End If
@@ -4271,15 +6088,8 @@ Public Class frmPOS
                     vItemCount += CInt(PosGrid.Rows(ay).Cells(5).Value)
                 Next
 
-                If vdiscamnt > 0 Then
-                    vdetdisc = CDec(vdiscamnt / vItemCount)
-                    Dim ayay As Integer = 0
-                    For ayay = 0 To PosGrid.Rows.Count - 1
-                        PosGrid.Rows(ayay).Cells(8).Value = CDec(vdetdisc * CInt(PosGrid.Rows(ayay).Cells(2).Value))
-                    Next
-                End If
                 txtCounts.Text = CStr(PosGrid.Rows.Count)
-                txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.True, TriState.True) 'FormatNumber(CStr(vtotalsales))
+                txtSum.Text = FormatNumber(vtotalsales, 2, , TriState.False, TriState.True) 'FormatNumber(CStr(vtotalsales))
                 CheckSumifNegative()
                 txtitem.Text = String.Empty
                 txtitem.Focus()
@@ -4287,9 +6097,6 @@ Public Class frmPOS
                 MessageBox.Show(ex.ToString())
             End Try
         End If
-
-
-
     End Sub
     Private Sub CheckSumifNegative()
         If CDec(txtSum.Text) < 0 Then
@@ -4320,7 +6127,11 @@ Public Class frmPOS
             itemcnt = 0
             vdisc = 0
             vdiscamnt = 0
+            SeniorDiscount = 0
             vEmpID = 1
+            nWS = 0
+            nRP = 0
+            nQtyWholesale = 100
             'txtTendered.Text = "0"
             NewTrans()
         Catch ex As Exception
@@ -4344,13 +6155,29 @@ Public Class frmPOS
     End Sub
 
     Private Sub btnRefund_Click(sender As Object, e As EventArgs) Handles btnRefund.Click
+        'Uncomment If the Client wants a password
+        passcorrect = False
+        Dim frm As frmPasswordInput
+        frm = New frmPasswordInput
+        'frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Normal
+        frm.ShowDialog()
+        frm = Nothing
+
+        If passcorrect = False Then
+            Exit Sub
+        End If
+        'End Of Comment
+
         If btnnew.Enabled = False Then
             cmbPriceMode.Text = "Refund"
-            'btnSearchItems.Focus()
-            'txtBarcode.Focus()
-            txtitem.Focus()
-            txtitem.Text = String.Empty
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         End If
     End Sub
 
@@ -4456,18 +6283,30 @@ Public Class frmPOS
         If e.KeyCode = Keys.Enter Then
             DgitemsKeydown()
             e.SuppressKeyPress = True
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         End If
 
-        If e.KeyCode = Keys.Escape Then
+        If e.KeyCode = Keys.Escape Or e.KeyCode = Keys.Back Then
 
             dgitems.Visible = False
-            'txtitem.Focus()
-            'txtitem.SelectAll()
-            txtitem.Focus()
-            txtBarcode.SelectAll()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
             e.SuppressKeyPress = True
         End If
+
+
+
 
     End Sub
     Sub DgitemsKeydown()
@@ -4554,8 +6393,13 @@ Public Class frmPOS
 
         If e.KeyChar = Chr(27) Then
             DGRetrieve.Visible = False
-            'txtitem.Focus()
-            txtitem.Focus()
+            If vBarcodeOrItemSearch = True Then
+                txtBarcode.Text = String.Empty
+                txtBarcode.Focus()
+            Else
+                txtitem.Text = String.Empty
+                txtitem.Focus()
+            End If
         End If
     End Sub
 
@@ -4588,11 +6432,222 @@ Public Class frmPOS
         '    'txtitem.Focus()
         'txtitem.Focus
         'End If
+        If e.KeyChar = Chr(42) Then
+            e.Handled = True
+            passcorrect = False
+            Dim frm As frmPasswordInput
+            frm = New frmPasswordInput
+            'frm.MdiParent = Me
+            frm.WindowState = FormWindowState.Normal
+            frm.ShowDialog()
+            frm = Nothing
 
+            If passcorrect = False Then
+                Exit Sub
+            End If
+            SetQuantity()
+
+            txtBarcode.Text = ""
+            txtBarcode.Text = String.Empty
+
+        End If
     End Sub
 
     Private Sub btnChanePrice_Click(sender As Object, e As EventArgs) Handles btnChanePrice.Click
         PriceOverride()
     End Sub
+
+    Sub AddTempSales()
+        ' Define the data for the new record
+        Dim ProdId As Integer = mgr6.DataObject.Entity.stckid
+        Dim Barcode As String = mgr6.DataObject.Entity.barcode
+        Dim Quantity As Double = qtyy
+        Dim Cost As Decimal = mgr6.DataObject.Entity.cost
+        Dim Item As String = mgr6.DataObject.Entity.itemdesc
+        Dim Price As Decimal = mgr6.DataObject.Entity.retail
+        Dim Amount As Decimal = mgr6.DataObject.Entity.retail
+        Dim OP As Decimal = mgr6.DataObject.Entity.retail
+        Dim Discounts As Decimal = mgr6.DataObject.Entity.retail
+        Dim Incentv As Double = vCellValIncent
+        Dim WaiterID As Integer = mgr6.DataObject.Entity.vat
+        Dim Cashier As String = PDSAAppConfig.CurrentLoginID
+        Dim SoldDate As Date = Date.Today
+
+        ' Create a SQL connection
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+
+            ' Create a SQL command to insert the new record
+            Dim query As String = "INSERT INTO [dbo].[SalesTemp] (ProdId, Barcode, Quantity, Cost, Item, Price, Amount, OP, discounts, Incentv, WaiterID, Vatabol, Cashier, SoldDate) VALUES (@ProdId, @Barcode, @Quantity, @Cost, @Item, @Price, @Amount, @OP, @Discounts, @Incentv, @WaiterID, @Vatabol, @Cashier, @SoldDate)"
+            Using command As New SqlCommand(query, connection)
+                ' Set the parameter values
+                command.Parameters.AddWithValue("@ProdId", ProdId)
+                command.Parameters.AddWithValue("@Barcode", Barcode)
+                command.Parameters.AddWithValue("@Quantity", Quantity)
+                command.Parameters.AddWithValue("@Cost", Cost)
+                command.Parameters.AddWithValue("@Item", Item)
+                command.Parameters.AddWithValue("@Price", Price)
+                command.Parameters.AddWithValue("@Amount", Amount)
+                command.Parameters.AddWithValue("@OP", OP)
+                command.Parameters.AddWithValue("@Discounts", Discounts)
+                command.Parameters.AddWithValue("@Incentv", Incentv)
+                command.Parameters.AddWithValue("@WaiterID", WaiterID)
+                command.Parameters.AddWithValue("@Vatabol", 0) ' Set the value for Vatabol accordingly
+                command.Parameters.AddWithValue("@Cashier", Cashier)
+                command.Parameters.AddWithValue("@SoldDate", SoldDate)
+
+                ' Execute the SQL command to insert the record
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+
+    End Sub
+
+    Sub UpdateSalesTempQty()
+        ' Get the ProdId and CurrentLoginID
+        Dim ProdId As Integer = mgr6.DataObject.Entity.stckid
+        Dim CurrentLoginID As String = PDSAAppConfig.CurrentLoginID
+
+
+        ' Create a SQL connection
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+
+            ' Create a SQL command to update the Quantity field
+            Dim query As String = "UPDATE [dbo].[SalesTemp] SET Quantity = Quantity + 1, Amount=@Amount WHERE ProdId = @ProdId AND Cashier = @CurrentLoginID"
+            Using command As New SqlCommand(query, connection)
+                ' Set the parameter values
+                command.Parameters.AddWithValue("@Amount", NewPrice)
+                command.Parameters.AddWithValue("@ProdId", ProdId)
+                command.Parameters.AddWithValue("@CurrentLoginID", CurrentLoginID)
+
+                ' Execute the SQL command to update the Quantity field
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+
+    End Sub
+    Sub UpdateSalesTempQty2()
+        ' Get the ProdId and CurrentLoginID
+        Dim ProdId As Integer = mgr6.DataObject.Entity.stckid
+        Dim CurrentLoginID As String = PDSAAppConfig.CurrentLoginID
+
+
+        ' Create a SQL connection
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+
+            ' Create a SQL command to update the Quantity field
+            Dim query As String = "UPDATE [dbo].[SalesTemp] SET Quantity = Quantity + 1, Amount=@Amount WHERE ProdId = @ProdId AND Cashier = @CurrentLoginID"
+            Using command As New SqlCommand(query, connection)
+                ' Set the parameter values
+                command.Parameters.AddWithValue("@Amount", NewPrice)
+                command.Parameters.AddWithValue("@ProdId", ProdId)
+                command.Parameters.AddWithValue("@CurrentLoginID", CurrentLoginID)
+
+                ' Execute the SQL command to update the Quantity field
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+
+    End Sub
+    Sub DeleteSalesTemp()
+        ' Get the ProdId and CurrentLoginID
+        Dim ProdId As Integer = Convert.ToInt32(PosGrid.SelectedRows(0).Cells(0).Value)
+        Dim CurrentLoginID As String = PDSAAppConfig.CurrentLoginID
+
+        ' Create a SQL connection
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+
+            ' Create a SQL command to delete the record
+            Dim query As String = "DELETE FROM [dbo].[SalesTemp] WHERE ProdId = @ProdId AND Cashier = @CurrentLoginID"
+            Using command As New SqlCommand(query, connection)
+                ' Set the parameter values
+                command.Parameters.AddWithValue("@ProdId", ProdId)
+                command.Parameters.AddWithValue("@CurrentLoginID", CurrentLoginID)
+
+                ' Execute the SQL command to delete the record
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+
+    End Sub
+
+    Sub DeleteSalesTemp2()
+        ' Get the ProdId and CurrentLoginID
+        Dim CurrentLoginID As String = PDSAAppConfig.CurrentLoginID
+
+        ' Create a SQL connection
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+
+            ' Create a SQL command to delete the record
+            Dim query As String = "DELETE FROM [dbo].[SalesTemp] WHERE Cashier = @CurrentLoginID"
+            Using command As New SqlCommand(query, connection)
+                ' Set the parameter values
+                command.Parameters.AddWithValue("@CurrentLoginID", CurrentLoginID)
+
+                ' Execute the SQL command to delete the record
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+
+    End Sub
+
+    Private Sub frmPOS_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Unhook()
+    End Sub
+
+    Public Sub GetCategoryDiscount(nProdID As Integer)
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True;"
+
+        ' Query to get categoryid from stocks table
+        Dim queryCategoryID As String = "SELECT categoryid FROM stocks WHERE stckid = @stckid"
+
+        ' Query to get discountpercent from categories table
+        Dim queryDiscount As String = "SELECT discountpercent FROM categories WHERE categoryid = @categoryid"
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+
+                ' Get categoryid from stocks table
+                Using command As New SqlCommand(queryCategoryID, connection)
+                    command.Parameters.AddWithValue("@stckid", nProdID)
+                    Dim result As Object = command.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        vCategoryID = Convert.ToInt32(result)
+                    Else
+                        ' Handle case where stckid is not found
+                        Throw New Exception("Product ID not found in stocks table.")
+                    End If
+                End Using
+
+                ' Get discountpercent from categories table
+                Using command As New SqlCommand(queryDiscount, connection)
+                    command.Parameters.AddWithValue("@categoryid", vCategoryID)
+                    Dim result As Object = command.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        Dim discountPercent As Integer = Convert.ToInt32(result)
+                        vCategoryDiscount = discountPercent / 100D ' Convert to decimal percent
+                    Else
+                        ' Handle case where categoryid is not found
+                        Throw New Exception("Category ID not found in categories table.")
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            ' Handle exceptions
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
 
 End Class

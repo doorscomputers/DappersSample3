@@ -22,8 +22,9 @@ Partial Class frmRcivdStcksGrd2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.VwReceivedStocksBindingSource = New System.Windows.Forms.BindingSource()
+        Me.VwReceivedStocksBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsReceivedStcks = New DoorsPOS.WinApp.dsReceivedStcks()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colrdate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,6 +33,7 @@ Partial Class frmRcivdStcksGrd2
         Me.colitem_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.VwReceivedStocksTableAdapter = New DoorsPOS.WinApp.dsReceivedStcksTableAdapters.vwReceivedStocksTableAdapter()
+        Me.colReceiveNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwReceivedStocksBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsReceivedStcks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +63,7 @@ Partial Class frmRcivdStcksGrd2
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colrdate, Me.colsInsert_id, Me.collocation, Me.colitem_desc, Me.colqty})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colReceiveNo, Me.colrdate, Me.colsInsert_id, Me.collocation, Me.colitem_desc, Me.colqty})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -73,7 +75,7 @@ Partial Class frmRcivdStcksGrd2
         Me.colrdate.FieldName = "rdate"
         Me.colrdate.Name = "colrdate"
         Me.colrdate.Visible = True
-        Me.colrdate.VisibleIndex = 0
+        Me.colrdate.VisibleIndex = 1
         Me.colrdate.Width = 115
         '
         'colsInsert_id
@@ -86,7 +88,7 @@ Partial Class frmRcivdStcksGrd2
         Me.colsInsert_id.FieldName = "sInsert_id"
         Me.colsInsert_id.Name = "colsInsert_id"
         Me.colsInsert_id.Visible = True
-        Me.colsInsert_id.VisibleIndex = 4
+        Me.colsInsert_id.VisibleIndex = 5
         Me.colsInsert_id.Width = 408
         '
         'collocation
@@ -99,7 +101,7 @@ Partial Class frmRcivdStcksGrd2
         Me.collocation.FieldName = "location"
         Me.collocation.Name = "collocation"
         Me.collocation.Visible = True
-        Me.collocation.VisibleIndex = 3
+        Me.collocation.VisibleIndex = 4
         Me.collocation.Width = 205
         '
         'colitem_desc
@@ -108,7 +110,7 @@ Partial Class frmRcivdStcksGrd2
         Me.colitem_desc.FieldName = "item_desc"
         Me.colitem_desc.Name = "colitem_desc"
         Me.colitem_desc.Visible = True
-        Me.colitem_desc.VisibleIndex = 1
+        Me.colitem_desc.VisibleIndex = 2
         Me.colitem_desc.Width = 237
         '
         'colqty
@@ -117,12 +119,19 @@ Partial Class frmRcivdStcksGrd2
         Me.colqty.FieldName = "qty"
         Me.colqty.Name = "colqty"
         Me.colqty.Visible = True
-        Me.colqty.VisibleIndex = 2
+        Me.colqty.VisibleIndex = 3
         Me.colqty.Width = 101
         '
         'VwReceivedStocksTableAdapter
         '
         Me.VwReceivedStocksTableAdapter.ClearBeforeFill = True
+        '
+        'colReceiveNo
+        '
+        Me.colReceiveNo.FieldName = "ReceiveNo"
+        Me.colReceiveNo.Name = "colReceiveNo"
+        Me.colReceiveNo.Visible = True
+        Me.colReceiveNo.VisibleIndex = 0
         '
         'frmRcivdStcksGrd2
         '
@@ -149,4 +158,5 @@ Partial Class frmRcivdStcksGrd2
     Friend WithEvents collocation As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colitem_desc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colReceiveNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class

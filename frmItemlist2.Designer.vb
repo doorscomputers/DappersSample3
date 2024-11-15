@@ -40,32 +40,32 @@ Partial Class frmItemlist2
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim C1DataView1 As C1.C1DataExtender.C1DataView
-        Dim C1ViewColumn53 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn54 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn55 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn56 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn57 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn58 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn59 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn60 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn61 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn62 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn63 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn64 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn65 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn66 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn67 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn68 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn69 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn70 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn71 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn72 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn73 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn74 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn75 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn76 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn77 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
-        Dim C1ViewColumn78 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn1 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn2 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn3 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn4 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn5 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn6 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn7 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn8 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn9 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn10 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn11 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn12 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn13 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn14 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn15 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn16 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn17 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn18 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn19 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn20 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn21 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn22 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn23 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn24 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn25 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
+        Dim C1ViewColumn26 As C1.C1DataExtender.C1ViewColumn = New C1.C1DataExtender.C1ViewColumn()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmItemlist2))
         Me.C1DataViewSet1 = New C1.C1DataExtender.C1DataViewSet()
         Me.DsStakks = New DoorsPOS.WinApp.dsStakks()
@@ -104,6 +104,7 @@ Partial Class frmItemlist2
         Me.colsLastUpdate_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldtLastUpdate_dt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colvat1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colincentive1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colincentive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.DsCategory = New DoorsPOS.WinApp.dsCategory()
@@ -112,7 +113,6 @@ Partial Class frmItemlist2
         Me.categoriesTableAdapter = New DoorsPOS.WinApp.dsCategoryTableAdapters.categoriesTableAdapter()
         Me.categoriesTableAdapter1 = New DoorsPOS.WinApp.categoryDSTableAdapters.categoriesTableAdapter()
         Me.deptTableAdapter = New DoorsPOS.WinApp.dsBrandTableAdapters.deptTableAdapter()
-        Me.colincentive1 = New DevExpress.XtraGrid.Columns.GridColumn()
         C1DataView1 = New C1.C1DataExtender.C1DataView()
         CType(Me.C1DataViewSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsStakks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,58 +136,58 @@ Partial Class frmItemlist2
         'C1DataView1
         '
         C1DataView1.AllowNew = False
-        C1ViewColumn53.ColumnNameSerialized = "stckid"
-        C1ViewColumn54.ColumnNameSerialized = "barcode"
-        C1ViewColumn55.ColumnNameSerialized = "item_desc"
-        C1ViewColumn56.ColumnNameSerialized = "available"
-        C1ViewColumn57.ColumnNameSerialized = "cost"
-        C1ViewColumn58.ColumnNameSerialized = "retail"
-        C1ViewColumn59.ColumnNameSerialized = "wsale"
-        C1ViewColumn60.ColumnNameSerialized = "markup"
-        C1ViewColumn61.ColumnNameSerialized = "markup2"
-        C1ViewColumn62.ColumnNameSerialized = "retail2"
-        C1ViewColumn63.ColumnNameSerialized = "minimum"
-        C1ViewColumn64.ColumnNameSerialized = "lastprice"
-        C1ViewColumn65.ColumnNameSerialized = "lastdlvry"
-        C1ViewColumn66.ColumnNameSerialized = "maximum"
-        C1ViewColumn67.ColumnNameSerialized = "sInsert_id"
-        C1ViewColumn68.ColumnNameSerialized = "lastcost"
-        C1ViewColumn69.ColumnNameSerialized = "lastwholesale"
-        C1ViewColumn70.ColumnNameSerialized = "packaging"
-        C1ViewColumn71.ColumnNameSerialized = "incentive"
-        C1ViewColumn72.ColumnNameSerialized = "vat"
-        C1ViewColumn73.ColumnNameSerialized = "active"
-        C1ViewColumn74.ColumnNameSerialized = "categoryid"
-        C1ViewColumn75.ColumnNameSerialized = "dept"
-        C1ViewColumn76.ColumnNameSerialized = "sLastUpdate_id"
-        C1ViewColumn77.ColumnNameSerialized = "dtLastUpdate_dt"
-        C1ViewColumn78.ColumnNameSerialized = "supcode"
-        C1DataView1.ColumnDefs.Add(C1ViewColumn53)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn54)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn55)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn56)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn57)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn58)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn59)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn60)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn61)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn62)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn63)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn64)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn65)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn66)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn67)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn68)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn69)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn70)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn71)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn72)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn73)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn74)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn75)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn76)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn77)
-        C1DataView1.ColumnDefs.Add(C1ViewColumn78)
+        C1ViewColumn1.ColumnNameSerialized = "stckid"
+        C1ViewColumn2.ColumnNameSerialized = "barcode"
+        C1ViewColumn3.ColumnNameSerialized = "item_desc"
+        C1ViewColumn4.ColumnNameSerialized = "available"
+        C1ViewColumn5.ColumnNameSerialized = "cost"
+        C1ViewColumn6.ColumnNameSerialized = "retail"
+        C1ViewColumn7.ColumnNameSerialized = "wsale"
+        C1ViewColumn8.ColumnNameSerialized = "markup"
+        C1ViewColumn9.ColumnNameSerialized = "markup2"
+        C1ViewColumn10.ColumnNameSerialized = "retail2"
+        C1ViewColumn11.ColumnNameSerialized = "minimum"
+        C1ViewColumn12.ColumnNameSerialized = "lastprice"
+        C1ViewColumn13.ColumnNameSerialized = "lastdlvry"
+        C1ViewColumn14.ColumnNameSerialized = "maximum"
+        C1ViewColumn15.ColumnNameSerialized = "sInsert_id"
+        C1ViewColumn16.ColumnNameSerialized = "lastcost"
+        C1ViewColumn17.ColumnNameSerialized = "lastwholesale"
+        C1ViewColumn18.ColumnNameSerialized = "packaging"
+        C1ViewColumn19.ColumnNameSerialized = "incentive"
+        C1ViewColumn20.ColumnNameSerialized = "vat"
+        C1ViewColumn21.ColumnNameSerialized = "active"
+        C1ViewColumn22.ColumnNameSerialized = "categoryid"
+        C1ViewColumn23.ColumnNameSerialized = "dept"
+        C1ViewColumn24.ColumnNameSerialized = "sLastUpdate_id"
+        C1ViewColumn25.ColumnNameSerialized = "dtLastUpdate_dt"
+        C1ViewColumn26.ColumnNameSerialized = "supcode"
+        C1DataView1.ColumnDefs.Add(C1ViewColumn1)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn2)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn3)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn4)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn5)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn6)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn7)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn8)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn9)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn10)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn11)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn12)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn13)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn14)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn15)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn16)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn17)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn18)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn19)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn20)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn21)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn22)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn23)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn24)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn25)
+        C1DataView1.ColumnDefs.Add(C1ViewColumn26)
         C1DataView1.Definition = resources.GetString("C1DataView1.Definition")
         C1DataView1.DefinitionDiagramXML = "<C1Diagram><Nodes /></C1Diagram>"
         C1DataView1.ViewName = "stocks"
@@ -305,6 +305,7 @@ Partial Class frmItemlist2
         Me.barcode.Caption = "Barcode"
         Me.barcode.FieldName = "barcode"
         Me.barcode.Name = "barcode"
+        Me.barcode.OptionsEditForm.Caption = "Itemcode:"
         Me.barcode.Visible = True
         Me.barcode.VisibleIndex = 0
         Me.barcode.Width = 101
@@ -341,7 +342,7 @@ Partial Class frmItemlist2
         Me.colavailable1.FieldName = "available"
         Me.colavailable1.Name = "colavailable1"
         Me.colavailable1.OptionsColumn.AllowEdit = False
-        Me.colavailable1.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.[True]
+        Me.colavailable1.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.[False]
         Me.colavailable1.Visible = True
         Me.colavailable1.VisibleIndex = 2
         Me.colavailable1.Width = 80
@@ -522,8 +523,8 @@ Partial Class frmItemlist2
         Me.RepositoryItemGridLookUpEdit1.DataSource = Me.CategoriesBindingSource1
         Me.RepositoryItemGridLookUpEdit1.DisplayMember = "catgory"
         Me.RepositoryItemGridLookUpEdit1.Name = "RepositoryItemGridLookUpEdit1"
+        Me.RepositoryItemGridLookUpEdit1.PopupView = Me.RepositoryItemGridLookUpEdit1View
         Me.RepositoryItemGridLookUpEdit1.ValueMember = "categoryid"
-        Me.RepositoryItemGridLookUpEdit1.View = Me.RepositoryItemGridLookUpEdit1View
         '
         'CategoriesBindingSource1
         '
@@ -574,8 +575,8 @@ Partial Class frmItemlist2
         Me.RepositoryItemGridLookUpEdit2.DataSource = Me.DeptBindingSource
         Me.RepositoryItemGridLookUpEdit2.DisplayMember = "DEPTD"
         Me.RepositoryItemGridLookUpEdit2.Name = "RepositoryItemGridLookUpEdit2"
+        Me.RepositoryItemGridLookUpEdit2.PopupView = Me.RepositoryItemGridLookUpEdit2View
         Me.RepositoryItemGridLookUpEdit2.ValueMember = "deptid"
-        Me.RepositoryItemGridLookUpEdit2.View = Me.RepositoryItemGridLookUpEdit2View
         '
         'DeptBindingSource
         '
@@ -600,8 +601,6 @@ Partial Class frmItemlist2
         Me.colsLastUpdate_id.FieldName = "sLastUpdate_id"
         Me.colsLastUpdate_id.Name = "colsLastUpdate_id"
         Me.colsLastUpdate_id.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.[False]
-        Me.colsLastUpdate_id.Visible = True
-        Me.colsLastUpdate_id.VisibleIndex = 11
         Me.colsLastUpdate_id.Width = 84
         '
         'coldtLastUpdate_dt
@@ -609,8 +608,7 @@ Partial Class frmItemlist2
         Me.coldtLastUpdate_dt.Caption = "Updated On"
         Me.coldtLastUpdate_dt.FieldName = "dtLastUpdate_dt"
         Me.coldtLastUpdate_dt.Name = "coldtLastUpdate_dt"
-        Me.coldtLastUpdate_dt.Visible = True
-        Me.coldtLastUpdate_dt.VisibleIndex = 12
+        Me.coldtLastUpdate_dt.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.[False]
         Me.coldtLastUpdate_dt.Width = 84
         '
         'colvat1
@@ -620,13 +618,20 @@ Partial Class frmItemlist2
         Me.colvat1.Name = "colvat1"
         Me.colvat1.Width = 97
         '
+        'colincentive1
+        '
+        Me.colincentive1.Caption = "Incentive Amount"
+        Me.colincentive1.FieldName = "incentive"
+        Me.colincentive1.Name = "colincentive1"
+        Me.colincentive1.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.[False]
+        '
         'colincentive
         '
         Me.colincentive.Caption = "VAT?"
-        Me.colincentive.FieldName = "active"
+        Me.colincentive.FieldName = "vat"
         Me.colincentive.Name = "colincentive"
         Me.colincentive.Visible = True
-        Me.colincentive.VisibleIndex = 10
+        Me.colincentive.VisibleIndex = 9
         '
         'RepositoryItemComboBox1
         '
@@ -660,14 +665,6 @@ Partial Class frmItemlist2
         'deptTableAdapter
         '
         Me.deptTableAdapter.ClearBeforeFill = True
-        '
-        'colincentive1
-        '
-        Me.colincentive1.Caption = "Incentive Amount"
-        Me.colincentive1.FieldName = "incentive"
-        Me.colincentive1.Name = "colincentive1"
-        Me.colincentive1.Visible = True
-        Me.colincentive1.VisibleIndex = 9
         '
         'frmItemlist2
         '

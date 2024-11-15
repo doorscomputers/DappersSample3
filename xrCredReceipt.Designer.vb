@@ -27,7 +27,6 @@ Partial Public Class xrCredReceipt
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel27 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
@@ -62,7 +61,6 @@ Partial Public Class xrCredReceipt
         Me.TotalBill = New DevExpress.XtraReports.UI.CalculatedField()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GT = New DevExpress.XtraReports.UI.CalculatedField()
-        Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
         Me.CalculatedField1 = New DevExpress.XtraReports.UI.CalculatedField()
@@ -102,7 +100,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLine1
         '
-        Me.XrLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
+        Me.XrLine1.LineStyle = DevExpress.Drawing.DXDashStyle.Dot
         Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(31.89589!, 75.81266!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(232.4793!, 2.000061!)
@@ -110,8 +108,8 @@ Partial Public Class xrCredReceipt
         'XrLabel27
         '
         Me.XrLabel27.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.CashierCaps")})
-        Me.XrLabel27.Font = New System.Drawing.Font("Arial Narrow", 9.0!)
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(102.292!, 50.0!)
+        Me.XrLabel27.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.0!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(102.2921!, 0!)
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel27.SizeF = New System.Drawing.SizeF(158.7501!, 17.70834!)
@@ -119,8 +117,8 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel10
         '
-        Me.XrLabel10.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(26.89603!, 67.70831!)
+        Me.XrLabel10.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(26.8961!, 17.7083!)
         Me.XrLabel10.Multiline = True
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -130,25 +128,10 @@ Partial Public Class xrCredReceipt
         Me.XrLabel10.Text = "Customer:"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel1
-        '
-        Me.XrLabel1.Font = New System.Drawing.Font("Arial Narrow", 9.0!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(26.89606!, 0!)
-        Me.XrLabel1.Multiline = True
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(234.1461!, 46.87499!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "FARMACIA SOLONIO" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "National Highway Poblacion South" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Solano Nueva, Vizcaya" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VAT Re" &
-    "g TIN: 185-711-852-002" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SN: J8V6WR173870" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "MIN: 15111215443633529" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PTU No.:FP1120" &
-    "15-014-0063032-00002"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
         'XrLabel14
         '
         Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.price", "{0:n2}")})
-        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel14.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(137.0834!, 0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -159,13 +142,13 @@ Partial Public Class xrCredReceipt
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.XrLabel6, Me.XrLabel25, Me.XrLabel27, Me.XrLabel5, Me.XrLabel28, Me.XrLabel10, Me.XrLabel2, Me.XrLabel24, Me.XrLabel33})
-        Me.ReportHeader.HeightF = 120.8335!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel25, Me.XrLabel27, Me.XrLabel5, Me.XrLabel28, Me.XrLabel10, Me.XrLabel2, Me.XrLabel24, Me.XrLabel33})
+        Me.ReportHeader.HeightF = 70.83353!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrLabel6
         '
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(27.52104!, 103.1252!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(27.52111!, 53.12519!)
         Me.XrLabel6.Multiline = True
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -178,8 +161,8 @@ Partial Public Class xrCredReceipt
         'XrLabel25
         '
         Me.XrLabel25.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.postmp_hdrid", "{0:0000000000#}")})
-        Me.XrLabel25.Font = New System.Drawing.Font("Arial Narrow", 9.0!)
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(102.292!, 103.1252!)
+        Me.XrLabel25.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.0!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(102.2921!, 53.12519!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(155.4171!, 17.70834!)
@@ -189,8 +172,8 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel5
         '
-        Me.XrLabel5.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(26.89603!, 50.0!)
+        Me.XrLabel5.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(26.8961!, 0!)
         Me.XrLabel5.Multiline = True
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -202,8 +185,8 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel28
         '
-        Me.XrLabel28.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(26.89603!, 85.41673!)
+        Me.XrLabel28.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(26.8961!, 35.41673!)
         Me.XrLabel28.Multiline = True
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -216,8 +199,8 @@ Partial Public Class xrCredReceipt
         'XrLabel2
         '
         Me.XrLabel2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.firstname")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(171.2708!, 67.70831!)
+        Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 8.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(171.2709!, 17.7083!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(89.77132!, 17.70834!)
@@ -227,8 +210,8 @@ Partial Public Class xrCredReceipt
         'XrLabel24
         '
         Me.XrLabel24.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.lastname")})
-        Me.XrLabel24.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(102.292!, 67.70831!)
+        Me.XrLabel24.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 8.0!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(102.2921!, 17.7083!)
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel24.SizeF = New System.Drawing.SizeF(68.9788!, 17.70834!)
@@ -237,7 +220,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel33
         '
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(102.292!, 85.41673!)
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(102.2921!, 35.41673!)
         Me.XrLabel33.Multiline = True
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -247,7 +230,7 @@ Partial Public Class xrCredReceipt
         'XrLabel12
         '
         Me.XrLabel12.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.item_desc")})
-        Me.XrLabel12.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
+        Me.XrLabel12.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 8.0!)
         Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(30.22919!, 0!)
         Me.XrLabel12.Multiline = True
         Me.XrLabel12.Name = "XrLabel12"
@@ -268,7 +251,7 @@ Partial Public Class xrCredReceipt
         'XrLabel11
         '
         Me.XrLabel11.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.qty")})
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel11.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(182.7085!, 0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -280,7 +263,7 @@ Partial Public Class xrCredReceipt
         'XrLabel15
         '
         Me.XrLabel15.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.det_amnt", "{0:n2}")})
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel15.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(213.3335!, 0!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -304,8 +287,8 @@ Partial Public Class xrCredReceipt
         '
         'xRLabel31
         '
-        Me.xRLabel31.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
-        Me.xRLabel31.LocationFloat = New DevExpress.Utils.PointFloat(31.89589!, 125.8127!)
+        Me.xRLabel31.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
+        Me.xRLabel31.LocationFloat = New DevExpress.Utils.PointFloat(31.89589!, 109.146!)
         Me.xRLabel31.Name = "xRLabel31"
         Me.xRLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.xRLabel31.SizeF = New System.Drawing.SizeF(232.8758!, 22.91656!)
@@ -316,7 +299,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel42
         '
-        Me.XrLabel42.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel42.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(228.1261!, 40.3959!)
         Me.XrLabel42.Multiline = True
         Me.XrLabel42.Name = "XrLabel42"
@@ -352,7 +335,7 @@ Partial Public Class xrCredReceipt
         '
         Me.XrLabel23.AutoWidth = True
         Me.XrLabel23.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.item_desc")})
-        Me.XrLabel23.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel23.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(98.12502!, 0!)
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -373,7 +356,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel9
         '
-        Me.XrLabel9.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel9.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(213.3335!, 0!)
         Me.XrLabel9.Multiline = True
         Me.XrLabel9.Name = "XrLabel9"
@@ -386,7 +369,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel7
         '
-        Me.XrLabel7.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel7.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(30.22925!, 0!)
         Me.XrLabel7.Multiline = True
         Me.XrLabel7.Name = "XrLabel7"
@@ -399,7 +382,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel8.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(137.0834!, 0!)
         Me.XrLabel8.Multiline = True
         Me.XrLabel8.Name = "XrLabel8"
@@ -412,7 +395,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(182.7085!, 0!)
         Me.XrLabel3.Multiline = True
         Me.XrLabel3.Name = "XrLabel3"
@@ -426,7 +409,7 @@ Partial Public Class xrCredReceipt
         'XrLabel13
         '
         Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.taym", "{0:M/d/yyyy h:mm tt}")})
-        Me.XrLabel13.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(107.9372!, 79.97939!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -467,7 +450,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel16
         '
-        Me.XrLabel16.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel16.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(27.91713!, 40.39599!)
         Me.XrLabel16.Multiline = True
         Me.XrLabel16.Name = "XrLabel16"
@@ -484,23 +467,10 @@ Partial Public Class xrCredReceipt
         Me.GT.Expression = "[totsales] - [disc_amnt]"
         Me.GT.Name = "GT"
         '
-        'XrLabel34
-        '
-        Me.XrLabel34.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
-        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(31.89589!, 97.68766!)
-        Me.XrLabel34.Multiline = True
-        Me.XrLabel34.Name = "XrLabel34"
-        Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel34.SizeF = New System.Drawing.SizeF(234.1461!, 17.70834!)
-        Me.XrLabel34.StylePriority.UseFont = False
-        Me.XrLabel34.StylePriority.UseTextAlignment = False
-        Me.XrLabel34.Text = "Accr: 0091945842852014080108"
-        Me.XrLabel34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'XrLabel38
         '
         Me.XrLabel38.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.disc_amnt", "{0:n2}")})
-        Me.XrLabel38.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel38.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(164.3752!, 22.68756!)
         Me.XrLabel38.Name = "XrLabel38"
         Me.XrLabel38.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -512,7 +482,7 @@ Partial Public Class xrCredReceipt
         'XrLabel29
         '
         Me.XrLabel29.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.mowd")})
-        Me.XrLabel29.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel29.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(105.6251!, 22.68756!)
         Me.XrLabel29.Name = "XrLabel29"
         Me.XrLabel29.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -530,7 +500,7 @@ Partial Public Class xrCredReceipt
         'XrLabel40
         '
         Me.XrLabel40.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "vwReceipt.det_amnt")})
-        Me.XrLabel40.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel40.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(163.3541!, 40.39599!)
         Me.XrLabel40.Name = "XrLabel40"
         Me.XrLabel40.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -544,7 +514,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel35
         '
-        Me.XrLabel35.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel35.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(30.85416!, 0!)
         Me.XrLabel35.Multiline = True
         Me.XrLabel35.Name = "XrLabel35"
@@ -557,14 +527,14 @@ Partial Public Class xrCredReceipt
         '
         'GroupFooter1
         '
-        Me.GroupFooter1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel17, Me.XrLine1, Me.XrLabel35, Me.xRLabel31, Me.XrLabel40, Me.XrLabel42, Me.XrLabel38, Me.XrLabel23, Me.XrLabel22, Me.XrLabel37, Me.XrLabel16, Me.XrLabel34, Me.XrLabel13, Me.XrLabel4, Me.XrLabel26, Me.XrLabel29})
-        Me.GroupFooter1.HeightF = 224.7709!
+        Me.GroupFooter1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel17, Me.XrLine1, Me.XrLabel35, Me.xRLabel31, Me.XrLabel40, Me.XrLabel42, Me.XrLabel38, Me.XrLabel23, Me.XrLabel22, Me.XrLabel37, Me.XrLabel16, Me.XrLabel13, Me.XrLabel4, Me.XrLabel26, Me.XrLabel29})
+        Me.GroupFooter1.HeightF = 198.1043!
         Me.GroupFooter1.Name = "GroupFooter1"
         '
         'XrLabel17
         '
-        Me.XrLabel17.Font = New System.Drawing.Font("Arial Narrow", 8.0!)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(31.89589!, 150.8127!)
+        Me.XrLabel17.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 8.0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(31.89589!, 134.1461!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(232.8758!, 63.95827!)
@@ -577,7 +547,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel22
         '
-        Me.XrLabel22.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel22.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(137.0834!, 0!)
         Me.XrLabel22.Multiline = True
         Me.XrLabel22.Name = "XrLabel22"
@@ -590,7 +560,7 @@ Partial Public Class xrCredReceipt
         '
         'XrLabel37
         '
-        Me.XrLabel37.Font = New System.Drawing.Font("Arial Narrow", 9.75!)
+        Me.XrLabel37.Font = New DevExpress.Drawing.DXFont("Arial Narrow", 9.75!)
         Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(45.62537!, 22.68756!)
         Me.XrLabel37.Multiline = True
         Me.XrLabel37.Name = "XrLabel37"
@@ -619,12 +589,12 @@ Partial Public Class xrCredReceipt
         Me.DataMember = "vwReceipt"
         Me.DataSource = Me.DsvwReceipt1
         Me.FilterString = "[postmp_hdrid] = ?Parameter1"
-        Me.Margins = New System.Drawing.Printing.Margins(4, 557, 2, 9)
+        Me.Margins = New DevExpress.Drawing.DXMargins(4, 557, 2, 9)
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.Parameter1})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.ShowPrintMarginsWarning = False
         Me.ShowPrintStatusDialog = False
-        Me.Version = "17.1"
+        Me.Version = "18.1"
         CType(Me.DsvwReceipt1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -635,7 +605,6 @@ Partial Public Class xrCredReceipt
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
@@ -670,7 +639,6 @@ Partial Public Class xrCredReceipt
     Friend WithEvents TotalBill As DevExpress.XtraReports.UI.CalculatedField
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents GT As DevExpress.XtraReports.UI.CalculatedField
-    Friend WithEvents XrLabel34 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel38 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel29 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents CalculatedField1 As DevExpress.XtraReports.UI.CalculatedField

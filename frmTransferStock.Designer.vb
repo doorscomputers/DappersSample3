@@ -26,13 +26,13 @@ Partial Class frmTransferStock
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.txtbcodes = New System.Windows.Forms.TextBox()
         Me.leLocation = New DevExpress.XtraEditors.LookUpEdit()
@@ -56,7 +56,6 @@ Partial Class frmTransferStock
         Me.btnPost = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.drgrid = New System.Windows.Forms.DataGridView()
-        Me.dgitems = New System.Windows.Forms.DataGridView()
         Me.stckid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Item = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Qty = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,6 +65,8 @@ Partial Class frmTransferStock
         Me.LotNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.disc = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dscamnt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgitems = New System.Windows.Forms.DataGridView()
+        Me.btnRemove = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.leLocation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +121,7 @@ Partial Class frmTransferStock
         Me.leLocation.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.leLocation.Properties.Appearance.Options.UseFont = True
         Me.leLocation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leLocation.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("locid", "locid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("location", "Location", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.leLocation.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("locid", "locid", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("location", "Location", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.leLocation.Size = New System.Drawing.Size(354, 26)
         Me.leLocation.TabIndex = 2
         '
@@ -232,7 +233,6 @@ Partial Class frmTransferStock
         '
         'ceQty
         '
-        Me.ceQty.EnterMoveNextControl = True
         Me.ceQty.Location = New System.Drawing.Point(632, 78)
         Me.ceQty.Name = "ceQty"
         Me.ceQty.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
@@ -252,6 +252,7 @@ Partial Class frmTransferStock
         Me.btnAdd.TabIndex = 6
         Me.btnAdd.Text = "&Add"
         Me.btnAdd.ToolTip = "Add the item to the list"
+        Me.btnAdd.Visible = False
         '
         'ceCost
         '
@@ -308,7 +309,7 @@ Partial Class frmTransferStock
         Me.btnSave.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.btnSave.Appearance.Options.UseFont = True
         Me.btnSave.Enabled = False
-        Me.btnSave.Location = New System.Drawing.Point(358, 501)
+        Me.btnSave.Location = New System.Drawing.Point(362, 501)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(102, 32)
         Me.btnSave.TabIndex = 40
@@ -379,33 +380,6 @@ Partial Class frmTransferStock
         Me.drgrid.Size = New System.Drawing.Size(966, 408)
         Me.drgrid.TabIndex = 37
         '
-        'dgitems
-        '
-        Me.dgitems.AllowUserToAddRows = False
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgitems.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
-        Me.dgitems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgitems.DefaultCellStyle = DataGridViewCellStyle11
-        Me.dgitems.Location = New System.Drawing.Point(127, 83)
-        Me.dgitems.Name = "dgitems"
-        Me.dgitems.ReadOnly = True
-        Me.dgitems.Size = New System.Drawing.Size(726, 412)
-        Me.dgitems.TabIndex = 94
-        Me.dgitems.Visible = False
-        '
         'stckid
         '
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -421,6 +395,7 @@ Partial Class frmTransferStock
         Me.Item.DefaultCellStyle = DataGridViewCellStyle3
         Me.Item.HeaderText = "Item Description"
         Me.Item.Name = "Item"
+        Me.Item.ReadOnly = True
         Me.Item.Width = 400
         '
         'Qty
@@ -432,6 +407,7 @@ Partial Class frmTransferStock
         Me.Qty.DefaultCellStyle = DataGridViewCellStyle4
         Me.Qty.HeaderText = "Qty"
         Me.Qty.Name = "Qty"
+        Me.Qty.ReadOnly = True
         '
         'Price
         '
@@ -442,6 +418,7 @@ Partial Class frmTransferStock
         Me.Price.DefaultCellStyle = DataGridViewCellStyle5
         Me.Price.HeaderText = "Price"
         Me.Price.Name = "Price"
+        Me.Price.ReadOnly = True
         Me.Price.Width = 200
         '
         'Amount
@@ -477,22 +454,62 @@ Partial Class frmTransferStock
         Me.dscamnt.Name = "dscamnt"
         Me.dscamnt.Visible = False
         '
+        'dgitems
+        '
+        Me.dgitems.AllowUserToAddRows = False
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgitems.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        Me.dgitems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgitems.DefaultCellStyle = DataGridViewCellStyle11
+        Me.dgitems.Location = New System.Drawing.Point(127, 83)
+        Me.dgitems.Name = "dgitems"
+        Me.dgitems.ReadOnly = True
+        Me.dgitems.Size = New System.Drawing.Size(726, 450)
+        Me.dgitems.TabIndex = 94
+        Me.dgitems.Visible = False
+        '
+        'btnRemove
+        '
+        Me.btnRemove.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.btnRemove.Appearance.Options.UseFont = True
+        Me.btnRemove.Location = New System.Drawing.Point(254, 550)
+        Me.btnRemove.Name = "btnRemove"
+        Me.btnRemove.Size = New System.Drawing.Size(102, 32)
+        Me.btnRemove.TabIndex = 40
+        Me.btnRemove.Text = "&Remove Item"
+        Me.btnRemove.ToolTip = "Save the List for later modification"
+        '
         'frmTransferStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(967, 545)
+        Me.ClientSize = New System.Drawing.Size(967, 537)
         Me.Controls.Add(Me.dgitems)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.txtsum)
         Me.Controls.Add(Me.btnRetrieve)
         Me.Controls.Add(Me.btnNew)
+        Me.Controls.Add(Me.btnRemove)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnPost)
         Me.Controls.Add(Me.LabelControl10)
         Me.Controls.Add(Me.drgrid)
         Me.Name = "frmTransferStock"
-        Me.Text = "Transfer Stock Form-MAIN"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Transfer Stock Form"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -532,6 +549,7 @@ Partial Class frmTransferStock
     Friend WithEvents leLocation As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents dgitems As System.Windows.Forms.DataGridView
     Friend WithEvents txtbcodes As System.Windows.Forms.TextBox
+    Friend WithEvents btnRemove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents stckid As DataGridViewTextBoxColumn
     Friend WithEvents Item As DataGridViewTextBoxColumn
     Friend WithEvents Qty As DataGridViewTextBoxColumn

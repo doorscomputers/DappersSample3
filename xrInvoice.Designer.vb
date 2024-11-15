@@ -108,7 +108,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 14.25!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 0.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
@@ -118,7 +118,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(517.2916!, 0.0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -130,7 +130,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 35.41667!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -140,7 +140,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel4
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(517.2916!, 35.41667!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -152,7 +152,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel6
         '
-        Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel6.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 83.25002!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -162,7 +162,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel5
         '
-        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel5.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(376.6667!, 83.25002!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -174,7 +174,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel7
         '
-        Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel7.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(640.2083!, 83.25002!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -186,7 +186,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel8.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(488.1249!, 83.25002!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -246,7 +246,7 @@ Partial Public Class xrInvoice
         'XrLabel13
         '
         Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "Total", "{0:n2}")})
-        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(583.9583!, 0.0!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -264,7 +264,7 @@ Partial Public Class xrInvoice
         '
         'XrLabel14
         '
-        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel14.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(502.7083!, 0.0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -277,7 +277,7 @@ Partial Public Class xrInvoice
         'XrLabel15
         '
         Me.XrLabel15.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "receiptpos.postmp_hdrid")})
-        Me.XrLabel15.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel15.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(617.2916!, 0.0!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
@@ -290,7 +290,7 @@ Partial Public Class xrInvoice
         'XrLabel16
         '
         Me.XrLabel16.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "receiptpos.pos_date", "{0:MM/dd/yyyy}")})
-        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel16.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(617.2916!, 35.41667!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
@@ -306,7 +306,7 @@ Partial Public Class xrInvoice
         'XrLabel17
         '
         Me.XrLabel17.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "CustName")})
-        Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 12.0!)
+        Me.XrLabel17.Font = New DevExpress.Drawing.DXFont("Times New Roman", 12.0!)
         Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(91.25001!, 35.41667!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
@@ -322,7 +322,7 @@ Partial Public Class xrInvoice
         Me.DataMember = "receiptpos"
         Me.DataSource = Me.SpDataSet11
         Me.FilterString = "[postmp_hdrid] = ?Parameter1"
-        Me.Margins = New System.Drawing.Printing.Margins(50, 50, 18, 50)
+        Me.Margins = New DevExpress.Drawing.DXMargins(50, 50, 18, 50)
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.Parameter1})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "13.2"

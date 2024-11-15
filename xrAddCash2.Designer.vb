@@ -148,7 +148,7 @@ Partial Public Class xrAddCash2
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.75!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -165,10 +165,10 @@ Partial Public Class xrAddCash2
         Me.DataMember = "additnlcash"
         Me.DataSource = Me.DsAddtnlCash1
         Me.FilterString = "[acid] = ?adcashid"
-        Me.Margins = New System.Drawing.Printing.Margins(10, 12, 20, 11)
+        Me.Margins = New DevExpress.Drawing.DXMargins(10, 12, 20, 11)
         Me.PageHeight = 1169
         Me.PageWidth = 299
-        Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.Custom
         Me.PaperName = "Roll Paper 76 x 297 mm"
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.adcashid})
         Me.PrinterName = "EPSON TM-U220 Receipt"
