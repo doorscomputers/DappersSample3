@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<NameSuffixes>
+	<Suffixes>
+		<Name>Jr.</Name>
+	</Suffixes>
+	<Suffixes>
+		<Name>Sr.</Name>
+	</Suffixes>
+	<Suffixes>
+		<Name>Esq.</Name>
+	</Suffixes>
+	<Suffixes>
+		<Name>I</Name>
+	</Suffixes>
+	<Suffixes>
+		<Name>II</Name>
+	</Suffixes>
+	<Suffixes>
+		<Name>III</Name>
+	</Suffixes>
+</NameSuffixes>

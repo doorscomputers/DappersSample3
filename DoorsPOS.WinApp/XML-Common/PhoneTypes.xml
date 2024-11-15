@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<AddressTypes>
+	<Types>
+		<Name>Home</Name>
+	</Types>
+	<Types>
+		<Name>Business</Name>
+	</Types>
+	<Types>
+		<Name>Other</Name>
+	</Types>
+</AddressTypes>

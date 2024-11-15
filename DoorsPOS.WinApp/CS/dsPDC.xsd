@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsPDC" targetNamespace="http://tempuri.org/dsPDC.xsd" xmlns:mstns="http://tempuri.org/dsPDC.xsd" xmlns="http://tempuri.org/dsPDC.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="dlvry_hdrTableAdapter" GeneratorDataComponentClassName="dlvry_hdrTableAdapter" Name="dlvry_hdr" UserDataComponentName="dlvry_hdrTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     dlvry_hdr.drid, dlvry_hdr.drdate, dlvry_hdr.drinv, dlvry_hdr.supcode, dlvry_hdr.terms, dlvry_hdr.drdue, dlvry_hdr.drbal, dlvry_hdr.paid, dlvry_hdr.drpsted, 
+                      dlvry_hdr.ttype, suppliers.supplier
+FROM         dlvry_hdr INNER JOIN
+                      suppliers ON dlvry_hdr.supcode = suppliers.supcode
+WHERE dlvry_hdr.drdue&gt;=GETDATE() AND dlvry_hdr.drpsted=0</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="drid" DataSetColumn="drid" />
+              <Mapping SourceColumn="drdate" DataSetColumn="drdate" />
+              <Mapping SourceColumn="drinv" DataSetColumn="drinv" />
+              <Mapping SourceColumn="supcode" DataSetColumn="supcode" />
+              <Mapping SourceColumn="terms" DataSetColumn="terms" />
+              <Mapping SourceColumn="drdue" DataSetColumn="drdue" />
+              <Mapping SourceColumn="drbal" DataSetColumn="drbal" />
+              <Mapping SourceColumn="paid" DataSetColumn="paid" />
+              <Mapping SourceColumn="drpsted" DataSetColumn="drpsted" />
+              <Mapping SourceColumn="ttype" DataSetColumn="ttype" />
+              <Mapping SourceColumn="supplier" DataSetColumn="supplier" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsPDC" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsPDC" msprop:Generator_UserDSName="dsPDC">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dlvry_hdr" msprop:Generator_TableClassName="dlvry_hdrDataTable" msprop:Generator_TableVarName="tabledlvry_hdr" msprop:Generator_RowChangedName="dlvry_hdrRowChanged" msprop:Generator_TablePropName="dlvry_hdr" msprop:Generator_RowDeletingName="dlvry_hdrRowDeleting" msprop:Generator_RowChangingName="dlvry_hdrRowChanging" msprop:Generator_RowEvHandlerName="dlvry_hdrRowChangeEventHandler" msprop:Generator_RowDeletedName="dlvry_hdrRowDeleted" msprop:Generator_RowClassName="dlvry_hdrRow" msprop:Generator_UserTableName="dlvry_hdr" msprop:Generator_RowEvArgName="dlvry_hdrRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="drid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columndrid" msprop:Generator_ColumnPropNameInRow="drid" msprop:Generator_ColumnPropNameInTable="dridColumn" msprop:Generator_UserColumnName="drid" type="xs:int" />
+              <xs:element name="drdate" msprop:Generator_ColumnVarNameInTable="columndrdate" msprop:Generator_ColumnPropNameInRow="drdate" msprop:Generator_ColumnPropNameInTable="drdateColumn" msprop:Generator_UserColumnName="drdate" type="xs:dateTime" />
+              <xs:element name="drinv" msprop:Generator_ColumnVarNameInTable="columndrinv" msprop:Generator_ColumnPropNameInRow="drinv" msprop:Generator_ColumnPropNameInTable="drinvColumn" msprop:Generator_UserColumnName="drinv">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="supcode" msprop:Generator_ColumnVarNameInTable="columnsupcode" msprop:Generator_ColumnPropNameInRow="supcode" msprop:Generator_ColumnPropNameInTable="supcodeColumn" msprop:Generator_UserColumnName="supcode" type="xs:int" minOccurs="0" />
+              <xs:element name="terms" msprop:Generator_ColumnVarNameInTable="columnterms" msprop:Generator_ColumnPropNameInRow="terms" msprop:Generator_ColumnPropNameInTable="termsColumn" msprop:Generator_UserColumnName="terms" type="xs:decimal" minOccurs="0" />
+              <xs:element name="drdue" msprop:Generator_ColumnVarNameInTable="columndrdue" msprop:Generator_ColumnPropNameInRow="drdue" msprop:Generator_ColumnPropNameInTable="drdueColumn" msprop:Generator_UserColumnName="drdue" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="drbal" msprop:Generator_ColumnVarNameInTable="columndrbal" msprop:Generator_ColumnPropNameInRow="drbal" msprop:Generator_ColumnPropNameInTable="drbalColumn" msprop:Generator_UserColumnName="drbal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="paid" msprop:Generator_ColumnVarNameInTable="columnpaid" msprop:Generator_ColumnPropNameInRow="paid" msprop:Generator_ColumnPropNameInTable="paidColumn" msprop:Generator_UserColumnName="paid" type="xs:boolean" minOccurs="0" />
+              <xs:element name="drpsted" msprop:Generator_ColumnVarNameInTable="columndrpsted" msprop:Generator_ColumnPropNameInRow="drpsted" msprop:Generator_ColumnPropNameInTable="drpstedColumn" msprop:Generator_UserColumnName="drpsted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ttype" msprop:Generator_ColumnVarNameInTable="columnttype" msprop:Generator_ColumnPropNameInRow="ttype" msprop:Generator_ColumnPropNameInTable="ttypeColumn" msprop:Generator_UserColumnName="ttype" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="supplier" msprop:Generator_ColumnVarNameInTable="columnsupplier" msprop:Generator_ColumnPropNameInRow="supplier" msprop:Generator_ColumnPropNameInTable="supplierColumn" msprop:Generator_UserColumnName="supplier">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dlvry_hdr" />
+      <xs:field xpath="mstns:drid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

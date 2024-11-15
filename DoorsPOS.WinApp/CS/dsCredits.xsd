@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCredits" targetNamespace="http://tempuri.org/dsCredits.xsd" xmlns:mstns="http://tempuri.org/dsCredits.xsd" xmlns="http://tempuri.org/dsCredits.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwCreditTableAdapter" GeneratorDataComponentClassName="vwCreditTableAdapter" Name="vwCredit" UserDataComponentName="vwCreditTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwCredit" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     item_desc, price, qty, det_amnt, pos_date, lastname, firstname, middlename, Balance
+FROM         vwCredit</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+              <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="qty" DataSetColumn="qty" />
+              <Mapping SourceColumn="det_amnt" DataSetColumn="det_amnt" />
+              <Mapping SourceColumn="pos_date" DataSetColumn="pos_date" />
+              <Mapping SourceColumn="lastname" DataSetColumn="lastname" />
+              <Mapping SourceColumn="firstname" DataSetColumn="firstname" />
+              <Mapping SourceColumn="middlename" DataSetColumn="middlename" />
+              <Mapping SourceColumn="Balance" DataSetColumn="Balance" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCredits" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsCredits" msprop:Generator_UserDSName="dsCredits">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwCredit" msprop:Generator_TableClassName="vwCreditDataTable" msprop:Generator_TableVarName="tablevwCredit" msprop:Generator_RowChangedName="vwCreditRowChanged" msprop:Generator_TablePropName="vwCredit" msprop:Generator_RowDeletingName="vwCreditRowDeleting" msprop:Generator_RowChangingName="vwCreditRowChanging" msprop:Generator_RowEvHandlerName="vwCreditRowChangeEventHandler" msprop:Generator_RowDeletedName="vwCreditRowDeleted" msprop:Generator_RowClassName="vwCreditRow" msprop:Generator_UserTableName="vwCredit" msprop:Generator_RowEvArgName="vwCreditRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:double" minOccurs="0" />
+              <xs:element name="det_amnt" msprop:Generator_ColumnVarNameInTable="columndet_amnt" msprop:Generator_ColumnPropNameInRow="det_amnt" msprop:Generator_ColumnPropNameInTable="det_amntColumn" msprop:Generator_UserColumnName="det_amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" />
+              <xs:element name="lastname" msprop:Generator_ColumnVarNameInTable="columnlastname" msprop:Generator_ColumnPropNameInRow="lastname" msprop:Generator_ColumnPropNameInTable="lastnameColumn" msprop:Generator_UserColumnName="lastname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstname" msprop:Generator_ColumnVarNameInTable="columnfirstname" msprop:Generator_ColumnPropNameInRow="firstname" msprop:Generator_ColumnPropNameInTable="firstnameColumn" msprop:Generator_UserColumnName="firstname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="middlename" msprop:Generator_ColumnVarNameInTable="columnmiddlename" msprop:Generator_ColumnPropNameInRow="middlename" msprop:Generator_ColumnPropNameInTable="middlenameColumn" msprop:Generator_UserColumnName="middlename">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" msprop:Generator_UserColumnName="Balance" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

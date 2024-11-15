@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SICCodes>
+	<Codes>
+		<Code>01</Code>
+		<Description>AGRICULTURAL PRODUCTION CROPS</Description>
+	</Codes>
+	<Codes>
+		<Code>02</Code>
+		<Description>AGRICULTURAL PRODUCTION LIVESTOCK</Description>
+	</Codes>
+	<Codes>
+		<Code>07</Code>
+		<Description>AGRICULTURAL SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>08</Code>
+		<Description>FORESTRY</Description>
+	</Codes>
+	<Codes>
+		<Code>09</Code>
+		<Description>FISHING, HUNTING, AND TRAPPING</Description>
+	</Codes>
+	<Codes>
+		<Code>10</Code>
+		<Description>METAL MINING</Description>
+	</Codes>
+	<Codes>
+		<Code>12</Code>
+		<Description>COAL MINING</Description>
+	</Codes>
+	<Codes>
+		<Code>13</Code>
+		<Description>OIL AND GAS EXTRACTION</Description>
+	</Codes>
+	<Codes>
+		<Code>14</Code>
+		<Description>NONMETALLIC MINERALS, EXCEPT FUELS</Description>
+	</Codes>
+	<Codes>
+		<Code>15</Code>
+		<Description>GENERAL BUILDING CONTRACTORS</Description>
+	</Codes>
+	<Codes>
+		<Code>16</Code>
+		<Description>HEAVY CONSTRUCTION, EX. BUILDING</Description>
+	</Codes>
+	<Codes>
+		<Code>17</Code>
+		<Description>SPECIAL TRADE CONTRACTORS</Description>
+	</Codes>
+	<Codes>
+		<Code>20</Code>
+		<Description>FOOD AND KINDRED PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>21</Code>
+		<Description>TOBACCO PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>22</Code>
+		<Description>TEXTILE MILL PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>23</Code>
+		<Description>APPAREL AND OTHER TEXTILE PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>24</Code>
+		<Description>LUMBER AND WOOD PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>25</Code>
+		<Description>FURNITURE AND FIXTURES</Description>
+	</Codes>
+	<Codes>
+		<Code>26</Code>
+		<Description>PAPER AND ALLIED PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>27</Code>
+		<Description>PRINTING AND PUBLISHING</Description>
+	</Codes>
+	<Codes>
+		<Code>28</Code>
+		<Description>CHEMICALS AND ALLIED PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>29</Code>
+		<Description>PETROLEUM AND COAL PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>30</Code>
+		<Description>RUBBER AND MISC. PLASTICS PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>31</Code>
+		<Description>LEATHER AND LEATHER PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>32</Code>
+		<Description>STONE, CLAY, AND GLASS PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>33</Code>
+		<Description>PRIMARY METAL INDUSTRIES</Description>
+	</Codes>
+	<Codes>
+		<Code>34</Code>
+		<Description>FABRICATED METAL PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>35</Code>
+		<Description>INDUSTRIAL MACHINERY AND EQUIPMENT</Description>
+	</Codes>
+	<Codes>
+		<Code>36</Code>
+		<Description>ELECTRONIC &amp; OTHER ELECTRIC EQUIPMENT</Description>
+	</Codes>
+	<Codes>
+		<Code>37</Code>
+		<Description>TRANSPORTATION EQUIPMENT</Description>
+	</Codes>
+	<Codes>
+		<Code>38</Code>
+		<Description>INSTRUMENTS AND RELATED PRODUCTS</Description>
+	</Codes>
+	<Codes>
+		<Code>39</Code>
+		<Description>MISCELLANEOUS MANUFACTURING INDUSTRIES</Description>
+	</Codes>
+	<Codes>
+		<Code>40</Code>
+		<Description>RAILROAD TRANSPORTATION</Description>
+	</Codes>
+	<Codes>
+		<Code>41</Code>
+		<Description>LOCAL AND INTERURBAN PASSENGER TRANSIT</Description>
+	</Codes>
+	<Codes>
+		<Code>42</Code>
+		<Description>TRUCKING AND WAREHOUSING</Description>
+	</Codes>
+	<Codes>
+		<Code>43</Code>
+		<Description>U.S. POSTAL SERVICE</Description>
+	</Codes>
+	<Codes>
+		<Code>44</Code>
+		<Description>WATER TRANSPORTATION</Description>
+	</Codes>
+	<Codes>
+		<Code>45</Code>
+		<Description>TRANSPORTATION BY AIR</Description>
+	</Codes>
+	<Codes>
+		<Code>46</Code>
+		<Description>PIPELINES, EXCEPT NATURAL GAS</Description>
+	</Codes>
+	<Codes>
+		<Code>47</Code>
+		<Description>TRANSPORTATION SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>48</Code>
+		<Description>COMMUNICATION</Description>
+	</Codes>
+	<Codes>
+		<Code>49</Code>
+		<Description>ELECTRIC, GAS, AND SANITARY SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>50</Code>
+		<Description>WHOLESALE TRADE-DURABLE GOODS</Description>
+	</Codes>
+	<Codes>
+		<Code>51</Code>
+		<Description>WHOLESALE TRADE-NONDURABLE GOODS</Description>
+	</Codes>
+	<Codes>
+		<Code>52</Code>
+		<Description>BUILDING MATERIALS &amp; GARDEN SUPPLIES</Description>
+	</Codes>
+	<Codes>
+		<Code>53</Code>
+		<Description>GENERAL MERCHANDISE STORES</Description>
+	</Codes>
+	<Codes>
+		<Code>54</Code>
+		<Description>FOOD STORES</Description>
+	</Codes>
+	<Codes>
+		<Code>55</Code>
+		<Description>AUTOMOTIVE DEALERS &amp; SERVICE STATIONS</Description>
+	</Codes>
+	<Codes>
+		<Code>56</Code>
+		<Description>APPAREL AND ACCESSORY STORES</Description>
+	</Codes>
+	<Codes>
+		<Code>57</Code>
+		<Description>FURNITURE AND HOMEFURNISHINGS STORES</Description>
+	</Codes>
+	<Codes>
+		<Code>58</Code>
+		<Description>EATING AND DRINKING PLACES</Description>
+	</Codes>
+	<Codes>
+		<Code>59</Code>
+		<Description>MISCELLANEOUS RETAIL</Description>
+	</Codes>
+	<Codes>
+		<Code>60</Code>
+		<Description>DEPOSITORY INSTITUTIONS</Description>
+	</Codes>
+	<Codes>
+		<Code>61</Code>
+		<Description>NONDEPOSITORY INSTITUTIONS</Description>
+	</Codes>
+	<Codes>
+		<Code>62</Code>
+		<Description>SECURITY AND COMMODITY BROKERS</Description>
+	</Codes>
+	<Codes>
+		<Code>63</Code>
+		<Description>INSURANCE CARRIERS</Description>
+	</Codes>
+	<Codes>
+		<Code>64</Code>
+		<Description>INSURANCE AGENTS, BROKERS, &amp; SERVICE</Description>
+	</Codes>
+	<Codes>
+		<Code>65</Code>
+		<Description>REAL ESTATE</Description>
+	</Codes>
+	<Codes>
+		<Code>67</Code>
+		<Description>HOLDING AND OTHER INVESTMENT OFFICES</Description>
+	</Codes>
+	<Codes>
+		<Code>70</Code>
+		<Description>HOTELS AND OTHER LODGING PLACES</Description>
+	</Codes>
+	<Codes>
+		<Code>72</Code>
+		<Description>PERSONAL SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>73</Code>
+		<Description>BUSINESS SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>75</Code>
+		<Description>AUTO REPAIR, SERVICES, AND PARKING</Description>
+	</Codes>
+	<Codes>
+		<Code>76</Code>
+		<Description>MISCELLANEOUS REPAIR SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>78</Code>
+		<Description>MOTION PICTURES</Description>
+	</Codes>
+	<Codes>
+		<Code>79</Code>
+		<Description>AMUSEMENT &amp; RECREATION SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>80</Code>
+		<Description>HEALTH SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>81</Code>
+		<Description>LEGAL SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>82</Code>
+		<Description>EDUCATIONAL SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>83</Code>
+		<Description>SOCIAL SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>84</Code>
+		<Description>MUSEUMS, BOTANICAL, ZOOLOGICAL GARDENS</Description>
+	</Codes>
+	<Codes>
+		<Code>86</Code>
+		<Description>MEMBERSHIP ORGANIZATIONS</Description>
+	</Codes>
+	<Codes>
+		<Code>87</Code>
+		<Description>ENGINEERING &amp; MANAGEMENT SERVICES</Description>
+	</Codes>
+	<Codes>
+		<Code>88</Code>
+		<Description>PRIVATE HOUSEHOLDS</Description>
+	</Codes>
+	<Codes>
+		<Code>89</Code>
+		<Description>SERVICES, NEC</Description>
+	</Codes>
+	<Codes>
+		<Code>91</Code>
+		<Description>EXECUTIVE, LEGISLATIVE, AND GENERAL</Description>
+	</Codes>
+	<Codes>
+		<Code>92</Code>
+		<Description>JUSTICE, PUBLIC ORDER, AND SAFETY</Description>
+	</Codes>
+	<Codes>
+		<Code>93</Code>
+		<Description>FINANCE, TAXATION, &amp; MONETARY POLICY</Description>
+	</Codes>
+	<Codes>
+		<Code>94</Code>
+		<Description>ADMINISTRATION OF HUMAN RESOURCES</Description>
+	</Codes>
+	<Codes>
+		<Code>95</Code>
+		<Description>ENVIRONMENTAL QUALITY AND HOUSING</Description>
+	</Codes>
+	<Codes>
+		<Code>96</Code>
+		<Description>ADMINISTRATION OF ECONOMIC PROGRAMS</Description>
+	</Codes>
+	<Codes>
+		<Code>97</Code>
+		<Description>NATIONAL SECURITY AND INTL. AFFAIRS</Description>
+	</Codes>
+	<Codes>
+		<Code>99</Code>
+		<Description>NONCLASSIFIABLE ESTABLISHMENTS</Description>
+	</Codes>
+</SICCodes>

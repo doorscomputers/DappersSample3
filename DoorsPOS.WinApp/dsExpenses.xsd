@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsExpenses" targetNamespace="http://tempuri.org/dsExpenses.xsd" xmlns:mstns="http://tempuri.org/dsExpenses.xsd" xmlns="http://tempuri.org/dsExpenses.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblExpenseTransTableAdapter" GeneratorDataComponentClassName="tblExpenseTransTableAdapter" Name="tblExpenseTrans" UserDataComponentName="tblExpenseTransTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     tblExpenseTrans.expdate, tblExpenseTrans.expamount, tblExpenseTrans.expremarks, tblExpenseTrans.sInsert_id, tblExpenses.expdesc
+FROM         tblExpenseTrans INNER JOIN
+                      tblExpenses ON tblExpenseTrans.expenseid = tblExpenses.expenseid</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="expdate" DataSetColumn="expdate" />
+              <Mapping SourceColumn="expamount" DataSetColumn="expamount" />
+              <Mapping SourceColumn="expremarks" DataSetColumn="expremarks" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="expdesc" DataSetColumn="expdesc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsExpenses" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsExpenses" msprop:Generator_UserDSName="dsExpenses">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblExpenseTrans" msprop:Generator_TableClassName="tblExpenseTransDataTable" msprop:Generator_TableVarName="tabletblExpenseTrans" msprop:Generator_RowChangedName="tblExpenseTransRowChanged" msprop:Generator_TablePropName="tblExpenseTrans" msprop:Generator_RowDeletingName="tblExpenseTransRowDeleting" msprop:Generator_RowChangingName="tblExpenseTransRowChanging" msprop:Generator_RowEvHandlerName="tblExpenseTransRowChangeEventHandler" msprop:Generator_RowDeletedName="tblExpenseTransRowDeleted" msprop:Generator_RowClassName="tblExpenseTransRow" msprop:Generator_UserTableName="tblExpenseTrans" msprop:Generator_RowEvArgName="tblExpenseTransRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="expdate" msprop:Generator_ColumnVarNameInTable="columnexpdate" msprop:Generator_ColumnPropNameInRow="expdate" msprop:Generator_ColumnPropNameInTable="expdateColumn" msprop:Generator_UserColumnName="expdate" type="xs:dateTime" />
+              <xs:element name="expamount" msprop:Generator_ColumnVarNameInTable="columnexpamount" msprop:Generator_ColumnPropNameInRow="expamount" msprop:Generator_ColumnPropNameInTable="expamountColumn" msprop:Generator_UserColumnName="expamount" type="xs:decimal" />
+              <xs:element name="expremarks" msprop:Generator_ColumnVarNameInTable="columnexpremarks" msprop:Generator_ColumnPropNameInRow="expremarks" msprop:Generator_ColumnPropNameInTable="expremarksColumn" msprop:Generator_UserColumnName="expremarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="expdesc" msprop:Generator_ColumnVarNameInTable="columnexpdesc" msprop:Generator_ColumnPropNameInRow="expdesc" msprop:Generator_ColumnPropNameInTable="expdescColumn" msprop:Generator_UserColumnName="expdesc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

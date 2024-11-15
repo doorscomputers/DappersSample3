@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Questions>
+    <Question>
+        <Desc>What was your first boy/girlfriend's first name?</Desc>
+    </Question>
+    <Question>
+        <Desc>What is your favorite vacation place?</Desc>
+    </Question>
+    <Question>
+        <Desc>What is your favorite color?</Desc>
+    </Question>
+    <Question>
+        <Desc>Who is your favorite actor?</Desc>
+    </Question>
+    <Question>
+        <Desc>What is your favorite movie?</Desc>
+    </Question>
+    <Question>
+        <Desc>Who is your favorite fictional character?</Desc>
+    </Question>
+    <Question>
+        <Desc>Who is your favorite person in history?</Desc>
+    </Question>
+    <Question>
+        <Desc>What is your favorite movie from childhood?</Desc>
+    </Question>
+    <Question>
+        <Desc>What is your favorite food?</Desc>
+    </Question>
+    <Question>
+        <Desc>What is your favorite TV show that is not on anymore?</Desc>
+    </Question>
+    <Question>
+        <Desc>What was your first car?</Desc>
+    </Question>
+    <Question>
+        <Desc>What what the first company you worked for?</Desc>
+    </Question>
+</Questions>

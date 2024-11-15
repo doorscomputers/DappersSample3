@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsManualInv" targetNamespace="http://tempuri.org/dsManualInv.xsd" xmlns:mstns="http://tempuri.org/dsManualInv.xsd" xmlns="http://tempuri.org/dsManualInv.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InvntoryTableAdapter" GeneratorDataComponentClassName="InvntoryTableAdapter" Name="Invntory" UserDataComponentName="InvntoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Invntory.miid, Invntory.midate, Invntory.stckid, Invntory.qty, Invntory.amnt, Invntory.sInsert_id, Invntory.dtInsert_dt, Invntory.sLastUpdate_id, 
+                      Invntory.dtLastUpdate_dt, stocks.item_desc
+FROM         Invntory INNER JOIN
+                      stocks ON Invntory.stckid = stocks.stckid</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="miid" DataSetColumn="miid" />
+              <Mapping SourceColumn="midate" DataSetColumn="midate" />
+              <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
+              <Mapping SourceColumn="qty" DataSetColumn="qty" />
+              <Mapping SourceColumn="amnt" DataSetColumn="amnt" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="dtInsert_dt" DataSetColumn="dtInsert_dt" />
+              <Mapping SourceColumn="sLastUpdate_id" DataSetColumn="sLastUpdate_id" />
+              <Mapping SourceColumn="dtLastUpdate_dt" DataSetColumn="dtLastUpdate_dt" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsManualInv" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsManualInv" msprop:Generator_UserDSName="dsManualInv">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Invntory" msprop:Generator_TableClassName="InvntoryDataTable" msprop:Generator_TableVarName="tableInvntory" msprop:Generator_RowChangedName="InvntoryRowChanged" msprop:Generator_TablePropName="Invntory" msprop:Generator_RowDeletingName="InvntoryRowDeleting" msprop:Generator_RowChangingName="InvntoryRowChanging" msprop:Generator_RowEvHandlerName="InvntoryRowChangeEventHandler" msprop:Generator_RowDeletedName="InvntoryRowDeleted" msprop:Generator_RowClassName="InvntoryRow" msprop:Generator_UserTableName="Invntory" msprop:Generator_RowEvArgName="InvntoryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="miid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnmiid" msprop:Generator_ColumnPropNameInRow="miid" msprop:Generator_ColumnPropNameInTable="miidColumn" msprop:Generator_UserColumnName="miid" type="xs:int" />
+              <xs:element name="midate" msprop:Generator_ColumnVarNameInTable="columnmidate" msprop:Generator_ColumnPropNameInRow="midate" msprop:Generator_ColumnPropNameInTable="midateColumn" msprop:Generator_UserColumnName="midate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="stckid" msprop:Generator_ColumnVarNameInTable="columnstckid" msprop:Generator_ColumnPropNameInRow="stckid" msprop:Generator_ColumnPropNameInTable="stckidColumn" msprop:Generator_UserColumnName="stckid" type="xs:int" />
+              <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:int" />
+              <xs:element name="amnt" msprop:Generator_ColumnVarNameInTable="columnamnt" msprop:Generator_ColumnPropNameInRow="amnt" msprop:Generator_ColumnPropNameInTable="amntColumn" msprop:Generator_UserColumnName="amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtInsert_dt" msprop:Generator_ColumnVarNameInTable="columndtInsert_dt" msprop:Generator_ColumnPropNameInRow="dtInsert_dt" msprop:Generator_ColumnPropNameInTable="dtInsert_dtColumn" msprop:Generator_UserColumnName="dtInsert_dt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="sLastUpdate_id" msprop:Generator_ColumnVarNameInTable="columnsLastUpdate_id" msprop:Generator_ColumnPropNameInRow="sLastUpdate_id" msprop:Generator_ColumnPropNameInTable="sLastUpdate_idColumn" msprop:Generator_UserColumnName="sLastUpdate_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtLastUpdate_dt" msprop:Generator_ColumnVarNameInTable="columndtLastUpdate_dt" msprop:Generator_ColumnPropNameInRow="dtLastUpdate_dt" msprop:Generator_ColumnPropNameInTable="dtLastUpdate_dtColumn" msprop:Generator_UserColumnName="dtLastUpdate_dt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Invntory" />
+      <xs:field xpath="mstns:miid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

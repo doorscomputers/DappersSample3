@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCustPays" targetNamespace="http://tempuri.org/dsCustPays.xsd" xmlns:mstns="http://tempuri.org/dsCustPays.xsd" xmlns="http://tempuri.org/dsCustPays.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwCustPayTableAdapter" GeneratorDataComponentClassName="vwCustPayTableAdapter" Name="vwCustPay" UserDataComponentName="vwCustPayTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwCustPay" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT lastname, firstname, middlename, Balance, PayDate, DateIssued, Amount, OldBal, NewBal, sInsert_id FROM dbo.vwCustPay</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lastname" DataSetColumn="lastname" />
+              <Mapping SourceColumn="firstname" DataSetColumn="firstname" />
+              <Mapping SourceColumn="middlename" DataSetColumn="middlename" />
+              <Mapping SourceColumn="Balance" DataSetColumn="Balance" />
+              <Mapping SourceColumn="PayDate" DataSetColumn="PayDate" />
+              <Mapping SourceColumn="DateIssued" DataSetColumn="DateIssued" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="OldBal" DataSetColumn="OldBal" />
+              <Mapping SourceColumn="NewBal" DataSetColumn="NewBal" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCustPays" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsCustPays" msprop:Generator_UserDSName="dsCustPays">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwCustPay" msprop:Generator_TableClassName="vwCustPayDataTable" msprop:Generator_TableVarName="tablevwCustPay" msprop:Generator_TablePropName="vwCustPay" msprop:Generator_RowDeletingName="vwCustPayRowDeleting" msprop:Generator_RowChangingName="vwCustPayRowChanging" msprop:Generator_RowEvHandlerName="vwCustPayRowChangeEventHandler" msprop:Generator_RowDeletedName="vwCustPayRowDeleted" msprop:Generator_UserTableName="vwCustPay" msprop:Generator_RowChangedName="vwCustPayRowChanged" msprop:Generator_RowEvArgName="vwCustPayRowChangeEvent" msprop:Generator_RowClassName="vwCustPayRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lastname" msprop:Generator_ColumnVarNameInTable="columnlastname" msprop:Generator_ColumnPropNameInRow="lastname" msprop:Generator_ColumnPropNameInTable="lastnameColumn" msprop:Generator_UserColumnName="lastname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstname" msprop:Generator_ColumnVarNameInTable="columnfirstname" msprop:Generator_ColumnPropNameInRow="firstname" msprop:Generator_ColumnPropNameInTable="firstnameColumn" msprop:Generator_UserColumnName="firstname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="middlename" msprop:Generator_ColumnVarNameInTable="columnmiddlename" msprop:Generator_ColumnPropNameInRow="middlename" msprop:Generator_ColumnPropNameInTable="middlenameColumn" msprop:Generator_UserColumnName="middlename">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" msprop:Generator_UserColumnName="Balance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PayDate" msprop:Generator_ColumnVarNameInTable="columnPayDate" msprop:Generator_ColumnPropNameInRow="PayDate" msprop:Generator_ColumnPropNameInTable="PayDateColumn" msprop:Generator_UserColumnName="PayDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateIssued" msprop:Generator_ColumnVarNameInTable="columnDateIssued" msprop:Generator_ColumnPropNameInRow="DateIssued" msprop:Generator_ColumnPropNameInTable="DateIssuedColumn" msprop:Generator_UserColumnName="DateIssued" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OldBal" msprop:Generator_ColumnVarNameInTable="columnOldBal" msprop:Generator_ColumnPropNameInRow="OldBal" msprop:Generator_ColumnPropNameInTable="OldBalColumn" msprop:Generator_UserColumnName="OldBal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NewBal" msprop:Generator_ColumnVarNameInTable="columnNewBal" msprop:Generator_ColumnPropNameInRow="NewBal" msprop:Generator_ColumnPropNameInTable="NewBalColumn" msprop:Generator_UserColumnName="NewBal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

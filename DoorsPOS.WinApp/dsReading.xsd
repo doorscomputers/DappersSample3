@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsReading" targetNamespace="http://tempuri.org/dsReading.xsd" xmlns:mstns="http://tempuri.org/dsReading.xsd" xmlns="http://tempuri.org/dsReading.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblreadingTableAdapter" GeneratorDataComponentClassName="tblreadingTableAdapter" Name="tblreading" UserDataComponentName="tblreadingTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.tblreading" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        cashreadid, cashier, datereading, totalsales, totalcredit, totaldiscount, begincash, totalcheque, changeprice, transfer, thousndp, fiehundredp, twohundredp, onehundredp, fiftyp, twentyp, tenp, fivep, onep, twentyfive, overshort, 
+                         status, payments, readtime, pickup, addcash, totalrefs, totalsales2, cnttotalsales, cnttotalrefunds, cnttotaldiscounts, cnttotaldep, cntsenior, cntdiscreg, cntvoids, cntreceipt, begreceipt, endreceipt, prevtotal, totvat, totnonvat, 
+                         totzerorated, terminal, sumvat, cntcredits, accutotsale, readingno, ETwo, EOneHundred, EFifty, ETwenty, ETen, EFive, Eone, Ecents, TotRemit
+FROM            tblreading</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="cashreadid" DataSetColumn="cashreadid" />
+              <Mapping SourceColumn="cashier" DataSetColumn="cashier" />
+              <Mapping SourceColumn="datereading" DataSetColumn="datereading" />
+              <Mapping SourceColumn="totalsales" DataSetColumn="totalsales" />
+              <Mapping SourceColumn="totalcredit" DataSetColumn="totalcredit" />
+              <Mapping SourceColumn="totaldiscount" DataSetColumn="totaldiscount" />
+              <Mapping SourceColumn="begincash" DataSetColumn="begincash" />
+              <Mapping SourceColumn="totalcheque" DataSetColumn="totalcheque" />
+              <Mapping SourceColumn="changeprice" DataSetColumn="changeprice" />
+              <Mapping SourceColumn="transfer" DataSetColumn="transfer" />
+              <Mapping SourceColumn="thousndp" DataSetColumn="thousndp" />
+              <Mapping SourceColumn="fiehundredp" DataSetColumn="fiehundredp" />
+              <Mapping SourceColumn="twohundredp" DataSetColumn="twohundredp" />
+              <Mapping SourceColumn="onehundredp" DataSetColumn="onehundredp" />
+              <Mapping SourceColumn="fiftyp" DataSetColumn="fiftyp" />
+              <Mapping SourceColumn="twentyp" DataSetColumn="twentyp" />
+              <Mapping SourceColumn="tenp" DataSetColumn="tenp" />
+              <Mapping SourceColumn="fivep" DataSetColumn="fivep" />
+              <Mapping SourceColumn="onep" DataSetColumn="onep" />
+              <Mapping SourceColumn="twentyfive" DataSetColumn="twentyfive" />
+              <Mapping SourceColumn="overshort" DataSetColumn="overshort" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="payments" DataSetColumn="payments" />
+              <Mapping SourceColumn="readtime" DataSetColumn="readtime" />
+              <Mapping SourceColumn="pickup" DataSetColumn="pickup" />
+              <Mapping SourceColumn="addcash" DataSetColumn="addcash" />
+              <Mapping SourceColumn="totalrefs" DataSetColumn="totalrefs" />
+              <Mapping SourceColumn="totalsales2" DataSetColumn="totalsales2" />
+              <Mapping SourceColumn="cnttotalsales" DataSetColumn="cnttotalsales" />
+              <Mapping SourceColumn="cnttotalrefunds" DataSetColumn="cnttotalrefunds" />
+              <Mapping SourceColumn="cnttotaldiscounts" DataSetColumn="cnttotaldiscounts" />
+              <Mapping SourceColumn="cnttotaldep" DataSetColumn="cnttotaldep" />
+              <Mapping SourceColumn="cntsenior" DataSetColumn="cntsenior" />
+              <Mapping SourceColumn="cntdiscreg" DataSetColumn="cntdiscreg" />
+              <Mapping SourceColumn="cntvoids" DataSetColumn="cntvoids" />
+              <Mapping SourceColumn="cntreceipt" DataSetColumn="cntreceipt" />
+              <Mapping SourceColumn="begreceipt" DataSetColumn="begreceipt" />
+              <Mapping SourceColumn="endreceipt" DataSetColumn="endreceipt" />
+              <Mapping SourceColumn="prevtotal" DataSetColumn="prevtotal" />
+              <Mapping SourceColumn="totvat" DataSetColumn="totvat" />
+              <Mapping SourceColumn="totnonvat" DataSetColumn="totnonvat" />
+              <Mapping SourceColumn="totzerorated" DataSetColumn="totzerorated" />
+              <Mapping SourceColumn="terminal" DataSetColumn="terminal" />
+              <Mapping SourceColumn="sumvat" DataSetColumn="sumvat" />
+              <Mapping SourceColumn="cntcredits" DataSetColumn="cntcredits" />
+              <Mapping SourceColumn="accutotsale" DataSetColumn="accutotsale" />
+              <Mapping SourceColumn="readingno" DataSetColumn="readingno" />
+              <Mapping SourceColumn="ETwo" DataSetColumn="ETwo" />
+              <Mapping SourceColumn="EOneHundred" DataSetColumn="EOneHundred" />
+              <Mapping SourceColumn="EFifty" DataSetColumn="EFifty" />
+              <Mapping SourceColumn="ETwenty" DataSetColumn="ETwenty" />
+              <Mapping SourceColumn="ETen" DataSetColumn="ETen" />
+              <Mapping SourceColumn="EFive" DataSetColumn="EFive" />
+              <Mapping SourceColumn="Eone" DataSetColumn="Eone" />
+              <Mapping SourceColumn="Ecents" DataSetColumn="Ecents" />
+              <Mapping SourceColumn="TotRemit" DataSetColumn="TotRemit" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsReading" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsReading" msprop:Generator_UserDSName="dsReading">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblreading" msprop:Generator_TableClassName="tblreadingDataTable" msprop:Generator_TableVarName="tabletblreading" msprop:Generator_TablePropName="tblreading" msprop:Generator_RowDeletingName="tblreadingRowDeleting" msprop:Generator_RowChangingName="tblreadingRowChanging" msprop:Generator_RowEvHandlerName="tblreadingRowChangeEventHandler" msprop:Generator_RowDeletedName="tblreadingRowDeleted" msprop:Generator_UserTableName="tblreading" msprop:Generator_RowChangedName="tblreadingRowChanged" msprop:Generator_RowEvArgName="tblreadingRowChangeEvent" msprop:Generator_RowClassName="tblreadingRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cashreadid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncashreadid" msprop:Generator_ColumnPropNameInRow="cashreadid" msprop:Generator_ColumnPropNameInTable="cashreadidColumn" msprop:Generator_UserColumnName="cashreadid" type="xs:int" />
+              <xs:element name="cashier" msprop:Generator_ColumnVarNameInTable="columncashier" msprop:Generator_ColumnPropNameInRow="cashier" msprop:Generator_ColumnPropNameInTable="cashierColumn" msprop:Generator_UserColumnName="cashier">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="datereading" msprop:Generator_ColumnVarNameInTable="columndatereading" msprop:Generator_ColumnPropNameInRow="datereading" msprop:Generator_ColumnPropNameInTable="datereadingColumn" msprop:Generator_UserColumnName="datereading" type="xs:dateTime" />
+              <xs:element name="totalsales" msprop:Generator_ColumnVarNameInTable="columntotalsales" msprop:Generator_ColumnPropNameInRow="totalsales" msprop:Generator_ColumnPropNameInTable="totalsalesColumn" msprop:Generator_UserColumnName="totalsales" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalcredit" msprop:Generator_ColumnVarNameInTable="columntotalcredit" msprop:Generator_ColumnPropNameInRow="totalcredit" msprop:Generator_ColumnPropNameInTable="totalcreditColumn" msprop:Generator_UserColumnName="totalcredit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totaldiscount" msprop:Generator_ColumnVarNameInTable="columntotaldiscount" msprop:Generator_ColumnPropNameInRow="totaldiscount" msprop:Generator_ColumnPropNameInTable="totaldiscountColumn" msprop:Generator_UserColumnName="totaldiscount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="begincash" msprop:Generator_ColumnVarNameInTable="columnbegincash" msprop:Generator_ColumnPropNameInRow="begincash" msprop:Generator_ColumnPropNameInTable="begincashColumn" msprop:Generator_UserColumnName="begincash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalcheque" msprop:Generator_ColumnVarNameInTable="columntotalcheque" msprop:Generator_ColumnPropNameInRow="totalcheque" msprop:Generator_ColumnPropNameInTable="totalchequeColumn" msprop:Generator_UserColumnName="totalcheque" type="xs:decimal" minOccurs="0" />
+              <xs:element name="changeprice" msprop:Generator_ColumnVarNameInTable="columnchangeprice" msprop:Generator_ColumnPropNameInRow="changeprice" msprop:Generator_ColumnPropNameInTable="changepriceColumn" msprop:Generator_UserColumnName="changeprice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transfer" msprop:Generator_ColumnVarNameInTable="columntransfer" msprop:Generator_ColumnPropNameInRow="transfer" msprop:Generator_ColumnPropNameInTable="transferColumn" msprop:Generator_UserColumnName="transfer" type="xs:decimal" minOccurs="0" />
+              <xs:element name="thousndp" msprop:Generator_ColumnVarNameInTable="columnthousndp" msprop:Generator_ColumnPropNameInRow="thousndp" msprop:Generator_ColumnPropNameInTable="thousndpColumn" msprop:Generator_UserColumnName="thousndp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiehundredp" msprop:Generator_ColumnVarNameInTable="columnfiehundredp" msprop:Generator_ColumnPropNameInRow="fiehundredp" msprop:Generator_ColumnPropNameInTable="fiehundredpColumn" msprop:Generator_UserColumnName="fiehundredp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twohundredp" msprop:Generator_ColumnVarNameInTable="columntwohundredp" msprop:Generator_ColumnPropNameInRow="twohundredp" msprop:Generator_ColumnPropNameInTable="twohundredpColumn" msprop:Generator_UserColumnName="twohundredp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="onehundredp" msprop:Generator_ColumnVarNameInTable="columnonehundredp" msprop:Generator_ColumnPropNameInRow="onehundredp" msprop:Generator_ColumnPropNameInTable="onehundredpColumn" msprop:Generator_UserColumnName="onehundredp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftyp" msprop:Generator_ColumnVarNameInTable="columnfiftyp" msprop:Generator_ColumnPropNameInRow="fiftyp" msprop:Generator_ColumnPropNameInTable="fiftypColumn" msprop:Generator_UserColumnName="fiftyp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentyp" msprop:Generator_ColumnVarNameInTable="columntwentyp" msprop:Generator_ColumnPropNameInRow="twentyp" msprop:Generator_ColumnPropNameInTable="twentypColumn" msprop:Generator_UserColumnName="twentyp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tenp" msprop:Generator_ColumnVarNameInTable="columntenp" msprop:Generator_ColumnPropNameInRow="tenp" msprop:Generator_ColumnPropNameInTable="tenpColumn" msprop:Generator_UserColumnName="tenp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fivep" msprop:Generator_ColumnVarNameInTable="columnfivep" msprop:Generator_ColumnPropNameInRow="fivep" msprop:Generator_ColumnPropNameInTable="fivepColumn" msprop:Generator_UserColumnName="fivep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="onep" msprop:Generator_ColumnVarNameInTable="columnonep" msprop:Generator_ColumnPropNameInRow="onep" msprop:Generator_ColumnPropNameInTable="onepColumn" msprop:Generator_UserColumnName="onep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentyfive" msprop:Generator_ColumnVarNameInTable="columntwentyfive" msprop:Generator_ColumnPropNameInRow="twentyfive" msprop:Generator_ColumnPropNameInTable="twentyfiveColumn" msprop:Generator_UserColumnName="twentyfive" type="xs:decimal" minOccurs="0" />
+              <xs:element name="overshort" msprop:Generator_ColumnVarNameInTable="columnovershort" msprop:Generator_ColumnPropNameInRow="overshort" msprop:Generator_ColumnPropNameInTable="overshortColumn" msprop:Generator_UserColumnName="overshort" type="xs:decimal" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status" type="xs:boolean" minOccurs="0" />
+              <xs:element name="timereading" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntimereading" msprop:Generator_ColumnPropNameInRow="timereading" msprop:Generator_ColumnPropNameInTable="timereadingColumn" msprop:Generator_UserColumnName="timereading" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="payments" msprop:Generator_ColumnVarNameInTable="columnpayments" msprop:Generator_ColumnPropNameInRow="payments" msprop:Generator_ColumnPropNameInTable="paymentsColumn" msprop:Generator_UserColumnName="payments" type="xs:decimal" minOccurs="0" />
+              <xs:element name="readtime" msprop:Generator_ColumnVarNameInTable="columnreadtime" msprop:Generator_ColumnPropNameInRow="readtime" msprop:Generator_ColumnPropNameInTable="readtimeColumn" msprop:Generator_UserColumnName="readtime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="pickup" msprop:Generator_ColumnVarNameInTable="columnpickup" msprop:Generator_ColumnPropNameInRow="pickup" msprop:Generator_ColumnPropNameInTable="pickupColumn" msprop:Generator_UserColumnName="pickup" type="xs:decimal" minOccurs="0" />
+              <xs:element name="addcash" msprop:Generator_ColumnVarNameInTable="columnaddcash" msprop:Generator_ColumnPropNameInRow="addcash" msprop:Generator_ColumnPropNameInTable="addcashColumn" msprop:Generator_UserColumnName="addcash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalrefs" msprop:Generator_ColumnVarNameInTable="columntotalrefs" msprop:Generator_ColumnPropNameInRow="totalrefs" msprop:Generator_ColumnPropNameInTable="totalrefsColumn" msprop:Generator_UserColumnName="totalrefs" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalsales2" msprop:Generator_ColumnVarNameInTable="columntotalsales2" msprop:Generator_ColumnPropNameInRow="totalsales2" msprop:Generator_ColumnPropNameInTable="totalsales2Column" msprop:Generator_UserColumnName="totalsales2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cnttotalsales" msprop:Generator_ColumnVarNameInTable="columncnttotalsales" msprop:Generator_ColumnPropNameInRow="cnttotalsales" msprop:Generator_ColumnPropNameInTable="cnttotalsalesColumn" msprop:Generator_UserColumnName="cnttotalsales" type="xs:int" minOccurs="0" />
+              <xs:element name="cnttotalrefunds" msprop:Generator_ColumnVarNameInTable="columncnttotalrefunds" msprop:Generator_ColumnPropNameInRow="cnttotalrefunds" msprop:Generator_ColumnPropNameInTable="cnttotalrefundsColumn" msprop:Generator_UserColumnName="cnttotalrefunds" type="xs:int" minOccurs="0" />
+              <xs:element name="cnttotaldiscounts" msprop:Generator_ColumnVarNameInTable="columncnttotaldiscounts" msprop:Generator_ColumnPropNameInRow="cnttotaldiscounts" msprop:Generator_ColumnPropNameInTable="cnttotaldiscountsColumn" msprop:Generator_UserColumnName="cnttotaldiscounts" type="xs:int" minOccurs="0" />
+              <xs:element name="cnttotaldep" msprop:Generator_ColumnVarNameInTable="columncnttotaldep" msprop:Generator_ColumnPropNameInRow="cnttotaldep" msprop:Generator_ColumnPropNameInTable="cnttotaldepColumn" msprop:Generator_UserColumnName="cnttotaldep" type="xs:int" minOccurs="0" />
+              <xs:element name="cntsenior" msprop:Generator_ColumnVarNameInTable="columncntsenior" msprop:Generator_ColumnPropNameInRow="cntsenior" msprop:Generator_ColumnPropNameInTable="cntseniorColumn" msprop:Generator_UserColumnName="cntsenior" type="xs:int" minOccurs="0" />
+              <xs:element name="cntdiscreg" msprop:Generator_ColumnVarNameInTable="columncntdiscreg" msprop:Generator_ColumnPropNameInRow="cntdiscreg" msprop:Generator_ColumnPropNameInTable="cntdiscregColumn" msprop:Generator_UserColumnName="cntdiscreg" type="xs:int" minOccurs="0" />
+              <xs:element name="cntvoids" msprop:Generator_ColumnVarNameInTable="columncntvoids" msprop:Generator_ColumnPropNameInRow="cntvoids" msprop:Generator_ColumnPropNameInTable="cntvoidsColumn" msprop:Generator_UserColumnName="cntvoids" type="xs:int" minOccurs="0" />
+              <xs:element name="cntreceipt" msprop:Generator_ColumnVarNameInTable="columncntreceipt" msprop:Generator_ColumnPropNameInRow="cntreceipt" msprop:Generator_ColumnPropNameInTable="cntreceiptColumn" msprop:Generator_UserColumnName="cntreceipt" type="xs:int" minOccurs="0" />
+              <xs:element name="begreceipt" msprop:Generator_ColumnVarNameInTable="columnbegreceipt" msprop:Generator_ColumnPropNameInRow="begreceipt" msprop:Generator_ColumnPropNameInTable="begreceiptColumn" msprop:Generator_UserColumnName="begreceipt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="endreceipt" msprop:Generator_ColumnVarNameInTable="columnendreceipt" msprop:Generator_ColumnPropNameInRow="endreceipt" msprop:Generator_ColumnPropNameInTable="endreceiptColumn" msprop:Generator_UserColumnName="endreceipt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prevtotal" msprop:Generator_ColumnVarNameInTable="columnprevtotal" msprop:Generator_ColumnPropNameInRow="prevtotal" msprop:Generator_ColumnPropNameInTable="prevtotalColumn" msprop:Generator_UserColumnName="prevtotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totvat" msprop:Generator_ColumnVarNameInTable="columntotvat" msprop:Generator_ColumnPropNameInRow="totvat" msprop:Generator_ColumnPropNameInTable="totvatColumn" msprop:Generator_UserColumnName="totvat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totnonvat" msprop:Generator_ColumnVarNameInTable="columntotnonvat" msprop:Generator_ColumnPropNameInRow="totnonvat" msprop:Generator_ColumnPropNameInTable="totnonvatColumn" msprop:Generator_UserColumnName="totnonvat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totzerorated" msprop:Generator_ColumnVarNameInTable="columntotzerorated" msprop:Generator_ColumnPropNameInRow="totzerorated" msprop:Generator_ColumnPropNameInTable="totzeroratedColumn" msprop:Generator_UserColumnName="totzerorated" type="xs:decimal" minOccurs="0" />
+              <xs:element name="terminal" msprop:Generator_ColumnVarNameInTable="columnterminal" msprop:Generator_ColumnPropNameInRow="terminal" msprop:Generator_ColumnPropNameInTable="terminalColumn" msprop:Generator_UserColumnName="terminal" type="xs:int" minOccurs="0" />
+              <xs:element name="sumvat" msprop:Generator_ColumnVarNameInTable="columnsumvat" msprop:Generator_ColumnPropNameInRow="sumvat" msprop:Generator_ColumnPropNameInTable="sumvatColumn" msprop:Generator_UserColumnName="sumvat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cntcredits" msprop:Generator_ColumnVarNameInTable="columncntcredits" msprop:Generator_ColumnPropNameInRow="cntcredits" msprop:Generator_ColumnPropNameInTable="cntcreditsColumn" msprop:Generator_UserColumnName="cntcredits" type="xs:int" minOccurs="0" />
+              <xs:element name="accutotsale" msprop:Generator_ColumnVarNameInTable="columnaccutotsale" msprop:Generator_ColumnPropNameInRow="accutotsale" msprop:Generator_ColumnPropNameInTable="accutotsaleColumn" msprop:Generator_UserColumnName="accutotsale" type="xs:decimal" minOccurs="0" />
+              <xs:element name="readingno" msprop:Generator_ColumnVarNameInTable="columnreadingno" msprop:Generator_ColumnPropNameInRow="readingno" msprop:Generator_ColumnPropNameInTable="readingnoColumn" msprop:Generator_UserColumnName="readingno" type="xs:int" minOccurs="0" />
+              <xs:element name="ETwo" msprop:Generator_ColumnVarNameInTable="columnETwo" msprop:Generator_ColumnPropNameInRow="ETwo" msprop:Generator_ColumnPropNameInTable="ETwoColumn" msprop:Generator_UserColumnName="ETwo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EOneHundred" msprop:Generator_ColumnVarNameInTable="columnEOneHundred" msprop:Generator_ColumnPropNameInRow="EOneHundred" msprop:Generator_ColumnPropNameInTable="EOneHundredColumn" msprop:Generator_UserColumnName="EOneHundred" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EFifty" msprop:Generator_ColumnVarNameInTable="columnEFifty" msprop:Generator_ColumnPropNameInRow="EFifty" msprop:Generator_ColumnPropNameInTable="EFiftyColumn" msprop:Generator_UserColumnName="EFifty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ETwenty" msprop:Generator_ColumnVarNameInTable="columnETwenty" msprop:Generator_ColumnPropNameInRow="ETwenty" msprop:Generator_ColumnPropNameInTable="ETwentyColumn" msprop:Generator_UserColumnName="ETwenty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ETen" msprop:Generator_ColumnVarNameInTable="columnETen" msprop:Generator_ColumnPropNameInRow="ETen" msprop:Generator_ColumnPropNameInTable="ETenColumn" msprop:Generator_UserColumnName="ETen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EFive" msprop:Generator_ColumnVarNameInTable="columnEFive" msprop:Generator_ColumnPropNameInRow="EFive" msprop:Generator_ColumnPropNameInTable="EFiveColumn" msprop:Generator_UserColumnName="EFive" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Eone" msprop:Generator_ColumnVarNameInTable="columnEone" msprop:Generator_ColumnPropNameInRow="Eone" msprop:Generator_ColumnPropNameInTable="EoneColumn" msprop:Generator_UserColumnName="Eone" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ecents" msprop:Generator_ColumnVarNameInTable="columnEcents" msprop:Generator_ColumnPropNameInRow="Ecents" msprop:Generator_ColumnPropNameInTable="EcentsColumn" msprop:Generator_UserColumnName="Ecents" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotRemit" msprop:Generator_ColumnVarNameInTable="columnTotRemit" msprop:Generator_ColumnPropNameInRow="TotRemit" msprop:Generator_ColumnPropNameInTable="TotRemitColumn" msprop:Generator_UserColumnName="TotRemit" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblreading" />
+      <xs:field xpath="mstns:cashreadid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

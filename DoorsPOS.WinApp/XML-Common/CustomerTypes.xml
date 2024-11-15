@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<CustomerTypes>
+	<Types>
+		<Name>Customer</Name>
+	</Types>
+	<Types>
+		<Name>Old Customer</Name>
+	</Types>
+	<Types>
+		<Name>Lead</Name>
+	</Types>
+</CustomerTypes>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Ethnicity>
+	<Ehtnic>
+		<Name>Unknown</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>White</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Cuban</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>American Indian or Alaska Native</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Black, not of Hispanic origin</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Asian or Pacific Islander</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Other Hispanic</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Other</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Mexican American</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Puerto Rican</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Other Asian</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Chinese</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Indian or Pakistani</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Filipino</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Japanese</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Korean</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Multiracial</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Hawaiian</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Puerto Rican Mainland</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Puerto Rican Commonwealth</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Southeast Asia, other-Vietnamese</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Other Pacific Islander</Name>
+	</Ehtnic>
+	<Ehtnic>
+		<Name>Vietnamese</Name>
+	</Ehtnic>
+</Ethnicity>

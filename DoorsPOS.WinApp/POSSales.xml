@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataConnections>
+    <DataConnection Name="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" ProviderKey="MSSqlServer">
+      <Parameters>
+        <Parameter Name="server" Value="DOORSCOMPUTERS\SQLEXPRESS" />
+        <Parameter Name="database" Value="doorspos" />
+        <Parameter Name="useIntegratedSecurity" Value="True" />
+        <Parameter Name="read only" Value="1" />
+        <Parameter Name="generateConnectionHelper" Value="false" />
+      </Parameters>
+    </DataConnection>
+  </DataConnections>
+  <DataSources>
+    <DataSource ComponentName="dataSource1" Name="Data Source 2">
+      <DataProvider DataConnection="DOORSCOMPUTERS\SQLEXPRESS_doorsposConnection" SupportSql="true">
+        <Selection>
+          <Table Name="vwPos">
+            <Columns>
+              <Column Name="barcode" />
+              <Column Name="Items" />
+              <Column Name="stckid" />
+              <Column Name="cost" />
+              <Column Name="qty" />
+              <Column Name="price" />
+              <Column Name="det_amnt" />
+              <Column Name="tdesc" />
+              <Column Name="waiter" />
+              <Column Name="postmp_hdrid" />
+              <Column Name="pos_date" />
+              <Column Name="custid" />
+              <Column Name="pos_amnt" />
+              <Column Name="tendered" />
+              <Column Name="Cheyns" />
+              <Column Name="Sc" />
+              <Column Name="totsales" />
+              <Column Name="less_vat" />
+              <Column Name="nov" />
+              <Column Name="less_sc" />
+              <Column Name="vatable" />
+              <Column Name="exempt" />
+              <Column Name="vatamnt" />
+              <Column Name="Expr2" />
+              <Column Name="wtid" />
+            </Columns>
+          </Table>
+          <Filters>
+            <Filter TableName="" FilterString="[vwPos.pos_date] Between(?From, ?To)" />
+          </Filters>
+        </Selection>
+      </DataProvider>
+    </DataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="From" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="2014-01-01T00:00:00" />
+    <Parameter Name="To" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="2014-01-01T00:00:00" />
+  </Parameters>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Monthly Sales" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="Month" Name="DataItem1" />
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="Daily Sales Amount">
+              <Value Name="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pie ComponentName="pieDashboardItem1" Name="Quarterly Sales" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="Quarter" Name="DataItem0" />
+        <Measure DataMember="det_amnt" Name="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="QuarterYear" Name="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension Name="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument Name="DataItem0" />
+      </Arguments>
+      <Values>
+        <Value Name="DataItem1" />
+      </Values>
+      <Names>
+        <Name Value="DataItem1" Name="Amount" />
+      </Names>
+    </Pie>
+    <Grid ComponentName="gridDashboardItem1" Name="Sales Grid View per Month" DataSource="dataSource1">
+      <DataItems>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" Name="DataItem0" />
+        <Measure DataMember="det_amnt" Name="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Date">
+          <Dimension Name="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Amount">
+          <Measure Name="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Total Sales Per Day" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="DayMonthYear" Name="DataItem0" />
+      </DataItems>
+      <Rows>
+        <Row Name="DataItem0" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem1" />
+      </Values>
+      <Names>
+        <Name Value="DataItem1" Name="Sales" />
+      </Names>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Sales Per Month" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="en-PH" />
+        </Measure>
+        <Dimension DataMember="pos_date" DateTimeGroupInterval="MonthYear" SortByMeasure="DataItem0" Name="DataItem1" />
+      </DataItems>
+      <Rows>
+        <Row Name="DataItem1" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem0" />
+      </Values>
+      <Names>
+        <Name Value="DataItem0" Name="Sales" />
+      </Names>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem3" Name="Sales per Year" DataSource="dataSource1">
+      <DataItems>
+        <Measure DataMember="det_amnt" Name="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="pos_date" Name="DataItem1" />
+      </DataItems>
+      <Rows>
+        <Row Name="DataItem1" />
+      </Rows>
+      <Values>
+        <Value Name="DataItem0" />
+      </Values>
+      <Names>
+        <Name Value="DataItem0" Name="Sales" />
+      </Names>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="50">
+        <LayoutItem Weight="51.764705882352942" DashboardItem="chartDashboardItem1" />
+        <LayoutItem Weight="48.235294117647058" DashboardItem="pieDashboardItem1" />
+      </LayoutGroup>
+      <LayoutGroup Weight="50">
+        <LayoutItem Weight="22.887700534759357" DashboardItem="pivotDashboardItem1" />
+        <LayoutItem Weight="22.780748663101605" DashboardItem="gridDashboardItem1" />
+        <LayoutItem Weight="24.064171122994651" DashboardItem="pivotDashboardItem2" />
+        <LayoutItem Weight="30.267379679144383" DashboardItem="pivotDashboardItem3" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="yes" ?>
+<SandBox>
+	<Table>
+		<ProductName>Acme Blow Dryer</ProductName>
+		<Cost>10</Cost>
+		<Price>20</Price>
+	</Table>
+	<Table>
+		<ProductName>Acme Kite</ProductName>
+		<Cost>2</Cost>
+		<Price>8</Price>
+	</Table>
+	<Table>
+		<ProductName>Acme Grenade Launcher</ProductName>
+		<Cost>2500</Cost>
+		<Price>5000</Price>
+	</Table>
+	<Table>
+		<ProductName>PDSA .NET Productivity Framework</ProductName>
+		<Cost>100000</Cost>
+		<Price>20000</Price>
+	</Table>
+	<Table>
+		<ProductName>PDSA IT-in-a-Box</ProductName>
+		<Cost>5000</Cost>
+		<Price>2000</Price>
+	</Table>
+	<Table>
+		<ProductName>Acme Bazooka</ProductName>
+		<Cost>500.0000</Cost>
+		<Price>1000.0000</Price>
+	</Table>
+	<Table>
+		<ProductName>Acme Coyote Repellent</ProductName>
+		<Cost>10.0000</Cost>
+		<Price>50.0000</Price>
+	</Table>
+</SandBox>

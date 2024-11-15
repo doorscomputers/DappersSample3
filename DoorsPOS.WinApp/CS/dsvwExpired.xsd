@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsvwExpired" targetNamespace="http://tempuri.org/dsvwExpired.xsd" xmlns:mstns="http://tempuri.org/dsvwExpired.xsd" xmlns="http://tempuri.org/dsvwExpired.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwExpiredTableAdapter" GeneratorDataComponentClassName="vwExpiredTableAdapter" Name="vwExpired" UserDataComponentName="vwExpiredTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        drdate, drinv, supplier, stckid, qty, lotno, expdate, item_desc
+FROM            vwExpired</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="drdate" DataSetColumn="drdate" />
+              <Mapping SourceColumn="drinv" DataSetColumn="drinv" />
+              <Mapping SourceColumn="supplier" DataSetColumn="supplier" />
+              <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
+              <Mapping SourceColumn="qty" DataSetColumn="qty" />
+              <Mapping SourceColumn="lotno" DataSetColumn="lotno" />
+              <Mapping SourceColumn="expdate" DataSetColumn="expdate" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsvwExpired" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsvwExpired" msprop:Generator_UserDSName="dsvwExpired">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwExpired" msprop:Generator_TableClassName="vwExpiredDataTable" msprop:Generator_TableVarName="tablevwExpired" msprop:Generator_RowChangedName="vwExpiredRowChanged" msprop:Generator_TablePropName="vwExpired" msprop:Generator_RowDeletingName="vwExpiredRowDeleting" msprop:Generator_RowChangingName="vwExpiredRowChanging" msprop:Generator_RowEvHandlerName="vwExpiredRowChangeEventHandler" msprop:Generator_RowDeletedName="vwExpiredRowDeleted" msprop:Generator_RowClassName="vwExpiredRow" msprop:Generator_UserTableName="vwExpired" msprop:Generator_RowEvArgName="vwExpiredRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="drdate" msprop:Generator_ColumnVarNameInTable="columndrdate" msprop:Generator_ColumnPropNameInRow="drdate" msprop:Generator_ColumnPropNameInTable="drdateColumn" msprop:Generator_UserColumnName="drdate" type="xs:dateTime" />
+              <xs:element name="drinv" msprop:Generator_ColumnVarNameInTable="columndrinv" msprop:Generator_ColumnPropNameInRow="drinv" msprop:Generator_ColumnPropNameInTable="drinvColumn" msprop:Generator_UserColumnName="drinv">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="supplier" msprop:Generator_ColumnVarNameInTable="columnsupplier" msprop:Generator_ColumnPropNameInRow="supplier" msprop:Generator_ColumnPropNameInTable="supplierColumn" msprop:Generator_UserColumnName="supplier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="stckid" msprop:Generator_ColumnVarNameInTable="columnstckid" msprop:Generator_ColumnPropNameInRow="stckid" msprop:Generator_ColumnPropNameInTable="stckidColumn" msprop:Generator_UserColumnName="stckid" type="xs:int" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:int" minOccurs="0" />
+              <xs:element name="lotno" msprop:Generator_ColumnVarNameInTable="columnlotno" msprop:Generator_ColumnPropNameInRow="lotno" msprop:Generator_ColumnPropNameInTable="lotnoColumn" msprop:Generator_UserColumnName="lotno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="expdate" msprop:Generator_ColumnVarNameInTable="columnexpdate" msprop:Generator_ColumnPropNameInRow="expdate" msprop:Generator_ColumnPropNameInTable="expdateColumn" msprop:Generator_UserColumnName="expdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="item_desc" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_UserColumnName="item_desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

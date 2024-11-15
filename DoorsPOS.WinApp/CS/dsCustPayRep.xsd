@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCustPayRep" targetNamespace="http://tempuri.org/dsCustPayRep.xsd" xmlns:mstns="http://tempuri.org/dsCustPayRep.xsd" xmlns="http://tempuri.org/dsCustPayRep.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwCustPayTableAdapter" GeneratorDataComponentClassName="vwCustPayTableAdapter" Name="vwCustPay" UserDataComponentName="vwCustPayTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwCustPay" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     lastname, firstname, middlename, address1, Balance, contact_no, PayDate, CheckNo, AccountName, DateIssued, DateDue, AccountNo, BankName, Amount, OldBal, 
+                      NewBal, CustID
+FROM         vwCustPay</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lastname" DataSetColumn="lastname" />
+              <Mapping SourceColumn="firstname" DataSetColumn="firstname" />
+              <Mapping SourceColumn="middlename" DataSetColumn="middlename" />
+              <Mapping SourceColumn="address1" DataSetColumn="address1" />
+              <Mapping SourceColumn="Balance" DataSetColumn="Balance" />
+              <Mapping SourceColumn="contact_no" DataSetColumn="contact_no" />
+              <Mapping SourceColumn="PayDate" DataSetColumn="PayDate" />
+              <Mapping SourceColumn="CheckNo" DataSetColumn="CheckNo" />
+              <Mapping SourceColumn="AccountName" DataSetColumn="AccountName" />
+              <Mapping SourceColumn="DateIssued" DataSetColumn="DateIssued" />
+              <Mapping SourceColumn="DateDue" DataSetColumn="DateDue" />
+              <Mapping SourceColumn="AccountNo" DataSetColumn="AccountNo" />
+              <Mapping SourceColumn="BankName" DataSetColumn="BankName" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="OldBal" DataSetColumn="OldBal" />
+              <Mapping SourceColumn="NewBal" DataSetColumn="NewBal" />
+              <Mapping SourceColumn="CustID" DataSetColumn="CustID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCustPayRep" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsCustPayRep" msprop:Generator_UserDSName="dsCustPayRep">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwCustPay" msprop:Generator_TableClassName="vwCustPayDataTable" msprop:Generator_TableVarName="tablevwCustPay" msprop:Generator_RowChangedName="vwCustPayRowChanged" msprop:Generator_TablePropName="vwCustPay" msprop:Generator_RowDeletingName="vwCustPayRowDeleting" msprop:Generator_RowChangingName="vwCustPayRowChanging" msprop:Generator_RowEvHandlerName="vwCustPayRowChangeEventHandler" msprop:Generator_RowDeletedName="vwCustPayRowDeleted" msprop:Generator_RowClassName="vwCustPayRow" msprop:Generator_UserTableName="vwCustPay" msprop:Generator_RowEvArgName="vwCustPayRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lastname" msprop:Generator_ColumnVarNameInTable="columnlastname" msprop:Generator_ColumnPropNameInRow="lastname" msprop:Generator_ColumnPropNameInTable="lastnameColumn" msprop:Generator_UserColumnName="lastname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstname" msprop:Generator_ColumnVarNameInTable="columnfirstname" msprop:Generator_ColumnPropNameInRow="firstname" msprop:Generator_ColumnPropNameInTable="firstnameColumn" msprop:Generator_UserColumnName="firstname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="middlename" msprop:Generator_ColumnVarNameInTable="columnmiddlename" msprop:Generator_ColumnPropNameInRow="middlename" msprop:Generator_ColumnPropNameInTable="middlenameColumn" msprop:Generator_UserColumnName="middlename" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="address1" msprop:Generator_ColumnVarNameInTable="columnaddress1" msprop:Generator_ColumnPropNameInRow="address1" msprop:Generator_ColumnPropNameInTable="address1Column" msprop:Generator_UserColumnName="address1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" msprop:Generator_UserColumnName="Balance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="contact_no" msprop:Generator_ColumnVarNameInTable="columncontact_no" msprop:Generator_ColumnPropNameInRow="contact_no" msprop:Generator_ColumnPropNameInTable="contact_noColumn" msprop:Generator_UserColumnName="contact_no" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PayDate" msprop:Generator_ColumnVarNameInTable="columnPayDate" msprop:Generator_ColumnPropNameInRow="PayDate" msprop:Generator_ColumnPropNameInTable="PayDateColumn" msprop:Generator_UserColumnName="PayDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CheckNo" msprop:Generator_ColumnVarNameInTable="columnCheckNo" msprop:Generator_ColumnPropNameInRow="CheckNo" msprop:Generator_ColumnPropNameInTable="CheckNoColumn" msprop:Generator_UserColumnName="CheckNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccountName" msprop:Generator_ColumnVarNameInTable="columnAccountName" msprop:Generator_ColumnPropNameInRow="AccountName" msprop:Generator_ColumnPropNameInTable="AccountNameColumn" msprop:Generator_UserColumnName="AccountName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateIssued" msprop:Generator_ColumnVarNameInTable="columnDateIssued" msprop:Generator_ColumnPropNameInRow="DateIssued" msprop:Generator_ColumnPropNameInTable="DateIssuedColumn" msprop:Generator_UserColumnName="DateIssued" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateDue" msprop:Generator_ColumnVarNameInTable="columnDateDue" msprop:Generator_ColumnPropNameInRow="DateDue" msprop:Generator_ColumnPropNameInTable="DateDueColumn" msprop:Generator_UserColumnName="DateDue" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AccountNo" msprop:Generator_ColumnVarNameInTable="columnAccountNo" msprop:Generator_ColumnPropNameInRow="AccountNo" msprop:Generator_ColumnPropNameInTable="AccountNoColumn" msprop:Generator_UserColumnName="AccountNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BankName" msprop:Generator_ColumnVarNameInTable="columnBankName" msprop:Generator_ColumnPropNameInRow="BankName" msprop:Generator_ColumnPropNameInTable="BankNameColumn" msprop:Generator_UserColumnName="BankName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OldBal" msprop:Generator_ColumnVarNameInTable="columnOldBal" msprop:Generator_ColumnPropNameInRow="OldBal" msprop:Generator_ColumnPropNameInTable="OldBalColumn" msprop:Generator_UserColumnName="OldBal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NewBal" msprop:Generator_ColumnVarNameInTable="columnNewBal" msprop:Generator_ColumnPropNameInRow="NewBal" msprop:Generator_ColumnPropNameInTable="NewBalColumn" msprop:Generator_UserColumnName="NewBal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CustID" msprop:Generator_ColumnVarNameInTable="columnCustID" msprop:Generator_ColumnPropNameInRow="CustID" msprop:Generator_ColumnPropNameInTable="CustIDColumn" msprop:Generator_UserColumnName="CustID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsvwReceipt" targetNamespace="http://tempuri.org/dsvwReceipt.xsd" xmlns:mstns="http://tempuri.org/dsvwReceipt.xsd" xmlns="http://tempuri.org/dsvwReceipt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="doorsposConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="doorsposConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DoorsPOS.WinApp.My.MySettings.GlobalReference.Default.doorsposConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwReceiptTableAdapter" GeneratorDataComponentClassName="vwReceiptTableAdapter" Name="vwReceipt" UserDataComponentName="vwReceiptTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwReceipt" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        postmp_hdrid, sInsert_id, pos_date, Receipt, disc_amnt, pos_tme, custid, pos_amnt, tendered, Cheyns, mowd, Sc, totsales, less_vat, nov, less_sc, vatable, exempt, vatamnt, tid, wtid, stckid, cost, price, det_amnt, qty, barcode, 
+                         item_desc, lastname, firstname, active, VAT, trminal, pa
+FROM            vwReceipt</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="postmp_hdrid" DataSetColumn="postmp_hdrid" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
+              <Mapping SourceColumn="pos_date" DataSetColumn="pos_date" />
+              <Mapping SourceColumn="disc_amnt" DataSetColumn="disc_amnt" />
+              <Mapping SourceColumn="pos_tme" DataSetColumn="pos_tme" />
+              <Mapping SourceColumn="custid" DataSetColumn="custid" />
+              <Mapping SourceColumn="pos_amnt" DataSetColumn="pos_amnt" />
+              <Mapping SourceColumn="tendered" DataSetColumn="tendered" />
+              <Mapping SourceColumn="Cheyns" DataSetColumn="Cheyns" />
+              <Mapping SourceColumn="mowd" DataSetColumn="mowd" />
+              <Mapping SourceColumn="Sc" DataSetColumn="Sc" />
+              <Mapping SourceColumn="totsales" DataSetColumn="totsales" />
+              <Mapping SourceColumn="less_vat" DataSetColumn="less_vat" />
+              <Mapping SourceColumn="nov" DataSetColumn="nov" />
+              <Mapping SourceColumn="less_sc" DataSetColumn="less_sc" />
+              <Mapping SourceColumn="vatable" DataSetColumn="vatable" />
+              <Mapping SourceColumn="exempt" DataSetColumn="exempt" />
+              <Mapping SourceColumn="vatamnt" DataSetColumn="vatamnt" />
+              <Mapping SourceColumn="tid" DataSetColumn="tid" />
+              <Mapping SourceColumn="wtid" DataSetColumn="wtid" />
+              <Mapping SourceColumn="stckid" DataSetColumn="stckid" />
+              <Mapping SourceColumn="cost" DataSetColumn="cost" />
+              <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="det_amnt" DataSetColumn="det_amnt" />
+              <Mapping SourceColumn="qty" DataSetColumn="qty" />
+              <Mapping SourceColumn="barcode" DataSetColumn="barcode" />
+              <Mapping SourceColumn="item_desc" DataSetColumn="item_desc" />
+              <Mapping SourceColumn="lastname" DataSetColumn="lastname" />
+              <Mapping SourceColumn="firstname" DataSetColumn="firstname" />
+              <Mapping SourceColumn="active" DataSetColumn="active" />
+              <Mapping SourceColumn="Receipt" DataSetColumn="Receipt" />
+              <Mapping SourceColumn="VAT" DataSetColumn="VAT" />
+              <Mapping SourceColumn="trminal" DataSetColumn="trminal" />
+              <Mapping SourceColumn="pa" DataSetColumn="pa" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsvwReceipt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="dsvwReceipt" msprop:Generator_DataSetName="dsvwReceipt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vwReceipt" msprop:Generator_RowEvHandlerName="vwReceiptRowChangeEventHandler" msprop:Generator_RowDeletedName="vwReceiptRowDeleted" msprop:Generator_RowDeletingName="vwReceiptRowDeleting" msprop:Generator_RowEvArgName="vwReceiptRowChangeEvent" msprop:Generator_TablePropName="vwReceipt" msprop:Generator_RowChangedName="vwReceiptRowChanged" msprop:Generator_RowChangingName="vwReceiptRowChanging" msprop:Generator_TableClassName="vwReceiptDataTable" msprop:Generator_RowClassName="vwReceiptRow" msprop:Generator_TableVarName="tablevwReceipt" msprop:Generator_UserTableName="vwReceipt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="postmp_hdrid" msprop:Generator_ColumnPropNameInRow="postmp_hdrid" msprop:Generator_ColumnPropNameInTable="postmp_hdridColumn" msprop:Generator_ColumnVarNameInTable="columnpostmp_hdrid" msprop:Generator_UserColumnName="postmp_hdrid" type="xs:int" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="disc_amnt" msprop:Generator_ColumnPropNameInRow="disc_amnt" msprop:Generator_ColumnPropNameInTable="disc_amntColumn" msprop:Generator_ColumnVarNameInTable="columndisc_amnt" msprop:Generator_UserColumnName="disc_amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pos_tme" msprop:Generator_ColumnPropNameInRow="pos_tme" msprop:Generator_ColumnPropNameInTable="pos_tmeColumn" msprop:Generator_ColumnVarNameInTable="columnpos_tme" msprop:Generator_UserColumnName="pos_tme" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="custid" msprop:Generator_ColumnPropNameInRow="custid" msprop:Generator_ColumnPropNameInTable="custidColumn" msprop:Generator_ColumnVarNameInTable="columncustid" msprop:Generator_UserColumnName="custid" type="xs:int" minOccurs="0" />
+              <xs:element name="pos_amnt" msprop:Generator_ColumnPropNameInRow="pos_amnt" msprop:Generator_ColumnPropNameInTable="pos_amntColumn" msprop:Generator_ColumnVarNameInTable="columnpos_amnt" msprop:Generator_UserColumnName="pos_amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tendered" msprop:Generator_ColumnPropNameInRow="tendered" msprop:Generator_ColumnPropNameInTable="tenderedColumn" msprop:Generator_ColumnVarNameInTable="columntendered" msprop:Generator_UserColumnName="tendered" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cheyns" msprop:Generator_ColumnPropNameInRow="Cheyns" msprop:Generator_ColumnPropNameInTable="CheynsColumn" msprop:Generator_ColumnVarNameInTable="columnCheyns" msprop:Generator_UserColumnName="Cheyns" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mowd" msprop:Generator_ColumnPropNameInRow="mowd" msprop:Generator_ColumnPropNameInTable="mowdColumn" msprop:Generator_ColumnVarNameInTable="columnmowd" msprop:Generator_UserColumnName="mowd" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sc" msprop:Generator_ColumnPropNameInRow="Sc" msprop:Generator_ColumnPropNameInTable="ScColumn" msprop:Generator_ColumnVarNameInTable="columnSc" msprop:Generator_UserColumnName="Sc" type="xs:int" minOccurs="0" />
+              <xs:element name="totsales" msprop:Generator_ColumnPropNameInRow="totsales" msprop:Generator_ColumnPropNameInTable="totsalesColumn" msprop:Generator_ColumnVarNameInTable="columntotsales" msprop:Generator_UserColumnName="totsales" type="xs:decimal" minOccurs="0" />
+              <xs:element name="less_vat" msprop:Generator_ColumnPropNameInRow="less_vat" msprop:Generator_ColumnPropNameInTable="less_vatColumn" msprop:Generator_ColumnVarNameInTable="columnless_vat" msprop:Generator_UserColumnName="less_vat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nov" msprop:Generator_ColumnPropNameInRow="nov" msprop:Generator_ColumnPropNameInTable="novColumn" msprop:Generator_ColumnVarNameInTable="columnnov" msprop:Generator_UserColumnName="nov" type="xs:decimal" minOccurs="0" />
+              <xs:element name="less_sc" msprop:Generator_ColumnPropNameInRow="less_sc" msprop:Generator_ColumnPropNameInTable="less_scColumn" msprop:Generator_ColumnVarNameInTable="columnless_sc" msprop:Generator_UserColumnName="less_sc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="vatable" msprop:Generator_ColumnPropNameInRow="vatable" msprop:Generator_ColumnPropNameInTable="vatableColumn" msprop:Generator_ColumnVarNameInTable="columnvatable" msprop:Generator_UserColumnName="vatable" type="xs:decimal" minOccurs="0" />
+              <xs:element name="exempt" msprop:Generator_ColumnPropNameInRow="exempt" msprop:Generator_ColumnPropNameInTable="exemptColumn" msprop:Generator_ColumnVarNameInTable="columnexempt" msprop:Generator_UserColumnName="exempt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="vatamnt" msprop:Generator_ColumnPropNameInRow="vatamnt" msprop:Generator_ColumnPropNameInTable="vatamntColumn" msprop:Generator_ColumnVarNameInTable="columnvatamnt" msprop:Generator_UserColumnName="vatamnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tid" msprop:Generator_ColumnPropNameInRow="tid" msprop:Generator_ColumnPropNameInTable="tidColumn" msprop:Generator_ColumnVarNameInTable="columntid" msprop:Generator_UserColumnName="tid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="wtid" msprop:Generator_ColumnPropNameInRow="wtid" msprop:Generator_ColumnPropNameInTable="wtidColumn" msprop:Generator_ColumnVarNameInTable="columnwtid" msprop:Generator_UserColumnName="wtid" type="xs:int" minOccurs="0" />
+              <xs:element name="stckid" msprop:Generator_ColumnPropNameInRow="stckid" msprop:Generator_ColumnPropNameInTable="stckidColumn" msprop:Generator_ColumnVarNameInTable="columnstckid" msprop:Generator_UserColumnName="stckid" type="xs:int" minOccurs="0" />
+              <xs:element name="cost" msprop:Generator_ColumnPropNameInRow="cost" msprop:Generator_ColumnPropNameInTable="costColumn" msprop:Generator_ColumnVarNameInTable="columncost" msprop:Generator_UserColumnName="cost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="price" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="det_amnt" msprop:Generator_ColumnPropNameInRow="det_amnt" msprop:Generator_ColumnPropNameInTable="det_amntColumn" msprop:Generator_ColumnVarNameInTable="columndet_amnt" msprop:Generator_UserColumnName="det_amnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_UserColumnName="qty" type="xs:double" minOccurs="0" />
+              <xs:element name="barcode" msprop:Generator_ColumnPropNameInRow="barcode" msprop:Generator_ColumnPropNameInTable="barcodeColumn" msprop:Generator_ColumnVarNameInTable="columnbarcode" msprop:Generator_UserColumnName="barcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="item_desc" msprop:Generator_ColumnPropNameInRow="item_desc" msprop:Generator_ColumnPropNameInTable="item_descColumn" msprop:Generator_ColumnVarNameInTable="columnitem_desc" msprop:Generator_UserColumnName="item_desc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lastname" msprop:Generator_ColumnPropNameInRow="lastname" msprop:Generator_ColumnPropNameInTable="lastnameColumn" msprop:Generator_ColumnVarNameInTable="columnlastname" msprop:Generator_UserColumnName="lastname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstname" msprop:Generator_ColumnPropNameInRow="firstname" msprop:Generator_ColumnPropNameInTable="firstnameColumn" msprop:Generator_ColumnVarNameInTable="columnfirstname" msprop:Generator_UserColumnName="firstname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="active" msprop:Generator_ColumnPropNameInRow="active" msprop:Generator_ColumnPropNameInTable="activeColumn" msprop:Generator_ColumnVarNameInTable="columnactive" msprop:Generator_UserColumnName="active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Receipt" msprop:Generator_ColumnPropNameInRow="Receipt" msprop:Generator_ColumnPropNameInTable="ReceiptColumn" msprop:Generator_ColumnVarNameInTable="columnReceipt" msprop:Generator_UserColumnName="Receipt" type="xs:int" minOccurs="0" />
+              <xs:element name="VAT" msprop:Generator_ColumnPropNameInRow="VAT" msprop:Generator_ColumnPropNameInTable="VATColumn" msprop:Generator_ColumnVarNameInTable="columnVAT" msprop:Generator_UserColumnName="VAT" type="xs:int" minOccurs="0" />
+              <xs:element name="trminal" msprop:Generator_ColumnPropNameInRow="trminal" msprop:Generator_ColumnPropNameInTable="trminalColumn" msprop:Generator_ColumnVarNameInTable="columntrminal" msprop:Generator_UserColumnName="trminal" type="xs:int" minOccurs="0" />
+              <xs:element name="pa" msprop:Generator_ColumnPropNameInRow="pa" msprop:Generator_ColumnPropNameInTable="paColumn" msprop:Generator_ColumnVarNameInTable="columnpa" msprop:Generator_UserColumnName="pa" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vwReceipt" />
+      <xs:field xpath="mstns:postmp_hdrid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
