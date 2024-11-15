@@ -8,7 +8,7 @@ Public Class frmTestDapper
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Dim barcode As String = TextEdit1.Text
         Dim stock As ClassStock = GetStockByBarcode(barcode)
-        Dim stock As ClassStock = GetStockByBarcode(barcode)
+        'Dim stock As ClassStock = GetStockByBarcode(barcode)
 
         If stock IsNot Nothing Then
             ' If a record is found, assign values to TextEdit2 and TextEdit3
