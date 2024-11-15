@@ -160,7 +160,8 @@ Public Class frmDelivery
         txtsum.Text = "0"
         cediscamnt.Value = 0
         txtGrand.Text = "0"
-        dedlvrydate.Focus()
+        deExpDate.EditValue = CDate("12/31/2090")
+        leSupplier.Focus()
 
     End Sub
 
@@ -190,7 +191,7 @@ Public Class frmDelivery
         Try
             nProdIDD = CInt(txtStckid.Text)
             For I = 0 To drgrid.Rows.Count - 1
-                MessageBox.Show(CStr(drgrid.Rows(I).Cells(0).Value))
+                'MessageBox.Show(CStr(drgrid.Rows(I).Cells(0).Value))
 
                 If nProdIDD = CInt(drgrid.Rows(I).Cells(0).Value) Then
                     ' item found
@@ -203,8 +204,10 @@ Public Class frmDelivery
 
 
             If ItemLoc = -1 Then
-                'drgrid.Rows.Add(mgr7.DataObject.Entity.stckid, mgr7.DataObject.Entity.itemdesc, ceQty.Value, ceFree.Value, mgr7.DataObject.Entity.cost, Amount3, deExpDate.EditValue, txtLotNo.Text, cePrcentDisc.Value, cediscamnt.Value)
-                drgrid.Rows.Add(nProdIDD, vItem, ceQty.Value, ceFree.Value, ceCost.Value, Amount3, deExpDate.EditValue, txtLotNo.Text, cePrcentDisc.Value, cediscamnt.Value)
+                ''drgrid.Rows.Add(mgr7.DataObject.Entity.stckid, mgr7.DataObject.Entity.itemdesc, ceQty.Value, ceFree.Value, mgr7.DataObject.Entity.cost, Amount3, deExpDate.EditValue, txtLotNo.Text, cePrcentDisc.Value, cediscamnt.Value)
+                'drgrid.Rows.Add(nProdIDD, vItem, ceQty.Value, ceFree.Value, ceCost.Value, Amount3, deExpDate.EditValue, txtLotNo.Text, cePrcentDisc.Value, cediscamnt.Value)
+                'dgvEditor.Rows.Insert(0, tmpRow)
+                drgrid.Rows.Insert(0, nProdIDD, vItem, ceQty.Value, ceFree.Value, ceCost.Value, Amount3, cePrice.Value, deExpDate.EditValue, txtLotNo.Text, cePrcentDisc.Value, cediscamnt.Value)
 
             Else
 
@@ -222,10 +225,10 @@ Public Class frmDelivery
                 Totsss += CDec(drgrid.Rows(I).Cells(5).Value)
             Next
             'Select the last row.
-            Me.drgrid.Rows(Me.drgrid.RowCount - 1).Selected = True
+            ' Me.drgrid.Rows(Me.drgrid.RowCount - 1).Selected = True
             'Scroll to the last row.
-            Me.drgrid.FirstDisplayedScrollingRowIndex = Me.drgrid.RowCount - 1
-
+            ' Me.drgrid.FirstDisplayedScrollingRowIndex = Me.drgrid.RowCount - 1
+            Me.drgrid.Rows(0).Selected = True
 
 
             txtsum.Text = FormatNumber(CStr(Totsss))
@@ -453,9 +456,6 @@ Public Class frmDelivery
             trans.Add(mgrstk.DataObject)
             'mgrstk.DataObject.Entity.stckid = CInt(txtStckid.Text)
             mgrstk.DataObject.TransactionType = PDSATransactionType.Update
-
-
-         
             'mgrstk.DataObject.Update()
             'trans.Add(mgrstk.DataObject)
             'trans.Execute()
@@ -610,19 +610,26 @@ Public Class frmDelivery
         Dim varrowindex As Integer = 0
         Dim vqty As Integer = 0
         Dim vamnt As Decimal = 0
-        varrowindex = drgrid.SelectedCells(0).RowIndex
-        vqty = CInt(drgrid.Rows(varrowindex).Cells(2).Value)
-        vamnt = CDec(drgrid.Rows(varrowindex).Cells(4).Value)
+        Try
 
-        'Dim rowww As Integer = CInt(DGRetrieve.CurrentRow.Selected())
-        drgrid.Rows(varrowindex).Cells(5).Value = vqty * vamnt
-        Dim I As Integer = 0
-        Totss = 0
-        For I = 0 To drgrid.Rows.Count - 1
-            Totss += CDec(drgrid.Rows(I).Cells(5).Value)
-        Next
-        txtsum.Text = FormatNumber(Totss, 2)
-        txtGrand.Text = FormatNumber(Totss, 2)
+            varrowindex = drgrid.SelectedCells(0).RowIndex
+            vqty = CInt(drgrid.Rows(varrowindex).Cells(2).Value)
+            vamnt = CDec(drgrid.Rows(varrowindex).Cells(4).Value)
+
+            'Dim rowww As Integer = CInt(DGRetrieve.CurrentRow.Selected())
+            drgrid.Rows(varrowindex).Cells(5).Value = vqty * vamnt
+            Dim I As Integer = 0
+            Totss = 0
+            For I = 0 To drgrid.Rows.Count - 1
+                Totss += CDec(drgrid.Rows(I).Cells(5).Value)
+            Next
+            txtsum.Text = FormatNumber(Totss, 2)
+            txtGrand.Text = FormatNumber(Totss, 2)
+        Catch ex As PDSAValidationException
+            MessageBox.Show(ex.Message)
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString())
+        End Try
 
     End Sub
 
@@ -676,7 +683,7 @@ Public Class frmDelivery
             mgrdrheader.Entity.paid = False
             mgrdrheader.Entity.drpsted = True
             mgrdrheader.Entity.drbal = CDec(txtGrand.Text) 'vGrandTotal
-            mgrdrheader.Entity.dramnt = CDec(txtsum.Text)
+            mgrdrheader.Entity.dramnt = CDec(txtsum.Text) - CDec(cediscamnt.Value)
             mgrdrheader.Entity.drpsted = False
             mgrdrheader.Entity.drsubtot = CDec(txtsum.Text)
             mgrdrheader.Entity.sInsertid = PDSAAppConfig.CurrentLoginID
@@ -706,12 +713,12 @@ Public Class frmDelivery
                 End If
                 mgrdrdetail.Entity.cost = CDec(drgrid.Rows(iii).Cells(4).Value)
                 mgrdrdetail.Entity.drdetamnt = CDec(drgrid.Rows(iii).Cells(5).Value)
-                mgrdrdetail.Entity.lotno = CStr(drgrid.Rows(iii).Cells(7).Value)
-                If CStr(drgrid.Rows(iii).Cells(6).Value) <> String.Empty Then
-                    mgrdrdetail.Entity.expdate = CDate(drgrid.Rows(iii).Cells(6).Value)
-                End If
-                mgrdrdetail.Entity.disc = CInt(drgrid.Rows(iii).Cells(8).Value)
-                mgrdrdetail.Entity.discamnt = CDec(drgrid.Rows(iii).Cells(9).Value)
+                'mgrdrdetail.Entity.lotno = CStr(drgrid.Rows(iii).Cells(7).Value)
+                'If CStr(drgrid.Rows(iii).Cells(6).Value) <> String.Empty Then
+                '    mgrdrdetail.Entity.expdate = CDate(drgrid.Rows(iii).Cells(6).Value)
+                'End If
+                'mgrdrdetail.Entity.disc = CInt(drgrid.Rows(iii).Cells(8).Value)
+                'mgrdrdetail.Entity.discamnt = CDec(drgrid.Rows(iii).Cells(9).Value)
                 'drd.Entity.detamnt = Convert.ToDecimal(drdgrid.Rows(iii).Cells(4).Value) * Convert.ToInt32(drdgrid.Rows(iii).Cells(5).Value)
 
                 TranDr.Add(mgrdrdetail.DataObject)
@@ -728,6 +735,7 @@ Public Class frmDelivery
             MessageBox.Show("Delivery Transaction Successfully Posted.")
             'btnPost.Enabled = False
             Call Disablectrl()
+            drgrid.Rows.Clear()
 
             'If MsgBox("Press Enter to Print, Press N or Click No To Cancel Printing", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle)) = MsgBoxResult.Yes Then
 
@@ -1004,9 +1012,9 @@ Public Class frmDelivery
     End Sub
 
     Private Sub ceCost_KeyDown(sender As Object, e As KeyEventArgs) Handles ceCost.KeyDown
-        'If e.KeyCode = Keys.Enter Then
-        '    Call AddTwoList()
-        'End If
+        If e.KeyCode = Keys.Enter Then
+            Call AddTwoList()
+        End If
     End Sub
 
     Private Sub deDue_KeyPress(sender As Object, e As KeyPressEventArgs) Handles deDue.KeyPress
@@ -1122,7 +1130,7 @@ Public Class frmDelivery
                         .SelectionMode = DataGridViewSelectionMode.FullRowSelect
                         .RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
                     End With
-
+                    dgitems.ClearSelection()
                 End If
 
             Catch ex As PDSAValidationException
@@ -1185,6 +1193,7 @@ Public Class frmDelivery
                         txtItem.Text = mgr.DataObject.Entity.itemdesc
                         vbocde = mgr.DataObject.Entity.barcode
                         ceCost.Value = mgr.DataObject.Entity.cost
+                        cePrice.Value = mgr.DataObject.Entity.retail
                         txtStckid.Text = CStr(mgr.DataObject.Entity.stckid)
                         dgitems.Visible = False
                         vItem = mgr.DataObject.Entity.itemdesc
@@ -1207,6 +1216,7 @@ Public Class frmDelivery
         If e.KeyCode = Keys.Down Then
             If dgitems.Visible = True Then
                 dgitems.Focus()
+                dgitems.Select()
             Else
                 If drgrid.Rows.Count > 1 Then
                     drgrid.Focus()
@@ -1245,6 +1255,19 @@ Public Class frmDelivery
     Private Sub txtItem_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtItem.KeyPress
         If e.KeyChar = Chr(27) Then
             dgitems.Visible = False
+        End If
+    End Sub
+
+    Private Sub deExpDate_GotFocus(sender As Object, e As EventArgs) Handles deExpDate.GotFocus
+        deExpDate.EditValue = CDate("12/31/2080")
+    End Sub
+    Private Sub leSupplier_DoubleClick(sender As Object, e As EventArgs) Handles leSupplier.DoubleClick
+        LoadSupplier()
+    End Sub
+
+    Private Sub ceQty_KeyDown(sender As Object, e As KeyEventArgs) Handles ceQty.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            ceCost.Focus()
         End If
     End Sub
 End Class

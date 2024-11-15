@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwSalesArchive" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        *
+                    <CommandText>SELECT        dtInsert_dt, postmp_hdrid, item_desc, cost, price, qty, det_amnt, sInsert_id, pos_date, custid, mowd, pos_tme, lastname, firstname, middlename, contact_no, Receipt, totsales, nov, exempt, trminal
 FROM            vwSalesArchive</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -37,6 +37,10 @@ FROM            vwSalesArchive</CommandText>
               <Mapping SourceColumn="middlename" DataSetColumn="middlename" />
               <Mapping SourceColumn="contact_no" DataSetColumn="contact_no" />
               <Mapping SourceColumn="Receipt" DataSetColumn="Receipt" />
+              <Mapping SourceColumn="totsales" DataSetColumn="totsales" />
+              <Mapping SourceColumn="nov" DataSetColumn="nov" />
+              <Mapping SourceColumn="exempt" DataSetColumn="exempt" />
+              <Mapping SourceColumn="trminal" DataSetColumn="trminal" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -110,6 +114,10 @@ FROM            vwSalesArchive</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Receipt" msprop:Generator_ColumnVarNameInTable="columnReceipt" msprop:Generator_ColumnPropNameInRow="Receipt" msprop:Generator_ColumnPropNameInTable="ReceiptColumn" msprop:Generator_UserColumnName="Receipt" type="xs:int" minOccurs="0" />
+              <xs:element name="totsales" msprop:Generator_ColumnVarNameInTable="columntotsales" msprop:Generator_ColumnPropNameInRow="totsales" msprop:Generator_ColumnPropNameInTable="totsalesColumn" msprop:Generator_UserColumnName="totsales" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nov" msprop:Generator_ColumnVarNameInTable="columnnov" msprop:Generator_ColumnPropNameInRow="nov" msprop:Generator_ColumnPropNameInTable="novColumn" msprop:Generator_UserColumnName="nov" type="xs:decimal" minOccurs="0" />
+              <xs:element name="exempt" msprop:Generator_ColumnVarNameInTable="columnexempt" msprop:Generator_ColumnPropNameInRow="exempt" msprop:Generator_ColumnPropNameInTable="exemptColumn" msprop:Generator_UserColumnName="exempt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trminal" msprop:Generator_ColumnVarNameInTable="columntrminal" msprop:Generator_ColumnPropNameInRow="trminal" msprop:Generator_ColumnPropNameInTable="trminalColumn" msprop:Generator_UserColumnName="trminal" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

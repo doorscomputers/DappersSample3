@@ -47,13 +47,16 @@ Public Class frmAddtnlCash
 
                 Dim intgc As Integer = 0
                 intgc = mgrpay.Entity.acid
-
-                Dim xraddcash As New xrAddCash2()
-                xraddcash.adcashid.Value = intgc
-                xraddcash.RequestParameters = False
-                xraddcash.PrintingSystem.ShowMarginsWarning = False
-                AddHandler xraddcash.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
-                xraddcash.Print()
+                Dim ansint11 As Integer = 7
+                ansint11 = MsgBox("Print Petty Cash?", MsgBoxStyle.YesNo, "Print Confirmation")
+                If ansint11 = 6 Then
+                    Dim xraddcash As New xrAddCash2()
+                    xraddcash.adcashid.Value = intgc
+                    xraddcash.RequestParameters = False
+                    xraddcash.PrintingSystem.ShowMarginsWarning = False
+                    AddHandler xraddcash.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
+                    xraddcash.Print()
+                End If
 
                 disable()
                 initialvals()

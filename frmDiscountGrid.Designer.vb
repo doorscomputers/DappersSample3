@@ -27,11 +27,11 @@ Partial Class frmDiscountGrid
         Me.PoshdrBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsDiscount = New DoorsPOS.WinApp.dsDiscount()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colpostmp_hdrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldtInsert_dt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldisc_amnt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsInsert_id = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Pos_hdrTableAdapter = New DoorsPOS.WinApp.dsDiscountTableAdapters.pos_hdrTableAdapter()
-        Me.colpostmp_hdrid = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PoshdrBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsDiscount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,7 +45,7 @@ Partial Class frmDiscountGrid
         Me.GridControl1.Location = New System.Drawing.Point(0, 0)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(634, 509)
+        Me.GridControl1.Size = New System.Drawing.Size(855, 509)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -68,6 +68,14 @@ Partial Class frmDiscountGrid
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.coldtInsert_dt, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'colpostmp_hdrid
+        '
+        Me.colpostmp_hdrid.Caption = "Reference No."
+        Me.colpostmp_hdrid.FieldName = "Receipt"
+        Me.colpostmp_hdrid.Name = "colpostmp_hdrid"
+        Me.colpostmp_hdrid.Visible = True
+        Me.colpostmp_hdrid.VisibleIndex = 1
         '
         'coldtInsert_dt
         '
@@ -109,19 +117,11 @@ Partial Class frmDiscountGrid
         '
         Me.Pos_hdrTableAdapter.ClearBeforeFill = True
         '
-        'colpostmp_hdrid
-        '
-        Me.colpostmp_hdrid.Caption = "Reference No."
-        Me.colpostmp_hdrid.FieldName = "postmp_hdrid"
-        Me.colpostmp_hdrid.Name = "colpostmp_hdrid"
-        Me.colpostmp_hdrid.Visible = True
-        Me.colpostmp_hdrid.VisibleIndex = 1
-        '
         'frmDiscountGrid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(634, 509)
+        Me.ClientSize = New System.Drawing.Size(855, 509)
         Me.Controls.Add(Me.GridControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False

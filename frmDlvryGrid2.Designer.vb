@@ -30,7 +30,6 @@ Partial Class frmDlvryGrid2
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.coldtInsert_dt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsupplier = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coldrid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colitem_desc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colqty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,7 +72,7 @@ Partial Class frmDlvryGrid2
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.coldtInsert_dt, Me.colsupplier, Me.coldrid, Me.colitem_desc, Me.colcost, Me.colqty, Me.colfreee, Me.coldrdetamnt, Me.colsInsert_id, Me.colexpdate, Me.collotno, Me.coldrinv})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.coldtInsert_dt, Me.colsupplier, Me.colitem_desc, Me.colcost, Me.colqty, Me.colfreee, Me.coldrdetamnt, Me.colsInsert_id, Me.colexpdate, Me.collotno, Me.coldrinv})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "drdetamnt", Me.coldrdetamnt, "SUM={0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "item_desc", Me.colitem_desc, "ITEM COUNT={0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.colqty, "SUM={0:N0}")})
         Me.GridView1.Name = "GridView1"
@@ -90,8 +89,8 @@ Partial Class frmDlvryGrid2
         Me.coldtInsert_dt.FieldName = "dtInsert_dt"
         Me.coldtInsert_dt.Name = "coldtInsert_dt"
         Me.coldtInsert_dt.Visible = True
-        Me.coldtInsert_dt.VisibleIndex = 1
-        Me.coldtInsert_dt.Width = 130
+        Me.coldtInsert_dt.VisibleIndex = 2
+        Me.coldtInsert_dt.Width = 109
         '
         'colsupplier
         '
@@ -99,19 +98,8 @@ Partial Class frmDlvryGrid2
         Me.colsupplier.FieldName = "supplier"
         Me.colsupplier.Name = "colsupplier"
         Me.colsupplier.Visible = True
-        Me.colsupplier.VisibleIndex = 2
-        Me.colsupplier.Width = 192
-        '
-        'coldrid
-        '
-        Me.coldrid.AppearanceHeader.Options.UseTextOptions = True
-        Me.coldrid.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.coldrid.Caption = "Dr. No."
-        Me.coldrid.FieldName = "drid"
-        Me.coldrid.Name = "coldrid"
-        Me.coldrid.Visible = True
-        Me.coldrid.VisibleIndex = 3
-        Me.coldrid.Width = 124
+        Me.colsupplier.VisibleIndex = 3
+        Me.colsupplier.Width = 162
         '
         'colitem_desc
         '
@@ -120,7 +108,7 @@ Partial Class frmDlvryGrid2
         Me.colitem_desc.Name = "colitem_desc"
         Me.colitem_desc.Visible = True
         Me.colitem_desc.VisibleIndex = 0
-        Me.colitem_desc.Width = 291
+        Me.colitem_desc.Width = 236
         '
         'colcost
         '
@@ -133,7 +121,7 @@ Partial Class frmDlvryGrid2
         Me.colcost.Name = "colcost"
         Me.colcost.Visible = True
         Me.colcost.VisibleIndex = 4
-        Me.colcost.Width = 88
+        Me.colcost.Width = 73
         '
         'colqty
         '
@@ -146,7 +134,7 @@ Partial Class frmDlvryGrid2
         Me.colqty.Name = "colqty"
         Me.colqty.Visible = True
         Me.colqty.VisibleIndex = 5
-        Me.colqty.Width = 72
+        Me.colqty.Width = 60
         '
         'colfreee
         '
@@ -159,7 +147,7 @@ Partial Class frmDlvryGrid2
         Me.colfreee.Name = "colfreee"
         Me.colfreee.Visible = True
         Me.colfreee.VisibleIndex = 7
-        Me.colfreee.Width = 183
+        Me.colfreee.Width = 155
         '
         'coldrdetamnt
         '
@@ -173,7 +161,7 @@ Partial Class frmDlvryGrid2
         Me.coldrdetamnt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "drdetamnt", "SUM={0:N2}")})
         Me.coldrdetamnt.Visible = True
         Me.coldrdetamnt.VisibleIndex = 6
-        Me.coldrdetamnt.Width = 179
+        Me.coldrdetamnt.Width = 150
         '
         'colsInsert_id
         '
@@ -189,7 +177,7 @@ Partial Class frmDlvryGrid2
         Me.colexpdate.Name = "colexpdate"
         Me.colexpdate.Visible = True
         Me.colexpdate.VisibleIndex = 8
-        Me.colexpdate.Width = 151
+        Me.colexpdate.Width = 126
         '
         'collotno
         '
@@ -198,7 +186,7 @@ Partial Class frmDlvryGrid2
         Me.collotno.Name = "collotno"
         Me.collotno.Visible = True
         Me.collotno.VisibleIndex = 9
-        Me.collotno.Width = 151
+        Me.collotno.Width = 138
         '
         'coldrinv
         '
@@ -206,8 +194,8 @@ Partial Class frmDlvryGrid2
         Me.coldrinv.FieldName = "drinv"
         Me.coldrinv.Name = "coldrinv"
         Me.coldrinv.Visible = True
-        Me.coldrinv.VisibleIndex = 10
-        Me.coldrinv.Width = 162
+        Me.coldrinv.VisibleIndex = 1
+        Me.coldrinv.Width = 93
         '
         'frmDlvryGrid2
         '
@@ -218,6 +206,7 @@ Partial Class frmDlvryGrid2
         Me.Name = "frmDlvryGrid2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Deliveries Per Item"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.VwDlvryDetailsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsvwDeliveries, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -232,7 +221,6 @@ Partial Class frmDlvryGrid2
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents coldtInsert_dt As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colsupplier As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coldrid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colitem_desc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colqty As DevExpress.XtraGrid.Columns.GridColumn

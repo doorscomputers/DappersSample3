@@ -12,8 +12,8 @@
               <DbSource ConnectionRef="doorsposConnectionString (MySettings)" DbObjectName="doorspos.dbo.vwTransfered" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT     tdate, stckid, item_desc, price, qty, tdetamnt, sInsert_id, dtInsert_dt, location
-FROM         vwTransfered</CommandText>
+                    <CommandText>SELECT        tdate, stckid, item_desc, price, qty, tdetamnt, sInsert_id, dtInsert_dt, location, TransferNo
+FROM            vwTransfered</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -29,6 +29,7 @@ FROM         vwTransfered</CommandText>
               <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
               <Mapping SourceColumn="dtInsert_dt" DataSetColumn="dtInsert_dt" />
               <Mapping SourceColumn="location" DataSetColumn="location" />
+              <Mapping SourceColumn="TransferNo" DataSetColumn="TransferNo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -40,7 +41,7 @@ FROM         vwTransfered</CommandText>
   <xs:element name="dsTransfered" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsTransfered" msprop:Generator_UserDSName="dsTransfered">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="vwTransfered" msprop:Generator_TableClassName="vwTransferedDataTable" msprop:Generator_TableVarName="tablevwTransfered" msprop:Generator_RowChangedName="vwTransferedRowChanged" msprop:Generator_TablePropName="vwTransfered" msprop:Generator_RowDeletingName="vwTransferedRowDeleting" msprop:Generator_RowChangingName="vwTransferedRowChanging" msprop:Generator_RowEvHandlerName="vwTransferedRowChangeEventHandler" msprop:Generator_RowDeletedName="vwTransferedRowDeleted" msprop:Generator_RowClassName="vwTransferedRow" msprop:Generator_UserTableName="vwTransfered" msprop:Generator_RowEvArgName="vwTransferedRowChangeEvent">
+        <xs:element name="vwTransfered" msprop:Generator_TableClassName="vwTransferedDataTable" msprop:Generator_TableVarName="tablevwTransfered" msprop:Generator_TablePropName="vwTransfered" msprop:Generator_RowDeletingName="vwTransferedRowDeleting" msprop:Generator_RowChangingName="vwTransferedRowChanging" msprop:Generator_RowEvHandlerName="vwTransferedRowChangeEventHandler" msprop:Generator_RowDeletedName="vwTransferedRowDeleted" msprop:Generator_UserTableName="vwTransfered" msprop:Generator_RowChangedName="vwTransferedRowChanged" msprop:Generator_RowEvArgName="vwTransferedRowChangeEvent" msprop:Generator_RowClassName="vwTransferedRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="tdate" msprop:Generator_ColumnVarNameInTable="columntdate" msprop:Generator_ColumnPropNameInRow="tdate" msprop:Generator_ColumnPropNameInTable="tdateColumn" msprop:Generator_UserColumnName="tdate" type="xs:dateTime" />
@@ -70,6 +71,7 @@ FROM         vwTransfered</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="TransferNo" msprop:Generator_ColumnVarNameInTable="columnTransferNo" msprop:Generator_ColumnPropNameInRow="TransferNo" msprop:Generator_ColumnPropNameInTable="TransferNoColumn" msprop:Generator_UserColumnName="TransferNo" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

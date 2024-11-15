@@ -1,4 +1,6 @@
 ﻿Imports System.Data.OleDb
+Imports System.Data.SqlClient
+
 Module ModCon
     ''Public fso As New filesystemobject
     'Public ParamDVFrom As New CrystalDecisions.Shared.ParameterDiscreteValue
@@ -91,9 +93,9 @@ Module ModCon
         'End Try
     End Function
 
-    Public Function ExecuteSQLQuery(ByVal SQLQuery As String) As DataTable
+    Public Function ExecuteSQLQuery11(ByVal SQLQuery As String) As DataTable
         'Try
-        CnString = "Provider=SQLOLEDB;Server=DOORSCOMPUTERS\SQLEXPRESS" & _
+        CnString = "Provider=SQLOLEDB;Server=DOORSCOMPUTERS\SQLEXPRESS" &
                                ";Database=doorspos; Trusted_Connection=yes;"
         Dim sqlCon As New OleDbConnection(CnString)
         Dim sqlDA As New OleDbDataAdapter(SQLQuery, sqlCon)
@@ -112,9 +114,83 @@ Module ModCon
         'End Try
         Return sqlDT
     End Function
+    Public Function ExecuteSQLQueryWorking(ByVal SQLQuery As String) As DataTable
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True;"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+            Using command As New SqlCommand(SQLQuery, connection)
+                Using adapter As New SqlDataAdapter(command)
+                    Dim dataTable As New DataTable()
+                    adapter.Fill(sqlDT)
+                    Return sqlDT
+                End Using
+            End Using
+        End Using
+    End Function
+    Public Function ExecuteSQLQuery(ByVal SQLQuery As String) As DataTable
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True;"
+        Dim dataTable As New DataTable()
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+                Using command As New SqlCommand(SQLQuery, connection)
+                    Using adapter As New SqlDataAdapter(command)
+                        adapter.Fill(dataTable)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            ' Handle exceptions (log, rethrow, or show message)
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        Return dataTable
+    End Function
+    Public Function ExecuteSQLQueryWithParameter(ByVal SQLQuery As String, ByVal parameters As List(Of SqlParameter)) As DataTable
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True;"
+        Dim dataTable As New DataTable()
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+                Using command As New SqlCommand(SQLQuery, connection)
+                    If parameters IsNot Nothing Then
+                        command.Parameters.AddRange(parameters.ToArray())
+                    End If
+                    Using adapter As New SqlDataAdapter(command)
+                        adapter.Fill(dataTable)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            ' Handle exceptions (log, rethrow, or show message)
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        Return dataTable
+    End Function
+    'Usage example for parameterized queries:
+    '    Dim query As String = "SELECT * FROM members WHERE CustID = @CustID"
+    '    Dim parameters As New List(Of SqlParameter) From {
+    '    New SqlParameter("@CustID", 1)
+    '}
+    '    Dim result As DataTable = ExecuteSQLQuery(query, parameters)
+
+
+
+    Public Function ExecuteSQLQueryReader(ByVal SQLQuery As String) As SqlDataReader
+        Dim connectionString As String = "Data Source=DOORSCOMPUTERS\SQLEXPRESS;Initial Catalog=doorspos;Integrated Security=True;"
+        Dim connection As New SqlConnection(connectionString)
+        Dim command As New SqlCommand(SQLQuery, connection)
+        connection.Open()
+        Dim dataReader As SqlDataReader = command.ExecuteReader(CommandBehavior.CloseConnection)
+        Return dataReader
+    End Function
+
     Public Function ExecuteSQLQueryMaster(ByVal SQLQuery As String) As DataTable
         Try
-            CnString = "Provider=SQLOLEDB;Server=DOORSCOMPUTERS\SQLEXPRESS" & _
+            CnString = "Provider=SQLOLEDB;Server=DOORSCOMPUTERS\SQLEXPRESS" &
                                    ";Database=master; Trusted_Connection=yes;"
             Dim sqlCon As New OleDbConnection(CnString)
             Dim sqlDA As New OleDbDataAdapter(SQLQuery, sqlCon)

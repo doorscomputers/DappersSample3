@@ -19,14 +19,21 @@ Partial Public Class xrPettyCash
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim TableQuery1 As DevExpress.DataAccess.Sql.TableQuery = New DevExpress.DataAccess.Sql.TableQuery()
-        Dim TableInfo1 As DevExpress.DataAccess.Sql.TableInfo = New DevExpress.DataAccess.Sql.TableInfo()
-        Dim ColumnInfo1 As DevExpress.DataAccess.Sql.ColumnInfo = New DevExpress.DataAccess.Sql.ColumnInfo()
-        Dim ColumnInfo2 As DevExpress.DataAccess.Sql.ColumnInfo = New DevExpress.DataAccess.Sql.ColumnInfo()
-        Dim ColumnInfo3 As DevExpress.DataAccess.Sql.ColumnInfo = New DevExpress.DataAccess.Sql.ColumnInfo()
-        Dim ColumnInfo4 As DevExpress.DataAccess.Sql.ColumnInfo = New DevExpress.DataAccess.Sql.ColumnInfo()
-        Dim ColumnInfo5 As DevExpress.DataAccess.Sql.ColumnInfo = New DevExpress.DataAccess.Sql.ColumnInfo()
+        Me.components = New System.ComponentModel.Container()
+        Dim SelectQuery1 As DevExpress.DataAccess.Sql.SelectQuery = New DevExpress.DataAccess.Sql.SelectQuery()
+        Dim Column1 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
+        Dim ColumnExpression1 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Table1 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
+        Dim Column2 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
+        Dim ColumnExpression2 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Column3 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
+        Dim ColumnExpression3 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Column4 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
+        Dim ColumnExpression4 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Column5 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
+        Dim ColumnExpression5 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(xrPettyCash))
+        Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
@@ -35,13 +42,11 @@ Partial Public Class xrPettyCash
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource()
+        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooterBand1 = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
@@ -59,6 +64,8 @@ Partial Public Class xrPettyCash
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -93,19 +100,20 @@ Partial Public Class xrPettyCash
         '
         'XrLine1
         '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 0.0!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 0!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(267.1666!, 7.083341!)
         '
         'XrLabel9
         '
-        Me.XrLabel9.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "petty_cash.posdate", "{0:h:mm:ss tt}")})
+        Me.XrLabel9.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "petty_cash.posdate")})
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(129.7917!, 10.00001!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(68.87497!, 18.0!)
         Me.XrLabel9.StyleName = "DataField"
         Me.XrLabel9.Text = "XrLabel9"
+        Me.XrLabel9.TextFormatString = "{0:MM/dd/yy}"
         '
         'TopMargin
         '
@@ -125,21 +133,35 @@ Partial Public Class xrPettyCash
         '
         Me.SqlDataSource1.ConnectionName = "DoorsPOS.WinApp.My.MySettings.doorsposConnectionString"
         Me.SqlDataSource1.Name = "SqlDataSource1"
-        TableQuery1.Name = "petty_cash"
-        TableInfo1.Name = "petty_cash"
-        ColumnInfo1.Name = "posdate"
-        ColumnInfo2.Name = "pcamnt"
-        ColumnInfo3.Name = "pcrem"
-        ColumnInfo4.Name = "cashier"
-        ColumnInfo5.Name = "sInsert_id"
-        TableInfo1.SelectedColumns.AddRange(New DevExpress.DataAccess.Sql.ColumnInfo() {ColumnInfo1, ColumnInfo2, ColumnInfo3, ColumnInfo4, ColumnInfo5})
-        TableQuery1.Tables.AddRange(New DevExpress.DataAccess.Sql.TableInfo() {TableInfo1})
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {TableQuery1})
+        ColumnExpression1.ColumnName = "posdate"
+        Table1.Name = "petty_cash"
+        ColumnExpression1.Table = Table1
+        Column1.Expression = ColumnExpression1
+        ColumnExpression2.ColumnName = "pcamnt"
+        ColumnExpression2.Table = Table1
+        Column2.Expression = ColumnExpression2
+        ColumnExpression3.ColumnName = "pcrem"
+        ColumnExpression3.Table = Table1
+        Column3.Expression = ColumnExpression3
+        ColumnExpression4.ColumnName = "cashier"
+        ColumnExpression4.Table = Table1
+        Column4.Expression = ColumnExpression4
+        ColumnExpression5.ColumnName = "sInsert_id"
+        ColumnExpression5.Table = Table1
+        Column5.Expression = ColumnExpression5
+        SelectQuery1.Columns.Add(Column1)
+        SelectQuery1.Columns.Add(Column2)
+        SelectQuery1.Columns.Add(Column3)
+        SelectQuery1.Columns.Add(Column4)
+        SelectQuery1.Columns.Add(Column5)
+        SelectQuery1.Name = "petty_cash"
+        SelectQuery1.Tables.Add(Table1)
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {SelectQuery1})
         Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
         '
         'XrLabel1
         '
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 0.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(66.16666!, 18.0!)
@@ -148,7 +170,7 @@ Partial Public Class xrPettyCash
         '
         'XrLabel2
         '
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 57.99999!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(9.99999!, 34.04166!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(94.29166!, 18.0!)
@@ -157,7 +179,7 @@ Partial Public Class xrPettyCash
         '
         'XrLabel3
         '
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(198.6666!, 57.99999!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(198.6666!, 34.04166!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(74.5!, 18.0!)
@@ -166,44 +188,25 @@ Partial Public Class xrPettyCash
         Me.XrLabel3.Text = "Amount"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
-        'XrLabel5
-        '
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(9.999998!, 18.0!)
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(66.16665!, 18.0!)
-        Me.XrLabel5.StyleName = "FieldCaption"
-        Me.XrLabel5.Text = "Encoder:"
-        '
         'XrLabel6
         '
         Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "petty_cash.cashier")})
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(76.16666!, 0.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(76.16666!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(197.0!, 18.0!)
         Me.XrLabel6.StyleName = "DataField"
         Me.XrLabel6.Text = "XrLabel6"
         '
-        'XrLabel10
-        '
-        Me.XrLabel10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "petty_cash.sInsert_id")})
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(76.16666!, 18.0!)
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(197.0!, 18.0!)
-        Me.XrLabel10.StyleName = "DataField"
-        Me.XrLabel10.Text = "XrLabel10"
-        '
         'PageFooterBand1
         '
-        Me.PageFooterBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.XrPageInfo2})
-        Me.PageFooterBand1.HeightF = 29.00001!
+        Me.PageFooterBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.XrLabel5, Me.XrPageInfo1, Me.XrPageInfo2})
+        Me.PageFooterBand1.HeightF = 66.49996!
         Me.PageFooterBand1.Name = "PageFooterBand1"
         '
         'XrPageInfo1
         '
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 6.00001!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 43.49995!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime
@@ -212,13 +215,13 @@ Partial Public Class xrPettyCash
         '
         'XrPageInfo2
         '
-        Me.XrPageInfo2.Format = "Page {0} of {1}"
-        Me.XrPageInfo2.LocationFloat = New DevExpress.Utils.PointFloat(131.5!, 6.00001!)
+        Me.XrPageInfo2.LocationFloat = New DevExpress.Utils.PointFloat(190.3749!, 43.49995!)
         Me.XrPageInfo2.Name = "XrPageInfo2"
         Me.XrPageInfo2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo2.SizeF = New System.Drawing.SizeF(82.79166!, 23.0!)
         Me.XrPageInfo2.StyleName = "PageInfo"
         Me.XrPageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrPageInfo2.TextFormatString = "Page {0} of {1}"
         '
         'ReportHeaderBand1
         '
@@ -247,7 +250,7 @@ Partial Public Class xrPettyCash
         '
         'XrLabel11
         '
-        Me.XrLabel11.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel11.Font = New DevExpress.Drawing.DXFont("Times New Roman", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 6.00001!)
         Me.XrLabel11.Multiline = True
         Me.XrLabel11.Name = "XrLabel11"
@@ -263,7 +266,7 @@ Partial Public Class xrPettyCash
         Me.Title.BorderColor = System.Drawing.Color.Black
         Me.Title.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.Title.BorderWidth = 1.0!
-        Me.Title.Font = New System.Drawing.Font("Times New Roman", 24.0!)
+        Me.Title.Font = New DevExpress.Drawing.DXFont("Times New Roman", 24.0!)
         Me.Title.ForeColor = System.Drawing.Color.Black
         Me.Title.Name = "Title"
         '
@@ -273,7 +276,7 @@ Partial Public Class xrPettyCash
         Me.FieldCaption.BorderColor = System.Drawing.Color.Black
         Me.FieldCaption.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.FieldCaption.BorderWidth = 1.0!
-        Me.FieldCaption.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.FieldCaption.Font = New DevExpress.Drawing.DXFont("Times New Roman", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.FieldCaption.ForeColor = System.Drawing.Color.Black
         Me.FieldCaption.Name = "FieldCaption"
         '
@@ -283,7 +286,7 @@ Partial Public Class xrPettyCash
         Me.PageInfo.BorderColor = System.Drawing.Color.Black
         Me.PageInfo.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.PageInfo.BorderWidth = 1.0!
-        Me.PageInfo.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.PageInfo.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.PageInfo.ForeColor = System.Drawing.Color.Black
         Me.PageInfo.Name = "PageInfo"
         '
@@ -293,26 +296,26 @@ Partial Public Class xrPettyCash
         Me.DataField.BorderColor = System.Drawing.Color.Black
         Me.DataField.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.DataField.BorderWidth = 1.0!
-        Me.DataField.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.DataField.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!)
         Me.DataField.ForeColor = System.Drawing.Color.Black
         Me.DataField.Name = "DataField"
         Me.DataField.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         '
         'GroupHeader1
         '
-        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel10, Me.XrLabel2, Me.XrLabel3})
+        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.XrLabel1, Me.XrLabel6, Me.XrLabel2, Me.XrLabel3})
         Me.GroupHeader1.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("cashier", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader1.HeightF = 77.66666!
+        Me.GroupHeader1.HeightF = 52.04166!
         Me.GroupHeader1.Name = "GroupHeader1"
         '
         'XrLabel15
         '
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(129.7917!, 57.99999!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(129.7917!, 34.04166!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(48.45831!, 18.0!)
         Me.XrLabel15.StyleName = "FieldCaption"
-        Me.XrLabel15.Text = "Time"
+        Me.XrLabel15.Text = "Date"
         '
         'GroupFooter1
         '
@@ -322,7 +325,7 @@ Partial Public Class xrPettyCash
         '
         'XrLine2
         '
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 0.0!)
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(6.000002!, 0!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(267.1666!, 3.08334!)
         '
@@ -338,7 +341,7 @@ Partial Public Class xrPettyCash
         'XrLabel13
         '
         Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "petty_cash.pcamnt")})
-        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(198.6666!, 10.00001!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -346,10 +349,35 @@ Partial Public Class xrPettyCash
         Me.XrLabel13.StyleName = "DataField"
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseTextAlignment = False
-        XrSummary1.FormatString = "{0:n2}"
-        XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Group
-        Me.XrLabel13.Summary = XrSummary1
+        XrSummary2.FormatString = "{0:n2}"
+        XrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group
+        Me.XrLabel13.Summary = XrSummary2
         Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(10.00001!, 0!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(94.29166!, 18.0!)
+        Me.XrLabel5.StyleName = "FieldCaption"
+        Me.XrLabel5.Text = "GRAND Total"
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "petty_cash.pcamnt")})
+        Me.XrLabel10.Font = New DevExpress.Drawing.DXFont("Times New Roman", 8.0!, DevExpress.Drawing.DXFontStyle.Bold)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(198.6666!, 0!)
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(74.50002!, 18.0!)
+        Me.XrLabel10.StyleName = "DataField"
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.StylePriority.UseTextAlignment = False
+        XrSummary1.FormatString = "{0:n2}"
+        XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report
+        Me.XrLabel10.Summary = XrSummary1
+        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'xrPettyCash
         '
@@ -358,10 +386,10 @@ Partial Public Class xrPettyCash
         Me.DataMember = "petty_cash"
         Me.DataSource = Me.SqlDataSource1
         Me.FilterString = "IsOutlookIntervalToday([posdate])"
-        Me.Margins = New System.Drawing.Printing.Margins(14, 100, 6, 17)
+        Me.Margins = New DevExpress.Drawing.DXMargins(14, 100, 6, 17)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.FieldCaption, Me.PageInfo, Me.DataField})
-        Me.Version = "15.2"
+        Me.Version = "18.1"
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -371,12 +399,10 @@ Partial Public Class xrPettyCash
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
     Friend WithEvents PageFooterBand1 As DevExpress.XtraReports.UI.PageFooterBand
@@ -396,4 +422,6 @@ Partial Public Class xrPettyCash
     Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -32,6 +32,7 @@
               <Mapping SourceColumn="Receipt" DataSetColumn="Receipt" />
               <Mapping SourceColumn="barcode" DataSetColumn="barcode" />
               <Mapping SourceColumn="qty" DataSetColumn="qty" />
+              <Mapping SourceColumn="sInsert_id" DataSetColumn="sInsert_id" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -43,7 +44,7 @@
   <xs:element name="dsSpSalesToday" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsSpSalesToday" msprop:Generator_UserDSName="dsSpSalesToday">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="spSalesTodayqry" msprop:Generator_TableClassName="spSalesTodayqryDataTable" msprop:Generator_TableVarName="tablespSalesTodayqry" msprop:Generator_RowChangedName="spSalesTodayqryRowChanged" msprop:Generator_TablePropName="spSalesTodayqry" msprop:Generator_RowDeletingName="spSalesTodayqryRowDeleting" msprop:Generator_RowChangingName="spSalesTodayqryRowChanging" msprop:Generator_RowEvHandlerName="spSalesTodayqryRowChangeEventHandler" msprop:Generator_RowDeletedName="spSalesTodayqryRowDeleted" msprop:Generator_RowClassName="spSalesTodayqryRow" msprop:Generator_UserTableName="spSalesTodayqry" msprop:Generator_RowEvArgName="spSalesTodayqryRowChangeEvent">
+        <xs:element name="spSalesTodayqry" msprop:Generator_TableClassName="spSalesTodayqryDataTable" msprop:Generator_TableVarName="tablespSalesTodayqry" msprop:Generator_TablePropName="spSalesTodayqry" msprop:Generator_RowDeletingName="spSalesTodayqryRowDeleting" msprop:Generator_RowChangingName="spSalesTodayqryRowChanging" msprop:Generator_RowEvHandlerName="spSalesTodayqryRowChangeEventHandler" msprop:Generator_RowDeletedName="spSalesTodayqryRowDeleted" msprop:Generator_UserTableName="spSalesTodayqry" msprop:Generator_RowChangedName="spSalesTodayqryRowChanged" msprop:Generator_RowEvArgName="spSalesTodayqryRowChangeEvent" msprop:Generator_RowClassName="spSalesTodayqryRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="pos_date" msprop:Generator_ColumnVarNameInTable="columnpos_date" msprop:Generator_ColumnPropNameInRow="pos_date" msprop:Generator_ColumnPropNameInTable="pos_dateColumn" msprop:Generator_UserColumnName="pos_date" type="xs:dateTime" minOccurs="0" />
@@ -75,6 +76,13 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:double" minOccurs="0" />
+              <xs:element name="sInsert_id" msprop:Generator_ColumnVarNameInTable="columnsInsert_id" msprop:Generator_ColumnPropNameInRow="sInsert_id" msprop:Generator_ColumnPropNameInTable="sInsert_idColumn" msprop:Generator_UserColumnName="sInsert_id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

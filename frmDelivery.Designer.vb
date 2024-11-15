@@ -22,16 +22,16 @@ Partial Class frmDelivery
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDelivery))
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.dedlvrydate = New DevExpress.XtraEditors.DateEdit()
@@ -49,6 +49,7 @@ Partial Class frmDelivery
         Me.Free = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Retail = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ExpiryDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LotNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.disc = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -80,11 +81,12 @@ Partial Class frmDelivery
         Me.txtInv = New DevExpress.XtraEditors.TextEdit()
         Me.btnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.cePrice = New DevExpress.XtraEditors.CalcEdit()
+        Me.leSupplier = New DevExpress.XtraEditors.LookUpEdit()
         Me.ceAmountDisc = New DevExpress.XtraEditors.CalcEdit()
         Me.cePrcentDisc = New DevExpress.XtraEditors.CalcEdit()
         Me.deExpDate = New DevExpress.XtraEditors.DateEdit()
         Me.txtLotNo = New DevExpress.XtraEditors.TextEdit()
-        Me.leSupplier = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
@@ -110,12 +112,13 @@ Partial Class frmDelivery
         CType(Me.txtInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.cePrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.leSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ceAmountDisc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cePrcentDisc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deExpDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deExpDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtLotNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.leSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgitems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -159,11 +162,11 @@ Partial Class frmDelivery
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl2.Appearance.Options.UseFont = True
-        Me.LabelControl2.Location = New System.Drawing.Point(232, 31)
+        Me.LabelControl2.Location = New System.Drawing.Point(240, 31)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(58, 19)
+        Me.LabelControl2.Size = New System.Drawing.Size(48, 19)
         Me.LabelControl2.TabIndex = 0
-        Me.LabelControl2.Text = "Supp&lier" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.LabelControl2.Text = "Source"
         '
         'LabelControl3
         '
@@ -229,46 +232,46 @@ Partial Class frmDelivery
         Me.drgrid.AllowUserToAddRows = False
         Me.drgrid.AllowUserToDeleteRows = False
         Me.drgrid.AllowUserToResizeRows = False
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle31.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        DataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.drgrid.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.drgrid.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.drgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.drgrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.stckid, Me.Item, Me.Qty, Me.Free, Me.Price, Me.Amount, Me.ExpiryDate, Me.LotNo, Me.disc, Me.dscamnt})
-        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle38.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.drgrid.DefaultCellStyle = DataGridViewCellStyle38
+        Me.drgrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.stckid, Me.Item, Me.Qty, Me.Free, Me.Price, Me.Amount, Me.Retail, Me.ExpiryDate, Me.LotNo, Me.disc, Me.dscamnt})
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.drgrid.DefaultCellStyle = DataGridViewCellStyle18
         Me.drgrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
-        Me.drgrid.Location = New System.Drawing.Point(4, 145)
+        Me.drgrid.Location = New System.Drawing.Point(4, 102)
         Me.drgrid.MultiSelect = False
         Me.drgrid.Name = "drgrid"
-        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle39.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
-        DataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.drgrid.RowHeadersDefaultCellStyle = DataGridViewCellStyle39
-        DataGridViewCellStyle40.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.drgrid.RowsDefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.25!)
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.drgrid.RowHeadersDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.drgrid.RowsDefaultCellStyle = DataGridViewCellStyle20
         Me.drgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.drgrid.Size = New System.Drawing.Size(1067, 453)
+        Me.drgrid.Size = New System.Drawing.Size(1156, 496)
         Me.drgrid.TabIndex = 8
         '
         'stckid
         '
-        DataGridViewCellStyle32.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.stckid.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.stckid.DefaultCellStyle = DataGridViewCellStyle12
         Me.stckid.HeaderText = "StockID"
         Me.stckid.Name = "stckid"
         Me.stckid.Visible = False
@@ -276,66 +279,76 @@ Partial Class frmDelivery
         '
         'Item
         '
-        DataGridViewCellStyle33.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Item.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Item.DefaultCellStyle = DataGridViewCellStyle13
         Me.Item.HeaderText = "Item Description"
         Me.Item.Name = "Item"
-        Me.Item.Width = 370
+        Me.Item.ReadOnly = True
+        Me.Item.Width = 500
         '
         'Qty
         '
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle34.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle34.Format = "N0"
-        DataGridViewCellStyle34.NullValue = "0"
-        Me.Qty.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle14.Format = "N0"
+        DataGridViewCellStyle14.NullValue = "0"
+        Me.Qty.DefaultCellStyle = DataGridViewCellStyle14
         Me.Qty.HeaderText = "Qty"
         Me.Qty.Name = "Qty"
         Me.Qty.Width = 80
         '
         'Free
         '
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle35.Format = "N0"
-        DataGridViewCellStyle35.NullValue = "0"
-        Me.Free.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle15.Format = "N0"
+        DataGridViewCellStyle15.NullValue = "0"
+        Me.Free.DefaultCellStyle = DataGridViewCellStyle15
         Me.Free.HeaderText = "Free"
         Me.Free.Name = "Free"
         Me.Free.Width = 80
         '
         'Price
         '
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle36.Format = "N2"
-        DataGridViewCellStyle36.NullValue = "0"
-        Me.Price.DefaultCellStyle = DataGridViewCellStyle36
-        Me.Price.HeaderText = "Price"
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle16.Format = "N2"
+        DataGridViewCellStyle16.NullValue = "0"
+        Me.Price.DefaultCellStyle = DataGridViewCellStyle16
+        Me.Price.HeaderText = "Cost"
         Me.Price.Name = "Price"
-        Me.Price.Width = 130
+        Me.Price.Width = 150
         '
         'Amount
         '
-        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle37.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
-        DataGridViewCellStyle37.Format = "N2"
-        DataGridViewCellStyle37.NullValue = "0"
-        Me.Amount.DefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        DataGridViewCellStyle17.Format = "N2"
+        DataGridViewCellStyle17.NullValue = "0"
+        Me.Amount.DefaultCellStyle = DataGridViewCellStyle17
         Me.Amount.HeaderText = "Amount"
         Me.Amount.Name = "Amount"
-        Me.Amount.Width = 130
+        Me.Amount.ReadOnly = True
+        Me.Amount.Width = 200
+        '
+        'Retail
+        '
+        Me.Retail.HeaderText = "Retail"
+        Me.Retail.Name = "Retail"
         '
         'ExpiryDate
         '
         Me.ExpiryDate.HeaderText = "Expiry Date"
         Me.ExpiryDate.Name = "ExpiryDate"
-        Me.ExpiryDate.Width = 120
+        Me.ExpiryDate.Visible = False
+        Me.ExpiryDate.Width = 5
         '
         'LotNo
         '
         Me.LotNo.HeaderText = "Lot No"
         Me.LotNo.Name = "LotNo"
+        Me.LotNo.Visible = False
+        Me.LotNo.Width = 5
         '
         'disc
         '
@@ -381,7 +394,6 @@ Partial Class frmDelivery
         '
         'ceQty
         '
-        Me.ceQty.EnterMoveNextControl = True
         Me.ceQty.Location = New System.Drawing.Point(638, 67)
         Me.ceQty.Name = "ceQty"
         Me.ceQty.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
@@ -405,7 +417,6 @@ Partial Class frmDelivery
         '
         'ceCost
         '
-        Me.ceCost.EnterMoveNextControl = True
         Me.ceCost.Location = New System.Drawing.Point(955, 67)
         Me.ceCost.Name = "ceCost"
         Me.ceCost.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
@@ -414,7 +425,7 @@ Partial Class frmDelivery
         Me.ceCost.Properties.Mask.BeepOnError = True
         Me.ceCost.Properties.Mask.EditMask = "n2"
         Me.ceCost.Size = New System.Drawing.Size(110, 26)
-        Me.ceCost.TabIndex = 100
+        Me.ceCost.TabIndex = 9
         Me.ceCost.TabStop = False
         Me.ceCost.ToolTip = "Cost of the item delivered"
         '
@@ -435,7 +446,7 @@ Partial Class frmDelivery
         Me.btnAdd.Location = New System.Drawing.Point(956, 109)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(107, 23)
-        Me.btnAdd.TabIndex = 11
+        Me.btnAdd.TabIndex = 10
         Me.btnAdd.Text = "&Add to List"
         Me.btnAdd.ToolTip = "Add the item to the list of Deliveries Below."
         '
@@ -483,7 +494,6 @@ Partial Class frmDelivery
         '
         'txtsum
         '
-        Me.txtsum.Enabled = False
         Me.txtsum.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
         Me.txtsum.Location = New System.Drawing.Point(873, 607)
         Me.txtsum.Name = "txtsum"
@@ -499,9 +509,9 @@ Partial Class frmDelivery
         Me.LabelControl10.Appearance.Options.UseFont = True
         Me.LabelControl10.Location = New System.Drawing.Point(771, 617)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(86, 19)
+        Me.LabelControl10.Size = New System.Drawing.Size(51, 19)
         Me.LabelControl10.TabIndex = 0
-        Me.LabelControl10.Text = "SUB-TOTAL"
+        Me.LabelControl10.Text = "TOTAL"
         '
         'txtItem
         '
@@ -570,15 +580,16 @@ Partial Class frmDelivery
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl11.Appearance.Options.UseFont = True
-        Me.LabelControl11.Location = New System.Drawing.Point(796, 652)
+        Me.LabelControl11.Location = New System.Drawing.Point(571, 649)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(61, 19)
         Me.LabelControl11.TabIndex = 0
         Me.LabelControl11.Text = "Discount"
+        Me.LabelControl11.Visible = False
         '
         'cediscamnt
         '
-        Me.cediscamnt.Location = New System.Drawing.Point(873, 645)
+        Me.cediscamnt.Location = New System.Drawing.Point(648, 642)
         Me.cediscamnt.Name = "cediscamnt"
         Me.cediscamnt.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.cediscamnt.Properties.Appearance.Options.UseFont = True
@@ -586,28 +597,30 @@ Partial Class frmDelivery
         Me.cediscamnt.Size = New System.Drawing.Size(189, 26)
         Me.cediscamnt.TabIndex = 23
         Me.cediscamnt.ToolTip = "Discount Amount given by the supplier"
+        Me.cediscamnt.Visible = False
         '
         'LabelControl12
         '
         Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
         Me.LabelControl12.Appearance.Options.UseFont = True
-        Me.LabelControl12.Location = New System.Drawing.Point(747, 689)
+        Me.LabelControl12.Location = New System.Drawing.Point(747, 661)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(110, 19)
         Me.LabelControl12.TabIndex = 0
         Me.LabelControl12.Text = "GRAND TOTAL"
+        Me.LabelControl12.Visible = False
         '
         'txtGrand
         '
-        Me.txtGrand.Enabled = False
         Me.txtGrand.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!)
-        Me.txtGrand.Location = New System.Drawing.Point(873, 679)
+        Me.txtGrand.Location = New System.Drawing.Point(873, 651)
         Me.txtGrand.Name = "txtGrand"
         Me.txtGrand.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtGrand.Size = New System.Drawing.Size(189, 29)
         Me.txtGrand.TabIndex = 19
         Me.txtGrand.TabStop = False
         Me.txtGrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtGrand.Visible = False
         '
         'DGRetrieve
         '
@@ -645,17 +658,10 @@ Partial Class frmDelivery
         '
         'GroupControl1
         '
-        Me.GroupControl1.Controls.Add(Me.ceAmountDisc)
-        Me.GroupControl1.Controls.Add(Me.cePrcentDisc)
-        Me.GroupControl1.Controls.Add(Me.deExpDate)
-        Me.GroupControl1.Controls.Add(Me.txtLotNo)
+        Me.GroupControl1.Controls.Add(Me.cePrice)
         Me.GroupControl1.Controls.Add(Me.leSupplier)
         Me.GroupControl1.Controls.Add(Me.txtInv)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
-        Me.GroupControl1.Controls.Add(Me.LabelControl16)
-        Me.GroupControl1.Controls.Add(Me.LabelControl15)
-        Me.GroupControl1.Controls.Add(Me.LabelControl14)
-        Me.GroupControl1.Controls.Add(Me.LabelControl13)
         Me.GroupControl1.Controls.Add(Me.LabelControl6)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
         Me.GroupControl1.Controls.Add(Me.txtSupplier)
@@ -676,14 +682,48 @@ Partial Class frmDelivery
         Me.GroupControl1.Controls.Add(Me.cmbType)
         Me.GroupControl1.Controls.Add(Me.ceQty)
         Me.GroupControl1.Controls.Add(Me.ceFree)
-        Me.GroupControl1.Controls.Add(Me.btnAdd)
         Me.GroupControl1.Controls.Add(Me.ceCost)
+        Me.GroupControl1.Controls.Add(Me.ceAmountDisc)
+        Me.GroupControl1.Controls.Add(Me.cePrcentDisc)
+        Me.GroupControl1.Controls.Add(Me.deExpDate)
+        Me.GroupControl1.Controls.Add(Me.txtLotNo)
+        Me.GroupControl1.Controls.Add(Me.LabelControl16)
+        Me.GroupControl1.Controls.Add(Me.LabelControl15)
+        Me.GroupControl1.Controls.Add(Me.LabelControl14)
+        Me.GroupControl1.Controls.Add(Me.LabelControl13)
+        Me.GroupControl1.Controls.Add(Me.btnAdd)
         Me.GroupControl1.Enabled = False
         Me.GroupControl1.Location = New System.Drawing.Point(6, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1068, 144)
+        Me.GroupControl1.Size = New System.Drawing.Size(1154, 144)
         Me.GroupControl1.TabIndex = 33
         Me.GroupControl1.Text = "Deliver&y Header"
+        '
+        'cePrice
+        '
+        Me.cePrice.EnterMoveNextControl = True
+        Me.cePrice.Location = New System.Drawing.Point(1071, 41)
+        Me.cePrice.Name = "cePrice"
+        Me.cePrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.25!)
+        Me.cePrice.Properties.Appearance.Options.UseFont = True
+        Me.cePrice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cePrice.Size = New System.Drawing.Size(76, 26)
+        Me.cePrice.TabIndex = 101
+        Me.cePrice.ToolTip = "Number of free items the supplier gave as a promo or discount"
+        Me.cePrice.Visible = False
+        '
+        'leSupplier
+        '
+        Me.leSupplier.Location = New System.Drawing.Point(294, 24)
+        Me.leSupplier.Name = "leSupplier"
+        Me.leSupplier.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.leSupplier.Properties.Appearance.Options.UseFont = True
+        Me.leSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.leSupplier.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supcode", "supcode", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supplier", "supplier")})
+        Me.leSupplier.Properties.DropDownRows = 15
+        Me.leSupplier.Size = New System.Drawing.Size(253, 26)
+        Me.leSupplier.TabIndex = 2
+        Me.leSupplier.ToolTip = "Click the Down Arrow to See a list of Suppliers"
         '
         'ceAmountDisc
         '
@@ -696,6 +736,7 @@ Partial Class frmDelivery
         Me.ceAmountDisc.Size = New System.Drawing.Size(113, 26)
         Me.ceAmountDisc.TabIndex = 16
         Me.ceAmountDisc.ToolTip = "Amount to be deducted per Item Delivered"
+        Me.ceAmountDisc.Visible = False
         '
         'cePrcentDisc
         '
@@ -708,6 +749,7 @@ Partial Class frmDelivery
         Me.cePrcentDisc.Size = New System.Drawing.Size(100, 26)
         Me.cePrcentDisc.TabIndex = 15
         Me.cePrcentDisc.ToolTip = "Percent to be deducted per Item delivered"
+        Me.cePrcentDisc.Visible = False
         '
         'deExpDate
         '
@@ -723,8 +765,9 @@ Partial Class frmDelivery
         Me.deExpDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple
         Me.deExpDate.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[False]
         Me.deExpDate.Size = New System.Drawing.Size(128, 26)
-        Me.deExpDate.TabIndex = 10
+        Me.deExpDate.TabIndex = 100
         Me.deExpDate.ToolTip = "Expiration date of Item delivered"
+        Me.deExpDate.Visible = False
         '
         'txtLotNo
         '
@@ -735,21 +778,9 @@ Partial Class frmDelivery
         Me.txtLotNo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.txtLotNo.Properties.Appearance.Options.UseFont = True
         Me.txtLotNo.Size = New System.Drawing.Size(100, 26)
-        Me.txtLotNo.TabIndex = 9
+        Me.txtLotNo.TabIndex = 99
         Me.txtLotNo.ToolTip = "Lot No. of Item of Item delivered"
-        '
-        'leSupplier
-        '
-        Me.leSupplier.Location = New System.Drawing.Point(294, 24)
-        Me.leSupplier.Name = "leSupplier"
-        Me.leSupplier.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.leSupplier.Properties.Appearance.Options.UseFont = True
-        Me.leSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.leSupplier.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supcode", "supcode", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("supplier", "supplier")})
-        Me.leSupplier.Properties.DropDownRows = 15
-        Me.leSupplier.Size = New System.Drawing.Size(253, 26)
-        Me.leSupplier.TabIndex = 2
-        Me.leSupplier.ToolTip = "Click the Down Arrow to See a list of Suppliers"
+        Me.txtLotNo.Visible = False
         '
         'LabelControl16
         '
@@ -760,6 +791,7 @@ Partial Class frmDelivery
         Me.LabelControl16.Size = New System.Drawing.Size(123, 19)
         Me.LabelControl16.TabIndex = 0
         Me.LabelControl16.Text = "A&mount Discount"
+        Me.LabelControl16.Visible = False
         '
         'LabelControl15
         '
@@ -770,6 +802,7 @@ Partial Class frmDelivery
         Me.LabelControl15.Size = New System.Drawing.Size(82, 19)
         Me.LabelControl15.TabIndex = 0
         Me.LabelControl15.Text = "% Disco&unt"
+        Me.LabelControl15.Visible = False
         '
         'LabelControl14
         '
@@ -780,6 +813,7 @@ Partial Class frmDelivery
         Me.LabelControl14.Size = New System.Drawing.Size(108, 19)
         Me.LabelControl14.TabIndex = 0
         Me.LabelControl14.Text = "E&xpiration Date"
+        Me.LabelControl14.Visible = False
         '
         'LabelControl13
         '
@@ -790,6 +824,7 @@ Partial Class frmDelivery
         Me.LabelControl13.Size = New System.Drawing.Size(47, 19)
         Me.LabelControl13.TabIndex = 0
         Me.LabelControl13.Text = "Lo&t No"
+        Me.LabelControl13.Visible = False
         '
         'btnNewSupplier
         '
@@ -841,10 +876,10 @@ Partial Class frmDelivery
         '
         Me.dgitems.AllowUserToAddRows = False
         Me.dgitems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgitems.Location = New System.Drawing.Point(33, 95)
+        Me.dgitems.Location = New System.Drawing.Point(40, 99)
         Me.dgitems.Name = "dgitems"
         Me.dgitems.ReadOnly = True
-        Me.dgitems.Size = New System.Drawing.Size(882, 544)
+        Me.dgitems.Size = New System.Drawing.Size(882, 537)
         Me.dgitems.TabIndex = 101
         Me.dgitems.Visible = False
         '
@@ -852,13 +887,14 @@ Partial Class frmDelivery
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1074, 713)
+        Me.ClientSize = New System.Drawing.Size(1172, 713)
         Me.Controls.Add(Me.dgitems)
+        Me.Controls.Add(Me.drgrid)
+        Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.SimpleButton2)
         Me.Controls.Add(Me.btnNewSupplier)
         Me.Controls.Add(Me.SimpleButton1)
         Me.Controls.Add(Me.btnAddNew)
-        Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.DGRetrieve)
         Me.Controls.Add(Me.cediscamnt)
         Me.Controls.Add(Me.txtGrand)
@@ -867,7 +903,6 @@ Partial Class frmDelivery
         Me.Controls.Add(Me.btnNew)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnPost)
-        Me.Controls.Add(Me.drgrid)
         Me.Controls.Add(Me.LabelControl12)
         Me.Controls.Add(Me.LabelControl11)
         Me.Controls.Add(Me.LabelControl10)
@@ -894,12 +929,13 @@ Partial Class frmDelivery
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.cePrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.leSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ceAmountDisc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cePrcentDisc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deExpDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deExpDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtLotNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.leSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgitems, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -955,15 +991,17 @@ Partial Class frmDelivery
     Friend WithEvents btnAddNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents dgitems As DataGridView
     Friend WithEvents stckid As DataGridViewTextBoxColumn
     Friend WithEvents Item As DataGridViewTextBoxColumn
     Friend WithEvents Qty As DataGridViewTextBoxColumn
     Friend WithEvents Free As DataGridViewTextBoxColumn
     Friend WithEvents Price As DataGridViewTextBoxColumn
     Friend WithEvents Amount As DataGridViewTextBoxColumn
+    Friend WithEvents Retail As DataGridViewTextBoxColumn
     Friend WithEvents ExpiryDate As DataGridViewTextBoxColumn
     Friend WithEvents LotNo As DataGridViewTextBoxColumn
     Friend WithEvents disc As DataGridViewTextBoxColumn
     Friend WithEvents dscamnt As DataGridViewTextBoxColumn
-    Friend WithEvents dgitems As DataGridView
+    Friend WithEvents cePrice As DevExpress.XtraEditors.CalcEdit
 End Class

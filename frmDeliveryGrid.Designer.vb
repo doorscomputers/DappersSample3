@@ -37,9 +37,9 @@ Partial Class frmDeliveryGrid
         Me.colfreee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldrdetamnt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colsInsert_id = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.VwDlvryDetailsTableAdapter = New DoorsPOS.WinApp.dsvwDeliveriesTableAdapters.vwDlvryDetailsTableAdapter()
         Me.colexpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.collotno = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.VwDlvryDetailsTableAdapter = New DoorsPOS.WinApp.dsvwDeliveriesTableAdapters.vwDlvryDetailsTableAdapter()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDlvryDetailsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsvwDeliveriesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +106,7 @@ Partial Class frmDeliveryGrid
         'coldrid
         '
         Me.coldrid.Caption = "Dr. No."
-        Me.coldrid.FieldName = "drid"
+        Me.coldrid.FieldName = "drinv"
         Me.coldrid.Name = "coldrid"
         Me.coldrid.Visible = True
         Me.coldrid.VisibleIndex = 0
@@ -182,10 +182,6 @@ Partial Class frmDeliveryGrid
         Me.colsInsert_id.VisibleIndex = 5
         Me.colsInsert_id.Width = 302
         '
-        'VwDlvryDetailsTableAdapter
-        '
-        Me.VwDlvryDetailsTableAdapter.ClearBeforeFill = True
-        '
         'colexpdate
         '
         Me.colexpdate.Caption = "Expiration Date"
@@ -202,6 +198,10 @@ Partial Class frmDeliveryGrid
         Me.collotno.Visible = True
         Me.collotno.VisibleIndex = 7
         '
+        'VwDlvryDetailsTableAdapter
+        '
+        Me.VwDlvryDetailsTableAdapter.ClearBeforeFill = True
+        '
         'frmDeliveryGrid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -210,6 +210,7 @@ Partial Class frmDeliveryGrid
         Me.Controls.Add(Me.GridControl1)
         Me.Name = "frmDeliveryGrid"
         Me.Text = "Deliveries Grid View"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDlvryDetailsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsvwDeliveriesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

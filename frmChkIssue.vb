@@ -5,7 +5,7 @@ Imports DynamicComponents.Number2Text
 Imports DevExpress.XtraReports.UI
 Public Class frmChkIssue
     Private WithEvents trans As PDSATransaction
-    Dim oTextNum As New DynamicComponents.Number2Text()
+    'Dim oTextNum As New DynamicComponents.Number2Text()
     Dim mgrChkIssued As ChkIssuedManager = New ChkIssuedManager()
     Dim colSupBal As dlvry_hdrCollection
     Dim Tots As Decimal = 0
@@ -58,7 +58,7 @@ Public Class frmChkIssue
     End Sub
 
     Private Sub frmChkIssue_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        oTextNum = New DynamicComponents.Number2Text()
+        ' oTextNum = New DynamicComponents.Number2Text()
         Me.Cursor = Cursors.WaitCursor
         LoadBank()
         btnNew.Focus()
@@ -264,11 +264,11 @@ Public Class frmChkIssue
 
     Private Sub textOfNumber()
 
-        oTextNum.setRegistrationKey("3842-539-837-306-5999") ' replace with your purchased serial number once you get one
+        'oTextNum.setRegistrationKey("3842-539-837-306-5999") ' replace with your purchased serial number once you get one
 
-        oTextNum.setCurrency("Peso", "Pesos", "cent", "cents")
-        Me.txtamntwords.RightToLeft = Windows.Forms.RightToLeft.No
-        Me.txtamntwords.Text = oTextNum.translateNumber(CStr(valid(Me.ceAmount.Text)), Language_ID.English)
+        'oTextNum.setCurrency("Peso", "Pesos", "cent", "cents")
+        'Me.txtamntwords.RightToLeft = Windows.Forms.RightToLeft.No
+        'Me.txtamntwords.Text = oTextNum.translateNumber(CStr(valid(Me.ceAmount.Text)), Language_ID.English)
 
     End Sub
     Private Function valid(ByVal str As String) As Decimal

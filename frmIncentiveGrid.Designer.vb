@@ -24,32 +24,31 @@ Partial Class frmIncentiveGrid
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.SpIncentiveBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsSpIncentive = New DoorsPOS.WinApp.dsSpIncentive()
         Me.grdIncentives = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colpos_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colincentive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colwaiter = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colwtid = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsIncentives1 = New DoorsPOS.WinApp.dsIncentives()
-        Me.VwIncentivesTableAdapter1 = New DoorsPOS.WinApp.dsIncentivesTableAdapters.vwIncentivesTableAdapter()
-        Me.SpIncentiveTableAdapter = New DoorsPOS.WinApp.dsSpIncentiveTableAdapters.spIncentiveTableAdapter()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colwtid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DsIncentives = New DoorsPOS.WinApp.dsIncentives()
+        Me.DsIncentivesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsIncentivesNew = New DoorsPOS.WinApp.dsIncentivesNew()
+        Me.VwIncentivesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwIncentivesTableAdapter = New DoorsPOS.WinApp.dsIncentivesNewTableAdapters.vwIncentivesTableAdapter()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SpIncentiveBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsSpIncentive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdIncentives, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsIncentives1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsIncentives, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsIncentivesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsIncentivesNew, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwIncentivesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridControl1
         '
         Me.GridControl1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.GridControl1.DataSource = Me.SpIncentiveBindingSource
+        Me.GridControl1.DataSource = Me.VwIncentivesBindingSource
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GridControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GridControl1.Location = New System.Drawing.Point(0, 0)
@@ -58,16 +57,6 @@ Partial Class frmIncentiveGrid
         Me.GridControl1.Size = New System.Drawing.Size(980, 389)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.grdIncentives})
-        '
-        'SpIncentiveBindingSource
-        '
-        Me.SpIncentiveBindingSource.DataMember = "spIncentive"
-        Me.SpIncentiveBindingSource.DataSource = Me.DsSpIncentive
-        '
-        'DsSpIncentive
-        '
-        Me.DsSpIncentive.DataSetName = "dsSpIncentive"
-        Me.DsSpIncentive.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'grdIncentives
         '
@@ -120,6 +109,7 @@ Partial Class frmIncentiveGrid
         Me.colqty.Caption = "Qty"
         Me.colqty.FieldName = "qty"
         Me.colqty.Name = "colqty"
+        Me.colqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "SUM={0:0.##}")})
         Me.colqty.Visible = True
         Me.colqty.VisibleIndex = 2
         Me.colqty.Width = 62
@@ -134,31 +124,6 @@ Partial Class frmIncentiveGrid
         Me.colwaiter.VisibleIndex = 3
         Me.colwaiter.Width = 122
         '
-        'colwtid
-        '
-        Me.colwtid.FieldName = "wtid"
-        Me.colwtid.Name = "colwtid"
-        Me.colwtid.OptionsColumn.ReadOnly = True
-        '
-        'BindingSource1
-        '
-        Me.BindingSource1.DataMember = "vwIncentives"
-        Me.BindingSource1.DataSource = Me.DsIncentives1
-        Me.BindingSource1.Sort = ""
-        '
-        'DsIncentives1
-        '
-        Me.DsIncentives1.DataSetName = "dsIncentives"
-        Me.DsIncentives1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'VwIncentivesTableAdapter1
-        '
-        Me.VwIncentivesTableAdapter1.ClearBeforeFill = True
-        '
-        'SpIncentiveTableAdapter
-        '
-        Me.SpIncentiveTableAdapter.ClearBeforeFill = True
-        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Amount"
@@ -172,6 +137,36 @@ Partial Class frmIncentiveGrid
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
         '
+        'colwtid
+        '
+        Me.colwtid.FieldName = "wtid"
+        Me.colwtid.Name = "colwtid"
+        Me.colwtid.OptionsColumn.ReadOnly = True
+        '
+        'DsIncentives
+        '
+        Me.DsIncentives.DataSetName = "dsIncentives"
+        Me.DsIncentives.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DsIncentivesBindingSource
+        '
+        Me.DsIncentivesBindingSource.DataSource = Me.DsIncentives
+        Me.DsIncentivesBindingSource.Position = 0
+        '
+        'DsIncentivesNew
+        '
+        Me.DsIncentivesNew.DataSetName = "dsIncentivesNew"
+        Me.DsIncentivesNew.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwIncentivesBindingSource
+        '
+        Me.VwIncentivesBindingSource.DataMember = "vwIncentives"
+        Me.VwIncentivesBindingSource.DataSource = Me.DsIncentivesNew
+        '
+        'VwIncentivesTableAdapter
+        '
+        Me.VwIncentivesTableAdapter.ClearBeforeFill = True
+        '
         'frmIncentiveGrid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,27 +177,26 @@ Partial Class frmIncentiveGrid
         Me.Text = "Incentives Grid View"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SpIncentiveBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsSpIncentive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdIncentives, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsIncentives1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsIncentives, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsIncentivesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsIncentivesNew, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwIncentivesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents grdIncentives As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents BindingSource1 As System.Windows.Forms.BindingSource
-    Friend WithEvents DsIncentives1 As DoorsPOS.WinApp.dsIncentives
     Friend WithEvents colpos_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colincentive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colwaiter As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colwtid As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents VwIncentivesTableAdapter1 As DoorsPOS.WinApp.dsIncentivesTableAdapters.vwIncentivesTableAdapter
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents DsSpIncentive As DoorsPOS.WinApp.dsSpIncentive
-    Friend WithEvents SpIncentiveBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents SpIncentiveTableAdapter As DoorsPOS.WinApp.dsSpIncentiveTableAdapters.spIncentiveTableAdapter
     Friend WithEvents colqty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DsIncentivesBindingSource As BindingSource
+    Friend WithEvents DsIncentives As dsIncentives
+    Friend WithEvents DsIncentivesNew As dsIncentivesNew
+    Friend WithEvents VwIncentivesBindingSource As BindingSource
+    Friend WithEvents VwIncentivesTableAdapter As dsIncentivesNewTableAdapters.vwIncentivesTableAdapter
 End Class
